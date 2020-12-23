@@ -1,6 +1,6 @@
-import 'https://unpkg.com/boxicons@latest/dist/boxicons.js'
 import Link from './link'
 import socialMedia from '../data/social-media'
+import Icon from './icon'
 
 function Footer() {
   return (
@@ -9,7 +9,7 @@ function Footer() {
         {socialMedia.map(({ name, link }) => (
           <li>
             <Link to={link} aria-label={name}>
-              <box-icon type="logo" name={name} />
+              <Icon name={name} />
             </Link>
           </li>
         ))}
