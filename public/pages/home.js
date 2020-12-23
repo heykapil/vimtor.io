@@ -55,6 +55,10 @@ function ContactSection() {
         <li>Doing freelance jobs from time to time</li>
         <li>Always learning</li>
       </ul>
+      <p>
+        Feel free to contact me at <Link to="mailto:victor@vimtor.io">victor@vimtor.io</Link> or reach out on social
+        media ☺
+      </p>
     </section>
   )
 }
