@@ -25,7 +25,14 @@ function ExperienceSection() {
       <ul>
         {projects.map(({ title, description, banner, source }) => (
           <li>
-            <img src={`/images/${banner.src}.webp`} alt={banner.alt} loading="lazy" width={256} height={152} />
+            <img
+              src={`/images/${banner.src}.webp`}
+              alt={banner.alt}
+              loading="lazy"
+              decoding="async"
+              width={256}
+              height={152}
+            />
             <div>
               <h3>{title}</h3>
               {description.map(text => (
