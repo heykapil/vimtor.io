@@ -1,20 +1,39 @@
 {
-	"scripts": {
-		"start": "aaaa/node_modules/.bin/wmr",
-		"build": "aaaa/node_modules/.bin/wmr build --prerender",
-		"serve": "aaaa/node_modules/.bin/wmr serve"
-	},
-	"eslintConfig": {
-		"extends": "preact"
-	},
-	"alias": {
-		"react": "preact/compat",
-		"react-dom": "preact/compat"
-	},
-	"dependencies": {
-		"preact-iso": "^0.2.0"
-	},
-	"devDependencies": {
-		"wmr": "^1.0.0"
-	}
+  "scripts": {
+    "start": "wmr",
+    "build": "wmr build --prerender",
+    "serve": "wmr serve"
+  },
+  "eslintConfig": {
+    "extends": "preact"
+  },
+  "alias": {
+    "react": "preact/compat",
+    "react-dom": "preact/compat"
+  },
+  "prettier": {
+    "printWidth": 120,
+    "tabWidth": 2,
+    "semi": false,
+    "singleQuote": true,
+    "quoteProps": "as-needed",
+    "jsxSingleQuote": false,
+    "trailingComma": "es5",
+    "bracketSpacing": true,
+    "arrowParens": "avoid",
+    "requirePragma": false,
+    "insertPragma": false,
+    "htmlWhitespaceSensitivity": "css",
+    "endOfLine": "lf",
+    "jsxBracketSameLine": false,
+    "proseWrap": "always",
+    "useTabs": false
+  },
+  "dependencies": {
+    "preact-iso": "^0.2.0"
+  },
+  "devDependencies": {
+    "prettier": "^2.2.1",
+    "wmr": "^1.0.0"
+  }
 }
