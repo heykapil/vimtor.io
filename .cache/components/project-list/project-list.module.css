@@ -1,0 +1,1 @@
+.list_ozojz4{display:grid;justify-content:center;align-items:center;}.item_ozojz4{display:flex;}@media screen and (min-width: 700px){.list_ozojz4{grid-template-columns:repeat(2, 1fr);}}@media screen and (min-width: 1200px){.list_ozojz4{grid-template-columns:repeat(4, 1fr);}}

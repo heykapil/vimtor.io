@@ -1,0 +1,35 @@
+@import "style/variables"
+
+.hero
+  margin-top: 128px
+  @media screen and (min-width: 700px)
+    margin-top: 196px
+    text-align: left
+    width: 100%
+    display: flex
+    justify-content: center
+    align-items: center
+
+
+.title
+  margin-top: 1em
+  font-weight: $extra-bold
+  margin-bottom: 16px
+  @media screen and (min-width: 700px)
+    text-align: left
+
+.info
+  max-width: 80%
+  margin: 0 auto
+
+  & > p
+    margin-bottom: 0.5em
+    text-align: inherit
+
+  @media screen and (min-width: 700px)
+    text-align: left
+    margin: 0 0 0 64px
+    max-width: 50%
+
+
+
