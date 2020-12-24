@@ -1,4 +1,4 @@
-.idea
 node_modules
-dist
-.cache
+build
+*.log
+.idea
