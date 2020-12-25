@@ -9,5 +9,7 @@
   }
 }
 
-
-
+@mixin var($property, $name) {
+  #{$property}: map-get($vars, $name);
+  #{$property}: var(--#{$name});
+}

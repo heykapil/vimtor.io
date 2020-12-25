@@ -1,0 +1,25 @@
+.list {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  row-gap: 96px;
+}
+@media screen and (min-width: 900px) {
+  .list {
+    max-width: 90%;
+    margin: 0 auto;
+  }
+}
+@media screen and (min-width: 1920px) {
+  .list {
+    column-gap: 56px;
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media screen and (min-width: 2600px) {
+  .list {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/*# sourceMappingURL=project-gallery.css.map */

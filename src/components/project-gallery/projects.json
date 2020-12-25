@@ -15,108 +15,46 @@
     }
   },
   {
-    "title": "Bloobirds",
+    "title": "10 Nights",
     "description": [
-      "Working in this lovely startup as a fullstack",
-      "Learn to work with complex React and Java codebase due to how cool the app is"
+      "Mystery boardgame to have fun with friends and family",
+      "It won a 2nd place at DAU and traveled all the way to France's Cannes International Festival of Jeux"
     ],
     "banner": {
-      "src": "bloobirds",
-      "alt": "bloobirds landing page"
+      "src": "ten-nights",
+      "alt": "10 nights"
     },
     "source": {
-      "link": "https://bloobirds.com",
-      "text": "Check out the product"
+      "link": "https://www.amazon.es/%C3%81tomo-Games-Nights-Juego-Mesa",
+      "text": "Buy it on Amazon"
     }
   },
   {
-    "title": "Bloobirds",
+    "title": "Sinking Souls",
     "description": [
-      "Working in this lovely startup as a fullstack",
-      "Learn to work with complex React and Java codebase due to how cool the app is"
+      "Rogue-like pirate videogame made over a year in Unity with 5 teammates when studying in ENTI university"
     ],
     "banner": {
-      "src": "bloobirds",
-      "alt": "bloobirds landing page"
+      "src": "sinking-souls",
+      "alt": "sinkings souls cover"
     },
     "source": {
-      "link": "https://bloobirds.com",
-      "text": "Check out the product"
+      "link": "https://kubitstudios.itch.io/sinking-souls",
+      "text": "Start the fun!"
     }
   },
   {
-    "title": "Bloobirds",
+    "title": "Tomacons Website",
     "description": [
-      "Working in this lovely startup as a fullstack",
-      "Learn to work with complex React and Java codebase due to how cool the app is"
+      "Website and packaging design for the most delicious tomato producer in Catalonia"
     ],
     "banner": {
-      "src": "bloobirds",
-      "alt": "bloobirds landing page"
+      "src": "tomacons",
+      "alt": "tomacons"
     },
     "source": {
-      "link": "https://bloobirds.com",
-      "text": "Check out the product"
-    }
-  },
-  {
-    "title": "Bloobirds",
-    "description": [
-      "Working in this lovely startup as a fullstack",
-      "Learn to work with complex React and Java codebase due to how cool the app is"
-    ],
-    "banner": {
-      "src": "bloobirds",
-      "alt": "bloobirds landing page"
-    },
-    "source": {
-      "link": "https://bloobirds.com",
-      "text": "Check out the product"
-    }
-  },
-  {
-    "title": "Bloobirds",
-    "description": [
-      "Working in this lovely startup as a fullstack",
-      "Learn to work with complex React and Java codebase due to how cool the app is"
-    ],
-    "banner": {
-      "src": "bloobirds",
-      "alt": "bloobirds landing page"
-    },
-    "source": {
-      "link": "https://bloobirds.com",
-      "text": "Check out the product"
-    }
-  },
-  {
-    "title": "Bloobirds",
-    "description": [
-      "Working in this lovely startup as a fullstack",
-      "Learn to work with complex React and Java codebase due to how cool the app is"
-    ],
-    "banner": {
-      "src": "bloobirds",
-      "alt": "bloobirds landing page"
-    },
-    "source": {
-      "link": "https://bloobirds.com",
-      "text": "Check out the product"
-    }
-  },
-  {
-    "title": "Bloobirds",
-    "description": [
-      "Working in this lovely startup as a fullstack",
-      "Learn to work with complex React and Java codebase due to how cool the app is"
-    ],
-    "banner": {
-      "src": "bloobirds",
-      "alt": "bloobirds landing page"
-    },
-    "source": {
-      "link": "https://bloobirds.com",
-      "text": "Check out the product"
+      "link": "http://tomacons.cat/",
+      "text": "Taste the website"
     }
   }
 ]

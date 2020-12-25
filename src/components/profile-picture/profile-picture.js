@@ -1,10 +1,11 @@
 import style from './profile-picture.css'
+import Image from '../image/image'
 
 function ProfilePicture() {
   return (
-    <img
+    <Image
       class={style.image}
-      src="./assets/images/profile.webp"
+      src="profile"
       alt="victor navarro"
       width={200}
       height={200}

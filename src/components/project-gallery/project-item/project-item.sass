@@ -1,6 +1,5 @@
-@import "style/variables"
-
 .container
+  max-width: 900px
   @media screen and (min-width: 700px)
     display: flex
     align-items: center
@@ -35,11 +34,13 @@
 .banner
   margin-top: 24px
   width: 100%
+  flex-shrink: 0
   position: relative
+  overflow: hidden
 
   @media screen and (min-width: 700px)
     border-radius: 16px 0 0 16px
-    width: 80%
+    width: 40%
     max-width: 512px
 
   @media screen and (min-width: 900px)
@@ -60,4 +61,9 @@
 .image
   border-radius: inherit
   width: 100%
+  transform: scale(1)
+  transition: all 500ms ease-in-out
+
+  &:hover
+    transform: scale(1.04)
 

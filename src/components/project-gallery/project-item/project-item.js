@@ -1,9 +1,10 @@
 import style from './project-item.sass'
 import Link from '../../link/link'
+import Image from '../../image/image'
 
 const ProjectItem = ({ title, description, source, banner }) => (
   <li class={style.container}>
-    <div class={style.info}>
+    <div>
       <h3 class={style.title}>{title}</h3>
       {description.map((text) => (
         <p class={style.description}>{text}</p>
@@ -12,9 +13,9 @@ const ProjectItem = ({ title, description, source, banner }) => (
     </div>
     <div class={style.banner}>
       <Link to={source.link}>
-        <img
+        <Image
           class={style.image}
-          src={`/assets/images/${banner.src}.webp`}
+          src={banner.src}
           alt={banner.alt}
           loading="lazy"
           decoding="async"

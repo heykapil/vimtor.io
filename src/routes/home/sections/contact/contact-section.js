@@ -1,9 +1,10 @@
+import style from './contact-section.scss'
 import Section from '../../../../components/section/section'
 import Link from '../../../../components/link/link'
 
 const ContactSection = () => (
-  <Section title="Contact ☎" subtitle="Get in touch! I don't bite...">
-    <ul>
+  <Section title="Contact 📞" subtitle="Get in touch! I don't bite...">
+    <ul class={style.list}>
       <li>
         Working as a full-stack developer at{' '}
         <Link to="https://bloobirds.com/">Bloobirds</Link>

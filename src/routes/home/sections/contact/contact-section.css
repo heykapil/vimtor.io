@@ -1,0 +1,8 @@
+.list {
+  list-style: disc;
+}
+.list > li {
+  list-style: disc;
+}
+
+/*# sourceMappingURL=contact-section.css.map */
