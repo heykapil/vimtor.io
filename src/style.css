@@ -23,11 +23,11 @@ body {
 
 h1,
 h2 {
+  margin: 0;
   font-weight: var(--font-weight-extra-bold);
 }
 
-ul,
-li {
+ul {
   padding: 0;
   list-style: none;
 }
@@ -149,6 +149,8 @@ h2 {
 .project-banner {
   margin-top: 36px;
   width: 100%;
+  height: 100%;
+  object-fit: cover;
   border-radius: inherit;
   transform: scale(1);
   transition: all 500ms ease-in-out;
@@ -164,7 +166,10 @@ h2 {
     display: grid;
     justify-content: center;
     grid-template-columns: repeat(auto-fill, 600px);
+    grid-auto-rows: 1fr;
     grid-gap: 24px;
+    max-width: 1600px;
+    margin: 0 auto;
   }
 
   .project-item {
@@ -198,10 +203,16 @@ h2 {
   }
 }
 
-@media screen and (min-width: 900px) {
-  .project-banner {
-    border-radius: 16px;
-  }
+.container {
+  display: flex;
+  justify-content: center;
+}
+
+.contact-list {
+  list-style: disc inside none;
+  text-align: left;
+  margin: 0;
+  font-size: clamp(100%, 0.75rem + 1vw, 1rem);
 }
 
 footer {
@@ -210,15 +221,13 @@ footer {
   flex-direction: column;
   margin-top: 9.6rem;
   border-top: 1px solid #d5d5d5;
-  width: 100%;
-  margin-bottom: 3.2rem;
-  bottom: 0;
-  color: #b0b0b0;
+  color: var(--color-gray-300);
+  padding: 32px 0 64px 0;
 }
 
 .social-list {
   display: flex;
   width: 50%;
-  max-width: 400px;
+  max-width: 250px;
   justify-content: space-between;
 }
