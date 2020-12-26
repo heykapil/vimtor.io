@@ -17,7 +17,7 @@
 <body>
 <header>
     <picture>
-        <img class="profile-image" src="/images/profile.jpg" alt="profile picture">
+        {% image "profile.jpg", "profile picture", "profile-image" %}
     </picture>
     <div class="hero-info">
         <h1>Covandonga 🤙</h1>
@@ -29,19 +29,24 @@
     <h2>Experience 🚀</h2>
     <p class="subtitle">Some of the things I've built</p>
     <ul class="project-list">
-        <li class="project-item">
-            <div class="project-info">
-                <h3 class="project-title">Bloobirds</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Expedita, soluta?</p>
-                <a href="https://bloobirds.com">Check out the product</a>
-            </div>
-            <img class="project-banner" src="images/tomacons.jpg" alt="bloobirds">
-        </li>
+        {% for project in collections.projects | sortByOrder %}
+            {% set metadata = project.data %}
+            {% set content = project.data.page.excerpt %}
+            <li class="project-item">
+                <div class="project-info">
+                    <h3 class="project-title">{{ metadata.title }}</h3>
+                    {{ content | safe }}
+                    <a href="{{ metadata.source }}">{{ metadata.message }}</a>
+                </div>
+                {% image metadata.image, "pepe", "project-banner" %}
+            </li>
+        {% endfor %}
     </ul>
 </section>
 <section>
     <h2>Contact 📞</h2>
     <p class="subtitle">Get in touch! I don't bite...</p>
+    <p>Currently I am focused on</p>
     <div class="container">
         <ul class="contact-list">
             <li>
