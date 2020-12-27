@@ -5,7 +5,19 @@
     <title>Victor Navarro | Software Developer</title>
     <meta name="description" content="Personal website of Victor Navarro for portfolio and contact">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <link rel="stylesheet" href="styles.css">
+
+    <!-- Styles -->
+    {% if process.env == "production" %}
+        {% set css %}
+            {% include "./styles.css" %}
+        {% endset %}
+        <style>
+            {{ css | cssmin | safe }}
+        </style>
+    {% else %}
+        <link rel="stylesheet" href="styles.css">
+    {% endif %}
+
     <!-- Favicon -->
     <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">

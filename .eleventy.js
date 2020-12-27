@@ -1,6 +1,10 @@
 const path = require("path");
 const Markdown = require("markdown-it");
 const Image = require("@11ty/eleventy-img");
+const HTMLMin = require("html-minifier");
+const PostHTML = require("posthtml");
+const MinifyInlineCSS = require("posthtml-minify-classnames");
+const CleanCSS = require("clean-css");
 
 const markdown = new Markdown({
   html: true,
@@ -9,15 +13,33 @@ const markdown = new Markdown({
 });
 
 module.exports = function (eleventyConfig) {
+  const isProduction = process.env.NODE_ENV === "production";
+
   eleventyConfig.addPassthroughCopy("src/images");
   eleventyConfig.addPassthroughCopy("src/styles.css");
+
+  eleventyConfig.setLibrary("md", markdown);
   eleventyConfig.setFrontMatterParsingOptions({
     excerpt: (file) => {
       file.excerpt = markdown.render(file.content);
     },
   });
 
-  eleventyConfig.setLibrary("md", markdown);
+  eleventyConfig.addTransform("htmlmin", async function (content, outputPath) {
+    if (isProduction && outputPath && outputPath.endsWith(".html")) {
+      const { html } = await PostHTML().use(MinifyInlineCSS()).process(content);
+      return HTMLMin.minify(html, {
+        useShortDoctype: true,
+        removeComments: true,
+        collapseWhitespace: true,
+      });
+    }
+    return content;
+  });
+
+  eleventyConfig.addFilter("cssmin", function (code) {
+    return new CleanCSS({}).minify(code).styles;
+  });
 
   eleventyConfig.addNunjucksFilter("sortByOrder", (value) => {
     return value.sort((a, b) => a.data.order - b.data.order);
@@ -60,6 +82,7 @@ module.exports = function (eleventyConfig) {
     dir: {
       input: "src",
       output: "dist",
+      data: "data",
     },
   };
 };
