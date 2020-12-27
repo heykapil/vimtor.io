@@ -280,9 +280,29 @@ footer {
   padding: 32px 0 64px 0;
 }
 
+.social-list > li > a > svg {
+  width: 24px;
+  height: 24px;
+}
+
 .social-list {
   display: flex;
-  width: 50%;
-  max-width: 250px;
+  width: 75%;
+  max-width: 300px;
   justify-content: space-between;
+}
+
+footer > p {
+  margin-top: 3em;
+}
+
+@media (min-width: 600px) {
+  .social-list {
+    max-width: 400px;
+  }
+
+  .social-list > li > a > svg {
+    width: 32px;
+    height: 32px;
+  }
 }
