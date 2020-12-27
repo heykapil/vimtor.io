@@ -165,7 +165,7 @@ h2 {
 }
 
 .project-title {
-  margin-bottom: 0.75em;
+  margin: 0 0 0.75em;
   font-weight: var(--font-weight-bold);
   font-size: clamp(100%, 1rem + 3vw, 1.35rem);
 }
@@ -200,6 +200,7 @@ h2 {
 
   .project-item {
     display: flex;
+    align-items: center;
     text-align: left;
     padding-left: 1.25em;
     margin-top: 0;
