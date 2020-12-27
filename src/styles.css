@@ -21,6 +21,10 @@ body {
   margin: 0;
 }
 
+html {
+  overflow-y: scroll;
+}
+
 h1,
 h2 {
   margin: 0;
