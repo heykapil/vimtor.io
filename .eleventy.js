@@ -4,7 +4,7 @@ const CleanCSS = require("clean-css");
 
 const markdown = new Markdown({
   html: true,
-  breaks: true,
+  breaks: false,
   linkify: false,
 });
 
