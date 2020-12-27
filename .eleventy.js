@@ -1,6 +1,5 @@
 const path = require("path");
 const Markdown = require("markdown-it");
-const CleanCSS = require("clean-css");
 
 const markdown = new Markdown({
   html: true,
@@ -10,7 +9,7 @@ const markdown = new Markdown({
 
 module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy("src/images");
-  eleventyConfig.addPassthroughCopy("src/styles");
+  eleventyConfig.addPassthroughCopy("src/styles.css");
   eleventyConfig.setFrontMatterParsingOptions({
     excerpt: (file) => {
       file.excerpt = markdown.render(file.content);
@@ -43,10 +42,6 @@ module.exports = function (eleventyConfig) {
             <img src="${url}" alt="${alt}">
         </picture>
     `;
-  });
-
-  eleventyConfig.addFilter("cssmin", function (code) {
-    return new CleanCSS({}).minify(code).styles;
   });
 
   return {

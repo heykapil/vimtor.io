@@ -4,16 +4,7 @@
     <meta charset="utf-8">
     <title>Victor Navarro</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    {% set css %}
-        {% include "./styles/global.css" %}
-        {% include "./styles/hero.css" %}
-        {% include "./styles/projects.css" %}
-        {% include "./styles/contact.css" %}
-        {% include "./styles/footer.css" %}
-    {% endset %}
-    <style>
-        {{ css | cssmin | safe }}
-    </style>
+    <link rel="stylesheet" href="styles.css">
     <!-- Google Font -->
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;800&display=swap">
