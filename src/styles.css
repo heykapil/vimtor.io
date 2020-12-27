@@ -255,7 +255,13 @@ h2 {
   list-style: disc inside none;
   text-align: left;
   margin: 0 0 48px;
-  font-size: clamp(100%, 1rem + 1vw, 1.25rem);
+  font-size: clamp(100%, 0.75rem + 1vw, 1.25rem);
+  line-height: 150%;
+}
+
+.contact-cto {
+  font-size: clamp(100%, 0.75rem + 1vw, 1.25rem);
+  padding: 0 2em;
 }
 
 /* Footer */
