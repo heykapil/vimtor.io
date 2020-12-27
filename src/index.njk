@@ -19,14 +19,14 @@
 <header>
     {% image "profile.jpg", "profile picture", "profile-image" %}
     <div class="hero-info">
-        <h1>Covandonga 🤙</h1>
+        <h1>Covandonga <span role="img" aria-label="hello">👋</span></h1>
         <p>Hi, I am Victor Navarro!</p>
         <p>When I was a child, I dreamed of becoming an inventor</p>
         <p>This is my best attempt</p>
     </div>
 </header>
 <section>
-    <h2>Experience 🚀</h2>
+    <h2>Experience <span role="img" aria-label="rocket">🚀</span></h2>
     <p class="subtitle">Some of the things I've built</p>
     <ul class="project-list">
         {% for project in collections.projects | sortByOrder %}
@@ -44,7 +44,7 @@
     </ul>
 </section>
 <section>
-    <h2>Contact 📞</h2>
+    <h2>Contact <span role="img" aria-label="call me hand">🤙</span></h2>
     <p class="subtitle">Get in touch! I don't bite...</p>
     <div class="container">
         <ul class="contact-list">
@@ -60,8 +60,7 @@
     </div>
     <p class="contact-cto">
         Feel free to contact me at <a href="mailto:victor@vimtor.io" rel="noopener">victor@vimtor.io</a> or reach out on
-        social media
-        😉
+        social media <span role="img" aria-label="wink face">😉</span>
     </p>
 </section>
 <footer>

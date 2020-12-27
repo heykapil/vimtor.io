@@ -1,8 +1,8 @@
 :root {
   --color-gray-500: #404040;
-  --color-gray-400: #606060;
-  --color-gray-300: #b0b0b0;
-  --color-gray-200: #d5d5d5;
+  --color-gray-400: #454545;
+  --color-gray-300: #717171;
+  --color-gray-200: #9e9e9e;
   --font-weight-regular: 400;
   --font-weight-bold: 600;
   --font-weight-extra-bold: 800;
@@ -43,13 +43,14 @@ img {
 a {
   color: var(--color-gray-300);
   display: inline-block;
-  transition: color 150ms ease-in-out;
-  text-decoration-color: currentColor;
+  transition: all 150ms ease-in-out;
+  text-decoration-color: var(--color-gray-200);
 }
 
 a:focus,
 a:hover {
-  color: var(--color-gray-400);
+  color: var(--color-gray-500);
+  text-decoration-color: var(--color-gray-300);
 }
 
 picture {
