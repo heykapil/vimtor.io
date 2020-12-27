@@ -30,7 +30,7 @@ module.exports = function (eleventyConfig) {
 
     const file = path.join("./src/images/", src);
     const metadata = await Image(file, {
-      widths: [400],
+      widths: [600],
       formats: ["webp", "jpeg"],
       urlPath: "./images/",
       outputDir: "./dist/images/",
