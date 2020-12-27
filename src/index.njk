@@ -5,11 +5,11 @@
     <title>Victor Navarro</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     {% set css %}
-        {% include "src/styles/global.css" %}
-        {% include "src/styles/hero.css" %}
-        {% include "src/styles/projects.css" %}
-        {% include "src/styles/contact.css" %}
-        {% include "src/styles/footer.css" %}
+        {% include "./styles/global.css" %}
+        {% include "./styles/hero.css" %}
+        {% include "./styles/projects.css" %}
+        {% include "./styles/contact.css" %}
+        {% include "./styles/footer.css" %}
     {% endset %}
     <style>
         {{ css | cssmin | safe }}
