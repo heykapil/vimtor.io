@@ -1,5 +1,6 @@
 const path = require("path");
 const Markdown = require("markdown-it");
+const Image = require("@11ty/eleventy-img");
 
 const markdown = new Markdown({
   html: true,
@@ -27,21 +28,32 @@ module.exports = function (eleventyConfig) {
       throw new Error(`Missing \`alt\` on image from: ${src}`);
     }
 
-    const url = path.join(`./images/`, src);
-    // let metadata = await Image(src, {
-    //   widths: [null],
-    //   formats: ["jpeg"],
-    //   urlPath: "/images/",
-    //   outputDir: "./_site/images/",
-    // });
+    const file = path.join("./src/images/", src);
+    const metadata = await Image(file, {
+      widths: [400],
+      formats: ["webp", "jpeg"],
+      urlPath: "./images/",
+      outputDir: "./dist/images/",
+    });
 
-    // let data = metadata.jpeg.pop();
+    const data = metadata.jpeg[0];
+    const sources = Object.values(metadata)
+      .map((format) => {
+        return `<source type="image/${format[0].format}" srcset="${format.map((entry) => entry.srcset).join(", ")}">`;
+      })
+      .join("\n");
 
-    return `
-        <picture class="${classes}">
-            <img src="${url}" alt="${alt}">
-        </picture>
-    `;
+    return `<picture class="${classes}">
+      ${sources}
+        <img
+          src="${data.url}"
+          width="${data.width}"
+          height="${data.height}"
+          alt="${alt}"
+          loading="lazy"
+          decoding="async"
+         >
+      </picture>`;
   });
 
   return {
