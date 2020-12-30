@@ -6,5 +6,6 @@ message: Checkout the product
 order: 0
 ---
 
-Working in this lovely startup as a fullstack.
-Here I learned how to work with complex React and Java codebase due to how cool the app is
+The best B2B prospecting app.
+Here I learned how nurturing can be to work with other people
+and how to manage complexity in React and Java projects
