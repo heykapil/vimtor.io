@@ -86,21 +86,23 @@
     <h2>Contact <span role="img" aria-label="call me hand">🤙</span></h2>
     <p class="subtitle">Get in touch! I don't bite...</p>
     <div class="container">
-        <ul class="contact-list">
-            <li>
-                Fullstack developer at <a href="https://bloobirds.com/">Bloobirds</a>
-            </li>
-            <li>
-                Teacher in fullstack at <a href="https://nuclio.school/master-full-stack-developer/">Nuclio Digital
-                    School</a>
-            </li>
-            <li>
-                Growing my own startup <a href="https://github.com/pocket-apps/">Pocket
-                    Apps</a>
-            </li>
-            <li>Doing freelance jobs from time to time</li>
-            <li>Always learning</li>
-        </ul>
+        <form name="contact" class="contact-form" action="POST" data-netlify="true">
+            <label>
+                <span>Email address</span>
+                <input type="email" name="email" placeholder="your@email.com" required>
+            </label>
+            <label>
+                <span>Message</span>
+                <textarea name="message" placeholder="I think you're very handsome..." rows="8" required></textarea>
+            </label>
+            <button class="contact-button" type="submit">
+                Send it
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                     style="fill:currentColor">
+                    <path d="M21.426,11.095l-17-8c-0.35-0.164-0.763-0.113-1.061,0.133C3.066,3.473,2.937,3.868,3.03,4.242l1.212,4.849L12,12 l-7.758,2.909L3.03,19.758c-0.094,0.374,0.036,0.77,0.335,1.015C3.548,20.923,3.772,21,4,21c0.145,0,0.29-0.031,0.426-0.095l17-8 C21.776,12.74,22,12.388,22,12S21.776,11.26,21.426,11.095z"></path>
+                </svg>
+            </button>
+        </form>
     </div>
     <p class="contact-cto">
         Feel free to contact me at <a href="mailto:victor@vimtor.io">victor@vimtor.io</a>
@@ -154,5 +156,22 @@
     </ul>
     <p>Victor Navarro &copy; 2021</p>
 </footer>
+<script>
+  const emailInput = document.querySelector("input[name=\"email\"]");
+  const messageInput = document.querySelector("textarea[name=\"message\"]");
+  const contactButton = document.querySelector("button");
+
+  contactButton.setAttribute("disabled", "");
+  const handleInput = () => {
+    if (emailInput.value && messageInput.value) {
+      contactButton.removeAttribute("disabled");
+    } else {
+      contactButton.setAttribute("disabled", "");
+    }
+  };
+
+  emailInput.addEventListener("input", handleInput);
+  messageInput.addEventListener("input", handleInput);
+</script>
 </body>
 </html>
