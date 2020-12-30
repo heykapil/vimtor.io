@@ -45,7 +45,7 @@ module.exports = function (eleventyConfig) {
     return value.sort((a, b) => a.data.order - b.data.order);
   });
 
-  eleventyConfig.addNunjucksAsyncShortcode("image", async (src, alt, classes) => {
+  eleventyConfig.addNunjucksAsyncShortcode("image", async (src, alt, classes = "") => {
     if (!alt) {
       throw new Error(`Missing \`alt\` on image from: ${src}`);
     }

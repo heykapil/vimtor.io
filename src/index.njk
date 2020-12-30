@@ -55,7 +55,9 @@
                     {{ content | safe }}
                     <a href="{{ metadata.source }}" rel="noopener">{{ metadata.message }}</a>
                 </div>
-                {% image metadata.image, "pepe", "project-banner" %}
+                <a href="{{ metadata.source }}" rel="noopener" class="project-banner">
+                    {% image metadata.image, "pepe" %}
+                </a>
             </li>
         {% endfor %}
     </ul>
