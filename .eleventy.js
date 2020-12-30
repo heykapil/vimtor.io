@@ -94,7 +94,7 @@ module.exports = function (eleventyConfig) {
           height="${data.height}"
           alt="${alt}"
           loading="lazy"
-          decoding="async"
+          decoding="auto"
          >
       </picture>`;
   });
