@@ -63,14 +63,14 @@ module.exports = function (eleventyConfig) {
     return value.sort((a, b) => a.data.order - b.data.order);
   });
 
-  eleventyConfig.addNunjucksAsyncShortcode("image", async (src, alt, classes = "") => {
+  eleventyConfig.addNunjucksAsyncShortcode("image", async (src, alt, classes = "", widths = [600], sizes = []) => {
     if (!alt) {
       throw new Error(`Missing \`alt\` on image from: ${src}`);
     }
 
     const file = path.join("./src/images/", src);
     const metadata = await Image(file, {
-      widths: [600],
+      widths,
       formats: ["webp", "jpeg"],
       urlPath: "./images/",
       outputDir: "./dist/images/",
@@ -79,7 +79,10 @@ module.exports = function (eleventyConfig) {
     const data = metadata.jpeg[0];
     const sources = Object.values(metadata)
       .map((format) => {
-        return `<source type="image/${format[0].format}" srcset="${format.map((entry) => entry.srcset).join(", ")}">`;
+        const typeAttr = `image/${format[0].format}`;
+        const srcsetAttr = format.map((entry) => entry.srcset).join(", ");
+        const sizesAttr = sizes.length > 0 ? `sizes="${sizes.join(", ")}"` : "";
+        return `<source type="${typeAttr}" srcset="${srcsetAttr}" ${sizesAttr}>`;
       })
       .join("\n");
 
