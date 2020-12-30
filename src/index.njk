@@ -56,7 +56,7 @@
                     <a href="{{ metadata.source }}">{{ metadata.message }}</a>
                 </div>
                 <a href="{{ metadata.source }}" class="project-banner">
-                    {% image metadata.image, "pepe" %}
+                    {% image metadata.image, metadata.title %}
                 </a>
             </li>
         {% endfor %}
