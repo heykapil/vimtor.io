@@ -69,8 +69,9 @@ module.exports = function (eleventyConfig) {
     }
 
     const file = path.join("./src/images/", src);
+    const extendedWidths = widths.flatMap((width) => [width, width * 2, width * 3]);
     const metadata = await Image(file, {
-      widths,
+      widths: isProduction ? extendedWidths : widths,
       formats: ["webp", "jpeg"],
       urlPath: "./images/",
       outputDir: "./dist/images/",
