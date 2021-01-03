@@ -4,8 +4,8 @@ const Image = require("@11ty/eleventy-img");
 const HTMLMin = require("html-minifier");
 const PostHTML = require("posthtml");
 const MinifyInlineCSS = require("posthtml-minify-classnames");
-const { JSDOM } = require("jsdom");
 const CleanCSS = require("clean-css");
+const externalLinks = require("eleventy-plugin-external-links");
 
 const markdown = new Markdown({
   html: true,
@@ -26,22 +26,7 @@ module.exports = function (eleventyConfig) {
     },
   });
 
-  eleventyConfig.addTransform("external-links", async function (content, outputPath) {
-    if (outputPath && outputPath.endsWith(".html")) {
-      const dom = new JSDOM(content);
-      let document = dom.window.document;
-      const links = document.querySelectorAll("a[href]");
-      links.forEach((link) => {
-        if (!link.getAttribute("href").startsWith("/")) {
-          link.setAttribute("target", "_blank");
-          link.setAttribute("rel", "noopener");
-        }
-      });
-
-      return `<!doctype html>${document.documentElement.outerHTML}`;
-    }
-    return content;
-  });
+  eleventyConfig.addPlugin(externalLinks);
 
   eleventyConfig.addTransform("htmlmin", async function (content, outputPath) {
     if (isProduction && outputPath && outputPath.endsWith(".html")) {
