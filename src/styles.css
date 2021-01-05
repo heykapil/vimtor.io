@@ -372,11 +372,6 @@ footer {
   padding: 32px 0 64px 0;
 }
 
-.social-list > li > a > svg {
-  width: 24px;
-  height: 24px;
-}
-
 .social-list {
   display: flex;
   width: 75%;
@@ -384,7 +379,12 @@ footer {
   justify-content: space-between;
 }
 
-footer > p {
+.social-item > a > svg {
+  width: 24px;
+  height: 24px;
+}
+
+.copyright {
   margin-top: 3em;
 }
 
@@ -393,7 +393,7 @@ footer > p {
     max-width: 400px;
   }
 
-  .social-list > li > a > svg {
+  .social-item > a > svg {
     width: 32px;
     height: 32px;
   }
