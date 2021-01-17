@@ -10,6 +10,24 @@
   --font-family-primary: "Nunito", sans-serif;
 }
 
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-gray-500: hsl(0, 0%, 84%);
+    --color-gray-400: hsl(0, 0%, 75%);
+    --color-gray-300: hsl(0, 0%, 62%);
+    --color-gray-200: hsl(0, 0%, 44%);
+    --color-gray-100: hsl(0, 0%, 18%);
+  }
+
+  body {
+    background-color: hsl(0, 0%, 10%);
+  }
+
+  img {
+    filter: brightness(0.9) contrast(1.1);
+  }
+}
+
 *,
 *::before,
 *::after {
@@ -381,6 +399,27 @@ input::placeholder {
 .contact-button:disabled {
   cursor: auto;
   background-color: var(--color-gray-200);
+}
+
+@media (prefers-color-scheme: dark) {
+  .contact-button {
+    color: var(--color-gray-500);
+    border: 1px var(--color-gray-500) solid;
+    background-color: transparent;
+  }
+
+  .contact-button:focus,
+  .contact-button:hover {
+    color: var(--color-gray-100);
+    border: 1px var(--color-gray-100) solid;
+    background-color: var(--color-gray-500);
+  }
+
+  .contact-button:disabled {
+    color: var(--color-gray-200);
+    border: 1px var(--color-gray-200) solid;
+    background-color: transparent;
+  }
 }
 
 .contact-button > svg {
