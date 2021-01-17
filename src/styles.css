@@ -78,6 +78,29 @@ picture::after {
   box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.15), inset 0 2px 2px rgba(0, 0, 0, 0.1);
 }
 
+/* Animations */
+@keyframes bounce {
+  from {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes fade {
+  from {
+    transform: translateY(1em);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
 /* Hero */
 h1 {
   margin-top: 1.5em;
@@ -94,6 +117,8 @@ header {
   width: 200px;
   height: 200px;
   margin: 0 auto;
+  opacity: 0;
+  animation: bounce 0.7s cubic-bezier(0.15, 1.5, 0.5, 1) forwards 0.5s;
 }
 
 .profile-image > img {
@@ -104,6 +129,8 @@ header {
 .hero-info {
   max-width: 80%;
   margin: 0 auto;
+  opacity: 0;
+  animation: fade 0.7s ease-in-out forwards 1s;
 }
 
 .hero-info > p {
@@ -267,6 +294,11 @@ h2 {
 }
 
 /* About */
+.about-section {
+  opacity: 0;
+  animation: fade 1s ease-in-out forwards 2.5s;
+}
+
 .about-list {
   list-style: disc inside none;
   text-align: left;
