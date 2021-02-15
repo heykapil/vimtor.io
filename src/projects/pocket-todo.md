@@ -8,3 +8,4 @@ order: 1
 
 To-do list app that actually makes you productive.
 Built with my lovely startup using technologies like React, Capacitor and Firebase
+It was built between 3 people, were I took part a CTO and project manager
