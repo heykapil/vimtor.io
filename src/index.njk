@@ -95,6 +95,11 @@
                 </a>
             </li>
         {% endfor %}
+        {% if collections.projects.length % 2 !== 0 %}
+            <li class="project-placeholder">
+                More coming soon...
+            </li>
+        {% endif %}
     </ul>
 </section>
 <section>

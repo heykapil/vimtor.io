@@ -186,6 +186,22 @@ header {
   }
 }
 
+.project-placeholder {
+  display: none;
+}
+
+@media (min-width: 1800px) {
+  .project-placeholder {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--color-gray-200);
+    border: 2px dashed currentColor;
+    border-radius: 16px;
+    font-size: 2rem;
+  }
+}
+
 /* Sections */
 section {
   margin-top: 156px;
