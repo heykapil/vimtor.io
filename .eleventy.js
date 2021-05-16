@@ -10,10 +10,10 @@ const externalLinks = require("eleventy-plugin-external-links");
 const markdown = new Markdown({
   html: true,
   breaks: false,
-  linkify: false
+  linkify: false,
 });
 
-module.exports = function(eleventyConfig) {
+module.exports = function (eleventyConfig) {
   const isProduction = process.env.NODE_ENV === "production";
 
   eleventyConfig.addPassthroughCopy("src/images");
@@ -23,24 +23,24 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.setFrontMatterParsingOptions({
     excerpt: (file) => {
       file.excerpt = markdown.render(file.content);
-    }
+    },
   });
 
   eleventyConfig.addPlugin(externalLinks);
 
-  eleventyConfig.addTransform("htmlmin", async function(content, outputPath) {
+  eleventyConfig.addTransform("htmlmin", async function (content, outputPath) {
     if (isProduction && outputPath && outputPath.endsWith(".html")) {
       const { html } = await PostHTML().use(MinifyInlineCSS()).process(content);
       return HTMLMin.minify(html, {
         useShortDoctype: true,
         removeComments: true,
-        collapseWhitespace: true
+        collapseWhitespace: true,
       });
     }
     return content;
   });
 
-  eleventyConfig.addFilter("cssmin", function(code) {
+  eleventyConfig.addFilter("cssmin", function (code) {
     return new CleanCSS({}).minify(code).styles;
   });
 
@@ -59,7 +59,7 @@ module.exports = function(eleventyConfig) {
       widths: extendedWidths,
       formats: ["avif", "webp", "jpeg"],
       urlPath: "./images/",
-      outputDir: "./dist/images/"
+      outputDir: "./dist/images/",
     });
 
     const data = metadata.jpeg[0];
@@ -89,7 +89,7 @@ module.exports = function(eleventyConfig) {
     dir: {
       input: "src",
       output: "dist",
-      data: "data"
-    }
+      data: "data",
+    },
   };
 };
