@@ -17,7 +17,9 @@ module.exports = function (eleventyConfig) {
   const isProduction = process.env.NODE_ENV === "production";
 
   eleventyConfig.addPassthroughCopy("src/images");
-  eleventyConfig.addPassthroughCopy("src/styles.css");
+  eleventyConfig.addPassthroughCopy("src/styles");
+
+  eleventyConfig.addLayoutAlias("base", "base.njk");
 
   eleventyConfig.setLibrary("md", markdown);
   eleventyConfig.setFrontMatterParsingOptions({
@@ -62,7 +64,7 @@ module.exports = function (eleventyConfig) {
     const metadata = await Image(file, {
       widths: extendedWidths,
       formats: ["avif", "webp", "jpeg"],
-      urlPath: "./images/",
+      urlPath: "/images/",
       outputDir: "./dist/images/",
     });
 
@@ -94,6 +96,7 @@ module.exports = function (eleventyConfig) {
       input: "src",
       output: "dist",
       data: "data",
+      layouts: "layouts",
     },
   };
 };
