@@ -81,7 +81,7 @@
     <h2>Experience <span role="img" aria-label="rocket">🚀</span></h2>
     <p class="subtitle">Some of the things I've built</p>
     <ul class="project-list">
-        {% for project in collections.projects | sortByOrder %}
+        {% for project in collections.projects | sortByOrder | filterFeaturing %}
             {% set metadata = project.data %}
             {% set content = project.data.page.excerpt %}
             <li class="project-item">

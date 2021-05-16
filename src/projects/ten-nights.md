@@ -3,6 +3,7 @@ title: 10 Nights
 image: ./ten-nights.jpg
 source: https://www.amazon.es/%C3%81tomo-Games-Nights-Juego-Mesa
 message: Buy it on Amazon
+featuring: true
 order: 3
 ---
 

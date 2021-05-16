@@ -3,6 +3,7 @@ title: Bloobirds
 image: ./bloobirds.png
 source: http://bloobirds.com/
 message: Checkout the product
+featuring: true
 order: 0
 ---
 

@@ -3,6 +3,7 @@ title: Pocket Todo
 image: ./pocket-todo.png
 source: https://play.google.com/store/apps/details?id=com.pocket.todo
 message: Start being productive
+featuring: true
 order: 2
 ---
 

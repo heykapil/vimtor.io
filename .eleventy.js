@@ -44,11 +44,15 @@ module.exports = function (eleventyConfig) {
     return new CleanCSS({}).minify(code).styles;
   });
 
-  eleventyConfig.addNunjucksFilter("sortByOrder", (value) => {
+  eleventyConfig.addFilter("sortByOrder", (value) => {
     return value.sort((a, b) => a.data.order - b.data.order);
   });
 
-  eleventyConfig.addNunjucksAsyncShortcode("image", async (src, alt, classes = "", widths = [600], sizes = []) => {
+  eleventyConfig.addFilter("filterFeaturing", (value) => {
+    return value.filter((x) => !x.featuring);
+  });
+
+  eleventyConfig.addAsyncShortcode("image", async (src, alt, classes = "", widths = [600], sizes = []) => {
     if (!alt) {
       throw new Error(`Missing \`alt\` on image from: ${src}`);
     }

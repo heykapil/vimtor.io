@@ -3,6 +3,7 @@ title: Nuclio Digital School
 image: ./nuclio.jpg
 source: https://nuclio.school/master-full-stack-developer/
 message: Join the master
+featuring: true
 order: 1
 ---
 
