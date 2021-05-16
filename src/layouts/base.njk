@@ -6,7 +6,7 @@
     <meta name="description" content="{{ description }}">
     <meta name="viewport" content="width=device-width,initial-scale=1">
 
-    <!-- Google Analytics -->
+    {# Google Analytics #}
     {% if process.env == "production" %}
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-KHKG25CZ7K"></script>
         <script>
@@ -17,7 +17,7 @@
         </script>
     {% endif %}
 
-    <!-- Styles -->
+    {# Styles #}
     {% set css %}
         {% include "../styles/global.css" %}
     {% endset %}
@@ -25,12 +25,12 @@
         {{ css | cssmin | safe }}
     </style>
 
-    <!-- Favicon -->
+    {# Favicon #}
     <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
 
-    <!-- Google Font -->
+    {# Google Fonts #}
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;800&display=swap">
     <link rel="stylesheet" media="print" onload="this.onload=null;this.removeAttribute('media');"
