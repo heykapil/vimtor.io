@@ -5,7 +5,8 @@
   "scripts": {
     "start": "cross-env NODE_ENV='development' eleventy --serve",
     "build": "cross-env NODE_ENV='production' eleventy",
-    "format": "prettier . --write"
+    "format": "prettier . --write",
+    "prepare": "husky install"
   },
   "devDependencies": {
     "@11ty/eleventy": "^0.12.1",
@@ -14,6 +15,7 @@
     "cross-env": "^7.0.3",
     "eleventy-plugin-external-links": "^1.1.2",
     "html-minifier": "^4.0.0",
+    "husky": "^6.0.0",
     "markdown-it": "^12.0.4",
     "posthtml": "^0.15.2",
     "posthtml-minify-classnames": "^0.2.3",
