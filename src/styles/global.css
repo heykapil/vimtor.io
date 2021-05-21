@@ -491,3 +491,39 @@ footer {
     height: 32px;
   }
 }
+
+.projects-header {
+  margin: 0 auto 4rem;
+}
+
+@media (min-width: 600px) {
+  .projects-header {
+    display: flex;
+    justify-content: space-between;
+    max-width: 1600px;
+    align-items: flex-start;
+  }
+}
+
+.tag-list {
+  display: flex;
+}
+
+.tag-item {
+  border: 1px solid var(--color-gray-300);
+  border-radius: 2em;
+  padding: 0.5em 1em;
+  cursor: pointer;
+  margin-left: 1rem;
+}
+
+.tag-item:hover,
+.tag-item:focus {
+  background-color: var(--color-gray-100);
+}
+
+.tag-item.selected {
+  border: 1px solid var(--color-gray-500);
+  background-color: var(--color-gray-500);
+  color: var(--color-gray-100);
+}
