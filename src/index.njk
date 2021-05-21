@@ -33,7 +33,7 @@ description: Personal website of Victor Navarro for portfolio and contact
         </ul>
     </div>
     <p class="section-cto">
-        If you are interested in my tech stack,<br/>you can check it out on
+        If you are interested in my tech stack,<br />you can check it out on
         <a href="https://stackshare.io/vimtor/my-stack">stackshare.io</a>
     </p>
 </section>
@@ -61,22 +61,23 @@ description: Personal website of Victor Navarro for portfolio and contact
             </li>
         {% endif %}
     </ul>
-{#    <p class="section-cto">#}
-{#        Check all of my projects <a href="/experience">here</a>#}
-{#    </p>#}
+    {# <p class="section-cto"> #}
+    {# Check all of my projects <a href="/experience">here</a> #}
+    {# </p> #}
 </section>
 <section>
     <h2>Contact <span role="img" aria-label="call me hand">🤙</span></h2>
     <p class="subtitle">Get in touch! I don't bite...</p>
     <div class="container">
-        <form x-data="{email: '', message: ''}" name="contact" class="contact-form" action="POST" data-netlify="true">
+        <form name="contact" class="contact-form" action="POST" data-netlify="true" x-data="{email: '', message: ''}">
             <label>
                 <span>Email address</span>
                 <input x-model="email" type="email" name="email" placeholder="your@email.com" required>
             </label>
             <label>
                 <span>Message</span>
-                <textarea x-model="message" name="message" placeholder="I think you're very handsome..." rows="8" required></textarea>
+                <textarea x-model="message" name="message" placeholder="I think you're very handsome..." rows="8"
+                          required></textarea>
             </label>
             <template x-if="email && message">
                 <button class="contact-button" type="submit">
@@ -95,7 +96,7 @@ description: Personal website of Victor Navarro for portfolio and contact
         </form>
     </div>
     <p class="section-cto">
-        You can to contact me at <a href="mailto:victor@vimtor.io">victor@vimtor.io</a><br/>
+        You can to contact me at <a href="mailto:victor@vimtor.io">victor@vimtor.io</a><br />
         or reach out on social media <span role="img" aria-label="wink face">😉</span>
     </p>
 </section>
