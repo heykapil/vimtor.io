@@ -50,8 +50,17 @@ module.exports = function (eleventyConfig) {
     return value.sort((a, b) => a.data.order - b.data.order);
   });
 
-  eleventyConfig.addFilter("filterFeaturing", (value) => {
-    return value.filter((x) => !x.featuring);
+  eleventyConfig.addCollection("labels", (collectionApi) => {
+    const projects = collectionApi.getFilteredByTag("projects");
+    const allLabels = projects
+      .map((project) => project.data.labels)
+      .flat()
+      .filter(Boolean);
+    return [...new Set(allLabels)];
+  });
+
+  eleventyConfig.addFilter("top", (value) => {
+    return value.slice(0, 8);
   });
 
   eleventyConfig.addAsyncShortcode("image", async (src, alt, classes = "", widths = [600], sizes = []) => {

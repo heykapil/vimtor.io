@@ -3,7 +3,7 @@ title: Bloobirds
 image: ./bloobirds.png
 source: http://bloobirds.com/
 message: Checkout the product
-featuring: true
+labels: [react, java, mongo, postgres]
 order: 0
 ---
 

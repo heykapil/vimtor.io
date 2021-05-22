@@ -38,6 +38,7 @@ body {
   font-family: var(--font-family-primary);
   text-align: center;
   margin: 0;
+  min-height: 100vh;
 }
 
 html {
@@ -166,7 +167,7 @@ header {
     text-align: left;
   }
 
-  header {
+  .home-header {
     margin-top: 196px;
     text-align: left;
     width: 100%;
@@ -183,22 +184,6 @@ header {
 
   .profile-image {
     margin: unset;
-  }
-}
-
-.project-placeholder {
-  display: none;
-}
-
-@media (min-width: 1800px) {
-  .project-placeholder {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: var(--color-gray-200);
-    border: 2px dashed currentColor;
-    border-radius: 16px;
-    font-size: 2rem;
   }
 }
 
@@ -225,6 +210,7 @@ h2 {
 
 /* Projects */
 .project-item {
+  transition: all 100ms ease-in;
   margin-top: 64px;
 }
 
@@ -314,6 +300,7 @@ h2 {
   .project-item {
     padding: 0 1.25em;
     max-width: 800px;
+    min-height: 250px;
   }
 
   .project-info {
@@ -493,37 +480,64 @@ footer {
 }
 
 .projects-header {
-  margin: 0 auto 4rem;
+  margin-bottom: 4rem;
 }
 
-@media (min-width: 600px) {
-  .projects-header {
-    display: flex;
-    justify-content: space-between;
-    max-width: 1600px;
-    align-items: flex-start;
-  }
+.projects-title {
+  text-align: center;
+  font-size: 2.5rem;
 }
 
-.tag-list {
+.projects-subtitle {
+  text-align: center;
+  font-size: 1.125rem;
+}
+
+.label-list {
   display: flex;
+  max-width: 90%;
+  margin: 2rem auto 0;
+  overflow-x: auto;
 }
 
-.tag-item {
+.label-item {
+  text-transform: capitalize;
   border: 1px solid var(--color-gray-300);
   border-radius: 2em;
   padding: 0.5em 1em;
   cursor: pointer;
-  margin-left: 1rem;
+  margin-right: 1rem;
+  flex-shrink: 0;
+  user-select: none;
+  transition: all 100ms ease-in;
 }
 
-.tag-item:hover,
-.tag-item:focus {
+.label-item:hover,
+.label-item:focus {
   background-color: var(--color-gray-100);
 }
 
-.tag-item.selected {
+.label-item.selected {
   border: 1px solid var(--color-gray-500);
   background-color: var(--color-gray-500);
   color: var(--color-gray-100);
+}
+
+@media (min-width: 600px) {
+  .label-list {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .label-item {
+    margin-bottom: 1em;
+  }
+}
+
+.opacity-100 {
+  opacity: 1;
+}
+
+.opacity-0 {
+  opacity: 0;
 }

@@ -1,0 +1,83 @@
+---
+layout: base.njk
+title: Projects
+description: Personal website of Victor Navarro for portfolio and contact
+---
+
+<section x-data="projects()">
+    <header class="projects-header">
+        <div>
+            <h1 class="projects-title">All my projects</h1>
+            <p class="projects-subtitle">A list of projects I worked on that are worth mentioning</p>
+        </div>
+        <ul class="label-list">
+            {% for label in collections.labels %}
+                <li role="option" class="label-item" x-spread="label('{{ label }}')">
+                    {{ label }}
+                </li>
+            {% endfor %}
+        </ul>
+    </header>
+    <ul class="project-list">
+        {% for project in collections.projects | sortByOrder %}
+            {% set metadata = project.data %}
+            {% set content = project.data.page.excerpt %}
+            <li x-spread="item('{{ metadata.labels }}')" class="project-item">
+                <div class="project-info">
+                    <h3 class="project-title">{{ metadata.title }}</h3>
+                    {{ content | safe }}
+                    <a href="{{ metadata.source }}">{{ metadata.message }}</a>
+                </div>
+                <a href="{{ metadata.source }}" class="project-banner" aria-label="{{ metadata.title }} source">
+                    {% image metadata.image, metadata.title, "", [380, 600], ["(min-width: 600px) 380px", "100vw"] %}
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+</section>
+<script>
+  function projects() {
+    return {
+      selected: [],
+      item(labels) {
+        const commaRegex = /\s*,\s*/;
+        return {
+          ["x-show"]() {
+            const allSelected = this.selected.length === 0;
+            const matchesLabel = labels.split(commaRegex).some(tag => this.selected.includes(tag));
+            return allSelected || matchesLabel;
+          },
+          ["x-transition:enter-start"]() {
+            return "opacity-0";
+          },
+          ["x-transition:enter-end"]() {
+            return "opacity-100";
+          },
+          ["x-transition:leave-start"]() {
+            return "opacity-100";
+          },
+          ["x-transition:leave-end"]() {
+            return "opacity-0";
+          }
+        };
+      },
+      label(value) {
+        return {
+          ["x-bind:class"]() {
+            return { selected: this.selected.includes(value) };
+          },
+          ["x-bind:aria-selected"]() {
+            return this.selected.includes(value) ? "true" : "false";
+          },
+          ["x-on:click"]() {
+            if (this.selected.includes(value)) {
+              this.selected = this.selected.filter(x => x !== value);
+            } else {
+              this.selected.push(value);
+            }
+          }
+        };
+      },
+    };
+  }
+</script>

@@ -1,9 +1,9 @@
 ---
 title: Tayaimgut's Website
 image: ./tayaimgut.png
-source: http://tayaimgut.com/
+source: https://tayaimgut.com/
 message: Drink the wine
-featuring: true
+labels: [eleventy]
 order: 5
 ---
 

@@ -4,7 +4,7 @@ title: Victor Navarro | Software Developer
 description: Personal website of Victor Navarro for portfolio and contact
 ---
 
-<header>
+<header class="home-header">
     {% image "profile.jpg", "profile picture", "profile-image", [200], ["200px"] %}
     <div class="hero-info">
         <h1>Covandonga <span role="img" aria-label="hello">👋</span></h1>
@@ -41,7 +41,7 @@ description: Personal website of Victor Navarro for portfolio and contact
     <h2>Experience <span role="img" aria-label="rocket">🚀</span></h2>
     <p class="subtitle">Some of the things I've built</p>
     <ul class="project-list">
-        {% for project in collections.projects | sortByOrder | filterFeaturing %}
+        {% for project in collections.projects | sortByOrder | top %}
             {% set metadata = project.data %}
             {% set content = project.data.page.excerpt %}
             <li class="project-item">
@@ -55,15 +55,10 @@ description: Personal website of Victor Navarro for portfolio and contact
                 </a>
             </li>
         {% endfor %}
-        {% if collections.projects.length % 2 !== 0 %}
-            <li class="project-placeholder">
-                More coming soon...
-            </li>
-        {% endif %}
     </ul>
-    {# <p class="section-cto"> #}
-    {# Check all of my projects <a href="/experience">here</a> #}
-    {# </p> #}
+     <p class="section-cto">
+         Check all of my projects <a href="/projects">here</a>
+     </p>
 </section>
 <section>
     <h2>Contact <span role="img" aria-label="call me hand">🤙</span></h2>

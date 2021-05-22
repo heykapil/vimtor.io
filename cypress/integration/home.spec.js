@@ -23,4 +23,14 @@ describe("Page - Homepage", () => {
       .should("be.disabled")
       .contains(/fill all fields/i);
   });
+
+  it("has 8 featuring projects", () => {
+    cy.get(".project-item").should("have.length", 8);
+  });
+
+  it("can navigate towards projects page", () => {
+    cy.get("a[href='/projects']").click();
+    cy.url().should("contain", "/projects");
+    cy.contains("h1", /all my projects/i);
+  });
 });

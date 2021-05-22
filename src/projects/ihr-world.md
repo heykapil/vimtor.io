@@ -3,7 +3,7 @@ title: IHR World
 image: ./ihr-world.jpg
 source: https://ihr.world/
 message: Check out
-featuring: true
+labels: [java, elastic search]
 order: 6
 ---
 

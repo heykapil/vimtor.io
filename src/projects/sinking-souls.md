@@ -3,7 +3,7 @@ title: Sinking Souls
 image: ./sinking-souls.png
 source: https://kubitstudios.itch.io/sinking-souls
 message: Start the fun!
-featuring: true
+labels: [unity, c#]
 order: 6
 ---
 

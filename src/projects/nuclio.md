@@ -3,7 +3,7 @@ title: Nuclio Digital School
 image: ./nuclio.jpg
 source: https://nuclio.school/master-full-stack-developer/
 message: Join the master
-featuring: true
+labels: [react, node, express]
 order: 1
 ---
 

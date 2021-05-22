@@ -1,9 +1,9 @@
 ---
 title: Tomacon's Website
 image: ./tomacons.png
-source: http://tomacons.cat/
+source: https://tomacons.cat/
 message: Taste the website
-featuring: true
+labels: [vue]
 order: 5
 ---
 
