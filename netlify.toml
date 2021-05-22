@@ -1,0 +1,13 @@
+[build]
+command = "yarn build"
+publish = "dist"
+
+[build.environment]
+# Cache Cypress binary in local "node_modules" folder so Netlify caches it
+CYPRESS_CACHE_FOLDER = "./node_modules/CypressBinary"
+# Set TERM variable for Cypress terminal output
+TERM = "xterm"
+
+[[plugins]]
+# Runs Cypress tests against the deployed URL
+package = "netlify-plugin-cypress"
