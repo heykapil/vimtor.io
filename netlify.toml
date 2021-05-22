@@ -9,5 +9,9 @@ CYPRESS_CACHE_FOLDER = "./node_modules/CypressBinary"
 TERM = "xterm"
 
 [[plugins]]
-# Runs Cypress tests against the deployed URL
 package = "netlify-plugin-cypress"
+[plugins.inputs.preBuild]
+enable = true
+start = 'yarn start'
+wait-on = 'http://localhost:8080'
+wait-on-timeout = '30' # seconds
