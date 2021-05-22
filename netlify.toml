@@ -11,10 +11,8 @@ TERM = "xterm"
 [[plugins]]
 package = "netlify-plugin-cypress"
 [plugins.inputs.preBuild]
-enable = true
-start = 'yarn start'
-wait-on = 'http://localhost:8080'
-wait-on-timeout = '60' # seconds
+start = 'npx netlify dev'
+wait-on = 'http://localhost:8888'
 
 [[plugins]]
 package = "@netlify/plugin-lighthouse"
