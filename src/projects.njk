@@ -12,7 +12,7 @@ description: Personal website of Victor Navarro for portfolio and contact
         </div>
         <ul class="label-list">
             {% for label in collections.labels %}
-                <li role="option" class="label-item" x-spread="label('{{ label }}')">
+                <li role="option" tabindex="0" class="label-item" x-spread="label('{{ label }}')" x-ref="{{ label }}">
                     {{ label }}
                 </li>
             {% endfor %}
@@ -22,7 +22,7 @@ description: Personal website of Victor Navarro for portfolio and contact
         {% for project in collections.projects | sortByOrder %}
             {% set metadata = project.data %}
             {% set content = project.data.page.excerpt %}
-            <li x-spread="item('{{ metadata.labels }}')" class="project-item">
+            <li x-spread="project('{{ metadata.labels }}')" class="project-item">
                 <div class="project-info">
                     <h3 class="project-title">{{ metadata.title }}</h3>
                     {{ content | safe }}
@@ -39,7 +39,7 @@ description: Personal website of Victor Navarro for portfolio and contact
   function projects() {
     return {
       selected: [],
-      item(labels) {
+      project(labels) {
         const commaRegex = /\s*,\s*/;
         return {
           ["x-show"]() {
@@ -62,22 +62,45 @@ description: Personal website of Victor Navarro for portfolio and contact
         };
       },
       label(value) {
-        return {
-          ["x-bind:class"]() {
-            return { selected: this.selected.includes(value) };
-          },
-          ["x-bind:aria-selected"]() {
-            return this.selected.includes(value) ? "true" : "false";
-          },
-          ["x-on:click"]() {
-            if (this.selected.includes(value)) {
-              this.selected = this.selected.filter(x => x !== value);
-            } else {
-              this.selected.push(value);
-            }
+        const isSelected = () => this.selected.includes(value);
+
+        const toggleSelection = () => {
+          if (isSelected()) {
+            this.selected = this.selected.filter(x => x !== value);
+          } else {
+            this.selected.push(value);
           }
         };
-      },
+
+        const focusNextLabel = () => {
+          const nextLabel = this.$refs[value].nextElementSibling;
+          if (nextLabel) {
+            nextLabel.focus();
+          }
+        }
+
+        const focusPreviousLabel = () => {
+          const previousLabel = this.$refs[value].previousElementSibling;
+          if (previousLabel) {
+            previousLabel.focus();
+          }
+        }
+
+        return {
+          ["x-on:click"]: toggleSelection,
+          ["x-on:keydown.enter"]: toggleSelection,
+          ["x-on:keydown.arrow-left"]: focusPreviousLabel,
+          ["x-on:keydown.arrow-up"]: focusPreviousLabel,
+          ["x-on:keydown.arrow-right"]: focusNextLabel,
+          ["x-on:keydown.arrow-down"]: focusNextLabel,
+          ["x-bind:class"]() {
+            return { selected: isSelected() };
+          },
+          ["x-bind:aria-selected"]() {
+            return isSelected() ? "true" : "false";
+          },
+        };
+      }
     };
   }
 </script>
