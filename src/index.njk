@@ -68,8 +68,8 @@ description: Personal website of Victor Navarro for portfolio and contact
 <section>
     <h2>Contact <span role="img" aria-label="call me hand">🤙</span></h2>
     <p class="subtitle">Get in touch! I don't bite...</p>
-    <div class="container">
-        <form name="contact" class="contact-form" action="POST" data-netlify="true" x-data="{email: '', message: ''}">
+    <div class="container" x-data="{email: '', message: ''}">
+        <form action="POST" class="contact-form" data-netlify="true" name="contact">
             <label>
                 <span>Email address</span>
                 <input x-model="email" type="email" name="email" placeholder="your@email.com" required>
