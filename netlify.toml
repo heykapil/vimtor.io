@@ -10,9 +10,6 @@ TERM = "xterm"
 
 [[plugins]]
 package = "netlify-plugin-cypress"
-[plugins.inputs.preBuild]
-start = 'npx netlify dev'
-wait-on = 'http://localhost:8888'
 
 [[plugins]]
 package = "@netlify/plugin-lighthouse"
@@ -24,3 +21,8 @@ seo = 0.9
 
 [plugins.inputs]
 output_path = "./lighthouse.html"
+
+[[headers]]
+for = "*.avif"
+[headers.values]
+Cache-Control = "max-age=31536000"
