@@ -3,7 +3,7 @@ title: GitHub Actions
 image: ./github-actions.png
 source: https://github.com/vimtor
 message: Bring the action
-labels: [browser extension, react, cypress]
+labels: []
 order: 8
 ---
 
