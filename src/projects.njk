@@ -77,14 +77,14 @@ description: Personal website of Victor Navarro for portfolio and contact
           if (nextLabel) {
             nextLabel.focus();
           }
-        }
+        };
 
         const focusPreviousLabel = () => {
           const previousLabel = this.$refs[value].previousElementSibling;
           if (previousLabel) {
             previousLabel.focus();
           }
-        }
+        };
 
         return {
           ["x-on:click"]: toggleSelection,
@@ -98,7 +98,7 @@ description: Personal website of Victor Navarro for portfolio and contact
           },
           ["x-bind:aria-selected"]() {
             return isSelected() ? "true" : "false";
-          },
+          }
         };
       }
     };
