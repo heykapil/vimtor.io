@@ -30,7 +30,9 @@ description: List of projects made by Victor Navarro
                     <a href="{{ metadata.source }}">{{ metadata.message }}</a>
                 </div>
                 <a href="{{ metadata.source }}" class="project-banner" aria-label="{{ metadata.title }} source">
-                    {% image metadata.image, metadata.title, "", [380, 600], ["(min-width: 600px) 380px", "100vw"] %}
+                    <picture>
+                        {% image metadata.image, metadata.title, [380, 600], ["(min-width: 600px) 380px", "100vw"] %}
+                    </picture>
                 </a>
             </li>
         {% endfor %}

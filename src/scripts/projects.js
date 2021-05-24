@@ -6,7 +6,7 @@ function projects() {
       return {
         ["x-show"]() {
           const allSelected = this.selected.length === 0;
-          const matchesLabel = labels.split(commaRegex).some(tag => this.selected.includes(tag));
+          const matchesLabel = labels.split(commaRegex).some((tag) => this.selected.includes(tag));
           return allSelected || matchesLabel;
         },
         ["x-transition:enter-start"]() {
@@ -20,7 +20,7 @@ function projects() {
         },
         ["x-transition:leave-end"]() {
           return "opacity-0";
-        }
+        },
       };
     },
     label(value) {
@@ -29,7 +29,7 @@ function projects() {
 
       const toggleSelection = () => {
         if (isSelected()) {
-          this.selected = this.selected.filter(x => x !== value);
+          this.selected = this.selected.filter((x) => x !== value);
         } else {
           this.selected.push(value);
         }
@@ -64,8 +64,8 @@ function projects() {
         },
         ["x-bind:aria-selected"]() {
           return isSelected() ? "true" : "false";
-        }
+        },
       };
-    }
+    },
   };
 }

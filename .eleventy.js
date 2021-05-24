@@ -16,7 +16,7 @@ module.exports = function (eleventyConfig) {
 
   eleventyConfig.addPassthroughCopy("src/images");
   eleventyConfig.addPassthroughCopy("src/styles");
-  eleventyConfig.addPassthroughCopy("src/scripts")
+  eleventyConfig.addPassthroughCopy("src/scripts");
 
   eleventyConfig.setLibrary("md", markdown);
   eleventyConfig.setFrontMatterParsingOptions({
@@ -37,7 +37,17 @@ module.exports = function (eleventyConfig) {
     return [...new Set(allLabels)];
   });
 
-  eleventyConfig.addAsyncShortcode("image", async (src, alt, classes = "", widths = [600], sizes = []) => {
+  eleventyConfig.addShortcode("emoji", (icon, label) => {
+    return `
+      <span
+        x-data
+        @mouseenter="$el.classList.add('wiggle'); setTimeout(() => $el.classList.remove('wiggle'), 1000)" 
+        class="emoji" 
+        role="img"
+        aria-label="${label}">${icon}</span>`;
+  });
+
+  eleventyConfig.addAsyncShortcode("image", async (src, alt, widths = [600], sizes = []) => {
     if (!alt) {
       throw new Error(`Missing \`alt\` on image from: ${src}`);
     }
@@ -61,7 +71,7 @@ module.exports = function (eleventyConfig) {
       })
       .join("\n");
 
-    return `<picture class="${classes}">
+    return `
       ${sources}
         <img
           src="${data.url}"
@@ -71,7 +81,7 @@ module.exports = function (eleventyConfig) {
           loading="lazy"
           decoding="auto"
          >
-      </picture>`;
+      `;
   });
 
   return {

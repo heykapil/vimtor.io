@@ -5,41 +5,57 @@ description: Personal website of Victor Navarro for portfolio and contact
 ---
 
 <header class="home-header">
-    {% image "profile.jpg", "profile picture", "profile-image", [200], ["200px"] %}
+    <div class="profile-container" x-data="{count: 0, clicked: false}" @click="count = (count + 1) % ($el.childElementCount - 1); clicked = true;">
+        <div class="profile-bubble" x-show="!clicked" x-cloak>
+            Click for other mood
+            <svg xmlns="http://www.w3.org/2000/svg" class="profile-bubble-arrow">
+                <path d="M 90,50 10,90 10,10 z"/>
+            </svg>
+        </div>
+        <picture class="profile-image" :class="{'bounce-in': !clicked}" x-show="count === 0">
+            {% image "profile.jpg", "profile picture", [200], ["200px"] %}
+        </picture>
+        <picture class="profile-image" x-show="count === 1" x-cloak>
+            {% image "profile-2.png", "profile picture", [200], ["200px"] %}
+        </picture>
+        <picture class="profile-image" x-show="count === 2" x-cloak>
+            {% image "profile-3.png", "profile picture", [200], ["200px"] %}
+        </picture>
+    </div>
     <div class="hero-info">
-        <h1>Covandonga <span role="img" aria-label="hello">👋</span></h1>
+        <h1 class="hero-title">Covandonga {% emoji '👋', 'hello' %}</h1>
         <p>Hi, I am Victor Navarro!</p>
         <p>When I was a child, my dream was to become an inventor</p>
         <p>This is my best attempt</p>
     </div>
 </header>
-<section class="about-section">
-    <h2>About <span role="img" aria-label="potato">🥔</span></h2>
-    <p class="subtitle">Here is what I&apos;m doing these days</p>
-    <div class="container">
-        <ul class="about-list">
-            <li>
-                Fullstack developer at <a href="https://bloobirds.com/">Bloobirds</a>
-            </li>
-            <li>
-                Teacher in fullstack at <a href="https://nuclio.school/master-full-stack-developer/">Nuclio Digital
-                    School</a>
-            </li>
-            <li>
-                Streaming on <a href="https://twitch.tv/vimtor_">Twitch</a> from time to time
-            </li>
-            <li>Doing freelance jobs from time to time</li>
-            <li>Always learning</li>
-        </ul>
-    </div>
-    <p class="section-cto">
-        If you are interested in my tech stack,<br />you can check it out on
-        <a href="https://stackshare.io/vimtor/my-stack">stackshare.io</a>
-    </p>
+<section class="home-section about-section">
+    <h2  class="home-title">About {% emoji '🥔', 'potato '%}</h2>
+        <p class="home-subtitle">Here is what I&apos;m doing these days</p>
+        <div class="container">
+            <ul class="about-list">
+                <li>
+                    Fullstack developer at <a href="https://bloobirds.com/">Bloobirds</a>
+                </li>
+                <li>
+                    Teacher in fullstack at <a href="https://nuclio.school/master-full-stack-developer/">Nuclio Digital
+                        School</a>
+                </li>
+                <li>
+                    Streaming on <a href="https://twitch.tv/vimtor_">Twitch</a> from time to time
+                </li>
+                <li>Doing freelance jobs from time to time</li>
+                <li>Always learning</li>
+            </ul>
+        </div>
+        <p class="section-cto">
+            If you are interested in my tech stack,<br />you can check it out on
+            <a href="https://stackshare.io/vimtor/my-stack">stackshare.io</a>
+        </p>
 </section>
-<section>
-    <h2>Experience <span role="img" aria-label="rocket">🚀</span></h2>
-    <p class="subtitle">Some of the things I've built</p>
+<section class="home-section">
+    <h2 class="home-title">Experience {% emoji '🚀', 'rocket' %}</h2>
+    <p class="home-subtitle">Some of the things I've built</p>
     <ul class="project-list">
         {% for project in collections.projects | sortByOrder | top %}
             {% set metadata = project.data %}
@@ -51,7 +67,9 @@ description: Personal website of Victor Navarro for portfolio and contact
                     <a href="{{ metadata.source }}">{{ metadata.message }}</a>
                 </div>
                 <a href="{{ metadata.source }}" class="project-banner" aria-label="{{ metadata.title }} source">
-                    {% image metadata.image, metadata.title, "", [380, 600], ["(min-width: 600px) 380px", "100vw"] %}
+                    <picture>
+                        {% image metadata.image, metadata.title, [380, 600], ["(min-width: 600px) 380px", "100vw"] %}
+                    </picture>
                 </a>
             </li>
         {% endfor %}
@@ -60,9 +78,9 @@ description: Personal website of Victor Navarro for portfolio and contact
         Feel free to see <a href="/projects">all of my projects</a>
     </p>
 </section>
-<section>
-    <h2>Contact <span role="img" aria-label="call me hand">🤙</span></h2>
-    <p class="subtitle">Get in touch! I don't bite...</p>
+<section class="home-section">
+    <h2 class="home-title">Contact {% emoji '🤙', 'call me hand' %}</h2>
+    <p class="home-subtitle">Get in touch! I don't bite...</p>
     <div class="container" x-data="{email: '', message: ''}">
         <form action="POST" class="contact-form" data-netlify="true" name="contact">
             <label>
@@ -92,6 +110,6 @@ description: Personal website of Victor Navarro for portfolio and contact
     </div>
     <p class="section-cto">
         You can to contact me at <a href="mailto:victor@vimtor.io">victor@vimtor.io</a><br />
-        or reach out on social media <span role="img" aria-label="wink face">😉</span>
+        or reach out on social media <span class="emoji" role="img" aria-label="wink face">😉</span>
     </p>
 </section>
