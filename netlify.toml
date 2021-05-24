@@ -1,12 +1,33 @@
 [build]
 command = "yarn build"
 publish = "dist"
-
+[build.processing]
+skip_processing = false
+[build.processing.css]
+bundle = true
+minify = true
+[build.processing.js]
+bundle = true
+minify = true
+[build.processing.html]
+pretty_urls = true
+[build.processing.images]
+compress = true
 [build.environment]
-# Cache Cypress binary in local "node_modules" folder so Netlify caches it
 CYPRESS_CACHE_FOLDER = "./node_modules/CypressBinary"
-# Set TERM variable for Cypress terminal output
 TERM = "xterm"
+
+[[plugins]]
+package = "netlify-plugin-minify-html"
+[plugins.inputs]
+contexts = [
+    'production',
+    'branch-deploy',
+    'deploy-preview'
+]
+
+[[plugins]]
+package = "netlify-plugin-inline-critical-css"
 
 [[plugins]]
 package = "netlify-plugin-cypress"
@@ -18,6 +39,5 @@ performance = 0.9
 accessibility = 0.9
 best-practices = 0.9
 seo = 0.9
-
 [plugins.inputs]
 output_path = "./lighthouse.html"

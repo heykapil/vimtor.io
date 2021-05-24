@@ -524,6 +524,12 @@ footer {
   color: var(--color-gray-100);
 }
 
+@media (prefers-color-scheme: light) {
+  .label-item.selected {
+    color: white;
+  }
+}
+
 @media (min-width: 600px) {
   .label-list {
     flex-wrap: wrap;

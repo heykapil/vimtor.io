@@ -1,10 +1,6 @@
 const path = require("path");
 const Markdown = require("markdown-it");
 const Image = require("@11ty/eleventy-img");
-const HTMLMin = require("html-minifier");
-const PostHTML = require("posthtml");
-const MinifyInlineCSS = require("posthtml-minify-classnames");
-const CleanCSS = require("clean-css");
 const externalLinks = require("eleventy-plugin-external-links");
 
 const markdown = new Markdown({
@@ -14,12 +10,16 @@ const markdown = new Markdown({
 });
 
 module.exports = function (eleventyConfig) {
-  const isProduction = process.env.NODE_ENV === "production";
+  eleventyConfig.addPlugin(externalLinks);
+
+  eleventyConfig.addLayoutAlias("base", "base.njk");
 
   eleventyConfig.addPassthroughCopy("src/images");
   eleventyConfig.addPassthroughCopy("src/styles");
-
-  eleventyConfig.addLayoutAlias("base", "base.njk");
+  eleventyConfig.addPassthroughCopy("src/scripts")
+  eleventyConfig.addPassthroughCopy({
+    './node_modules/alpinejs/dist/alpine.js': '/scripts/alpine.js',
+  })
 
   eleventyConfig.setLibrary("md", markdown);
   eleventyConfig.setFrontMatterParsingOptions({
@@ -28,27 +28,8 @@ module.exports = function (eleventyConfig) {
     },
   });
 
-  eleventyConfig.addPlugin(externalLinks);
-
-  eleventyConfig.addTransform("htmlmin", async function (content, outputPath) {
-    if (isProduction && outputPath && outputPath.endsWith(".html")) {
-      const { html } = await PostHTML().use(MinifyInlineCSS()).process(content);
-      return HTMLMin.minify(html, {
-        useShortDoctype: true,
-        removeComments: true,
-        collapseWhitespace: true,
-      });
-    }
-    return content;
-  });
-
-  eleventyConfig.addFilter("cssmin", function (code) {
-    return new CleanCSS({}).minify(code).styles;
-  });
-
-  eleventyConfig.addFilter("sortByOrder", (value) => {
-    return value.sort((a, b) => a.data.order - b.data.order);
-  });
+  eleventyConfig.addFilter("sortByOrder", (value) => value.sort((a, b) => a.data.order - b.data.order));
+  eleventyConfig.addFilter("top", (value) => value.slice(0, 8));
 
   eleventyConfig.addCollection("labels", (collectionApi) => {
     const projects = collectionApi.getFilteredByTag("projects");
@@ -57,10 +38,6 @@ module.exports = function (eleventyConfig) {
       .flat()
       .filter(Boolean);
     return [...new Set(allLabels)];
-  });
-
-  eleventyConfig.addFilter("top", (value) => {
-    return value.slice(0, 8);
   });
 
   eleventyConfig.addAsyncShortcode("image", async (src, alt, classes = "", widths = [600], sizes = []) => {
@@ -104,7 +81,6 @@ module.exports = function (eleventyConfig) {
     dir: {
       input: "src",
       output: "dist",
-      data: "data",
       layouts: "layouts",
     },
   };

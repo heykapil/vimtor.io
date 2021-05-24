@@ -1,9 +1,10 @@
 ---
-layout: base.njk
+layout: base
 title: Projects
-description: Personal website of Victor Navarro for portfolio and contact
+description: List of projects made by Victor Navarro
 ---
 
+<script src="/scripts/projects.js"></script>
 <section x-data="projects()">
     <header class="projects-header">
         <div>
@@ -35,72 +36,3 @@ description: Personal website of Victor Navarro for portfolio and contact
         {% endfor %}
     </ul>
 </section>
-<script>
-  function projects() {
-    return {
-      selected: [],
-      project(labels) {
-        const commaRegex = /\s*,\s*/;
-        return {
-          ["x-show"]() {
-            const allSelected = this.selected.length === 0;
-            const matchesLabel = labels.split(commaRegex).some(tag => this.selected.includes(tag));
-            return allSelected || matchesLabel;
-          },
-          ["x-transition:enter-start"]() {
-            return "opacity-0";
-          },
-          ["x-transition:enter-end"]() {
-            return "opacity-100";
-          },
-          ["x-transition:leave-start"]() {
-            return "opacity-100";
-          },
-          ["x-transition:leave-end"]() {
-            return "opacity-0";
-          }
-        };
-      },
-      label(value) {
-        const isSelected = () => this.selected.includes(value);
-
-        const toggleSelection = () => {
-          if (isSelected()) {
-            this.selected = this.selected.filter(x => x !== value);
-          } else {
-            this.selected.push(value);
-          }
-        };
-
-        const focusNextLabel = () => {
-          const nextLabel = this.$refs[value].nextElementSibling;
-          if (nextLabel) {
-            nextLabel.focus();
-          }
-        };
-
-        const focusPreviousLabel = () => {
-          const previousLabel = this.$refs[value].previousElementSibling;
-          if (previousLabel) {
-            previousLabel.focus();
-          }
-        };
-
-        return {
-          ["x-on:click"]: toggleSelection,
-          ["x-on:keydown.enter"]: toggleSelection,
-          ["x-on:keydown.arrow-left"]: focusPreviousLabel,
-          ["x-on:keydown.arrow-up"]: focusPreviousLabel,
-          ["x-on:keydown.arrow-right"]: focusNextLabel,
-          ["x-on:keydown.arrow-down"]: focusNextLabel,
-          ["x-bind:class"]() {
-            return { selected: isSelected() };
-          },
-          ["x-bind:aria-selected"]() {
-            return isSelected() ? "true" : "false";
-          }
-        };
-      }
-    };
-  }
-</script>
