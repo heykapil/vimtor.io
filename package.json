@@ -9,9 +9,6 @@
     "test": "cypress open",
     "prepare": "husky install"
   },
-  "dependencies": {
-    "alpinejs": "^2.8.2"
-  },
   "devDependencies": {
     "@11ty/eleventy": "^0.12.1",
     "@11ty/eleventy-img": "^0.8.2",

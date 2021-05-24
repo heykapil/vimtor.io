@@ -17,9 +17,6 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy("src/images");
   eleventyConfig.addPassthroughCopy("src/styles");
   eleventyConfig.addPassthroughCopy("src/scripts")
-  eleventyConfig.addPassthroughCopy({
-    './node_modules/alpinejs/dist/alpine.js': '/scripts/alpine.js',
-  })
 
   eleventyConfig.setLibrary("md", markdown);
   eleventyConfig.setFrontMatterParsingOptions({
