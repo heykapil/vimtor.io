@@ -204,6 +204,15 @@ header {
   justify-content: center;
   align-items: center;
   position: relative;
+  border-radius: 100%;
+  outline: none;
+  transition: all 200ms;
+}
+
+.profile-container:focus,
+.profile-container:hover {
+  opacity: 0.9;
+  box-shadow: 0 0 0 3px var(--color-gray-500);
 }
 
 .profile-bubble {
@@ -656,7 +665,7 @@ footer {
 }
 
 .scroll-shadow::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   right: 0;
