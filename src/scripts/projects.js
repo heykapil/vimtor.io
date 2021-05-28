@@ -1,13 +1,14 @@
 function projects() {
   return {
-    selected: [],
+    selectedLabels: [],
+    isSearchEmpty: false,
+    emptyMessage: -1,
     project(labels) {
-      const commaRegex = /\s*,\s*/;
       return {
         ["x-show"]() {
-          const allSelected = this.selected.length === 0;
-          const matchesLabel = labels.split(commaRegex).some((tag) => this.selected.includes(tag));
-          return allSelected || matchesLabel;
+          const noneSelected = this.selectedLabels.length === 0;
+          const matchesLabels = this.selectedLabels.every((label) => labels.includes(label));
+          return noneSelected || matchesLabels;
         },
         ["x-transition:enter-start"]() {
           return "opacity-0";
@@ -24,15 +25,25 @@ function projects() {
       };
     },
     label(value) {
-      const isSelected = () => this.selected.includes(value);
+      const isSelected = () => this.selectedLabels.includes(value);
       const getElement = () => this.$refs[value];
 
       const toggleSelection = () => {
         if (isSelected()) {
-          this.selected = this.selected.filter((x) => x !== value);
+          this.selectedLabels = this.selectedLabels.filter((x) => x !== value);
         } else {
-          this.selected.push(value);
+          this.selectedLabels.push(value);
         }
+
+        this.isSearchEmpty = false;
+        setTimeout(() => {
+          const visibleProjects = [...document.querySelectorAll(".project-item")].filter((x) => x.style.display !== "none");
+          const isCurrentlyEmpty = visibleProjects.length === 0;
+          if (isCurrentlyEmpty) {
+            this.emptyMessage += 1;
+            this.isSearchEmpty = true;
+          }
+        }, 200);
       };
 
       const focusNextLabel = () => {
@@ -66,6 +77,11 @@ function projects() {
           return isSelected() ? "true" : "false";
         },
       };
+    },
+    emptyPlaceholder: {
+      ["x-show"]() {
+        return this.isSearchEmpty;
+      },
     },
   };
 }

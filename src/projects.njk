@@ -11,7 +11,7 @@ description: List of projects made by Victor Navarro
             <h1 class="projects-title">All my projects {% emoji '🚀', 'rocket' %}</h1>
             <p class="projects-subtitle">A list of projects I worked on that are worth mentioning</p>
         </div>
-        <ul class="label-list" aria-label="projects filter" role="menu">
+        <ul x-spread="labelList" x-ref="labelList" class="label-list scroll-shadow" aria-label="projects filter" role="menu">
             {% for label in collections.labels %}
                 <li role="menuitemcheckbox" tabindex="0" class="label-item" x-spread="label('{{ label }}')" x-ref="{{ label }}">
                     {{ label }}
@@ -36,5 +36,41 @@ description: List of projects made by Victor Navarro
                 </a>
             </li>
         {% endfor %}
+        <li class="project-placeholder" x-spread="emptyPlaceholder">
+            <template x-if="emptyMessage === 0">
+                <p>
+                    Oops, seems like you want me to work a bit too much {% emoji '😳', 'flushed face' %}
+                </p>
+            </template>
+            <template x-if="emptyMessage === 1">
+                <p>
+                    I haven't build that yet {% emoji '😎', 'smiling face with sunglasses' %}
+                </p>
+            </template>
+            <template x-if="emptyMessage === 2">
+                <p>
+                    Are you that interested?<br>We can <a href="/#contact">build that together</a>
+                </p>
+            </template>
+            <template x-if="emptyMessage === 3">
+                <p>
+                    We can get married if you insist {% emoji '💍', 'wedding ring' %}
+                </p>
+            </template>
+            <template x-if="emptyMessage === 4">
+                <p>
+                    I'm sure you have better things to do...
+                </p>
+            </template>
+            <template x-if="emptyMessage >= 5">
+                I leave you with something interesting to watch.<br>
+                Sayonara baby!
+                <script>
+                    setTimeout(() => {
+                      window.open("https://www.youtube.com/watch?v=4dC_nRYIDZU", "_self")
+                    }, 4000)
+                </script>
+            </template>
+        </li>
     </ul>
 </section>
