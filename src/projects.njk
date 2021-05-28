@@ -20,7 +20,7 @@ description: List of projects made by Victor Navarro
         </ul>
     </header>
     <ul class="project-list">
-        {% for project in collections.projects | sortByOrder %}
+        {% for project in collections.projects %}
             {% set metadata = project.data %}
             {% set content = project.data.page.excerpt %}
             <li x-spread="project('{{ metadata.labels }}')" class="project-item">
