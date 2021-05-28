@@ -24,6 +24,11 @@ function projects() {
         },
       };
     },
+    labelList: {
+      ['x-on:scroll.once']() {
+        this.$refs.labelList.classList.remove('scroll-shadow');
+      }
+    },
     label(value) {
       const isSelected = () => this.selectedLabels.includes(value);
       const getElement = () => this.$refs[value];

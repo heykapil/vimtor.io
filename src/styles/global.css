@@ -4,6 +4,7 @@
   --color-gray-300: hsl(0, 0%, 44%);
   --color-gray-200: hsl(0, 0%, 62%);
   --color-gray-100: hsl(0, 0%, 84%);
+  --color-background: white;
   --transparent: rgba(0, 0, 0, 0);
   --font-weight-regular: 400;
   --font-weight-bold: 600;
@@ -13,15 +14,16 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --color-gray-500: hsl(0, 0%, 84%);
+    --color-gray-500: hsl(0, 0%, 90%);
     --color-gray-400: hsl(0, 0%, 75%);
-    --color-gray-300: hsl(0, 0%, 62%);
+    --color-gray-300: hsl(0, 0%, 70%);
     --color-gray-200: hsl(0, 0%, 44%);
     --color-gray-100: hsl(0, 0%, 18%);
+    --color-background: hsl(0, 0%, 10%);
   }
 
   body {
-    background-color: hsl(0, 0%, 10%);
+    background-color: var(--color-background);
   }
 
   img {
@@ -165,6 +167,15 @@ picture::after {
   }
 }
 
+@keyframes blur-in {
+  from {
+    filter: blur(4px);
+  }
+  to {
+    filter: blur(0px);
+  }
+}
+
 .emoji {
   display: inline-block;
 }
@@ -202,17 +213,11 @@ header {
   padding: 0.5em;
   font-size: 1rem;
   border-radius: 8px;
-  left: 50%;
   top: -4.25rem;
+  left: 50%;
+  transform: translateX(-50%);
   opacity: 0;
-  transform: translateY(200px) translateX(-50%);
   animation: fly-in 0.5s ease-in-out forwards 3s;
-}
-
-@media (prefers-color-scheme: light) {
-  .profile-bubble {
-    color: white;
-  }
 }
 
 .profile-bubble-arrow {
@@ -229,18 +234,16 @@ header {
   bottom: -0.75rem;
 }
 
-@media (min-width: 600px) {
+@media (min-width: 700px) {
   .profile-bubble {
     top: unset;
-    right: -2.5rem;
-    bottom: -3.5rem;
-    left: unset;
+    bottom: -4rem;
+    width: fit-content;
   }
 
   .profile-bubble-arrow {
     top: -0.75rem;
-    left: 3.5rem;
-    transform: rotateZ(0deg);
+    transform: translateX(-50%) rotateZ(0deg);
   }
 }
 
@@ -267,15 +270,6 @@ header {
   height: 100%;
 }
 
-@keyframes blur-in {
-  from {
-    filter: blur(4px);
-  }
-  to {
-    filter: blur(0px);
-  }
-}
-
 .hero-info {
   max-width: 80%;
   margin: 0 auto;
@@ -292,7 +286,7 @@ header {
   margin-top: 1em;
 }
 
-@media screen and (min-width: 700px) {
+@media (min-width: 700px) {
   .hero-title {
     margin-top: 0;
     text-align: left;
@@ -658,6 +652,23 @@ footer {
   max-width: 90%;
   margin: 2rem auto 0;
   overflow-x: auto;
+  position: relative;
+}
+
+.scroll-shadow::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 3rem;
+  height: 100%;
+  background: linear-gradient(to right, var(--transparent) 0%, var(--color-background) 90%);
+}
+
+@media (min-width: 600px) {
+  .scroll-shadow::before {
+    background: none;
+  }
 }
 
 .label-item {
@@ -671,6 +682,10 @@ footer {
   user-select: none;
   transition: all 100ms ease-in;
   outline: none;
+}
+
+.label-item:last-child {
+  margin-right: 0;
 }
 
 .label-item:hover,
