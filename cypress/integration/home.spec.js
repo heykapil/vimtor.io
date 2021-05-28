@@ -7,6 +7,12 @@ describe("Page - Homepage", () => {
     cy.contains("h1", /covandonga/i);
   });
 
+  it("clicking on profile picture hides the tooltip", () => {
+      cy.get("#profile-bubble").should('be.visible')
+      cy.get(".profile-container").click()
+      cy.get("#profile-bubble").should('not.be.visible')
+  });
+
   it("contact form is disabled if inputs are not filled", () => {
     cy.get(".contact-button")
       .should("be.disabled")
