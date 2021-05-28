@@ -11,9 +11,9 @@ description: List of projects made by Victor Navarro
             <h1 class="projects-title">All my projects</h1>
             <p class="projects-subtitle">A list of projects I worked on that are worth mentioning</p>
         </div>
-        <ul class="label-list">
+        <ul class="label-list" aria-label="projects filter" role="menu">
             {% for label in collections.labels %}
-                <li role="option" tabindex="0" class="label-item" x-spread="label('{{ label }}')" x-ref="{{ label }}">
+                <li role="menuitemcheckbox" tabindex="0" class="label-item" x-spread="label('{{ label }}')" x-ref="{{ label }}">
                     {{ label }}
                 </li>
             {% endfor %}
