@@ -3,7 +3,7 @@ title: Barams
 image: ./barams.png
 source: https://chrome.google.com/webstore/detail/barams/ghacnkcdijdpnjlkachebamchlpicolj
 message: Download the extension
-labels: [browser extension, react, cypress]
+labels: [browser extension, react, cypress, typescript]
 order: 9
 ---
 

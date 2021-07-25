@@ -3,7 +3,7 @@ title: Personal Website
 image: ./vimtor-io.png
 source: https://vimtor.io
 message: Inception
-labels: [eleventy, cypress]
+labels: [eleventy, cypress, typescript]
 order: 9
 ---
 
