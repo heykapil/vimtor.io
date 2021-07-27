@@ -9,7 +9,7 @@ const ProjectList = ({ projects }: ProjectListProps) => {
   return (
     <ul className="project-list">
       {projects.map(project => (
-        <li className="project-item">
+        <li key={project.title} className="project-item">
           <div className="project-info">
             <h3 className="project-title">{project.title}</h3>
             <div dangerouslySetInnerHTML={{ __html: project.content }} />
