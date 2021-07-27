@@ -1,37 +1,17 @@
-import Image from "next/image";
 import Emoji from "./emoji";
-import { useState } from "react";
+import ProfilePicture from "./profile-picture";
 
 const IntroSection = () => {
-  const [currentProfile, setCurrentProfile] = useState(0);
   return (
-    <header className="home-header">
-      <div className="profile-container" tabIndex={0}>
-        {currentProfile === 0 ? (
-          <div id="profile-bubble" role="tooltip" className="profile-bubble">
-            Click for a new flavour
-            <svg xmlns="http://www.w3.org/2000/svg" className="profile-bubble-arrow">
-              <path d="M 90,50 10,90 10,10 z" />
-            </svg>
-          </div>
-        ) : null}
-        <div role="button" className="profile-image" onClick={() => setCurrentProfile((currentProfile + 1) % 3)}>
-          {currentProfile === 0 ? (
-            <Image priority className="profile-image" src="/images/profile.jpg" width={200} height={200} />
-          ) : null}
-          {currentProfile === 1 ? (
-            <Image className="profile-image" src="/images/profile-2.png" width={200} height={200} />
-          ) : null}
-          {currentProfile === 2 ? (
-            <Image className="profile-image" src="/images/profile-3.png" width={200} height={200} />
-          ) : null}
+    <header className="mt-32 px-8 text-center sm:mt-36 sm:text-left sm:w-full sm:flex sm:justify-center sm:items-center">
+      <ProfilePicture />
+      <div className="max-w-[80%] mx-auto sm:mx-0">
+        <h1 className="mt-5 mb-2 text-3xl font-bold sm:mt-0">Covandonga <Emoji label="hello" icon="👋" /></h1>
+        <div className="text-xl">
+          <p>Hi, I am Victor Navarro!</p>
+          <p>When I was a child, my dream was to become an inventor</p>
+          <p className="mt-5">This is my best attempt</p>
         </div>
-      </div>
-      <div className="hero-info">
-        <h1 className="hero-title">Covandonga <Emoji label="hello" icon="👋" /></h1>
-        <p>Hi, I am Victor Navarro!</p>
-        <p>When I was a child, my dream was to become an inventor</p>
-        <p>This is my best attempt</p>
       </div>
     </header>
   );
