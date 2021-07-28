@@ -17,9 +17,9 @@ const Home = ({ projects }: HomeProps) => (
     description="Personal website of Victor Navarro for portfolio and contact"
   >
     <IntroSection />
-    <AboutSection />
-    <ExperienceSection projects={projects} />
-    <ContactSection />
+    {/*<AboutSection />*/}
+    {/*<ExperienceSection projects={projects} />*/}
+    {/*<ContactSection />*/}
   </Layout>
 );
 

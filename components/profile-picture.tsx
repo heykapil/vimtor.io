@@ -22,8 +22,7 @@ const ImageSlide = ({ src, visible }: ProfileImageProps) => {
 
 const MessageBubble = () => {
   return (
-    <div id="profile-bubble" role="tooltip"
-         className="bg-gray-800 text-white absolute py-2 px-3 whitespace-nowrap -top-1/3 left-1/2 transform -translate-x-1/2 text-center rounded-lg sm:top-full sm:mt-4">
+    <div id="profile-bubble" role="tooltip" className="bg-gray-800 text-white absolute py-2 px-3 whitespace-nowrap -top-1/3 left-1/2 transform -translate-x-1/2 text-center rounded-lg sm:top-full sm:mt-4">
       Click for a new flavour
       <svg id="svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"
            className="absolute bottom-[6px] transform text-gray-800 w-4 h-4 left-1/2 translate-y-full -translate-x-1/2 rotate-180 sm:rotate-0 sm:bottom-auto sm:-translate-y-full sm:top-[6px]">
@@ -34,24 +33,24 @@ const MessageBubble = () => {
 };
 
 const ProfilePicture = () => {
-  const [currentProfile, setCurrentProfile] = useState(0);
+  const [currentProfileIndex, setCurrentProfileIndex] = useState(0);
   const [profileHasChanged, setProfileHasChanged] = useState(false);
 
   useEffect(() => {
-    if (currentProfile > 0) {
+    if (currentProfileIndex > 0) {
       setProfileHasChanged(true);
     }
-  }, [currentProfile]);
+  }, [currentProfileIndex]);
 
   return (
     <div className="relative mb-4 sm:mr-12 sm:mb-0">
       {profileHasChanged ? null : <MessageBubble />}
       <button
         className="rounded-full transition-all overflow-hidden outline-none ring-gray-900 focus:ring-4 hover:ring-4 ring-opacity-80"
-        onClick={() => setCurrentProfile((currentProfile + 1) % PROFILE_IMAGES.length)}
+        onClick={() => setCurrentProfileIndex((currentProfileIndex + 1) % PROFILE_IMAGES.length)}
       >
         {PROFILE_IMAGES.map((src, index) => (
-          <ImageSlide src={src} visible={currentProfile === index} />
+          <ImageSlide key={src} src={src} visible={currentProfileIndex === index} />
         ))}
       </button>
     </div>

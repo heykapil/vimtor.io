@@ -4,7 +4,7 @@ interface EmojiProps {
 }
 
 const Emoji = ({ label, icon }: EmojiProps) => (
-  <span className="emoji" aria-label={label}>
+  <span className="emoji" role="img" aria-label={label}>
     {icon}
   </span>
 );
