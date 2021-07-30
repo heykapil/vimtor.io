@@ -46,7 +46,7 @@ const ProfilePicture = () => {
     <div className="relative mb-4 sm:mr-12 sm:mb-0">
       {profileHasChanged ? null : <MessageBubble />}
       <button
-        className="rounded-full transition-all overflow-hidden outline-none ring-gray-900 focus:ring-4 hover:ring-4 ring-opacity-80"
+        className="transition-all rounded-full overflow-hidden outline-none ring-gray-900 focus:ring-4 hover:ring-4 ring-opacity-80"
         onClick={() => setCurrentProfileIndex((currentProfileIndex + 1) % PROFILE_IMAGES.length)}
       >
         {PROFILE_IMAGES.map((src, index) => (
