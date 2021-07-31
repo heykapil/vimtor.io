@@ -1,4 +1,20 @@
 const defaultTheme = require("tailwindcss/defaultTheme");
+const plugin = require("tailwindcss/plugin");
+const range = require("lodash/range");
+
+const animationUtilities = plugin(({ addUtilities }) => {
+  const initialDelays = [75, 100, 150, 300, 500, 750];
+  const finalDelays = range(50).map((i) => 1000 + i * 500);
+  const delays = [...initialDelays, ...finalDelays];
+  const delayUtilities = delays.map((delay) => {
+    return {
+      [`.animation-delay-${delay}`]: {
+        "animation-delay": `${delay}ms`,
+      },
+    };
+  });
+  addUtilities(delayUtilities);
+});
 
 module.exports = {
   mode: "jit",
@@ -37,15 +53,49 @@ module.exports = {
             transform: "rotate(0deg)",
           },
         },
+        "bounce-in": {
+          "0%": {
+            transform: "scale(0.5)",
+            opacity: 0,
+          },
+          "100%": {
+            transform: "scale(1)",
+            opacity: 1,
+          },
+        },
+        "fly-in-down": {
+          from: {
+            opacity: 0,
+            transform: "translateY(-1rem) translateX(-50%)",
+          },
+          to: {
+            opacity: 1,
+            transform: "translateY(0) translateX(-50%)",
+          },
+        },
+        "fly-in-up": {
+          from: {
+            opacity: 0,
+            transform: "translateY(1rem) translateX(-50%)",
+          },
+          to: {
+            opacity: 1,
+            transform: "translateY(0) translateX(-50%)",
+          },
+        },
       },
       animation: {
-        "fade-in-down": "fade-in-down 1s ease-in-out",
+        "fade-in-down": "fade-in-down 1s forwards ease-in-out",
         wiggle: "wiggle 1s",
+        "bounce-in":
+          "bounce-in 0.7s cubic-bezier(0.15, 1.5, 0.5, 1) forwards 0.5s",
+        "fly-in-down": "fly-in-down 0.5s ease-in-out forwards 3s",
+        "fly-in-up": "fly-in-up 0.5s ease-in-out forwards 3s",
       },
     },
   },
   variants: {
     extend: {},
   },
-  plugins: [],
+  plugins: [animationUtilities],
 };
