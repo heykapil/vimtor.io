@@ -21,6 +21,10 @@ module.exports = {
   purge: ["./pages/**/*.{js,ts,jsx,tsx}", "./components/**/*.{js,ts,jsx,tsx}"],
   darkMode: "media",
   theme: {
+    boxShadow: {
+      inner:
+        "inset 0 0 5px rgba(0, 0, 0, 0.15), inset 0 2px 2px rgba(0, 0, 0, 0.1)",
+    },
     extend: {
       fontFamily: {
         sans: ["Nunito", ...defaultTheme.fontFamily.sans],

@@ -19,7 +19,7 @@ const Home = ({ projects }: HomeProps) => (
     <IntroSection />
     <AboutSection />
     {/*<ExperienceSection projects={projects} />*/}
-    {/*<ContactSection />*/}
+    <ContactSection />
   </Layout>
 );
 

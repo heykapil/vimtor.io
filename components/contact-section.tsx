@@ -7,37 +7,37 @@ const ContactSection = () => {
   const [message, setMessage] = useState("");
 
   return (
-    <Section id="contact">
+    <Section className="text-center mt-24 sm:mt-32" id="contact">
       <Section.Title>Contact <Emoji label="call me hand" icon="🤙" /></Section.Title>
       <Section.Subtitle>Get in touch! I don't bite...</Section.Subtitle>
-      <div className="container">
-        <form action="POST" className="contact-form" data-netlify="true" name="contact">
-          <label>
-            <span>Email address</span>
-            <input onChange={event => setEmail(event.target.value)} type="email" name="email" placeholder="your@email.com" required />
+      <div className="flex justify-center">
+        <form action="POST" className="flex flex-col w-[400px] max-w-[90%]" data-netlify="true" name="contact">
+          <label className="flex flex-col text-left mb-[24px]">
+            <span className="mb-[8px] color text-gray-500">Email address</span>
+            <input onChange={event => setEmail(event.target.value)} type="email" name="email" placeholder="your@email.com" required className="text-base rounded-[8px] px-4 py-3 border border-transparent shadow-inner focus:outline-none focus:border-gray-500 placeholder-gray-400" />
           </label>
-          <label>
+          <label className="flex flex-col text-left mb-[24px]">
             <span>Message</span>
-            <textarea onChange={event => setMessage(event.target.value)} name="message" placeholder="I think you're very handsome..." rows={8} required />
-          </label>
+            <textarea onChange={event => setMessage(event.target.value)} name="message" placeholder="I think you're very handsome..." rows={8} required className="resize-y text-base rounded-[8px] px-4 py-3 border border-transparent shadow-inner focus:outline-none focus:border-gray-500 placeholder-gray-400"/>
+          </label >
           {email && message ? (
-            <button className="contact-button" type="submit">
+            <button className="flex items-center justify-center font-bold text-base px-0 py-2 rounded-[8px] text-white bg-gray-700 cursor-pointer border-none focus:bg-gray-900 hover:bg-gray-900 transition-colors duration-300 ease-in-out" type="submit">
               Send email
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
-                   style={{ fill: "currentColor" }}>
+                   style={{ fill: "currentColor" }} className="ml-[8px]">
                 <path
                   d="M21.426,11.095l-17-8c-0.35-0.164-0.763-0.113-1.061,0.133C3.066,3.473,2.937,3.868,3.03,4.242l1.212,4.849L12,12 l-7.758,2.909L3.03,19.758c-0.094,0.374,0.036,0.77,0.335,1.015C3.548,20.923,3.772,21,4,21c0.145,0,0.29-0.031,0.426-0.095l17-8 C21.776,12.74,22,12.388,22,12S21.776,11.26,21.426,11.095z" />
               </svg>
             </button>
           ) : (
-            <button disabled className="contact-button" type="submit">
+            <button disabled className="flex items-center justify-center font-bold text-base px-0 py-2 rounded-[8px] text-white bg-gray-400 cursor-auto border-none" type="submit">
               Fill all fields
             </button>
           )}
         </form>
       </div>
       <Section.CTO>
-        You can to contact me at <a href="mailto:victor@vimtor.io">victor@vimtor.io</a><br />
+        You can to contact me at <a className="transiton duration-200 ease-in-out text-gray-400 inline-block underline hover:text-gray-800" href="mailto:victor@vimtor.io">victor@vimtor.io</a><br />
         or reach out on social media <Emoji label="wink face" icon="😉" />
       </Section.CTO>
     </Section>
