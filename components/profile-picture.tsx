@@ -15,7 +15,11 @@ interface ProfileImageProps {
 
 const ImageSlide = ({ src, visible }: ProfileImageProps) => {
   return (
-    <div className={`h-[200px] w-[200px] ${visible ? "" : "hidden"}`}>
+    <div
+      className={`h-[200px] w-[200px] shadow-inner rounded-full ${
+        visible ? "" : "hidden"
+      }`}
+    >
       <Image priority src={src} width={200} height={200} />
     </div>
   );
@@ -36,12 +40,11 @@ const ProfilePicture = () => {
       <MessageBubble id="profile-bubble" hidden={profileHasChanged} />
       <button
         aria-describedby="profile-bubble"
-        className="transition-all rounded-full opacity-0 shadow-inner animate-bounce-in overflow-hidden outline-none ring-gray-900 focus:ring-4 hover:ring-4 ring-opacity-80"
-        onClick={() =>
-          setCurrentProfileIndex(
-            (currentProfileIndex + 1) % PROFILE_IMAGES.length
-          )
-        }
+        className="transition-all rounded-full opacity-0 animate-bounce-in overflow-hidden outline-none ring-gray-900 focus:ring-4 hover:ring-4 ring-opacity-80"
+        onClick={() => {
+          const newIndex = (currentProfileIndex + 1) % PROFILE_IMAGES.length;
+          setCurrentProfileIndex(newIndex);
+        }}
       >
         {PROFILE_IMAGES.map((src, index) => (
           <ImageSlide
