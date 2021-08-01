@@ -18,7 +18,7 @@ const Home = ({ projects }: HomeProps) => (
   >
     <IntroSection />
     <AboutSection />
-    {/*<ExperienceSection projects={projects} />*/}
+    <ExperienceSection projects={projects} />
     <ContactSection />
   </Layout>
 );

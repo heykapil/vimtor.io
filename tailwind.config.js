@@ -21,9 +21,32 @@ module.exports = {
   purge: ["./pages/**/*.{js,ts,jsx,tsx}", "./components/**/*.{js,ts,jsx,tsx}"],
   darkMode: "media",
   theme: {
+    screens: {
+      sm: "640px",
+      // => @media (min-width: 640px) { ... }
+
+      md: "768px",
+      // => @media (min-width: 768px) { ... }
+
+      lg: "1024px",
+      // => @media (min-width: 1024px) { ... }
+
+      xl: "1280px",
+      // => @media (min-width: 1280px) { ... }
+
+      "2xl": "1536px",
+      // => @media (min-width: 1536px) { ... }
+
+      "3xl": "1800px",
+      // => @media (min-width: 1800px) { ... }
+    },
+    gridTemplateColumns: {
+      // Complex site-specific column configuration
+      projects: "800px 800px",
+    },
     boxShadow: {
-      inner:
-        "inset 0 0 5px rgba(0, 0, 0, 0.15), inset 0 2px 2px rgba(0, 0, 0, 0.1)",
+      inner: "inset 0 0 5px rgb(0 0 0 / 15%), inset 0 2px 2px rgb(0 0 0 / 10%)",
+      "image-shadow": "0 0 0 3px hsl(0, 0%, 18%)",
     },
     extend: {
       fontFamily: {
