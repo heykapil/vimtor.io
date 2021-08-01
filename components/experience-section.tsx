@@ -5,20 +5,28 @@ import ProjectList from "./project-list";
 import { Project } from "../utils/types";
 
 interface ExperienceSectionProps {
-  projects: Project[];
+    projects: Project[];
 }
 
 const ExperienceSection = ({ projects }: ExperienceSectionProps) => {
-  return (
-    <Section className="text-center mt-24 sm:mt-32">
-      <Section.Title>Experience <Emoji label="rocket" icon="🚀" /></Section.Title>
-      <Section.Subtitle>Some of the things I've built</Section.Subtitle>
-      <ProjectList projects={projects} />
-      <Section.CTO>
-        Feel free to see <Link href="/projects"><span className="transiton duration-200 ease-in-out text-gray-400 inline-block underline hover:text-gray-800 cursor-pointer"> all of my projects</span></Link>
-      </Section.CTO>
-    </Section>
-  );
+    return (
+        <Section className="text-center mt-24 sm:mt-32">
+            <Section.Title>
+                Experience <Emoji label="rocket" icon="🚀" />
+            </Section.Title>
+            <Section.Subtitle>Some of the things I've built</Section.Subtitle>
+            <ProjectList projects={projects} />
+            <Section.CTO>
+                Feel free to see{" "}
+                <Link href="/projects">
+                    <span className="transiton duration-200 ease-in-out text-gray-400 inline-block underline hover:text-gray-800 cursor-pointer">
+                        {" "}
+                        all of my projects
+                    </span>
+                </Link>
+            </Section.CTO>
+        </Section>
+    );
 };
 
 export default ExperienceSection;

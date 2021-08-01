@@ -8,28 +8,25 @@ import { GetStaticProps } from "next";
 import { Project } from "../utils/types";
 
 interface HomeProps {
-  projects: Project[];
+    projects: Project[];
 }
 
 const Home = ({ projects }: HomeProps) => (
-  <Layout
-    title="Victor Navarro | Software Developer"
-    description="Personal website of Victor Navarro for portfolio and contact"
-  >
-    <IntroSection />
-    <AboutSection />
-    <ExperienceSection projects={projects} />
-    <ContactSection />
-  </Layout>
+    <Layout title="Victor Navarro | Software Developer" description="Personal website of Victor Navarro for portfolio and contact">
+        <IntroSection />
+        <AboutSection />
+        <ExperienceSection projects={projects} />
+        <ContactSection />
+    </Layout>
 );
 
 export const getStaticProps: GetStaticProps = async () => {
-  const projects = await getProjects();
-  return {
-    props: {
-      projects: projects.slice(0, 8)
-    }
-  };
+    const projects = await getProjects();
+    return {
+        props: {
+            projects: projects.slice(0, 8),
+        },
+    };
 };
 
 export default Home;
