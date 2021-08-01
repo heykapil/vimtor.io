@@ -1,4 +1,5 @@
 import Emoji from "../components/emoji";
+import Link from "next/link";
 import ProjectList from "../components/project-list";
 import { useEffect, useState } from "react";
 import { Project } from "../utils/types";
@@ -17,14 +18,14 @@ const MESSAGES = [
     ),
     () => (
         <p>
-            I haven't build that yet <Emoji label="smiling face with sunglasses" icon="😎" />
+            I haven&apos;t build that yet <Emoji label="smiling face with sunglasses" icon="😎" />
         </p>
     ),
     () => (
         <p>
             Are you that interested?
             <br />
-            We can <a href="/#contact">build that together</a>
+            We can <Link href="/#contact">build that together</Link>
         </p>
     ),
     () => (
@@ -32,7 +33,7 @@ const MESSAGES = [
             We can get married if you insist <Emoji label="wedding ring" icon="💍" />
         </p>
     ),
-    () => <p>I'm sure you have better things to do...</p>,
+    () => <p>I&apos;m sure you have better things to do...</p>,
     () => (
         <p>
             I leave you with something interesting to watch.
@@ -70,6 +71,7 @@ const Projects = ({ allProjects, labels }: ProjectProps) => {
             incrementMessageIndex();
         }
         setProjects(filteredProjects);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [selectedLabels]);
 
     useEffect(() => {

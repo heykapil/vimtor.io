@@ -11,7 +11,7 @@ const ContactSection = () => {
             <Section.Title>
                 Contact <Emoji label="call me hand" icon="🤙" />
             </Section.Title>
-            <Section.Subtitle>Get in touch! I don't bite...</Section.Subtitle>
+            <Section.Subtitle>Get in touch! I don&apos;t bite...</Section.Subtitle>
             <div className="flex justify-center">
                 <form action="POST" className="flex flex-col w-[400px] max-w-[90%]" data-netlify="true" name="contact">
                     <label className="flex flex-col text-left mb-[24px]">

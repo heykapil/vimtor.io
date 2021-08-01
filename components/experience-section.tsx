@@ -14,15 +14,14 @@ const ExperienceSection = ({ projects }: ExperienceSectionProps) => {
             <Section.Title>
                 Experience <Emoji label="rocket" icon="🚀" />
             </Section.Title>
-            <Section.Subtitle>Some of the things I've built</Section.Subtitle>
+            <Section.Subtitle>Some of the things I&apos;ve built</Section.Subtitle>
             <ProjectList projects={projects} />
             <Section.CTO>
                 Feel free to see{" "}
                 <Link href="/projects">
-                    <span className="transiton duration-200 ease-in-out text-gray-400 inline-block underline hover:text-gray-800 cursor-pointer">
-                        {" "}
+                    <a className="transiton duration-200 ease-in-out text-gray-400 inline-block underline hover:text-gray-800 cursor-pointer">
                         all of my projects
-                    </span>
+                    </a>
                 </Link>
             </Section.CTO>
         </Section>

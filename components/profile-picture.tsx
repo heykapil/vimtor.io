@@ -13,7 +13,7 @@ interface ProfileImageProps {
 const ImageSlide = ({ src, visible }: ProfileImageProps) => {
     return (
         <div className={`h-[200px] w-[200px] shadow-inner rounded-full relative ${visible ? "" : "hidden"}`}>
-            <Image priority src={src} width={200} height={200} />
+            <Image priority src={src} alt="victor profile picture" width={200} height={200} />
             <ImageShadow className="rounded-full" />
         </div>
     );

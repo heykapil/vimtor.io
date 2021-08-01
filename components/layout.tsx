@@ -14,8 +14,6 @@ const Layout = ({ children, title, description }: LayoutProps) => {
             <Head>
                 <title>{title}</title>
                 <meta name="description" content={description} />
-                <link rel="icon" href="/favicon.ico" />
-                <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;800" />
             </Head>
             <main className="bg-white">{children}</main>
             <Footer />
