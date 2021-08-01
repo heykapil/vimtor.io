@@ -1,7 +1,7 @@
 ---
 title: 10 Nights
 image: ten-nights.jpg
-source: https://www.amazon.es/%C3%81tomo-Games-Nights-Juego-Mesa
+source: https://atomo-games.com/en/nuestros-juegos/59-10-nights.html
 message: Buy it on Amazon
 labels: [react, mobile app, capacitor]
 order: 3
