@@ -1,4 +1,5 @@
 import Emoji from "./emoji";
+import Link from "./link";
 import Section from "./section";
 
 const AboutSection = () => {
@@ -12,31 +13,11 @@ const AboutSection = () => {
                 <ul className="list-disc list-inside text-left m-0 text-base sm:text-xl leading-7">
                     <li>
                         Fullstack developer at{" "}
-                        <a
-                            className="transition duration-200 ease-in-out text-gray-400 inline-block underline hover:text-gray-800"
-                            href="https://bloobirds.com/"
-                        >
-                            Bloobirds
-                        </a>
+                        <Link href="https://bloobirds.com/">Bloobirds</Link>
                     </li>
                     <li>
                         Teacher in fullstack at{" "}
-                        <a
-                            className="transition duration-200 ease-in-out text-gray-400 inline-block underline hover:text-gray-800"
-                            href="https://nuclio.school/master-full-stack-developer/"
-                        >
-                            Nuclio Digital School
-                        </a>
-                    </li>
-                    <li>
-                        Streaming on{" "}
-                        <a
-                            className="transition duration-200 ease-in-out text-gray-400 inline-block underline hover:text-gray-800"
-                            href="https://twitch.tv/vimtor_"
-                        >
-                            Twitch
-                        </a>{" "}
-                        from time to time
+                        <Link href="https://nuclio.school/master-full-stack-developer/">Nuclio Digital School</Link>
                     </li>
                     <li>Doing freelance jobs from time to time</li>
                     <li>Always learning</li>
@@ -46,9 +27,7 @@ const AboutSection = () => {
                 If you are interested in my tech stack,
                 <br />
                 you can check it out on{" "}
-                <a className="transition duration-200 ease-in-out text-gray-400 underline hover:text-gray-800" href="https://stackshare.io/vimtor/my-stack">
-                    stackshare.io
-                </a>
+                <Link href="https://stackshare.io/vimtor/my-stack">stackshare.io</Link>
             </Section.CTO>
         </Section>
     );

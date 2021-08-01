@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { Project } from "../utils/types";
 import ImageShadow from "./image-shadow";
+import Link from "./link";
 
 interface ProjectListProps {
     projects: Project[];
@@ -17,9 +18,9 @@ const ProjectList = ({ projects }: ProjectListProps) => {
                     <div className="max-w-[90%] m-0 mx-auto w-full sm:w-1/2 sm:mr-8 md:mr-16 md:text-left">
                         <h3 className="mb-3 font-bold text-2xl sm:text-center md:text-left">{project.title}</h3>
                         <div className="inline" dangerouslySetInnerHTML={{ __html: project.content }} />
-                        <a className="inline-block transiton duration-200 ease-in-out text-gray-400 underline hover:text-gray-800 mt-4" href={project.source}>
+                        <Link href={project.source} className="inline-block mt-4">
                             {project.message}
-                        </a>
+                        </Link>
                     </div>
                     <a
                         href={project.source}
