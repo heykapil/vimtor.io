@@ -22,19 +22,19 @@ module.exports = {
     darkMode: "media",
     theme: {
         screens: {
-            sm: "640px",
+            sm: "600px",
             // => @media (min-width: 640px) { ... }
 
-            md: "768px",
+            md: "700px",
             // => @media (min-width: 768px) { ... }
 
             lg: "1024px",
             // => @media (min-width: 1024px) { ... }
 
-            xl: "1280px",
+            xl: "1200px",
             // => @media (min-width: 1280px) { ... }
 
-            "2xl": "1536px",
+            "2xl": "1600px",
             // => @media (min-width: 1536px) { ... }
 
             "3xl": "1800px",

@@ -82,21 +82,27 @@ const Projects = ({ allProjects, labels }: ProjectProps) => {
 
     return (
         <Layout title="Projects by Victor Navarro" description="List of projects made by Victor Navarro">
-            <header className="projects-header">
+            <header className="mb-16">
                 <div>
-                    <h1 className="projects-title">
+                    <h1 className="text-center text-3xl font-bold sm:text-4xl">
                         All my projects <Emoji label="rocket" icon="🚀" />
                     </h1>
-                    <p className="projects-subtitle">A list of projects I worked on that are worth mentioning</p>
+                    <p className="text-center text-base py-0 px-8 sm:text-lg">A list of projects I worked on that are worth mentioning</p>
                 </div>
-                <ul className="label-list scroll-shadow" aria-label="projects filter" role="menu">
+                <ul
+                    className="scroll-shadow flex max-w-[90%] mt-8 mb-0 mx-auto overflow-x-auto sm:overflow-x-hidden relative sm:flex-wrap justify-center xl:max-w-[55%]"
+                    aria-label="projects filter"
+                    role="menu"
+                >
                     {labels.map((label) => (
                         <li
                             key={label}
                             onClick={() => selectLabel(label)}
                             role="menuitemcheckbox"
                             tabIndex={0}
-                            className={`label-item ${selectedLabels.has(label) ? "selected" : ""}`}
+                            className={`capitalize border border-gray-400 rounded-full py-2 px-4 cursor-pointer mr-4 flex-shrink-0 select-none transition-all duration-100 ease-in outline-none hover:bg-gray-100 focus:bg-gray-100 mb-4 ${
+                                selectedLabels.has(label) ? "border-gray-900 bg-gray-900 text-gray-100 hover:bg-gray-900 focus:bg-gray-900" : ""
+                            }`}
                         >
                             {label}
                         </li>
