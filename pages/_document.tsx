@@ -6,7 +6,7 @@ class MyDocument extends Document {
             <Html>
                 <Head>
                     <link rel="icon" href="/favicon.ico" />
-                    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito@400;500;600;800&display=swap" />
+                    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet" />
                 </Head>
                 <body>
                     <Main />

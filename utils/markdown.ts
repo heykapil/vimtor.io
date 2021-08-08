@@ -1,6 +1,5 @@
 import fs from "fs";
 import path from "path";
-import marked from "marked";
 import matter from "gray-matter";
 import { Project } from "./types";
 
@@ -17,7 +16,7 @@ export const getProjects = async (): Promise<Project[]> => {
             message: data.message,
             order: data.order,
             source: data.source,
-            content: marked(content),
+            content: content,
         };
     });
 

@@ -1,4 +1,5 @@
 import { ReactNode } from "react";
+import Link from "./link";
 
 interface SocialItemProps {
     children: ReactNode;
@@ -8,7 +9,7 @@ interface SocialItemProps {
 
 const SocialItem = ({ children, href, label }: SocialItemProps) => {
     return (
-        <li className="flex ">
+        <li>
             <a href={href} aria-label={label}>
                 <svg
                     className="w-8 sm:w-10 text-current hover:text-gray-600 transition-all"
@@ -50,7 +51,9 @@ const Footer = () => {
             <p className="text-center text-gray-500 mt-16">
                 Victor Navarro &copy; 2021 <br />
             </p>
-            <p className="text-center text-gray-500 mt-2">Built with NextJS and Tailwind CSS</p>
+            <p className="text-center text-gray-500 mt-2">
+                Built with <Link href="https://nextjs.org">Next JS</Link> and <Link href="https://tailwindcss.com">Tailwind CSS</Link>
+            </p>
         </footer>
     );
 };

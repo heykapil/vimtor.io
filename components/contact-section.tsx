@@ -10,7 +10,7 @@ export interface ContactMessageProps {
 
 const ContactMessage = ({ email, message }: ContactMessageProps) => {
     if (!email && !message) return <>What&apos;s your email?</>;
-    if (!email && message) return <>But..What&apos;s your email?!</>;
+    if (!email && message) return <>But... What&apos;s your email?!</>;
     if (email && !message) return <>Don&apos;t be shy</>;
 
     return (
@@ -35,31 +35,37 @@ const ContactSection = () => {
             <Section.Subtitle>Get in touch! I don&apos;t bite...</Section.Subtitle>
             <div className="flex justify-center">
                 <form action="POST" className="flex flex-col w-[400px] max-w-[90%]" data-netlify="true" name="contact">
-                    <label className="flex flex-col text-left mb-[24px]">
-                        <span className="mb-[8px] color text-gray-500">Email address</span>
+                    <div className="text-left">
+                        <label htmlFor="email" className="block mb-2 font-semibold text-gray-700">
+                            Email address
+                        </label>
                         <input
                             onChange={(event) => setEmail(event.target.value)}
+                            id="email"
                             type="email"
                             name="email"
                             placeholder="your@email.com"
                             required
-                            className="text-base rounded-lg px-4 py-3 border border-transparent shadow-inner focus:outline-none focus:border-gray-500 placeholder-gray-400"
+                            className="w-full rounded-lg px-4 py-3 border border-gray-300 shadow-inner focus:ring-gray-700 focus:shadow-none focus:border-gray-700 placeholder-gray-400"
                         />
-                    </label>
-                    <label className="flex flex-col text-left mb-[24px]">
-                        <span>Message</span>
+                    </div>
+                    <div className="text-left mt-5">
+                        <label htmlFor="message" className="block mb-2 font-semibold text-gray-700">
+                            Message body
+                        </label>
                         <textarea
                             onChange={(event) => setMessage(event.target.value)}
+                            id="message"
                             name="message"
                             placeholder="I think you're very handsome..."
                             rows={8}
                             required
-                            className="resize-y text-base rounded-lg px-4 py-3 border border-transparent shadow-inner focus:outline-none focus:border-gray-500 placeholder-gray-400"
+                            className="resize-y w-full rounded-lg px-4 py-3 border border-gray-300 shadow-inner focus:ring-gray-700 focus:shadow-none focus:border-gray-700 placeholder-gray-400"
                         />
-                    </label>
+                    </div>
                     <button
                         disabled={!email || !message}
-                        className="flex items-center justify-center font-semibold text-base px-0 py-2 rounded-lg text-white disabled:bg-gray-100 disabled:text-gray-400 bg-gray-700 cursor-pointer border-none focus:bg-gray-900 hover:bg-gray-900 transition-colors duration-300 ease-in-out"
+                        className="mt-6 flex items-center justify-center text-base px-0 py-2 rounded-lg text-white disabled:bg-gray-100 disabled:text-gray-400 bg-gray-800 hover:bg-gray-700 border-none focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 transition-colors duration-300 ease-in-out"
                         type="submit"
                     >
                         <ContactMessage email={email} message={message} />

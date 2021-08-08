@@ -44,9 +44,6 @@ module.exports = {
             // Complex site-specific column configuration
             projects: "800px 800px",
         },
-        boxShadow: {
-            inner: "inset 0 0 5px rgb(0 0 0 / 15%), inset 0 2px 2px rgb(0 0 0 / 10%)",
-        },
         extend: {
             fontFamily: {
                 sans: ["Nunito", ...defaultTheme.fontFamily.sans],
@@ -122,5 +119,5 @@ module.exports = {
     variants: {
         extend: {},
     },
-    plugins: [animationUtilities],
+    plugins: [animationUtilities, require("@tailwindcss/forms")],
 };

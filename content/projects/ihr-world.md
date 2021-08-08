@@ -2,7 +2,7 @@
 title: IHR World
 image: ihr-world.jpg
 source: https://ihr.world/
-message: Check out
+message: Learn more
 labels: [java, elastic search]
 order: 6
 ---

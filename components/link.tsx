@@ -10,7 +10,11 @@ export interface LinkProps {
 const Link = ({ href, className, children }: LinkProps) => {
     return (
         <NextLink href={href}>
-            <a className={`transition duration-200 ease-in-out text-gray-400 inline-block underline hover:text-gray-800 ${className}`}>{children}</a>
+            <a
+                className={`transition duration-200 ease-in-out text-gray-400 outline-none rounded-lg focus:ring-2 focus:ring-gray-900 inline-block underline hover:text-gray-800 ${className}`}
+            >
+                {children}
+            </a>
         </NextLink>
     );
 };

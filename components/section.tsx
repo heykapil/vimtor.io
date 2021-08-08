@@ -15,7 +15,7 @@ const Section = ({ children, className, id }: SectionProps) => {
 };
 
 Section.Title = function SectionTitle({ children }: SectionProps) {
-    return <h2 className="mb-4 text-3xl sm:text-4xl font-bold">{children}</h2>;
+    return <h2 className="mb-4 text-3xl sm:text-4xl font-extrabold">{children}</h2>;
 };
 
 Section.Subtitle = function SectionSubtitle({ children }: SectionProps) {
