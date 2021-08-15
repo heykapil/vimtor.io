@@ -1,6 +1,7 @@
 import Head from "next/head";
 import { ReactNode } from "react";
 import Footer from "./footer";
+import Navbar from "./navbar";
 
 interface LayoutProps {
     children: ReactNode;
@@ -15,7 +16,10 @@ const Layout = ({ children, title, description }: LayoutProps) => {
                 <title>{title} | Victor Navarro</title>
                 <meta name="description" content={description} />
             </Head>
-            <main className="bg-white mt-24 mb-16">{children}</main>
+            <main className="bg-white">
+                <Navbar />
+                {children}
+            </main>
             <Footer />
         </div>
     );
