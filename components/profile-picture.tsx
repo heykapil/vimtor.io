@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
+import { Transition } from "@headlessui/react";
 import MessageBubble from "./message-bubble";
 import ImageShadow from "./image-shadow";
 
@@ -12,10 +13,19 @@ interface ProfileImageProps {
 
 const ImageSlide = ({ src, visible }: ProfileImageProps) => {
     return (
-        <div className={`h-[200px] w-[200px] shadow-inner rounded-full relative ${visible ? "" : "hidden"}`}>
+        <Transition
+            show={visible}
+            enter="transition-all ease-in duration-100"
+            enterFrom="blur-sm"
+            enterTo="blur-none"
+            leave="transition-all ease-out duration-100"
+            leaveFrom="blur-none"
+            leaveTo="blur-sm"
+            className="shadow-inner"
+        >
             <Image priority src={src} alt="victor profile picture" width={200} height={200} />
             <ImageShadow className="rounded-full" />
-        </div>
+        </Transition>
     );
 };
 
@@ -34,7 +44,7 @@ const ProfilePicture = () => {
             <MessageBubble id="profile-bubble" hidden={profileHasChanged} />
             <button
                 aria-describedby="profile-bubble"
-                className="transition-all rounded-full opacity-0 animate-bounce-in overflow-hidden outline-none ring-gray-900 focus:ring-4 hover:ring-4 ring-opacity-80"
+                className="transition-all rounded-full opacity-0 animate-bounce-in overflow-hidden w-[200px] h-[200px] outline-none ring-gray-900 focus:ring-4 hover:ring-4 ring-opacity-80"
                 onClick={() => {
                     const newIndex = (currentProfileIndex + 1) % PROFILE_IMAGES.length;
                     setCurrentProfileIndex(newIndex);
