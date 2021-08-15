@@ -1,31 +1,26 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import { Transition } from "@headlessui/react";
 import MessageBubble from "./message-bubble";
 import ImageShadow from "./image-shadow";
+import profile1 from "../public/images/profile.jpg";
+import profile2 from "../public/images/profile-2.png";
+import profile3 from "../public/images/profile-3.png";
+import { classNames } from "../utils/style";
 
-const PROFILE_IMAGES = ["/images/profile.jpg", "/images/profile-2.png", "/images/profile-3.png"];
+const PROFILE_IMAGES = [profile1, profile2, profile3];
 
 interface ProfileImageProps {
-    src: string;
+    src: StaticImageData;
     visible: boolean;
+    priority: boolean;
 }
 
-const ImageSlide = ({ src, visible }: ProfileImageProps) => {
+const ImageSlide = ({ src, visible, priority }: ProfileImageProps) => {
     return (
-        <Transition
-            show={visible}
-            enter="transition-all ease-in duration-100"
-            enterFrom="blur-sm"
-            enterTo="blur-none"
-            leave="transition-all ease-out duration-100"
-            leaveFrom="blur-none"
-            leaveTo="blur-sm"
-            className="shadow-inner"
-        >
-            <Image priority src={src} alt="victor profile picture" width={200} height={200} />
+        <div className={classNames("shadow-inner", visible ? "" : "hidden")}>
+            <Image priority={priority} src={src} placeholder="blur" alt="victor profile picture" width={200} height={200} />
             <ImageShadow className="rounded-full" />
-        </Transition>
+        </div>
     );
 };
 
@@ -51,7 +46,7 @@ const ProfilePicture = () => {
                 }}
             >
                 {PROFILE_IMAGES.map((src, index) => (
-                    <ImageSlide key={src} src={src} visible={currentProfileIndex === index} />
+                    <ImageSlide key={index} priority={index === 0} src={src} visible={currentProfileIndex === index} />
                 ))}
             </button>
         </div>
