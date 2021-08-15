@@ -20,7 +20,7 @@ const MessageBubble = ({ id, hidden }: MessageBubbleProps) => {
                 id={id}
                 role="tooltip"
                 className={
-                    "animate-fly-in-up sm:animate-fly-in-down opacity-0 bg-gray-800 text-white absolute py-2 px-3 whitespace-nowrap -top-1/3 left-1/2 transform -translate-x-1/2 text-center rounded-lg sm:top-full sm:mt-4"
+                    "animate-fly-in-up sm:animate-fly-in-down animation-delay-6000 sm:animation-delay-6000 opacity-0 bg-gray-800 text-white absolute py-2 px-3 whitespace-nowrap -top-1/3 left-1/2 transform -translate-x-1/2 text-center rounded-lg sm:top-full sm:mt-4"
                 }
                 aria-hidden={hidden}
             >
