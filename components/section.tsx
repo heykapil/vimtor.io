@@ -19,7 +19,7 @@ Section.Title = function SectionTitle({ children }: SectionProps) {
 };
 
 Section.Subtitle = function SectionSubtitle({ children }: SectionProps) {
-    return <p className="mb-6 sm:mb-12 text-xl sm:text-2xl">{children}</p>;
+    return <p className="mb-6 sm:mb-12 text-xl sm:text-2xl px-8">{children}</p>;
 };
 
 Section.CTO = function SectionCTO({ children }: SectionProps) {
