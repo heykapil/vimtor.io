@@ -1,12 +1,14 @@
 import Emoji from "../components/emoji";
-import Link from "next/link";
 import ProjectList from "../components/project-list";
 import { useEffect, useState } from "react";
 import { Project } from "../utils/types";
-import { useCounter, useSet } from "react-use";
+import { useCounter } from "react-use";
 import { GetStaticProps } from "next";
 import { getProjects } from "../utils/data";
 import Layout from "../components/layout";
+import Section from "../components/section";
+import LabelFilters from "../components/label-filters";
+import Link from "../components/link";
 
 const INTERESTING_URL = "https://www.youtube.com/watch?v=4dC_nRYIDZU";
 
@@ -59,13 +61,12 @@ interface ProjectProps {
 
 const Projects = ({ allProjects, labels }: ProjectProps) => {
     const [emptyMessageIndex, { inc: incrementMessageIndex }] = useCounter(0);
-    const [selectedLabels, { toggle: selectLabel }] = useSet();
+    const [selectedLabels, setSelectedLabels] = useState<string[]>([]);
     const [projects, setProjects] = useState(allProjects);
 
     useEffect(() => {
         const filteredProjects = allProjects.filter((project) => {
-            // @ts-ignore
-            return [...selectedLabels].every((label) => project.labels.includes(label));
+            return selectedLabels.every((label) => project.labels.includes(label));
         });
         if (filteredProjects.length === 0) {
             incrementMessageIndex();
@@ -81,35 +82,15 @@ const Projects = ({ allProjects, labels }: ProjectProps) => {
     }, [emptyMessageIndex]);
 
     return (
-        <Layout title="Projects by Victor Navarro" description="List of projects made by Victor Navarro">
-            <header className="mb-16">
-                <div>
-                    <h1 className="text-center text-3xl font-bold sm:text-4xl">
-                        All my projects <Emoji label="rocket" icon="🚀" />
-                    </h1>
-                    <p className="text-center text-base py-0 px-8 sm:text-lg">A list of projects I worked on that are worth mentioning</p>
-                </div>
-                <ul
-                    className="scroll-shadow flex max-w-[90%] mt-8 mb-0 mx-auto overflow-x-auto sm:overflow-x-hidden relative sm:flex-wrap justify-center xl:max-w-[55%]"
-                    aria-label="projects filter"
-                    role="menu"
-                >
-                    {labels.map((label) => (
-                        <li
-                            key={label}
-                            onClick={() => selectLabel(label)}
-                            role="menuitemcheckbox"
-                            tabIndex={0}
-                            className={`capitalize border border-gray-400 rounded-full py-2 px-4 cursor-pointer mr-4 flex-shrink-0 select-none transition-all duration-100 ease-in outline-none hover:bg-gray-100 focus:bg-gray-100 mb-4 ${
-                                selectedLabels.has(label) ? "border-gray-900 bg-gray-900 text-gray-100 hover:bg-gray-900 focus:bg-gray-900" : ""
-                            }`}
-                        >
-                            {label}
-                        </li>
-                    ))}
-                </ul>
-            </header>
-            {projects.length !== 0 ? <ProjectList projects={projects} /> : <EmptyMessage shownCount={emptyMessageIndex} />}
+        <Layout title="Projects" description="List of projects made by Victor Navarro">
+            <Section className="text-center mt-24 sm:mt-32">
+                <Section.Title>
+                    All my projects <Emoji label="rocket" icon="🚀" />
+                </Section.Title>
+                <Section.Subtitle>A list of projects I worked on that are worth mentioning</Section.Subtitle>
+                <LabelFilters value={selectedLabels} onChange={setSelectedLabels} options={labels} />
+                {projects.length !== 0 ? <ProjectList projects={projects} /> : <EmptyMessage shownCount={emptyMessageIndex} />}
+            </Section>
         </Layout>
     );
 };

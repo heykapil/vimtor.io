@@ -12,7 +12,7 @@ interface HomeProps {
 }
 
 const Home = ({ projects }: HomeProps) => (
-    <Layout title="Victor Navarro | Software Developer" description="Personal website of Victor Navarro for portfolio and contact">
+    <Layout title="Home" description="Personal website of Victor Navarro for portfolio and contact">
         <IntroSection />
         <AboutSection />
         <ExperienceSection projects={projects} />

@@ -3,7 +3,7 @@ const plugin = require("tailwindcss/plugin");
 const range = require("lodash/range");
 
 const animationUtilities = plugin(({ addUtilities }) => {
-    const initialDelays = [75, 100, 150, 300, 500, 750];
+    const initialDelays = [0, 75, 100, 150, 300, 500, 750];
     const finalDelays = range(50).map((i) => 1000 + i * 500);
     const delays = [...initialDelays, ...finalDelays];
     const delayUtilities = delays.map((delay) => {
@@ -23,22 +23,11 @@ module.exports = {
     theme: {
         screens: {
             sm: "600px",
-            // => @media (min-width: 640px) { ... }
-
             md: "700px",
-            // => @media (min-width: 768px) { ... }
-
             lg: "1024px",
-            // => @media (min-width: 1024px) { ... }
-
             xl: "1200px",
-            // => @media (min-width: 1280px) { ... }
-
             "2xl": "1600px",
-            // => @media (min-width: 1536px) { ... }
-
             "3xl": "1800px",
-            // => @media (min-width: 1800px) { ... }
         },
         gridTemplateColumns: {
             // Complex site-specific column configuration
