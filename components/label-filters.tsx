@@ -30,17 +30,18 @@ const LabelFilters = ({ value, onChange, options }: LabelFiltersProps) => {
                 }}
             >
                 {options.map((option) => {
-                    const isSelected = value.includes(option);
+                    const isChecked = value.includes(option);
                     return (
                         <button
                             key={option}
                             role="menuitemcheckbox"
+                            aria-checked={isChecked}
                             tabIndex={0}
                             className={`capitalize border border-gray-400 rounded-full py-2 px-4 cursor-pointer mr-4 flex-shrink-0 select-none transition-all duration-100 ease-in outline-none hover:bg-gray-100 focus:bg-gray-100 mb-4 ${
-                                isSelected ? "border-gray-900 bg-gray-900 text-gray-100 hover:bg-gray-900 focus:bg-gray-900" : ""
+                                isChecked ? "border-gray-900 bg-gray-900 text-gray-100 hover:bg-gray-900 focus:bg-gray-900" : ""
                             }`}
                             onClick={() => {
-                                if (isSelected) {
+                                if (isChecked) {
                                     onChange(value.filter((x) => x !== option));
                                 } else {
                                     onChange([...value, option]);
