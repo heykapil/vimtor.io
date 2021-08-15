@@ -65,7 +65,7 @@ const ContactSection = () => {
                     </div>
                     <button
                         disabled={!email || !message}
-                        className="mt-6 flex items-center justify-center text-base px-0 py-2 rounded-lg text-white disabled:bg-gray-100 disabled:text-gray-400 bg-gray-800 hover:bg-gray-700 border-none focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 transition-colors duration-300 ease-in-out"
+                        className="mt-6 flex items-center justify-center text-base px-0 py-2 rounded-lg text-white disabled:cursor-default disabled:bg-gray-100 disabled:text-gray-400 bg-gray-800 hover:bg-gray-700 border-none focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 transition-colors duration-300 ease-in-out"
                         type="submit"
                     >
                         <ContactMessage email={email} message={message} />

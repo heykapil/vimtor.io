@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { Project } from "../utils/types";
 import { useCounter, useSet } from "react-use";
 import { GetStaticProps } from "next";
-import { getProjects } from "../utils/markdown";
+import { getProjects } from "../utils/data";
 import Layout from "../components/layout";
 
 const INTERESTING_URL = "https://www.youtube.com/watch?v=4dC_nRYIDZU";
