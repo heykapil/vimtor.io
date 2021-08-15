@@ -3,9 +3,6 @@ command = "yarn build"
 publish = "out"
 
 [[plugins]]
-package = "@netlify/plugin-nextjs"
-
-[[plugins]]
 package = "@netlify/plugin-lighthouse"
 [plugins.inputs.thresholds]
 performance = 0.8
