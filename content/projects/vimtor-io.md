@@ -8,4 +8,3 @@ order: 9
 ---
 
 My own website built with simplicity, accessibility, performance and fun.
-Feel free to check out the [lighthouse score](/lighthouse).
