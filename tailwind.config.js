@@ -2,7 +2,7 @@ const defaultTheme = require("tailwindcss/defaultTheme");
 const plugin = require("tailwindcss/plugin");
 const range = require("lodash/range");
 
-const animationUtilities = plugin(({ addUtilities }) => {
+const animationDelayPlugin = plugin(({ addUtilities }) => {
     const initialDelays = [0, 75, 100, 150, 300, 500, 750];
     const finalDelays = range(50).map((i) => 1000 + i * 500);
     const delays = [...initialDelays, ...finalDelays];
@@ -14,6 +14,17 @@ const animationUtilities = plugin(({ addUtilities }) => {
         };
     });
     addUtilities(delayUtilities);
+});
+
+const scrollBehaviourPlugin = plugin(({ addUtilities }) => {
+    addUtilities({
+        ".scroll-behavior-smooth": {
+            "scroll-behavior": "smooth",
+        },
+        ".scroll-padding-top-24": {
+            "scroll-padding-top": "6rem",
+        },
+    });
 });
 
 module.exports = {
@@ -108,5 +119,5 @@ module.exports = {
     variants: {
         extend: {},
     },
-    plugins: [animationUtilities, require("@tailwindcss/forms")],
+    plugins: [animationDelayPlugin, scrollBehaviourPlugin, require("@tailwindcss/forms")],
 };

@@ -8,19 +8,21 @@ import { ArrowLeftIcon } from "@heroicons/react/solid";
 const routes = [
     { title: "Home", href: "/" },
     { title: "Projects", href: "/projects" },
-    { title: "Contact", href: "/contact" },
+    { title: "Contact", href: "/#contact" },
 ];
 
 const Navbar = () => {
     const { asPath, back } = useRouter();
+
+    const isHome = asPath === "/" || asPath.startsWith("/#");
 
     return (
         <Disclosure as="nav" className="absolute top-0 left-0 w-full z-10">
             {({ open }) => (
                 <div className={classNames(open ? "bg-white shadow-lg rounded-md" : "", "px-6 py-4 md:px-6 md:py-8 lg:px-8 lg:py-10")}>
                     <div className="max-w-5xl mx-auto">
-                        <div className={classNames("flex items-center justify-end", asPath !== "/" ? "justify-between" : "")}>
-                            {asPath !== "/" ? (
+                        <div className={classNames("flex items-center justify-end", !isHome ? "justify-between" : "")}>
+                            {!isHome ? (
                                 <button onClick={back} className={classNames("inline-flex justify-center items-center p-2 rounded-md", focusRingClasses)}>
                                     <ArrowLeftIcon aria-hidden="true" className="h-6 w-6 text-gray-400" />
                                     <span className="sr-only md:not-sr-only	md:ml-2 text-gray-700 transition duration-200 ease-in-out text-gray-400">
