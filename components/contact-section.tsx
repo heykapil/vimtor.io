@@ -41,11 +41,11 @@ const ContactSection = () => {
 
         fetch("/api/contact", {
             method: "POST",
+            body: JSON.stringify(data),
             headers: {
-                Accept: "application/json, text/plain, */*",
+                Accept: "application/json",
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify(data),
         }).then((res) => {
             console.log("Response Received");
             if (res.status === 200) {

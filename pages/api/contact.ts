@@ -1,7 +1,7 @@
-export default function (req: Request, res: Response) {
-    require("dotenv").config();
+import { NextApiRequest, NextApiResponse } from "next";
+import nodemailer from "nodemailer";
 
-    let nodemailer = require("nodemailer");
+const handler = (req: NextApiRequest, res: NextApiResponse) => {
     const transporter = nodemailer.createTransport({
         port: 465,
         host: "smtp.gmail.com",
@@ -11,21 +11,23 @@ export default function (req: Request, res: Response) {
         },
         secure: true,
     });
+
     const mailData = {
         from: "vimtorcontact@gmail.com",
         to: "eduardogomezpueyo@gmail.com",
-        // @ts-ignore
-        subject: `Message From ${req.body.email}`,
-        // @ts-ignore
+        subject: `Message from ${req.body.email}`,
         text: req.body.message + " | Sent from: " + req.body.email,
-        // @ts-ignore
         html: `<div>${req.body.message}</div><p>Sent from: ${req.body.email}</p>`,
     };
 
-    transporter.sendMail(mailData, function (err: Error, info: string) {
-        if (err) console.log(err);
+    transporter.sendMail(mailData, (error, info) => {
+        if (error) console.log(error);
         else console.log(info);
     });
 
-    res.ok;
-}
+    res.status(200).json({
+        message: "Email was sent successfully",
+    });
+};
+
+export default handler;
