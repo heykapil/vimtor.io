@@ -2,10 +2,13 @@ import Emoji from "./emoji";
 import Section from "./section";
 import { useState } from "react";
 import Link from "./link";
+import { FormEvent } from "react";
+import { use } from "marked";
 
 export interface ContactMessageProps {
     email: string;
     message: string;
+    contacted: boolean;
 }
 
 const ContactMessage = ({ email, message }: ContactMessageProps) => {
@@ -26,6 +29,32 @@ const ContactMessage = ({ email, message }: ContactMessageProps) => {
 const ContactSection = () => {
     const [email, setEmail] = useState("");
     const [message, setMessage] = useState("");
+    const [contacted, setContacted] = useState(false);
+
+    const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+
+        let data = {
+            email,
+            message,
+        };
+
+        fetch("/api/contact", {
+            method: "POST",
+            headers: {
+                Accept: "application/json, text/plain, */*",
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(data),
+        }).then((res) => {
+            console.log("Response Received");
+            if (res.status === 200) {
+                console.log("Response succeeded!");
+                setEmail("");
+                setMessage("");
+            }
+        });
+    };
 
     return (
         <Section className="text-center mt-24 sm:mt-32" id="contact">
@@ -34,7 +63,7 @@ const ContactSection = () => {
             </Section.Title>
             <Section.Subtitle>Get in touch! I don&apos;t bite...</Section.Subtitle>
             <div className="flex justify-center">
-                <form action="POST" className="flex flex-col w-[400px] max-w-[90%]" data-netlify="true" name="contact">
+                <form className="flex flex-col w-[400px] max-w-[90%]" name="contact" onSubmit={(event) => handleSubmit(event)}>
                     <div className="text-left">
                         <label htmlFor="email" className="block mb-2 font-semibold text-gray-700">
                             Email address
@@ -64,11 +93,11 @@ const ContactSection = () => {
                         />
                     </div>
                     <button
-                        disabled={!email || !message}
+                        disabled={!email || !message || !contacted}
                         className="mt-6 flex items-center justify-center text-base px-0 py-2 rounded-lg text-white disabled:cursor-default disabled:bg-gray-100 disabled:text-gray-400 bg-gray-800 hover:bg-gray-700 border-none focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 transition-colors duration-300 ease-in-out"
                         type="submit"
                     >
-                        <ContactMessage email={email} message={message} />
+                        <ContactMessage email={email} message={message} contacted={contacted} />
                     </button>
                 </form>
             </div>
