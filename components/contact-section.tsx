@@ -1,20 +1,53 @@
 import Emoji from "./emoji";
 import Section from "./section";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "./link";
-import { FormEvent } from "react";
-import { use } from "marked";
+import { useForm } from "@formspree/react";
+import { classNames } from "../utils/style";
+import { CheckCircleIcon, XCircleIcon } from "@heroicons/react/solid";
 
 export interface ContactMessageProps {
     email: string;
     message: string;
-    contacted: boolean;
+    succeeded: boolean;
+    errors: boolean;
+    submitting: boolean;
 }
 
-const ContactMessage = ({ email, message }: ContactMessageProps) => {
-    if (!email && !message) return <>What&apos;s your email?</>;
-    if (!email && message) return <>But... What&apos;s your email?!</>;
-    if (email && !message) return <>Don&apos;t be shy</>;
+const ContactMessage = ({ email, message, succeeded, errors, submitting }: ContactMessageProps) => {
+    if (errors) {
+        return (
+            <>
+                <XCircleIcon className="mr-2 h-5 w-5" />
+                Please use the email below
+            </>
+        );
+    }
+
+    if (succeeded) {
+        return (
+            <>
+                <CheckCircleIcon className="mr-2 h-5 w-5" />
+                Awesome! I will get back to you
+            </>
+        );
+    }
+
+    if (submitting) {
+        return <>Sending your message...</>;
+    }
+
+    if (!email && !message) {
+        return <>What&apos;s your email?</>;
+    }
+
+    if (!email && message) {
+        return <>But... What&apos;s your email?!</>;
+    }
+
+    if (email && !message) {
+        return <>Don&apos;t be shy</>;
+    }
 
     return (
         <>
@@ -29,46 +62,30 @@ const ContactMessage = ({ email, message }: ContactMessageProps) => {
 const ContactSection = () => {
     const [email, setEmail] = useState("");
     const [message, setMessage] = useState("");
-    const [contacted, setContacted] = useState(false);
+    const [{ submitting, succeeded, errors }, handleSubmit] = useForm("xayalezv");
 
-    const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
-        event.preventDefault();
-
-        let data = {
-            email,
-            message,
-        };
-
-        fetch("/api/contact", {
-            method: "POST",
-            body: JSON.stringify(data),
-            headers: {
-                Accept: "application/json",
-                "Content-Type": "application/json",
-            },
-        }).then((res) => {
-            console.log("Response Received");
-            if (res.status === 200) {
-                console.log("Response succeeded!");
-                setEmail("");
-                setMessage("");
-            }
-        });
-    };
+    useEffect(() => {
+        if (succeeded) {
+            setEmail("");
+            setMessage("");
+        }
+    }, [succeeded]);
 
     return (
         <Section className="text-center mt-24 sm:mt-32" id="contact">
-            <Section.Title>
+            <Section.Title className="">
                 Contact <Emoji label="call me hand" icon="🤙" />
             </Section.Title>
             <Section.Subtitle>Get in touch! I don&apos;t bite...</Section.Subtitle>
             <div className="flex justify-center">
-                <form className="flex flex-col w-[400px] max-w-[90%]" name="contact" onSubmit={(event) => handleSubmit(event)}>
+                <form className="flex flex-col w-[400px] max-w-[90%]" name="contact" onSubmit={handleSubmit}>
                     <div className="text-left">
                         <label htmlFor="email" className="block mb-2 font-semibold text-gray-700">
                             Email address
                         </label>
                         <input
+                            disabled={succeeded}
+                            value={email}
                             onChange={(event) => setEmail(event.target.value)}
                             id="email"
                             type="email"
@@ -83,6 +100,8 @@ const ContactSection = () => {
                             Message body
                         </label>
                         <textarea
+                            disabled={succeeded}
+                            value={message}
                             onChange={(event) => setMessage(event.target.value)}
                             id="message"
                             name="message"
@@ -93,16 +112,20 @@ const ContactSection = () => {
                         />
                     </div>
                     <button
-                        disabled={!email || !message || !contacted}
-                        className="mt-6 flex items-center justify-center text-base px-0 py-2 rounded-lg text-white disabled:cursor-default disabled:bg-gray-100 disabled:text-gray-400 bg-gray-800 hover:bg-gray-700 border-none focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 transition-colors duration-300 ease-in-out"
                         type="submit"
+                        disabled={!email || !message || succeeded || submitting || errors.length > 0}
+                        className={classNames(
+                            "mt-6 flex items-center justify-center text-base px-0 py-2 rounded-lg text-white disabled:cursor-default disabled:bg-gray-100 disabled:text-gray-400 bg-gray-800 hover:bg-gray-700 border-none focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 transition-colors duration-300 ease-in-out",
+                            succeeded ? "disabled:bg-green-500 disabled:text-white" : "",
+                            errors.length > 0 ? "disabled:bg-red-500 disabled:text-white" : ""
+                        )}
                     >
-                        <ContactMessage email={email} message={message} contacted={contacted} />
+                        <ContactMessage email={email} message={message} succeeded={succeeded} errors={errors.length > 0} submitting={submitting} />
                     </button>
                 </form>
             </div>
             <Section.CTO>
-                You can to contact me at <Link href="mailto:victor@vimtor.io">victor@vimtor.io</Link>
+                You can to contact me at <Link href="mailto:victor@vimtor.io">contact@vimtor.io</Link>
                 <br />
                 or reach out on social media <Emoji label="wink face" icon="😉" />
             </Section.CTO>

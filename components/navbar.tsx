@@ -8,7 +8,7 @@ import { ArrowLeftIcon } from "@heroicons/react/solid";
 const routes = [
     { title: "Home", href: "/" },
     { title: "Projects", href: "/projects" },
-    { title: "Contact", href: "/contact" },
+    { title: "Contact", href: "/#contact" },
 ];
 
 const Navbar = () => {
