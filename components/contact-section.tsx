@@ -72,7 +72,7 @@ const ContactSection = () => {
                 </form>
             </div>
             <Section.CTO>
-                You can to contact me at <Link href="mailto:victor@vimtor.io">contact@vimtor.io</Link>
+                You can to contact me at <Link href="mailto:contact@vimtor.io">contact@vimtor.io</Link>
                 <br />
                 or reach out on social media <Emoji label="wink face" icon="😉" />
             </Section.CTO>
