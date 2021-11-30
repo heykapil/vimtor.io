@@ -1,6 +1,7 @@
 import Emoji from "./emoji";
 import { useCallback, useState } from "react";
-import { useEvent, useEffectOnce } from "react-use";
+import { useEffectOnce, useEvent } from "react-use";
+import { Transition } from "@headlessui/react";
 
 interface LabelFiltersProps {
     value: string[];
@@ -69,16 +70,16 @@ const LabelFilters = ({ value, onChange, options }: LabelFiltersProps) => {
                     );
                 })}
             </div>
-            {showScrollHelper ? (
+            <Transition show={showScrollHelper} leave="transition-opacity duration-300" leaveFrom="opacity-100" leaveTo="opacity-0">
                 <span
                     id="scroll-helper"
                     role="tooltip"
                     aria-hidden="false"
-                    className="absolute w-full -bottom-8 animate-fly-in-down opacity-0 animation-delay-75 text-gray-400 italic transform"
+                    className="absolute w-full -bottom-8 opacity-0 animate-fly-in-down animation-delay-150 text-gray-400 italic transform"
                 >
                     Scroll for more filters <Emoji label="up" icon="👆" />
                 </span>
-            ) : null}
+            </Transition>
         </div>
     );
 };
