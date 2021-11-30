@@ -93,7 +93,7 @@ const Projects = ({ projects, labels }: ProjectProps) => {
         <Layout title="Projects" description="List of projects made by Victor Navarro">
             <Section className="text-center mt-24 sm:mt-32">
                 <Section.Title>
-                    All my projects <Emoji label="rocket" icon="🚀" />
+                    All my projects <Emoji label="rocket" icon="🚀" reset={false} animation="rocket" />
                 </Section.Title>
                 <Section.Subtitle>A list of projects I worked on that are worth mentioning</Section.Subtitle>
                 <LabelFilters value={selectedLabels} onChange={setSelectedLabels} options={labels} />

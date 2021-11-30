@@ -77,6 +77,16 @@ module.exports = {
                         transform: "rotate(0deg)",
                     },
                 },
+                rocket: {
+                    "0%": {
+                        transform: "translate(0, 0)",
+                        opacity: 1,
+                    },
+                    "100%": {
+                        transform: "translate(400px, -400px)",
+                        opacity: 0,
+                    },
+                },
                 "bounce-in": {
                     "0%": {
                         transform: "scale(0.5)",
@@ -111,6 +121,7 @@ module.exports = {
             animation: {
                 "fade-in-down": "fade-in-down 1s forwards ease-in-out",
                 wiggle: "wiggle 1s",
+                rocket: "rocket 300ms ease-in forwards",
                 "bounce-in": "bounce-in 0.7s cubic-bezier(0.15, 1.5, 0.5, 1) forwards 0.5s",
                 "fly-in-down": "fly-in-down 0.5s ease-in-out forwards",
                 "fly-in-up": "fly-in-up 0.5s ease-in-out forwards",
