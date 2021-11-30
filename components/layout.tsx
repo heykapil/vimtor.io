@@ -16,7 +16,7 @@ const Layout = ({ children, title, description }: LayoutProps) => {
                 <title>{title} | Victor Navarro</title>
                 <meta name="description" content={description} />
             </Head>
-            <div className="grid grid-rows-layout min-h-screen">
+            <div className="lg:grid lg:grid-rows-layout min-h-screen">
                 <main className="bg-white">
                     <Navbar />
                     {children}
