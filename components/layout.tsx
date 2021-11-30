@@ -16,11 +16,13 @@ const Layout = ({ children, title, description }: LayoutProps) => {
                 <title>{title} | Victor Navarro</title>
                 <meta name="description" content={description} />
             </Head>
-            <main className="bg-white">
-                <Navbar />
-                {children}
-            </main>
-            <Footer />
+            <div className="grid grid-rows-layout min-h-screen">
+                <main className="bg-white">
+                    <Navbar />
+                    {children}
+                </main>
+                <Footer />
+            </div>
         </div>
     );
 };

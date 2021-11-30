@@ -43,6 +43,7 @@ module.exports = {
         gridTemplateColumns: {
             // Complex site-specific column configuration
             projects: "800px 800px",
+            layout: "1fr auto",
         },
         extend: {
             fontFamily: {
