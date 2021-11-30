@@ -3,7 +3,7 @@ title: Tayaimgut's Website
 image: tayaimgut.png
 source: https://tayaimgut.com/
 message: Drink the wine
-labels: [eleventy]
+labels: []
 order: 5
 ---
 
