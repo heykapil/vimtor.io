@@ -3,7 +3,7 @@ title: Hidreco
 image: hidreco.png
 source: https://hidreco.es
 message: Drink clean water
-labels: [react, next.js, typescript, tailwind]
+labels: [react, next, typescript, tailwind]
 order: 8
 ---
 

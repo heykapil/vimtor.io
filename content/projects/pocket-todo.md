@@ -3,7 +3,7 @@ title: Pocket Todo
 image: pocket-todo.png
 source: https://play.google.com/store/apps/details?id=com.pocket.todo
 message: Start being productive
-labels: [react, capacitor, mobile app, typescript]
+labels: [react, firebase, capacitor, mobile app, typescript]
 order: 2
 ---
 

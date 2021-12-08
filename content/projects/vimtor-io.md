@@ -3,7 +3,7 @@ title: Personal Website
 image: vimtor-io.png
 source: https://vimtor.io
 message: Inception
-labels: [next.js, react, typescript, tailwind]
+labels: [next, react, typescript, tailwind]
 order: 9
 ---
 

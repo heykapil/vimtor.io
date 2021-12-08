@@ -3,7 +3,7 @@ title: IHR World
 image: ihr-world.jpg
 source: https://ihr.world/
 message: Help the organization
-labels: [java, elastic search]
+labels: [java, elastic search, docker]
 order: 6
 ---
 
