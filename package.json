@@ -15,7 +15,6 @@
         "@headlessui/react": "^1.4.0",
         "@heroicons/react": "^1.0.3",
         "@netlify/plugin-nextjs": "^3.8.0",
-        "@plaiceholder/next": "^2.1.0",
         "@tailwindcss/forms": "^0.3.3",
         "@formspree/react": "^2.2.3",
         "gray-matter": "^4.0.3",

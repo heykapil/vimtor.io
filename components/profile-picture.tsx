@@ -5,22 +5,21 @@ import ImageShadow from "./image-shadow";
 import profile1 from "../public/images/profile.jpg";
 import profile2 from "../public/images/profile-2.png";
 import profile3 from "../public/images/profile-3.png";
-import { classNames } from "../utils/style";
+import { Transition } from "@headlessui/react";
 
 const PROFILE_IMAGES = [profile1, profile2, profile3];
 
 interface ProfileImageProps {
     src: StaticImageData;
     visible: boolean;
-    priority: boolean;
 }
 
-const ImageSlide = ({ src, visible, priority }: ProfileImageProps) => {
+const ImageSlide = ({ src, visible }: ProfileImageProps) => {
     return (
-        <div className={classNames("shadow-inner", visible ? "" : "hidden")}>
-            <Image priority={priority} src={src} placeholder="blur" alt="victor profile picture" width={200} height={200} />
+        <Transition show={visible} leave="transition-all duration-75" leaveFrom="blur-none" leaveTo="blur" className="shadow-inner" unmount={false}>
+            <Image priority src={src} alt="victor profile picture" width={200} height={200} />
             <ImageShadow className="rounded-full" />
-        </div>
+        </Transition>
     );
 };
 
@@ -46,7 +45,7 @@ const ProfilePicture = () => {
                 }}
             >
                 {PROFILE_IMAGES.map((src, index) => (
-                    <ImageSlide key={index} priority={index === 0} src={src} visible={currentProfileIndex === index} />
+                    <ImageSlide key={index} src={src} visible={currentProfileIndex === index} />
                 ))}
             </button>
         </div>
