@@ -1,6 +1,6 @@
 import Emoji from "../components/emoji";
 import ProjectList from "../components/project-list";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Project } from "../utils/types";
 import { useCounter } from "react-use";
 import { GetStaticProps } from "next";
@@ -10,18 +10,13 @@ import Section from "../components/section";
 import LabelFilters from "../components/label-filters";
 import Link from "../components/link";
 import { uniq } from "lodash";
+import { useRouter } from "next/router";
 
 interface EmptyMessageProps {
     shownCount: number;
 }
 
 const EmptyMessage = ({ shownCount }: EmptyMessageProps) => {
-    useEffect(() => {
-        if (shownCount === 5) {
-            setTimeout(() => window.open("https://www.youtube.com/watch?v=4dC_nRYIDZU"), 3500);
-        }
-    }, [shownCount]);
-
     if (shownCount === 0) {
         return (
             <p>
@@ -62,7 +57,7 @@ const EmptyMessage = ({ shownCount }: EmptyMessageProps) => {
 
     return (
         <p>
-            I leave you with something interesting to watch.
+            I leave you with <a href="https://www.youtube.com/watch?v=4dC_nRYIDZU">something interesting</a> to watch.
             <br />
             Sayonara baby!
         </p>
@@ -74,20 +69,37 @@ interface ProjectProps {
     labels: string[];
 }
 
-const Projects = ({ projects, labels }: ProjectProps) => {
-    const [emptyMessageIndex, { inc: incrementMessageIndex }] = useCounter(0);
-    const [selectedLabels, setSelectedLabels] = useState<string[]>([]);
-    const [visibleProjects, setVisibleProjects] = useState(projects);
+const Projects = ({ projects, labels: allLabels }: ProjectProps) => {
+    const [totalTimesEmptyListWasShown, { inc: incrementTotalTimesEmptyListWasShown }] = useCounter(0);
+    const { replace, query } = useRouter();
+
+    const selectedLabels = useMemo(() => {
+        if (Array.isArray(query.labels)) {
+            return query.labels;
+        }
+        if (query.labels) {
+            return query.labels.split(",");
+        }
+        return [];
+    }, [query]);
+
+    const visibleProjects = projects.filter((project) => {
+        return selectedLabels.every((label) => project.labels.includes(label));
+    });
 
     useEffect(() => {
-        const filteredProjects = projects.filter((project) => {
-            return selectedLabels.every((label) => project.labels.includes(label));
-        });
-        if (filteredProjects.length === 0) {
-            incrementMessageIndex();
+        if (visibleProjects.length === 0) {
+            incrementTotalTimesEmptyListWasShown();
         }
-        setVisibleProjects(filteredProjects);
-    }, [incrementMessageIndex, projects, selectedLabels]);
+    }, [visibleProjects.length, incrementTotalTimesEmptyListWasShown]);
+
+    const updateSelectedLabels = async (labels: Array<string>) => {
+        if (labels.length === 0) {
+            await replace(`/projects`, undefined, { shallow: true });
+        } else {
+            await replace(`/projects?labels=${encodeURIComponent(labels.join(","))}`, undefined, { shallow: true });
+        }
+    };
 
     return (
         <Layout title="Projects" description="List of projects made by Victor Navarro">
@@ -96,8 +108,8 @@ const Projects = ({ projects, labels }: ProjectProps) => {
                     All my projects <Emoji label="rocket" icon="🚀" reset={false} animation="rocket" />
                 </Section.Title>
                 <Section.Subtitle>A list of projects I worked on that are worth mentioning</Section.Subtitle>
-                <LabelFilters value={selectedLabels} onChange={setSelectedLabels} options={labels} />
-                {visibleProjects.length !== 0 ? <ProjectList projects={visibleProjects} /> : <EmptyMessage shownCount={emptyMessageIndex} />}
+                <LabelFilters value={selectedLabels} onChange={updateSelectedLabels} options={allLabels} />
+                {visibleProjects.length !== 0 ? <ProjectList projects={visibleProjects} /> : <EmptyMessage shownCount={totalTimesEmptyListWasShown} />}
             </Section>
         </Layout>
     );
@@ -109,7 +121,7 @@ export const getStaticProps: GetStaticProps<ProjectProps> = async () => {
     return {
         props: {
             projects,
-            labels,
+            labels: labels,
         },
     };
 };
