@@ -1,11 +1,11 @@
 import Emoji from "../components/emoji";
 import ProjectList from "../components/project-list";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo } from "react";
 import { Project } from "../utils/types";
 import { useCounter } from "react-use";
 import { GetStaticProps } from "next";
 import { getProjects } from "../utils/data";
-import Layout from "../components/layout";
+import SEO from "../components/seo";
 import Section from "../components/section";
 import LabelFilters from "../components/label-filters";
 import Link from "../components/link";
@@ -102,7 +102,8 @@ const Projects = ({ projects, labels: allLabels }: ProjectProps) => {
     };
 
     return (
-        <Layout title="Projects" description="List of projects made by Victor Navarro">
+        <>
+            <SEO title="Projects" description="List of projects made by Victor Navarro" />
             <Section className="text-center mt-24 sm:mt-32">
                 <Section.Title>
                     All my projects <Emoji label="rocket" icon="🚀" reset={false} animation="rocket" />
@@ -111,7 +112,7 @@ const Projects = ({ projects, labels: allLabels }: ProjectProps) => {
                 <LabelFilters value={selectedLabels} onChange={updateSelectedLabels} options={allLabels} />
                 {visibleProjects.length !== 0 ? <ProjectList projects={visibleProjects} /> : <EmptyMessage shownCount={totalTimesEmptyListWasShown} />}
             </Section>
-        </Layout>
+        </>
     );
 };
 

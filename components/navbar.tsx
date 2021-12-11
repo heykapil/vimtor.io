@@ -3,7 +3,6 @@ import { MenuIcon, XIcon } from "@heroicons/react/outline";
 import Link from "./link";
 import { classNames, focusRingClasses } from "../utils/style";
 import { useRouter } from "next/router";
-import { ArrowLeftIcon } from "@heroicons/react/solid";
 
 const routes = [
     { title: "Home", href: "/" },
@@ -26,7 +25,7 @@ const Navbar = () => {
                                         <Link
                                             key={route.href}
                                             href={route.href}
-                                            style={{ animationDelay: `${index * 200 + 1000}ms` }}
+                                            style={{ animationDelay: `${index * 150 + 1000}ms` }}
                                             className={classNames(`md:text-xl opacity-0 animate-fade-in-down`, asPath === route.href ? "text-gray-600" : "")}
                                         >
                                             {route.title}

@@ -15,7 +15,7 @@ const Link = ({ href, className, style, children }: LinkProps) => {
             <a
                 style={style}
                 className={classNames(
-                    "transition duration-200 ease-in-out text-gray-400 outline-none rounded-lg focus:ring-2 focus:ring-gray-900 inline-block underline hover:text-gray-800",
+                    "transition duration-200 ease-in-out text-gray-400 outline-none inline-block underline hover:text-gray-800 focus:text-gray-800",
                     className
                 )}
             >

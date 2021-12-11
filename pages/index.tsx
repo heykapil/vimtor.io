@@ -1,4 +1,4 @@
-import Layout from "../components/layout";
+import SEO from "../components/seo";
 import IntroSection from "../components/intro-section";
 import AboutSection from "../components/about-section";
 import ExperienceSection from "../components/experience-section";
@@ -12,12 +12,13 @@ interface HomeProps {
 }
 
 const Home = ({ projects }: HomeProps) => (
-    <Layout title="Home" description="Personal website of Victor Navarro for portfolio and contact">
+    <>
+        <SEO title="Home" description="Personal website of Victor Navarro for portfolio and contact" />
         <IntroSection />
         <AboutSection />
         <ExperienceSection projects={projects} />
         <ContactSection />
-    </Layout>
+    </>
 );
 
 export const getStaticProps: GetStaticProps = async () => {
