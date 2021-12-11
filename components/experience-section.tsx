@@ -10,7 +10,7 @@ interface ExperienceSectionProps {
 
 const ExperienceSection = ({ projects }: ExperienceSectionProps) => {
     return (
-        <Section className="opacity-0 animate-fade-in-down animation-delay-3000 text-center mt-24 sm:mt-32">
+        <Section className="opacity-0 motion-safe:animate-fade-in-down animation-delay-3000 text-center mt-24 sm:mt-32">
             <Section.Title>
                 Experience <Emoji label="rocket" icon="🚀" animation="rocket" reset={false} />
             </Section.Title>

@@ -26,7 +26,10 @@ const Navbar = () => {
                                             key={route.href}
                                             href={route.href}
                                             style={{ animationDelay: `${index * 150 + 1000}ms` }}
-                                            className={classNames(`md:text-xl opacity-0 animate-fade-in-down`, asPath === route.href ? "text-gray-600" : "")}
+                                            className={classNames(
+                                                `md:text-xl opacity-0 motion-safe:animate-fade-in-down`,
+                                                asPath === route.href ? "text-gray-600" : ""
+                                            )}
                                         >
                                             {route.title}
                                         </Link>
@@ -46,11 +49,11 @@ const Navbar = () => {
                     <Transition
                         show={open}
                         enter="transition duration-100 ease-out"
-                        enterFrom="transform opacity-0"
-                        enterTo="transform opacity-100"
+                        enterFrom="opacity-0"
+                        enterTo="opacity-100"
                         leave="transition duration-75 ease-out"
-                        leaveFrom="transform opacity-100"
-                        leaveTo="transform opacity-0"
+                        leaveFrom="opacity-100"
+                        leaveTo="opacity-0"
                     >
                         <Disclosure.Panel static className="md:hidden">
                             <ul className="pt-6 pb-2 flex flex-col space-y-2">
@@ -59,8 +62,8 @@ const Navbar = () => {
                                         as="li"
                                         key={route.href}
                                         enter="transition duration-100 ease-out"
-                                        enterFrom="transform opacity-0 scale-50"
-                                        enterTo="transform opacity-100 scale-100"
+                                        enterFrom="opacity-0 scale-50"
+                                        enterTo="opacity-100 scale-100"
                                         className={classNames(
                                             "px-3 py-2 rounded-md text-center text-gray-400 font-medium",
                                             asPath === route.href ? "bg-gray-100 text-gray-500 shadow-inner" : "ring-1 ring-gray-200"

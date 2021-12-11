@@ -38,7 +38,7 @@ const ProfilePicture = () => {
             <MessageBubble id="profile-bubble" hidden={profileHasChanged} />
             <button
                 aria-describedby="profile-bubble"
-                className="transition-all rounded-full opacity-0 animate-bounce-in overflow-hidden w-[200px] h-[200px] outline-none ring-gray-900 focus:ring-4 hover:ring-4 ring-opacity-80"
+                className="transition-all rounded-full opacity-0 motion-safe:animate-bounce-in overflow-hidden w-[200px] h-[200px] outline-none ring-gray-900 focus:ring-4 hover:ring-4 ring-opacity-80"
                 onClick={() => {
                     const newIndex = (currentProfileIndex + 1) % PROFILE_IMAGES.length;
                     setCurrentProfileIndex(newIndex);

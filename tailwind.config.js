@@ -16,21 +16,8 @@ const animationDelayPlugin = plugin(({ addUtilities }) => {
     addUtilities(delayUtilities);
 });
 
-const scrollBehaviourPlugin = plugin(({ addUtilities }) => {
-    addUtilities({
-        ".scroll-behavior-smooth": {
-            "scroll-behavior": "smooth",
-        },
-        ".scroll-padding-top-24": {
-            "scroll-padding-top": "6rem",
-        },
-    });
-});
-
 module.exports = {
-    mode: "jit",
-    purge: ["./pages/**/*.{js,ts,jsx,tsx}", "./components/**/*.{js,ts,jsx,tsx}"],
-    darkMode: "media",
+    content: ["./pages/**/*.{js,ts,jsx,tsx}", "./components/**/*.{js,ts,jsx,tsx}"],
     theme: {
         screens: {
             sm: "600px",
@@ -128,8 +115,5 @@ module.exports = {
             },
         },
     },
-    variants: {
-        extend: {},
-    },
-    plugins: [animationDelayPlugin, scrollBehaviourPlugin, require("@tailwindcss/forms")],
+    plugins: [animationDelayPlugin, require("@tailwindcss/forms")],
 };

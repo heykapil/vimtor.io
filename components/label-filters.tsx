@@ -38,7 +38,7 @@ const LabelFilters = ({ value, onChange, options }: LabelFiltersProps) => {
                             role="menuitemcheckbox"
                             aria-checked={isChecked}
                             tabIndex={0}
-                            className={`capitalize border border-gray-400 rounded-full py-2 px-4 cursor-pointer mr-4 flex-shrink-0 select-none transition-all duration-100 ease-in outline-none hover:bg-gray-100 focus:bg-gray-100 mb-4 ${
+                            className={`capitalize border border-gray-400 rounded-full py-2 px-4 cursor-pointer mr-4 shrink-0 select-none transition-all duration-100 ease-in outline-none hover:bg-gray-100 focus:bg-gray-100 mb-4 ${
                                 isChecked ? "border-gray-900 bg-gray-900 text-gray-100 hover:bg-gray-900 focus:bg-gray-900" : ""
                             }`}
                             onClick={() => {
@@ -75,7 +75,7 @@ const LabelFilters = ({ value, onChange, options }: LabelFiltersProps) => {
                     id="scroll-helper"
                     role="tooltip"
                     aria-hidden="false"
-                    className="absolute w-full -bottom-8 opacity-0 animate-fly-in-down animation-delay-150 text-gray-400 italic transform"
+                    className="absolute w-full -bottom-8 opacity-0 animate-fly-in-down animation-delay-150 text-gray-400 italic"
                 >
                     Scroll for more filters <Emoji label="up" icon="👆" />
                 </span>

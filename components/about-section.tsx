@@ -4,7 +4,7 @@ import Section from "./section";
 
 const AboutSection = () => {
     return (
-        <Section className="opacity-0 animate-fade-in-down animation-delay-2000 text-center mt-24 sm:mt-32">
+        <Section className="opacity-0 motion-safe:animate-fade-in-down animation-delay-2000 text-center mt-24 sm:mt-32">
             <Section.Title>
                 About <Emoji label="potato" icon="🥔" />
             </Section.Title>
