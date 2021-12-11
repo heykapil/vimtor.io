@@ -7,7 +7,7 @@ import { useRouter } from "next/router";
 const routes = [
     { title: "Home", href: "/" },
     { title: "Projects", href: "/projects" },
-    { title: "Contact", href: "/#contact" },
+    { title: "Contact", href: "/contact" },
 ];
 
 const Navbar = () => {

@@ -38,7 +38,7 @@ const EmptyMessage = ({ shownCount }: EmptyMessageProps) => {
             <p className="text-xl py-8">
                 Are you that interested?
                 <br />
-                We can <Link href="/#contact">build that together</Link>
+                We can <Link href="/contact">build that together</Link>
             </p>
         );
     }
