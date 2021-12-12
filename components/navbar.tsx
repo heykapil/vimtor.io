@@ -15,7 +15,7 @@ const Navbar = () => {
 
     return (
         <Disclosure as="nav" className="absolute top-0 left-0 w-full z-10">
-            {({ open }) => (
+            {({ open, close }) => (
                 <div className={classNames(open ? "bg-white shadow-lg rounded-md" : "", "px-6 py-4 md:px-6 md:py-8 lg:px-8 lg:py-10")}>
                     <div className="max-w-5xl mx-auto">
                         <div className="flex items-center justify-end">
@@ -51,7 +51,7 @@ const Navbar = () => {
                         enter="transition duration-100 ease-out"
                         enterFrom="opacity-0"
                         enterTo="opacity-100"
-                        leave="transition duration-75 ease-out"
+                        leave="transition duration-100 ease-out"
                         leaveFrom="opacity-100"
                         leaveTo="opacity-0"
                     >
@@ -64,13 +64,16 @@ const Navbar = () => {
                                         enter="transition duration-100 ease-out"
                                         enterFrom="opacity-0 scale-50"
                                         enterTo="opacity-100 scale-100"
-                                        className={classNames(
-                                            "px-3 py-2 rounded-md text-center text-gray-400 font-medium",
-                                            asPath === route.href ? "bg-gray-100 text-gray-500 shadow-inner" : "ring-1 ring-gray-200"
-                                        )}
-                                        style={{ transitionDelay: `${index * 100 + 100}ms` }}
+                                        style={{ transitionDelay: `${index * 50 + 100}ms` }}
                                     >
-                                        <Link href={route.href} className="no-underline">
+                                        <Link
+                                            className={classNames(
+                                                "w-full h-full px-3 py-2 rounded-md text-center text-gray-400 font-medium no-underline focus:bg-gray-100 focus:text-gray-500 focus:shadow-inner",
+                                                asPath === route.href ? "bg-gray-100 text-gray-500 shadow-inner" : "ring-1 ring-gray-200"
+                                            )}
+                                            onClick={close}
+                                            href={route.href}
+                                        >
                                             {route.title}
                                         </Link>
                                     </Transition.Child>
