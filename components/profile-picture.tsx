@@ -16,7 +16,7 @@ interface ProfileImageProps {
 
 const ImageSlide = ({ src, visible }: ProfileImageProps) => {
     return (
-        <Transition show={visible} leave="transition-all duration-75" leaveFrom="blur-none" leaveTo="blur" className="shadow-inner" unmount={false}>
+        <Transition show={visible} leave="transition-all duration-75" leaveFrom="blur-none" leaveTo="blur" unmount={false}>
             <Image priority src={src} alt="victor profile picture" width={200} height={200} />
             <ImageShadow className="rounded-full" />
         </Transition>

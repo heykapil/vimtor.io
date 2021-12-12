@@ -9,21 +9,15 @@ const MessageBubble = ({ id, hidden }: MessageBubbleProps) => {
     return (
         <Transition
             show={!hidden}
-            enter="transition-opacity duration-75"
-            enterFrom="opacity-0"
-            enterTo="opacity-100"
+            enter="transition-all delay-[2.5s] duration-500"
+            enterFrom="translate-y-4 sm:-translate-y-4 opacity-0"
+            enterTo="translate-y-0 opacity-100"
             leave="transition-opacity duration-150"
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
+            className="absolute -translate-x-1/2 left-1/2 -top-16 sm:top-56"
         >
-            <div
-                id={id}
-                role="tooltip"
-                className={
-                    "animate-fly-in-up sm:animate-fly-in-down animation-delay-6000 sm:animation-delay-6000 opacity-0 bg-gray-800 text-white absolute py-2 px-3 whitespace-nowrap -top-1/3 left-1/2 -translate-x-1/2 text-center rounded-lg sm:top-full sm:mt-4"
-                }
-                aria-hidden={hidden}
-            >
+            <div id={id} role="tooltip" className="bg-gray-800 text-white py-2 px-3 whitespace-nowrap text-center rounded-lg" aria-hidden={hidden}>
                 Click for a new flavour
                 <svg
                     id="svg"
