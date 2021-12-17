@@ -2,14 +2,16 @@ import Emoji from "./emoji";
 import { useCallback, useState } from "react";
 import { useEffectOnce, useEvent } from "react-use";
 import { Transition } from "@headlessui/react";
+import { Technology } from "../utils/types";
+import { classNames } from "../utils/style";
 
 interface LabelFiltersProps {
     value: string[];
     onChange: (value: string[]) => void;
-    options: string[];
+    options: Array<Technology>;
 }
 
-const LabelFilters = ({ value, onChange, options }: LabelFiltersProps) => {
+const TechnologyFilters = ({ value, onChange, options: technologies }: LabelFiltersProps) => {
     const [showScrollHelper, setShowScrollHelper] = useState(false);
 
     const checkSmallScreen = useCallback(() => {
@@ -30,22 +32,23 @@ const LabelFilters = ({ value, onChange, options }: LabelFiltersProps) => {
                     setShowScrollHelper(false);
                 }}
             >
-                {options.map((option) => {
-                    const isChecked = value.includes(option);
+                {technologies.map((technology) => {
+                    const isChecked = value.includes(technology.slug);
                     return (
                         <button
-                            key={option}
+                            key={technology.slug}
                             role="menuitemcheckbox"
                             aria-checked={isChecked}
                             tabIndex={0}
-                            className={`capitalize border border-gray-400 rounded-full py-2 px-4 cursor-pointer mr-4 shrink-0 select-none transition-all duration-100 ease-in outline-none hover:bg-gray-100 focus:bg-gray-100 mb-4 ${
+                            className={classNames(
+                                "border border-gray-400 rounded-full py-2 px-4 cursor-pointer mr-4 shrink-0 select-none transition-all duration-100 ease-in outline-none hover:bg-gray-100 focus:bg-gray-100 mb-4",
                                 isChecked ? "border-gray-900 bg-gray-900 text-gray-100 hover:bg-gray-900 focus:bg-gray-900" : ""
-                            }`}
+                            )}
                             onClick={() => {
                                 if (isChecked) {
-                                    onChange(value.filter((x) => x !== option));
+                                    onChange(value.filter((x) => x !== technology.slug));
                                 } else {
-                                    onChange([...value, option]);
+                                    onChange([...value, technology.slug]);
                                 }
                             }}
                             onKeyDown={(event) => {
@@ -65,7 +68,7 @@ const LabelFilters = ({ value, onChange, options }: LabelFiltersProps) => {
                                 }
                             }}
                         >
-                            {option}
+                            {technology.name}
                         </button>
                     );
                 })}
@@ -84,4 +87,4 @@ const LabelFilters = ({ value, onChange, options }: LabelFiltersProps) => {
     );
 };
 
-export default LabelFilters;
+export default TechnologyFilters;

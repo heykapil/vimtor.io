@@ -17,7 +17,7 @@ const Link = ({ href, className, onClick, style, children }: LinkProps) => {
                 onClick={onClick}
                 style={style}
                 className={classNames(
-                    "transition duration-200 ease-in-out text-gray-400 outline-none inline-block underline hover:text-gray-800 focus:text-gray-800",
+                    "transition duration-200 ease-in-out text-gray-400 outline-none inline underline hover:text-gray-800 focus:text-gray-800",
                     className
                 )}
             >

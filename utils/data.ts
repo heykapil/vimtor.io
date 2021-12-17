@@ -1,29 +1,35 @@
-import fs from "fs/promises";
-import path from "path";
-import matter from "gray-matter";
+import { Project, Technology } from "./types";
+import { createClient } from "contentful";
 import { getPlaiceholder } from "plaiceholder";
-import { Project } from "./types";
 
-export const getProjects = async (): Promise<Project[]> => {
-    const files = await fs.readdir(path.join("./content/projects"));
-    const projects = await Promise.all(
-        files.map(async (filename) => {
-            const markdown = await fs.readFile(path.join("./content/projects", filename), "utf-8");
-            const { data, content } = matter(markdown);
-            const { base64, img } = await getPlaiceholder(`/images/${data.image}`);
+const client = createClient({
+    accessToken: process.env.CONTENTFUL_ACCESS_TOKEN as string,
+    space: process.env.CONTENTFUL_SPACE_ID as string,
+});
 
+interface GetContentOptions {
+    limit?: number;
+}
+
+export const getProjects = async ({ limit }: GetContentOptions = {}): Promise<Array<Project>> => {
+    const collection = await client.getEntries<Omit<Project, "blurredBanner">>({
+        content_type: "project",
+        order: "fields.order",
+        limit,
+    });
+
+    return Promise.all(
+        collection.items.map(async (item) => {
+            const { base64 } = await getPlaiceholder("https:" + item.fields.banner.fields.file.url);
             return {
-                title: data.title,
-                image: img.src,
-                blurDataURL: base64,
-                labels: data.labels,
-                message: data.message,
-                order: data.order,
-                source: data.source,
-                content: content,
+                ...item.fields,
+                blurredBanner: base64,
             };
         })
     );
+};
 
-    return projects.sort((a, b) => a.order - b.order);
+export const getTechnologies = async ({ limit }: GetContentOptions = {}): Promise<Array<Technology>> => {
+    const collection = await client.getEntries<Technology>({ content_type: "technology", limit });
+    return collection.items.map((item) => item.fields);
 };

@@ -1,15 +1,14 @@
 import Emoji from "../components/emoji";
 import ProjectList from "../components/project-list";
 import { useEffect, useMemo } from "react";
-import { Project } from "../utils/types";
+import { Project, Technology } from "../utils/types";
 import { useCounter } from "react-use";
 import { GetStaticProps } from "next";
-import { getProjects } from "../utils/data";
+import { getProjects, getTechnologies } from "../utils/data";
 import SEO from "../components/seo";
 import Section from "../components/section";
-import LabelFilters from "../components/label-filters";
+import TechnologyFilters from "../components/technology-filters";
 import Link from "../components/link";
-import { uniq } from "lodash";
 import { useRouter } from "next/router";
 
 interface EmptyMessageProps {
@@ -65,26 +64,26 @@ const EmptyMessage = ({ shownCount }: EmptyMessageProps) => {
 };
 
 interface ProjectProps {
-    projects: Project[];
-    labels: string[];
+    projects: Array<Project>;
+    technologies: Array<Technology>;
 }
 
-const Projects = ({ projects, labels: allLabels }: ProjectProps) => {
+const Projects = ({ projects, technologies }: ProjectProps) => {
     const [totalTimesEmptyListWasShown, { inc: incrementTotalTimesEmptyListWasShown }] = useCounter(0);
     const { replace, query } = useRouter();
 
-    const selectedLabels = useMemo(() => {
-        if (Array.isArray(query.labels)) {
-            return query.labels;
+    const selectedTechnologies = useMemo(() => {
+        if (Array.isArray(query.technologies)) {
+            return query.technologies;
         }
-        if (query.labels) {
-            return query.labels.split(",");
+        if (query.technologies) {
+            return query.technologies.split(",");
         }
         return [];
     }, [query]);
 
     const visibleProjects = projects.filter((project) => {
-        return selectedLabels.every((label) => project.labels.includes(label));
+        return selectedTechnologies.every((slug) => project.technologies.some((technology) => technology.fields.slug === slug));
     });
 
     useEffect(() => {
@@ -93,11 +92,11 @@ const Projects = ({ projects, labels: allLabels }: ProjectProps) => {
         }
     }, [visibleProjects.length, incrementTotalTimesEmptyListWasShown]);
 
-    const updateSelectedLabels = async (labels: Array<string>) => {
-        if (labels.length === 0) {
+    const updateSelectedLabels = async (technologies: Array<string>) => {
+        if (technologies.length === 0) {
             await replace(`/projects`, undefined, { shallow: true });
         } else {
-            await replace(`/projects?labels=${encodeURIComponent(labels.join(","))}`, undefined, { shallow: true });
+            await replace(`/projects?technologies=${encodeURIComponent(technologies.join(","))}`, undefined, { shallow: true });
         }
     };
 
@@ -109,7 +108,7 @@ const Projects = ({ projects, labels: allLabels }: ProjectProps) => {
                     All my projects <Emoji label="rocket" icon="🚀" reset={false} animation="rocket" />
                 </Section.Title>
                 <Section.Subtitle>A list of projects I worked on that are worth mentioning</Section.Subtitle>
-                <LabelFilters value={selectedLabels} onChange={updateSelectedLabels} options={allLabels} />
+                <TechnologyFilters value={selectedTechnologies} onChange={updateSelectedLabels} options={technologies} />
                 {visibleProjects.length !== 0 ? <ProjectList projects={visibleProjects} /> : <EmptyMessage shownCount={totalTimesEmptyListWasShown} />}
             </Section>
         </>
@@ -118,11 +117,11 @@ const Projects = ({ projects, labels: allLabels }: ProjectProps) => {
 
 export const getStaticProps: GetStaticProps<ProjectProps> = async () => {
     const projects = await getProjects();
-    const labels = uniq(projects.flatMap((project) => project.labels));
+    const technologies = await getTechnologies();
     return {
         props: {
             projects,
-            labels: labels,
+            technologies,
         },
     };
 };

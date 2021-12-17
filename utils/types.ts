@@ -1,10 +1,19 @@
+import { Document } from "@contentful/rich-text-types";
+import { Asset, Entry } from "contentful";
+
+export interface Technology {
+    name: string;
+    slug: string;
+}
+
 export interface Project {
     title: string;
-    image: string;
-    blurDataURL: string;
     source: string;
-    message: string;
-    labels: string[];
+    content: Document;
+    technologies: Array<Entry<Technology>>;
     order: number;
-    content: string;
+    banner: Asset;
+    blurredBanner: string;
+    githubRepositoryUrl: string;
+    ctaMessage: string;
 }

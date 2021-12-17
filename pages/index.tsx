@@ -22,10 +22,10 @@ const Home = ({ projects }: HomeProps) => (
 );
 
 export const getStaticProps: GetStaticProps = async () => {
-    const projects = await getProjects();
+    const projects = await getProjects({ limit: 8 });
     return {
         props: {
-            projects: projects.slice(0, 8),
+            projects,
         },
     };
 };
