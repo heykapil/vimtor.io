@@ -2,7 +2,7 @@ import Head from "next/head";
 
 interface LayoutProps {
     title: string;
-    description: string;
+    description?: string;
 }
 
 const SEO = ({ title, description }: LayoutProps) => {

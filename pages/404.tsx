@@ -6,7 +6,7 @@ import Link from "../components/link";
 export default function Custom404() {
     return (
         <>
-            <SEO title="404" description="Hola" />
+            <SEO title="404" />
             <div className="h-[65vh] flex items-center justify-center">
                 <div className="text-center">
                     <Section.Title>
