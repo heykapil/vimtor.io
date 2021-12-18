@@ -1,15 +1,15 @@
-import Emoji from "../components/emoji";
-import ProjectList from "../components/project-list";
+import Emoji from "../../components/emoji";
+import ProjectList from "../../components/project-list";
 import { useEffect } from "react";
-import { Project } from "../utils/types";
+import { Project } from "../../utils/types";
 import { useCounter } from "react-use";
 import { GetStaticProps } from "next";
-import { getProjects, getProjectTypes, getTechnologies } from "../utils/data";
-import SEO from "../components/seo";
-import Section from "../components/section";
-import LabelFilters, { Label } from "../components/label-filters";
-import EmptyMessage from "../components/empty-message";
-import { useQueryArrayState } from "../hooks/use-query-state";
+import { getProjects, getProjectTypes, getTechnologies } from "../../utils/data";
+import SEO from "../../components/seo";
+import Section from "../../components/section";
+import LabelFilters, { Label } from "../../components/label-filters";
+import EmptyMessage from "../../components/empty-message";
+import { useQueryArrayState } from "../../hooks/use-query-state";
 import { shuffle } from "lodash";
 
 interface ProjectProps {
