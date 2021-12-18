@@ -19,7 +19,7 @@ const ProjectList = ({ projects }: ProjectListProps) => {
                     <div className="max-w-[90%] m-0 mx-auto w-full sm:w-1/2 sm:mr-8 md:mr-12 md:text-left">
                         <h3 className="mb-3 font-bold text-2xl sm:text-center md:text-left">{project.title}</h3>
                         <RichText>{project.content}</RichText>
-                        <Link href={project.source} className="inline-block mt-4">
+                        <Link href={project.source} className="block mt-4">
                             {project.ctaMessage}
                         </Link>
                     </div>

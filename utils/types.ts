@@ -6,11 +6,17 @@ export interface Technology {
     slug: string;
 }
 
+export interface ProjectType {
+    name: string;
+    slug: string;
+}
+
 export interface Project {
     title: string;
     source: string;
     content: Document;
     technologies: Array<Entry<Technology>>;
+    type: Entry<ProjectType>;
     order: number;
     banner: Asset;
     blurredBanner: string;

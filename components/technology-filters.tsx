@@ -5,13 +5,13 @@ import { Transition } from "@headlessui/react";
 import { Technology } from "../utils/types";
 import { classNames } from "../utils/style";
 
-interface LabelFiltersProps {
+interface TechnologyFiltersProps {
     value: string[];
     onChange: (value: string[]) => void;
-    options: Array<Technology>;
+    technologies: Array<Technology>;
 }
 
-const TechnologyFilters = ({ value, onChange, options: technologies }: LabelFiltersProps) => {
+const TechnologyFilters = ({ value, onChange, technologies }: TechnologyFiltersProps) => {
     const [showScrollHelper, setShowScrollHelper] = useState(false);
 
     const checkSmallScreen = useCallback(() => {
@@ -28,9 +28,7 @@ const TechnologyFilters = ({ value, onChange, options: technologies }: LabelFilt
                 aria-label="projects filter"
                 aria-describedby={showScrollHelper ? "scroll-helper" : undefined}
                 role="menu"
-                onScroll={() => {
-                    setShowScrollHelper(false);
-                }}
+                onScroll={() => setShowScrollHelper(false)}
             >
                 {technologies.map((technology) => {
                     const isChecked = value.includes(technology.slug);

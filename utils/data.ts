@@ -33,3 +33,8 @@ export const getTechnologies = async ({ limit }: GetContentOptions = {}): Promis
     const collection = await client.getEntries<Technology>({ content_type: "technology", limit });
     return collection.items.map((item) => item.fields);
 };
+
+export const getProjectTypes = async ({ limit }: GetContentOptions = {}): Promise<Array<Technology>> => {
+    const collection = await client.getEntries<Technology>({ content_type: "projectType", limit });
+    return collection.items.map((item) => item.fields);
+};
