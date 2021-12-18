@@ -25,17 +25,11 @@ const ImageSlide = ({ src, visible }: ProfileImageProps) => {
 
 const ProfilePicture = () => {
     const [currentProfileIndex, setCurrentProfileIndex] = useState(0);
-    const [profileHasChanged, setProfileHasChanged] = useState(false);
-
-    useEffect(() => {
-        if (currentProfileIndex > 0) {
-            setProfileHasChanged(true);
-        }
-    }, [currentProfileIndex]);
+    const profileHasChanged = currentProfileIndex > 0;
 
     return (
         <div className="relative mb-4 sm:mr-12 sm:mb-0">
-            <MessageBubble id="profile-bubble" hidden={profileHasChanged} />
+            <MessageBubble id="profile-bubble" visible={!profileHasChanged} />
             <button
                 aria-describedby="profile-bubble"
                 className="transition-all rounded-full opacity-0 motion-safe:animate-bounce-in overflow-hidden w-[200px] h-[200px] outline-none ring-gray-900 focus:ring-4 hover:ring-4 ring-opacity-80"

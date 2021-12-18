@@ -1,16 +1,21 @@
 import { Transition } from "@headlessui/react";
+import { useState } from "react";
+import { useTimeoutFn } from "react-use";
 
 interface MessageBubbleProps {
-    hidden: boolean;
+    visible: boolean;
     id: string;
 }
 
-const MessageBubble = ({ id, hidden }: MessageBubbleProps) => {
+const MessageBubble = ({ id, visible }: MessageBubbleProps) => {
+    const [show, setShow] = useState(false);
+
+    useTimeoutFn(() => setShow(true), 2500);
+
     return (
         <Transition
-            appear
-            show={!hidden}
-            enter="transition-all delay-2500 duration-500"
+            show={show && visible}
+            enter="transition-all duration-500"
             enterFrom="translate-y-4 sm:-translate-y-4 opacity-0"
             enterTo="translate-y-0 opacity-100"
             leave="transition-opacity duration-150"
@@ -18,7 +23,7 @@ const MessageBubble = ({ id, hidden }: MessageBubbleProps) => {
             leaveTo="opacity-0"
             className="absolute -translate-x-1/2 left-1/2 -top-16 sm:top-56"
         >
-            <div id={id} role="tooltip" className="bg-gray-800 text-white py-2 px-3 whitespace-nowrap text-center rounded-lg" aria-hidden={hidden}>
+            <div id={id} role="tooltip" className="bg-gray-800 text-white py-2 px-3 whitespace-nowrap text-center rounded-lg" aria-hidden={visible}>
                 Click for a new flavour
                 <svg
                     id="svg"
