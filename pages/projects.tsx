@@ -1,28 +1,30 @@
 import Emoji from "../components/emoji";
 import ProjectList from "../components/project-list";
 import { useEffect } from "react";
-import { Project, ProjectType, Technology } from "../utils/types";
+import { Project } from "../utils/types";
 import { useCounter } from "react-use";
 import { GetStaticProps } from "next";
 import { getProjects, getProjectTypes, getTechnologies } from "../utils/data";
 import SEO from "../components/seo";
 import Section from "../components/section";
-import TechnologyFilters from "../components/technology-filters";
+import LabelFilters, { Label } from "../components/label-filters";
 import EmptyMessage from "../components/empty-message";
 import { useQueryArrayState } from "../hooks/use-query-state";
+import { shuffle } from "lodash";
 
 interface ProjectProps {
     projects: Array<Project>;
-    technologies: Array<Technology>;
-    projectTypes: Array<ProjectType>;
+    labels: Array<Label>;
 }
 
-const Projects = ({ projects, technologies }: ProjectProps) => {
+const Projects = ({ projects, labels }: ProjectProps) => {
     const [totalTimesEmptyListWasShown, { inc: incrementTotalTimesEmptyListWasShown }] = useCounter(0);
-    const [selectedTechnologies, setSelectedTechnologies] = useQueryArrayState("technology");
+    const [selectedLabels, setSelectedLabels] = useQueryArrayState("labels");
 
     const visibleProjects = projects.filter((project) => {
-        return selectedTechnologies.every((slug) => project.technologies.some((technology) => technology.fields.slug === slug));
+        return selectedLabels.every((slug) => {
+            return project.type.fields.slug === slug || project.technologies.some((technology) => technology.fields.slug === slug);
+        });
     });
 
     useEffect(() => {
@@ -39,7 +41,7 @@ const Projects = ({ projects, technologies }: ProjectProps) => {
                     All my projects <Emoji label="rocket" icon="🚀" reset={false} animation="rocket" />
                 </Section.Title>
                 <Section.Subtitle>A list of projects I worked on that are worth mentioning</Section.Subtitle>
-                <TechnologyFilters value={selectedTechnologies} technologies={technologies} onChange={setSelectedTechnologies} />
+                <LabelFilters value={selectedLabels} labels={labels} onChange={setSelectedLabels} />
                 {visibleProjects.length !== 0 ? <ProjectList projects={visibleProjects} /> : <EmptyMessage shownCount={totalTimesEmptyListWasShown} />}
             </Section>
         </>
@@ -50,11 +52,11 @@ export const getStaticProps: GetStaticProps<ProjectProps> = async () => {
     const projects = await getProjects();
     const technologies = await getTechnologies();
     const projectTypes = await getProjectTypes();
+    const labels: Array<Label> = shuffle([...technologies, ...projectTypes]);
     return {
         props: {
             projects,
-            technologies,
-            projectTypes,
+            labels,
         },
     };
 };

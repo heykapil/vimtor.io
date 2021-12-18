@@ -2,16 +2,20 @@ import Emoji from "./emoji";
 import { useCallback, useState } from "react";
 import { useEffectOnce, useEvent } from "react-use";
 import { Transition } from "@headlessui/react";
-import { Technology } from "../utils/types";
 import { classNames } from "../utils/style";
 
-interface TechnologyFiltersProps {
-    value: string[];
-    onChange: (value: string[]) => void;
-    technologies: Array<Technology>;
+export interface Label {
+    name: string;
+    slug: string;
 }
 
-const TechnologyFilters = ({ value, onChange, technologies }: TechnologyFiltersProps) => {
+interface LabelFiltersProps {
+    value: Array<string>;
+    onChange: (value: string[]) => void;
+    labels: Array<Label>;
+}
+
+const LabelFilters = ({ value, onChange, labels }: LabelFiltersProps) => {
     const [showScrollHelper, setShowScrollHelper] = useState(false);
 
     const checkSmallScreen = useCallback(() => {
@@ -30,11 +34,11 @@ const TechnologyFilters = ({ value, onChange, technologies }: TechnologyFiltersP
                 role="menu"
                 onScroll={() => setShowScrollHelper(false)}
             >
-                {technologies.map((technology) => {
-                    const isChecked = value.includes(technology.slug);
+                {labels.map((label) => {
+                    const isChecked = value.includes(label.slug);
                     return (
                         <button
-                            key={technology.slug}
+                            key={label.slug}
                             role="menuitemcheckbox"
                             aria-checked={isChecked}
                             tabIndex={0}
@@ -44,9 +48,9 @@ const TechnologyFilters = ({ value, onChange, technologies }: TechnologyFiltersP
                             )}
                             onClick={() => {
                                 if (isChecked) {
-                                    onChange(value.filter((x) => x !== technology.slug));
+                                    onChange(value.filter((x) => x !== label.slug));
                                 } else {
-                                    onChange([...value, technology.slug]);
+                                    onChange([...value, label.slug]);
                                 }
                             }}
                             onKeyDown={(event) => {
@@ -66,7 +70,7 @@ const TechnologyFilters = ({ value, onChange, technologies }: TechnologyFiltersP
                                 }
                             }}
                         >
-                            {technology.name}
+                            {label.name}
                         </button>
                     );
                 })}
@@ -85,4 +89,4 @@ const TechnologyFilters = ({ value, onChange, technologies }: TechnologyFiltersP
     );
 };
 
-export default TechnologyFilters;
+export default LabelFilters;
