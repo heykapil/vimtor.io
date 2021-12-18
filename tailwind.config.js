@@ -33,6 +33,9 @@ module.exports = {
             layout: "1fr auto",
         },
         extend: {
+            transitionDelay: {
+                2500: "2500ms",
+            },
             fontFamily: {
                 sans: ["Nunito", ...defaultTheme.fontFamily.sans],
             },

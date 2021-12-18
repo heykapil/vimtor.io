@@ -1,6 +1,5 @@
 import { Project, Technology } from "./types";
 import { createClient } from "contentful";
-import { getPlaiceholder } from "plaiceholder";
 
 const client = createClient({
     accessToken: process.env.CONTENTFUL_ACCESS_TOKEN as string,
@@ -17,16 +16,7 @@ export const getProjects = async ({ limit }: GetContentOptions = {}): Promise<Ar
         order: "fields.order",
         limit,
     });
-
-    return Promise.all(
-        collection.items.map(async (item) => {
-            const { base64 } = await getPlaiceholder("https:" + item.fields.banner.fields.file.url);
-            return {
-                ...item.fields,
-                blurredBanner: base64,
-            };
-        })
-    );
+    return collection.items.map((item) => item.fields);
 };
 
 export const getTechnologies = async ({ limit }: GetContentOptions = {}): Promise<Array<Technology>> => {

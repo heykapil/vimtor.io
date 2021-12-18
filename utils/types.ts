@@ -19,7 +19,6 @@ export interface Project {
     type: Entry<ProjectType>;
     order: number;
     banner: Asset;
-    blurredBanner: string;
     githubRepositoryUrl: string;
     ctaMessage: string;
 }

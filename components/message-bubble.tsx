@@ -8,8 +8,9 @@ interface MessageBubbleProps {
 const MessageBubble = ({ id, hidden }: MessageBubbleProps) => {
     return (
         <Transition
+            appear
             show={!hidden}
-            enter="transition-all delay-[2.5s] duration-500"
+            enter="transition-all delay-2500 duration-500"
             enterFrom="translate-y-4 sm:-translate-y-4 opacity-0"
             enterTo="translate-y-0 opacity-100"
             leave="transition-opacity duration-150"
