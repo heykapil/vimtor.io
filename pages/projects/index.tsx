@@ -5,12 +5,12 @@ import { Project } from "../../utils/types";
 import { useCounter } from "react-use";
 import { GetStaticProps } from "next";
 import { getProjects, getProjectTypes, getTechnologies } from "../../utils/data";
-import SEO from "../../components/seo";
 import Section from "../../components/section";
 import LabelFilters, { Label } from "../../components/label-filters";
 import EmptyMessage from "../../components/empty-message";
 import { useQueryArrayState } from "../../hooks/use-query-state";
 import { shuffle } from "lodash";
+import Layout from "../../components/layout";
 
 interface ProjectProps {
     projects: Array<Project>;
@@ -34,8 +34,7 @@ const Projects = ({ projects, labels }: ProjectProps) => {
     }, [visibleProjects.length, incrementTotalTimesEmptyListWasShown]);
 
     return (
-        <>
-            <SEO title="Projects" description="List of projects made by Victor Navarro" />
+        <Layout title="Projects" description="List of projects made by Victor Navarro">
             <Section className="text-center mt-24 sm:mt-32">
                 <Section.Title>
                     All my projects <Emoji label="rocket" icon="🚀" reset={false} animation="rocket" />
@@ -44,7 +43,7 @@ const Projects = ({ projects, labels }: ProjectProps) => {
                 <LabelFilters value={selectedLabels} labels={labels} onChange={setSelectedLabels} />
                 {visibleProjects.length !== 0 ? <ProjectList projects={visibleProjects} /> : <EmptyMessage shownCount={totalTimesEmptyListWasShown} />}
             </Section>
-        </>
+        </Layout>
     );
 };
 

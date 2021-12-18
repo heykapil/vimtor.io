@@ -1,11 +1,10 @@
-import SEO from "../components/seo";
 import ContactSection from "../components/contact-section";
+import Layout from "../components/layout";
 
 const Contact = () => (
-    <>
-        <SEO title="Contact" description="Send me an email so we can start a conversation" />
+    <Layout title="Contact" description="Send me an email so we can start a conversation">
         <ContactSection />
-    </>
+    </Layout>
 );
 
 export default Contact;

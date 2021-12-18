@@ -26,7 +26,7 @@ const SocialItem = ({ children, href, label }: SocialItemProps) => {
 
 const Footer = () => {
     return (
-        <footer className="mt-12 bg-gray-50 border-t-2 border-gray-100 text-gray-400 pt-12 pb-24">
+        <footer className="mt-12 bg-gray-50 border-t-2 border-gray-100 text-gray-400 pt-12 pb-24 shrink-0">
             <ul className="flex px-12 sm:w-3/4 sm:max-w-xl mx-auto justify-between">
                 <SocialItem href="https://github.com/vimtor" label="github">
                     <path
