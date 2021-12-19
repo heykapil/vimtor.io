@@ -3,6 +3,7 @@ import { Project } from "../utils/types";
 import ImageShadow from "./image-shadow";
 import RichText from "./rich-text";
 import Link from "./link";
+import GitHubIcon from "./github-icon";
 
 interface ProjectListProps {
     projects: Project[];
@@ -19,9 +20,14 @@ const ProjectList = ({ projects }: ProjectListProps) => {
                     <div className="max-w-[90%] m-0 mx-auto w-full sm:w-1/2 sm:mr-8 sm:text-left md:mr-12">
                         <h3 className="mb-3 font-bold text-2xl">{project.title}</h3>
                         <RichText>{project.content}</RichText>
-                        <Link href={project.source} className="block mt-4">
-                            {project.ctaMessage}
-                        </Link>
+                        <div className="flex justify-center items-center mt-4 space-x-3 sm:justify-start">
+                            <Link href={project.source}>{project.ctaMessage}</Link>
+                            {project.githubRepositoryUrl ? (
+                                <Link href={project.githubRepositoryUrl}>
+                                    <GitHubIcon className="w-7 h-7 hover:text-gray-600 mb-0.5" />
+                                </Link>
+                            ) : null}
+                        </div>
                     </div>
                     <a
                         href={project.source}
