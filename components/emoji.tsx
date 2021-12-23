@@ -12,7 +12,7 @@ interface EmojiProps {
     reset?: boolean;
 }
 
-const Emoji = ({ label, icon, animation = "wiggle", reset = true }: EmojiProps) => {
+function Emoji({ label, icon, animation = "wiggle", reset = true }: EmojiProps) {
     const [hovered, setHovered] = useState(false);
 
     return (
@@ -34,6 +34,6 @@ const Emoji = ({ label, icon, animation = "wiggle", reset = true }: EmojiProps) 
             {icon}
         </span>
     );
-};
+}
 
 export default Emoji;

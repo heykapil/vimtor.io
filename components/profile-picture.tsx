@@ -9,21 +9,7 @@ import { useCounter } from "react-use";
 
 const profileImages = [profile1, profile2, profile3];
 
-interface ProfileImageProps {
-    src: StaticImageData;
-    visible: boolean;
-}
-
-const ImageSlide = ({ src, visible }: ProfileImageProps) => {
-    return (
-        <Transition show={visible} leave="transition-all duration-75" leaveFrom="blur-none" leaveTo="blur" unmount={false}>
-            <Image priority src={src} alt="victor profile picture" width={200} height={200} />
-            <ImageShadow className="rounded-full" />
-        </Transition>
-    );
-};
-
-const ProfilePicture = () => {
+function ProfilePicture() {
     const [currentProfileIndex, { inc: incrementProfileIndex }] = useCounter(0);
     const profileHasChanged = currentProfileIndex > 0;
 
@@ -36,11 +22,24 @@ const ProfilePicture = () => {
                 onClick={() => incrementProfileIndex()}
             >
                 {profileImages.map((src, index) => (
-                    <ImageSlide key={index} src={src} visible={currentProfileIndex % profileImages.length === index} />
+                    <Transition
+                        key={index}
+                        show={currentProfileIndex % profileImages.length === index}
+                        unmount={false}
+                        enter="transition-all duration-75"
+                        enterFrom="blur"
+                        enterTo="blur-none"
+                        leave="transition-all duration-75"
+                        leaveFrom="blur-none"
+                        leaveTo="blur"
+                    >
+                        <Image priority src={src} alt="victor profile picture" width={200} height={200} />
+                        <ImageShadow className="rounded-full" />
+                    </Transition>
                 ))}
             </button>
         </div>
     );
-};
+}
 
 export default ProfilePicture;

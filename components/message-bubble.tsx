@@ -7,7 +7,7 @@ interface MessageBubbleProps {
     id: string;
 }
 
-const MessageBubble = ({ id, visible }: MessageBubbleProps) => {
+function MessageBubble({ id, visible }: MessageBubbleProps) {
     const [show, setShow] = useState(false);
 
     useTimeoutFn(() => setShow(true), 2500);
@@ -36,6 +36,6 @@ const MessageBubble = ({ id, visible }: MessageBubbleProps) => {
             </div>
         </Transition>
     );
-};
+}
 
 export default MessageBubble;

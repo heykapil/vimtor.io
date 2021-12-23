@@ -14,9 +14,9 @@ const Navbar = () => {
     const { asPath } = useRouter();
 
     return (
-        <Disclosure as="nav" className="absolute top-0 left-0 w-full z-10">
+        <Disclosure as="nav">
             {({ open, close }) => (
-                <div className={classNames(open ? "bg-white shadow-lg rounded-md" : "", "px-6 py-4 md:px-6 md:py-8 lg:px-8 lg:py-10")}>
+                <div className="relative rounded-md px-6 py-9 lg:py-12">
                     <div className="max-w-5xl mx-auto">
                         <div className="flex items-center justify-end">
                             <div className="hidden md:block md:ml-6">
@@ -48,15 +48,15 @@ const Navbar = () => {
                     </div>
                     <Transition
                         show={open}
-                        enter="transition duration-100 ease-out"
+                        enter="transition-opacity duration-100 ease-out"
                         enterFrom="opacity-0"
                         enterTo="opacity-100"
-                        leave="transition duration-100 ease-out"
+                        leave="transition-opacity duration-100 ease-out"
                         leaveFrom="opacity-100"
                         leaveTo="opacity-0"
                     >
-                        <Disclosure.Panel static className="md:hidden">
-                            <ul className="pt-6 pb-2 flex flex-col space-y-2">
+                        <Disclosure.Panel static className="md:hidden z-10 bg-white shadow-lg pb-6 rounded-md absolute top-full left-0 w-full">
+                            <ul className="px-4 space-y-2">
                                 {routes.map((route, index) => (
                                     <Transition.Child
                                         as="li"
@@ -68,7 +68,7 @@ const Navbar = () => {
                                     >
                                         <Link
                                             className={classNames(
-                                                "w-full h-full px-3 py-2 rounded-md text-center text-gray-400 font-medium no-underline focus:bg-gray-100 focus:text-gray-500 focus:shadow-inner",
+                                                "block w-full h-full px-3 py-2 rounded-md text-center text-gray-400 font-medium no-underline focus:bg-gray-100 focus:text-gray-500 focus:shadow-inner",
                                                 asPath === route.href ? "bg-gray-100 text-gray-500 shadow-inner" : "ring-1 ring-gray-200"
                                             )}
                                             onClick={close}

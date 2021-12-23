@@ -1,9 +1,9 @@
 import Emoji from "./emoji";
 import ProfilePicture from "./profile-picture";
 
-const IntroSection = () => {
+function IntroSection() {
     return (
-        <header className="mt-32 px-8 text-center sm:mt-36 sm:text-left sm:w-full sm:flex sm:justify-center sm:items-center">
+        <header className="px-8 text-center sm:mt-0 sm:text-left sm:w-full sm:flex sm:justify-center sm:items-center">
             <ProfilePicture />
             <div className="max-w-[80%] opacity-0 m-8 mx-auto sm:mx-0 animate-fade-in-down animation-delay-1000">
                 <h1 className="mt-5 mb-2 text-3xl sm:text-4xl font-extrabold sm:mt-0">
@@ -17,6 +17,6 @@ const IntroSection = () => {
             </div>
         </header>
     );
-};
+}
 
 export default IntroSection;

@@ -8,7 +8,7 @@ interface ContactMessageProps {
     submitting: boolean;
 }
 
-const ContactMessage = ({ email, message, succeeded, errors, submitting }: ContactMessageProps) => {
+function ContactMessage({ email, message, succeeded, errors, submitting }: ContactMessageProps) {
     if (errors) {
         return (
             <>
@@ -51,6 +51,6 @@ const ContactMessage = ({ email, message, succeeded, errors, submitting }: Conta
             </svg>
         </>
     );
-};
+}
 
 export default ContactMessage;

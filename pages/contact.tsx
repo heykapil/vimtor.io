@@ -1,10 +1,24 @@
-import ContactSection from "../components/contact-section";
-import Layout from "../components/layout";
+import Page from "../components/page/page";
+import Emoji from "../components/emoji";
+import ContactForm from "../components/contact/contact-form";
+import SectionCTA from "../components/section/section-cta";
+import Link from "../components/link";
+import PageTitle from "../components/page/page-title";
+import PageSubtitle from "../components/page/page-subtitle";
 
-const Contact = () => (
-    <Layout title="Contact" description="Send me an email so we can start a conversation">
-        <ContactSection />
-    </Layout>
-);
-
-export default Contact;
+export default function Contact() {
+    return (
+        <Page title="Contact" description="Send me an email so we can start a conversation">
+            <PageTitle className="">
+                Contact <Emoji label="call me hand" icon="🤙" />
+            </PageTitle>
+            <PageSubtitle>Get in touch! I don&apos;t bite...</PageSubtitle>
+            <ContactForm />
+            <SectionCTA>
+                You can to contact me at <Link href="mailto:contact@vimtor.io">contact@vimtor.io</Link>
+                <br />
+                or reach out on social media <Emoji label="wink face" icon="😉" />
+            </SectionCTA>
+        </Page>
+    );
+}

@@ -7,7 +7,7 @@ interface SocialItemProps {
     label: string;
 }
 
-const SocialItem = ({ children, href, label }: SocialItemProps) => {
+function SocialItem({ children, href, label }: SocialItemProps) {
     return (
         <li>
             <a href={href} aria-label={label}>
@@ -22,9 +22,9 @@ const SocialItem = ({ children, href, label }: SocialItemProps) => {
             </a>
         </li>
     );
-};
+}
 
-const Footer = () => {
+function Footer() {
     return (
         <footer className="mt-12 bg-gray-50 border-t-2 border-gray-100 text-gray-400 pt-12 pb-24 shrink-0">
             <ul className="flex px-12 sm:w-3/4 sm:max-w-xl mx-auto justify-between">
@@ -56,6 +56,6 @@ const Footer = () => {
             </p>
         </footer>
     );
-};
+}
 
 export default Footer;

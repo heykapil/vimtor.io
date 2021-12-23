@@ -15,7 +15,7 @@ interface LabelFiltersProps {
     labels: Array<Label>;
 }
 
-const LabelFilters = ({ value, onChange, labels }: LabelFiltersProps) => {
+function LabelFilters({ value, onChange, labels }: LabelFiltersProps) {
     const [showScrollHelper, setShowScrollHelper] = useState(false);
 
     const checkSmallScreen = useCallback(() => {
@@ -87,6 +87,6 @@ const LabelFilters = ({ value, onChange, labels }: LabelFiltersProps) => {
             </Transition>
         </div>
     );
-};
+}
 
 export default LabelFilters;

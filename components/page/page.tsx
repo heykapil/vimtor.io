@@ -1,14 +1,14 @@
-import { classNames } from "../utils/style";
+import { classNames } from "../../utils/style";
 import Head from "next/head";
 
-interface LayoutProps {
+interface PageProps {
     title: string;
     description?: string;
     className?: string;
     children: any;
 }
 
-function Layout({ children, title, description, className }: LayoutProps) {
+function Page({ children, title, description, className }: PageProps) {
     return (
         <main className={classNames("shrink-0 grow", className)}>
             <Head>
@@ -20,4 +20,4 @@ function Layout({ children, title, description, className }: LayoutProps) {
     );
 }
 
-export default Layout;
+export default Page;

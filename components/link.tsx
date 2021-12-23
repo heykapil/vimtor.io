@@ -10,7 +10,7 @@ export interface LinkProps {
     onClick?: () => void;
 }
 
-const Link = ({ href, className, onClick, style, children }: LinkProps) => {
+function Link({ href, className, onClick, style, children }: LinkProps) {
     return (
         <NextLink href={href}>
             <a
@@ -25,6 +25,6 @@ const Link = ({ href, className, onClick, style, children }: LinkProps) => {
             </a>
         </NextLink>
     );
-};
+}
 
 export default Link;

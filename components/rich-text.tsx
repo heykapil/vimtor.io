@@ -13,8 +13,6 @@ const options: Options = {
     },
 };
 
-function RichText({ children }: RichTextProps) {
+export default function RichText({ children }: RichTextProps) {
     return <div>{documentToReactComponents(children, options)}</div>;
 }
-
-export default RichText;
