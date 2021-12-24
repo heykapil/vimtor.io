@@ -1,0 +1,7 @@
+query getHomePage {
+    homePages(first: 1) {
+        projects {
+            ...ProjectSummary
+        }
+    }
+}

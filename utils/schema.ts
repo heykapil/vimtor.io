@@ -799,6 +799,385 @@ export type DocumentVersion = {
   stage: Stage;
 };
 
+export type HomePage = Node & {
+  __typename?: 'HomePage';
+  /** The time the document was created */
+  createdAt: Scalars['DateTime'];
+  /** User that created this document */
+  createdBy?: Maybe<User>;
+  /** Get the document in other stages */
+  documentInStages: Array<HomePage>;
+  /** List of HomePage versions */
+  history: Array<Version>;
+  /** The unique identifier */
+  id: Scalars['ID'];
+  projects: Array<Project>;
+  /** The time the document was published. Null on documents in draft stage. */
+  publishedAt?: Maybe<Scalars['DateTime']>;
+  /** User that last published this document */
+  publishedBy?: Maybe<User>;
+  scheduledIn: Array<ScheduledOperation>;
+  /** System stage field */
+  stage: Stage;
+  /** The time the document was updated */
+  updatedAt: Scalars['DateTime'];
+  /** User that last updated this document */
+  updatedBy?: Maybe<User>;
+};
+
+
+export type HomePageCreatedByArgs = {
+  locales?: InputMaybe<Array<Locale>>;
+};
+
+
+export type HomePageDocumentInStagesArgs = {
+  includeCurrent?: Scalars['Boolean'];
+  inheritLocale?: Scalars['Boolean'];
+  stages?: Array<Stage>;
+};
+
+
+export type HomePageHistoryArgs = {
+  limit?: Scalars['Int'];
+  skip?: Scalars['Int'];
+  stageOverride?: InputMaybe<Stage>;
+};
+
+
+export type HomePageProjectsArgs = {
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  locales?: InputMaybe<Array<Locale>>;
+  orderBy?: InputMaybe<ProjectOrderByInput>;
+  skip?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<ProjectWhereInput>;
+};
+
+
+export type HomePagePublishedByArgs = {
+  locales?: InputMaybe<Array<Locale>>;
+};
+
+
+export type HomePageScheduledInArgs = {
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  locales?: InputMaybe<Array<Locale>>;
+  skip?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<ScheduledOperationWhereInput>;
+};
+
+
+export type HomePageUpdatedByArgs = {
+  locales?: InputMaybe<Array<Locale>>;
+};
+
+export type HomePageConnectInput = {
+  /** Allow to specify document position in list of connected documents, will default to appending at end of list */
+  position?: InputMaybe<ConnectPositionInput>;
+  /** Document to connect */
+  where: HomePageWhereUniqueInput;
+};
+
+/** A connection to a list of items. */
+export type HomePageConnection = {
+  __typename?: 'HomePageConnection';
+  aggregate: Aggregate;
+  /** A list of edges. */
+  edges: Array<HomePageEdge>;
+  /** Information to aid in pagination. */
+  pageInfo: PageInfo;
+};
+
+export type HomePageCreateInput = {
+  createdAt?: InputMaybe<Scalars['DateTime']>;
+  projects?: InputMaybe<ProjectCreateManyInlineInput>;
+  updatedAt?: InputMaybe<Scalars['DateTime']>;
+};
+
+export type HomePageCreateManyInlineInput = {
+  /** Connect multiple existing HomePage documents */
+  connect?: InputMaybe<Array<HomePageWhereUniqueInput>>;
+  /** Create and connect multiple existing HomePage documents */
+  create?: InputMaybe<Array<HomePageCreateInput>>;
+};
+
+export type HomePageCreateOneInlineInput = {
+  /** Connect one existing HomePage document */
+  connect?: InputMaybe<HomePageWhereUniqueInput>;
+  /** Create and connect one HomePage document */
+  create?: InputMaybe<HomePageCreateInput>;
+};
+
+/** An edge in a connection. */
+export type HomePageEdge = {
+  __typename?: 'HomePageEdge';
+  /** A cursor for use in pagination. */
+  cursor: Scalars['String'];
+  /** The item at the end of the edge. */
+  node: HomePage;
+};
+
+/** Identifies documents */
+export type HomePageManyWhereInput = {
+  /** Logical AND on all given filters. */
+  AND?: InputMaybe<Array<HomePageWhereInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: InputMaybe<Array<HomePageWhereInput>>;
+  /** Logical OR on all given filters. */
+  OR?: InputMaybe<Array<HomePageWhereInput>>;
+  /** Contains search across all appropriate fields. */
+  _search?: InputMaybe<Scalars['String']>;
+  createdAt?: InputMaybe<Scalars['DateTime']>;
+  /** All values greater than the given value. */
+  createdAt_gt?: InputMaybe<Scalars['DateTime']>;
+  /** All values greater than or equal the given value. */
+  createdAt_gte?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are contained in given list. */
+  createdAt_in?: InputMaybe<Array<Scalars['DateTime']>>;
+  /** All values less than the given value. */
+  createdAt_lt?: InputMaybe<Scalars['DateTime']>;
+  /** All values less than or equal the given value. */
+  createdAt_lte?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are not equal to given value. */
+  createdAt_not?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are not contained in given list. */
+  createdAt_not_in?: InputMaybe<Array<Scalars['DateTime']>>;
+  createdBy?: InputMaybe<UserWhereInput>;
+  id?: InputMaybe<Scalars['ID']>;
+  /** All values containing the given string. */
+  id_contains?: InputMaybe<Scalars['ID']>;
+  /** All values ending with the given string. */
+  id_ends_with?: InputMaybe<Scalars['ID']>;
+  /** All values that are contained in given list. */
+  id_in?: InputMaybe<Array<Scalars['ID']>>;
+  /** All values that are not equal to given value. */
+  id_not?: InputMaybe<Scalars['ID']>;
+  /** All values not containing the given string. */
+  id_not_contains?: InputMaybe<Scalars['ID']>;
+  /** All values not ending with the given string */
+  id_not_ends_with?: InputMaybe<Scalars['ID']>;
+  /** All values that are not contained in given list. */
+  id_not_in?: InputMaybe<Array<Scalars['ID']>>;
+  /** All values not starting with the given string. */
+  id_not_starts_with?: InputMaybe<Scalars['ID']>;
+  /** All values starting with the given string. */
+  id_starts_with?: InputMaybe<Scalars['ID']>;
+  projects_every?: InputMaybe<ProjectWhereInput>;
+  projects_none?: InputMaybe<ProjectWhereInput>;
+  projects_some?: InputMaybe<ProjectWhereInput>;
+  publishedAt?: InputMaybe<Scalars['DateTime']>;
+  /** All values greater than the given value. */
+  publishedAt_gt?: InputMaybe<Scalars['DateTime']>;
+  /** All values greater than or equal the given value. */
+  publishedAt_gte?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are contained in given list. */
+  publishedAt_in?: InputMaybe<Array<Scalars['DateTime']>>;
+  /** All values less than the given value. */
+  publishedAt_lt?: InputMaybe<Scalars['DateTime']>;
+  /** All values less than or equal the given value. */
+  publishedAt_lte?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are not equal to given value. */
+  publishedAt_not?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are not contained in given list. */
+  publishedAt_not_in?: InputMaybe<Array<Scalars['DateTime']>>;
+  publishedBy?: InputMaybe<UserWhereInput>;
+  scheduledIn_every?: InputMaybe<ScheduledOperationWhereInput>;
+  scheduledIn_none?: InputMaybe<ScheduledOperationWhereInput>;
+  scheduledIn_some?: InputMaybe<ScheduledOperationWhereInput>;
+  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  /** All values greater than the given value. */
+  updatedAt_gt?: InputMaybe<Scalars['DateTime']>;
+  /** All values greater than or equal the given value. */
+  updatedAt_gte?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are contained in given list. */
+  updatedAt_in?: InputMaybe<Array<Scalars['DateTime']>>;
+  /** All values less than the given value. */
+  updatedAt_lt?: InputMaybe<Scalars['DateTime']>;
+  /** All values less than or equal the given value. */
+  updatedAt_lte?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are not equal to given value. */
+  updatedAt_not?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are not contained in given list. */
+  updatedAt_not_in?: InputMaybe<Array<Scalars['DateTime']>>;
+  updatedBy?: InputMaybe<UserWhereInput>;
+};
+
+export enum HomePageOrderByInput {
+  CreatedAtAsc = 'createdAt_ASC',
+  CreatedAtDesc = 'createdAt_DESC',
+  IdAsc = 'id_ASC',
+  IdDesc = 'id_DESC',
+  PublishedAtAsc = 'publishedAt_ASC',
+  PublishedAtDesc = 'publishedAt_DESC',
+  UpdatedAtAsc = 'updatedAt_ASC',
+  UpdatedAtDesc = 'updatedAt_DESC'
+}
+
+export type HomePageUpdateInput = {
+  projects?: InputMaybe<ProjectUpdateManyInlineInput>;
+};
+
+export type HomePageUpdateManyInlineInput = {
+  /** Connect multiple existing HomePage documents */
+  connect?: InputMaybe<Array<HomePageConnectInput>>;
+  /** Create and connect multiple HomePage documents */
+  create?: InputMaybe<Array<HomePageCreateInput>>;
+  /** Delete multiple HomePage documents */
+  delete?: InputMaybe<Array<HomePageWhereUniqueInput>>;
+  /** Disconnect multiple HomePage documents */
+  disconnect?: InputMaybe<Array<HomePageWhereUniqueInput>>;
+  /** Override currently-connected documents with multiple existing HomePage documents */
+  set?: InputMaybe<Array<HomePageWhereUniqueInput>>;
+  /** Update multiple HomePage documents */
+  update?: InputMaybe<Array<HomePageUpdateWithNestedWhereUniqueInput>>;
+  /** Upsert multiple HomePage documents */
+  upsert?: InputMaybe<Array<HomePageUpsertWithNestedWhereUniqueInput>>;
+};
+
+export type HomePageUpdateManyInput = {
+  /** No fields in updateMany data input */
+  _?: InputMaybe<Scalars['String']>;
+};
+
+export type HomePageUpdateManyWithNestedWhereInput = {
+  /** Update many input */
+  data: HomePageUpdateManyInput;
+  /** Document search */
+  where: HomePageWhereInput;
+};
+
+export type HomePageUpdateOneInlineInput = {
+  /** Connect existing HomePage document */
+  connect?: InputMaybe<HomePageWhereUniqueInput>;
+  /** Create and connect one HomePage document */
+  create?: InputMaybe<HomePageCreateInput>;
+  /** Delete currently connected HomePage document */
+  delete?: InputMaybe<Scalars['Boolean']>;
+  /** Disconnect currently connected HomePage document */
+  disconnect?: InputMaybe<Scalars['Boolean']>;
+  /** Update single HomePage document */
+  update?: InputMaybe<HomePageUpdateWithNestedWhereUniqueInput>;
+  /** Upsert single HomePage document */
+  upsert?: InputMaybe<HomePageUpsertWithNestedWhereUniqueInput>;
+};
+
+export type HomePageUpdateWithNestedWhereUniqueInput = {
+  /** Document to update */
+  data: HomePageUpdateInput;
+  /** Unique document search */
+  where: HomePageWhereUniqueInput;
+};
+
+export type HomePageUpsertInput = {
+  /** Create document if it didn't exist */
+  create: HomePageCreateInput;
+  /** Update document if it exists */
+  update: HomePageUpdateInput;
+};
+
+export type HomePageUpsertWithNestedWhereUniqueInput = {
+  /** Upsert data */
+  data: HomePageUpsertInput;
+  /** Unique document search */
+  where: HomePageWhereUniqueInput;
+};
+
+/** Identifies documents */
+export type HomePageWhereInput = {
+  /** Logical AND on all given filters. */
+  AND?: InputMaybe<Array<HomePageWhereInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: InputMaybe<Array<HomePageWhereInput>>;
+  /** Logical OR on all given filters. */
+  OR?: InputMaybe<Array<HomePageWhereInput>>;
+  /** Contains search across all appropriate fields. */
+  _search?: InputMaybe<Scalars['String']>;
+  createdAt?: InputMaybe<Scalars['DateTime']>;
+  /** All values greater than the given value. */
+  createdAt_gt?: InputMaybe<Scalars['DateTime']>;
+  /** All values greater than or equal the given value. */
+  createdAt_gte?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are contained in given list. */
+  createdAt_in?: InputMaybe<Array<Scalars['DateTime']>>;
+  /** All values less than the given value. */
+  createdAt_lt?: InputMaybe<Scalars['DateTime']>;
+  /** All values less than or equal the given value. */
+  createdAt_lte?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are not equal to given value. */
+  createdAt_not?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are not contained in given list. */
+  createdAt_not_in?: InputMaybe<Array<Scalars['DateTime']>>;
+  createdBy?: InputMaybe<UserWhereInput>;
+  id?: InputMaybe<Scalars['ID']>;
+  /** All values containing the given string. */
+  id_contains?: InputMaybe<Scalars['ID']>;
+  /** All values ending with the given string. */
+  id_ends_with?: InputMaybe<Scalars['ID']>;
+  /** All values that are contained in given list. */
+  id_in?: InputMaybe<Array<Scalars['ID']>>;
+  /** All values that are not equal to given value. */
+  id_not?: InputMaybe<Scalars['ID']>;
+  /** All values not containing the given string. */
+  id_not_contains?: InputMaybe<Scalars['ID']>;
+  /** All values not ending with the given string */
+  id_not_ends_with?: InputMaybe<Scalars['ID']>;
+  /** All values that are not contained in given list. */
+  id_not_in?: InputMaybe<Array<Scalars['ID']>>;
+  /** All values not starting with the given string. */
+  id_not_starts_with?: InputMaybe<Scalars['ID']>;
+  /** All values starting with the given string. */
+  id_starts_with?: InputMaybe<Scalars['ID']>;
+  projects_every?: InputMaybe<ProjectWhereInput>;
+  projects_none?: InputMaybe<ProjectWhereInput>;
+  projects_some?: InputMaybe<ProjectWhereInput>;
+  publishedAt?: InputMaybe<Scalars['DateTime']>;
+  /** All values greater than the given value. */
+  publishedAt_gt?: InputMaybe<Scalars['DateTime']>;
+  /** All values greater than or equal the given value. */
+  publishedAt_gte?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are contained in given list. */
+  publishedAt_in?: InputMaybe<Array<Scalars['DateTime']>>;
+  /** All values less than the given value. */
+  publishedAt_lt?: InputMaybe<Scalars['DateTime']>;
+  /** All values less than or equal the given value. */
+  publishedAt_lte?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are not equal to given value. */
+  publishedAt_not?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are not contained in given list. */
+  publishedAt_not_in?: InputMaybe<Array<Scalars['DateTime']>>;
+  publishedBy?: InputMaybe<UserWhereInput>;
+  scheduledIn_every?: InputMaybe<ScheduledOperationWhereInput>;
+  scheduledIn_none?: InputMaybe<ScheduledOperationWhereInput>;
+  scheduledIn_some?: InputMaybe<ScheduledOperationWhereInput>;
+  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  /** All values greater than the given value. */
+  updatedAt_gt?: InputMaybe<Scalars['DateTime']>;
+  /** All values greater than or equal the given value. */
+  updatedAt_gte?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are contained in given list. */
+  updatedAt_in?: InputMaybe<Array<Scalars['DateTime']>>;
+  /** All values less than the given value. */
+  updatedAt_lt?: InputMaybe<Scalars['DateTime']>;
+  /** All values less than or equal the given value. */
+  updatedAt_lte?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are not equal to given value. */
+  updatedAt_not?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are not contained in given list. */
+  updatedAt_not_in?: InputMaybe<Array<Scalars['DateTime']>>;
+  updatedBy?: InputMaybe<UserWhereInput>;
+};
+
+/** References HomePage record uniquely */
+export type HomePageWhereUniqueInput = {
+  id?: InputMaybe<Scalars['ID']>;
+};
+
 export enum ImageFit {
   /** Resizes the image to fit within the specified parameters without distorting, cropping, or changing the aspect ratio. */
   Clip = 'clip',
@@ -858,6 +1237,8 @@ export type Mutation = {
    * @deprecated Asset mutations will be overhauled soon
    */
   createAsset?: Maybe<Asset>;
+  /** Create one homePage */
+  createHomePage?: Maybe<HomePage>;
   /** Create one page */
   createPage?: Maybe<Page>;
   /** Create one project */
@@ -872,6 +1253,8 @@ export type Mutation = {
   createTechnologyLevel?: Maybe<TechnologyLevel>;
   /** Delete one asset from _all_ existing stages. Returns deleted document. */
   deleteAsset?: Maybe<Asset>;
+  /** Delete one homePage from _all_ existing stages. Returns deleted document. */
+  deleteHomePage?: Maybe<HomePage>;
   /**
    * Delete many Asset documents
    * @deprecated Please use the new paginated many mutation (deleteManyAssetsConnection)
@@ -879,6 +1262,13 @@ export type Mutation = {
   deleteManyAssets: BatchPayload;
   /** Delete many Asset documents, return deleted documents */
   deleteManyAssetsConnection: AssetConnection;
+  /**
+   * Delete many HomePage documents
+   * @deprecated Please use the new paginated many mutation (deleteManyHomePagesConnection)
+   */
+  deleteManyHomePages: BatchPayload;
+  /** Delete many HomePage documents, return deleted documents */
+  deleteManyHomePagesConnection: HomePageConnection;
   /**
    * Delete many Page documents
    * @deprecated Please use the new paginated many mutation (deleteManyPagesConnection)
@@ -930,6 +1320,8 @@ export type Mutation = {
   deleteTechnologyLevel?: Maybe<TechnologyLevel>;
   /** Publish one asset */
   publishAsset?: Maybe<Asset>;
+  /** Publish one homePage */
+  publishHomePage?: Maybe<HomePage>;
   /**
    * Publish many Asset documents
    * @deprecated Please use the new paginated many mutation (publishManyAssetsConnection)
@@ -937,6 +1329,13 @@ export type Mutation = {
   publishManyAssets: BatchPayload;
   /** Publish many Asset documents */
   publishManyAssetsConnection: AssetConnection;
+  /**
+   * Publish many HomePage documents
+   * @deprecated Please use the new paginated many mutation (publishManyHomePagesConnection)
+   */
+  publishManyHomePages: BatchPayload;
+  /** Publish many HomePage documents */
+  publishManyHomePagesConnection: HomePageConnection;
   /**
    * Publish many Page documents
    * @deprecated Please use the new paginated many mutation (publishManyPagesConnection)
@@ -984,6 +1383,8 @@ export type Mutation = {
   publishTechnologyLevel?: Maybe<TechnologyLevel>;
   /** Schedule to publish one asset */
   schedulePublishAsset?: Maybe<Asset>;
+  /** Schedule to publish one homePage */
+  schedulePublishHomePage?: Maybe<HomePage>;
   /** Schedule to publish one page */
   schedulePublishPage?: Maybe<Page>;
   /** Schedule to publish one project */
@@ -996,6 +1397,8 @@ export type Mutation = {
   schedulePublishTechnologyLevel?: Maybe<TechnologyLevel>;
   /** Unpublish one asset from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
   scheduleUnpublishAsset?: Maybe<Asset>;
+  /** Unpublish one homePage from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
+  scheduleUnpublishHomePage?: Maybe<HomePage>;
   /** Unpublish one page from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
   scheduleUnpublishPage?: Maybe<Page>;
   /** Unpublish one project from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
@@ -1008,6 +1411,8 @@ export type Mutation = {
   scheduleUnpublishTechnologyLevel?: Maybe<TechnologyLevel>;
   /** Unpublish one asset from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
   unpublishAsset?: Maybe<Asset>;
+  /** Unpublish one homePage from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
+  unpublishHomePage?: Maybe<HomePage>;
   /**
    * Unpublish many Asset documents
    * @deprecated Please use the new paginated many mutation (unpublishManyAssetsConnection)
@@ -1015,6 +1420,13 @@ export type Mutation = {
   unpublishManyAssets: BatchPayload;
   /** Find many Asset documents that match criteria in specified stage and unpublish from target stages */
   unpublishManyAssetsConnection: AssetConnection;
+  /**
+   * Unpublish many HomePage documents
+   * @deprecated Please use the new paginated many mutation (unpublishManyHomePagesConnection)
+   */
+  unpublishManyHomePages: BatchPayload;
+  /** Find many HomePage documents that match criteria in specified stage and unpublish from target stages */
+  unpublishManyHomePagesConnection: HomePageConnection;
   /**
    * Unpublish many Page documents
    * @deprecated Please use the new paginated many mutation (unpublishManyPagesConnection)
@@ -1062,6 +1474,8 @@ export type Mutation = {
   unpublishTechnologyLevel?: Maybe<TechnologyLevel>;
   /** Update one asset */
   updateAsset?: Maybe<Asset>;
+  /** Update one homePage */
+  updateHomePage?: Maybe<HomePage>;
   /**
    * Update many assets
    * @deprecated Please use the new paginated many mutation (updateManyAssetsConnection)
@@ -1069,6 +1483,13 @@ export type Mutation = {
   updateManyAssets: BatchPayload;
   /** Update many Asset documents */
   updateManyAssetsConnection: AssetConnection;
+  /**
+   * Update many homePages
+   * @deprecated Please use the new paginated many mutation (updateManyHomePagesConnection)
+   */
+  updateManyHomePages: BatchPayload;
+  /** Update many HomePage documents */
+  updateManyHomePagesConnection: HomePageConnection;
   /**
    * Update many pages
    * @deprecated Please use the new paginated many mutation (updateManyPagesConnection)
@@ -1118,6 +1539,8 @@ export type Mutation = {
   updateTechnologyLevel?: Maybe<TechnologyLevel>;
   /** Upsert one asset */
   upsertAsset?: Maybe<Asset>;
+  /** Upsert one homePage */
+  upsertHomePage?: Maybe<HomePage>;
   /** Upsert one page */
   upsertPage?: Maybe<Page>;
   /** Upsert one project */
@@ -1133,6 +1556,11 @@ export type Mutation = {
 
 export type MutationCreateAssetArgs = {
   data: AssetCreateInput;
+};
+
+
+export type MutationCreateHomePageArgs = {
+  data: HomePageCreateInput;
 };
 
 
@@ -1171,6 +1599,11 @@ export type MutationDeleteAssetArgs = {
 };
 
 
+export type MutationDeleteHomePageArgs = {
+  where: HomePageWhereUniqueInput;
+};
+
+
 export type MutationDeleteManyAssetsArgs = {
   where?: InputMaybe<AssetManyWhereInput>;
 };
@@ -1183,6 +1616,21 @@ export type MutationDeleteManyAssetsConnectionArgs = {
   last?: InputMaybe<Scalars['Int']>;
   skip?: InputMaybe<Scalars['Int']>;
   where?: InputMaybe<AssetManyWhereInput>;
+};
+
+
+export type MutationDeleteManyHomePagesArgs = {
+  where?: InputMaybe<HomePageManyWhereInput>;
+};
+
+
+export type MutationDeleteManyHomePagesConnectionArgs = {
+  after?: InputMaybe<Scalars['ID']>;
+  before?: InputMaybe<Scalars['ID']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  skip?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<HomePageManyWhereInput>;
 };
 
 
@@ -1305,6 +1753,12 @@ export type MutationPublishAssetArgs = {
 };
 
 
+export type MutationPublishHomePageArgs = {
+  to?: Array<Stage>;
+  where: HomePageWhereUniqueInput;
+};
+
+
 export type MutationPublishManyAssetsArgs = {
   locales?: InputMaybe<Array<Locale>>;
   publishBase?: InputMaybe<Scalars['Boolean']>;
@@ -1326,6 +1780,24 @@ export type MutationPublishManyAssetsConnectionArgs = {
   to?: Array<Stage>;
   where?: InputMaybe<AssetManyWhereInput>;
   withDefaultLocale?: InputMaybe<Scalars['Boolean']>;
+};
+
+
+export type MutationPublishManyHomePagesArgs = {
+  to?: Array<Stage>;
+  where?: InputMaybe<HomePageManyWhereInput>;
+};
+
+
+export type MutationPublishManyHomePagesConnectionArgs = {
+  after?: InputMaybe<Scalars['ID']>;
+  before?: InputMaybe<Scalars['ID']>;
+  first?: InputMaybe<Scalars['Int']>;
+  from?: InputMaybe<Stage>;
+  last?: InputMaybe<Scalars['Int']>;
+  skip?: InputMaybe<Scalars['Int']>;
+  to?: Array<Stage>;
+  where?: InputMaybe<HomePageManyWhereInput>;
 };
 
 
@@ -1505,6 +1977,14 @@ export type MutationSchedulePublishAssetArgs = {
 };
 
 
+export type MutationSchedulePublishHomePageArgs = {
+  releaseAt?: InputMaybe<Scalars['DateTime']>;
+  releaseId?: InputMaybe<Scalars['String']>;
+  to?: Array<Stage>;
+  where: HomePageWhereUniqueInput;
+};
+
+
 export type MutationSchedulePublishPageArgs = {
   locales?: InputMaybe<Array<Locale>>;
   publishBase?: InputMaybe<Scalars['Boolean']>;
@@ -1570,6 +2050,14 @@ export type MutationScheduleUnpublishAssetArgs = {
 };
 
 
+export type MutationScheduleUnpublishHomePageArgs = {
+  from?: Array<Stage>;
+  releaseAt?: InputMaybe<Scalars['DateTime']>;
+  releaseId?: InputMaybe<Scalars['String']>;
+  where: HomePageWhereUniqueInput;
+};
+
+
 export type MutationScheduleUnpublishPageArgs = {
   from?: Array<Stage>;
   locales?: InputMaybe<Array<Locale>>;
@@ -1628,6 +2116,12 @@ export type MutationUnpublishAssetArgs = {
 };
 
 
+export type MutationUnpublishHomePageArgs = {
+  from?: Array<Stage>;
+  where: HomePageWhereUniqueInput;
+};
+
+
 export type MutationUnpublishManyAssetsArgs = {
   from?: Array<Stage>;
   locales?: InputMaybe<Array<Locale>>;
@@ -1647,6 +2141,24 @@ export type MutationUnpublishManyAssetsConnectionArgs = {
   stage?: InputMaybe<Stage>;
   unpublishBase?: InputMaybe<Scalars['Boolean']>;
   where?: InputMaybe<AssetManyWhereInput>;
+};
+
+
+export type MutationUnpublishManyHomePagesArgs = {
+  from?: Array<Stage>;
+  where?: InputMaybe<HomePageManyWhereInput>;
+};
+
+
+export type MutationUnpublishManyHomePagesConnectionArgs = {
+  after?: InputMaybe<Scalars['ID']>;
+  before?: InputMaybe<Scalars['ID']>;
+  first?: InputMaybe<Scalars['Int']>;
+  from?: Array<Stage>;
+  last?: InputMaybe<Scalars['Int']>;
+  skip?: InputMaybe<Scalars['Int']>;
+  stage?: InputMaybe<Stage>;
+  where?: InputMaybe<HomePageManyWhereInput>;
 };
 
 
@@ -1806,6 +2318,12 @@ export type MutationUpdateAssetArgs = {
 };
 
 
+export type MutationUpdateHomePageArgs = {
+  data: HomePageUpdateInput;
+  where: HomePageWhereUniqueInput;
+};
+
+
 export type MutationUpdateManyAssetsArgs = {
   data: AssetUpdateManyInput;
   where?: InputMaybe<AssetManyWhereInput>;
@@ -1820,6 +2338,23 @@ export type MutationUpdateManyAssetsConnectionArgs = {
   last?: InputMaybe<Scalars['Int']>;
   skip?: InputMaybe<Scalars['Int']>;
   where?: InputMaybe<AssetManyWhereInput>;
+};
+
+
+export type MutationUpdateManyHomePagesArgs = {
+  data: HomePageUpdateManyInput;
+  where?: InputMaybe<HomePageManyWhereInput>;
+};
+
+
+export type MutationUpdateManyHomePagesConnectionArgs = {
+  after?: InputMaybe<Scalars['ID']>;
+  before?: InputMaybe<Scalars['ID']>;
+  data: HomePageUpdateManyInput;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  skip?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<HomePageManyWhereInput>;
 };
 
 
@@ -1947,6 +2482,12 @@ export type MutationUpdateTechnologyLevelArgs = {
 export type MutationUpsertAssetArgs = {
   upsert: AssetUpsertInput;
   where: AssetWhereUniqueInput;
+};
+
+
+export type MutationUpsertHomePageArgs = {
+  upsert: HomePageUpsertInput;
+  where: HomePageWhereUniqueInput;
 };
 
 
@@ -2685,6 +3226,7 @@ export type ProjectConnection = {
 };
 
 export type ProjectCreateInput = {
+  ckxkj7z4h3rxt01xo5ivb9c19?: InputMaybe<HomePageCreateManyInlineInput>;
   createdAt?: InputMaybe<Scalars['DateTime']>;
   /** ctaMessage input for default locale (en) */
   ctaMessage: Scalars['String'];
@@ -3525,6 +4067,7 @@ export type ProjectTypeWhereUniqueInput = {
 };
 
 export type ProjectUpdateInput = {
+  ckxkj7z4h3rxt01xo5ivb9c19?: InputMaybe<HomePageUpdateManyInlineInput>;
   /** ctaMessage input for default locale (en) */
   ctaMessage?: InputMaybe<Scalars['String']>;
   demoUrl?: InputMaybe<Scalars['String']>;
@@ -3855,6 +4398,14 @@ export type Query = {
   assets: Array<Asset>;
   /** Retrieve multiple assets using the Relay connection interface */
   assetsConnection: AssetConnection;
+  /** Retrieve a single homePage */
+  homePage?: Maybe<HomePage>;
+  /** Retrieve document version */
+  homePageVersion?: Maybe<DocumentVersion>;
+  /** Retrieve multiple homePages */
+  homePages: Array<HomePage>;
+  /** Retrieve multiple homePages using the Relay connection interface */
+  homePagesConnection: HomePageConnection;
   /** Fetches an object given its ID */
   node?: Maybe<Node>;
   /** Retrieve a single page */
@@ -3953,6 +4504,44 @@ export type QueryAssetsConnectionArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   stage?: Stage;
   where?: InputMaybe<AssetWhereInput>;
+};
+
+
+export type QueryHomePageArgs = {
+  locales?: Array<Locale>;
+  stage?: Stage;
+  where: HomePageWhereUniqueInput;
+};
+
+
+export type QueryHomePageVersionArgs = {
+  where: VersionWhereInput;
+};
+
+
+export type QueryHomePagesArgs = {
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  locales?: Array<Locale>;
+  orderBy?: InputMaybe<HomePageOrderByInput>;
+  skip?: InputMaybe<Scalars['Int']>;
+  stage?: Stage;
+  where?: InputMaybe<HomePageWhereInput>;
+};
+
+
+export type QueryHomePagesConnectionArgs = {
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  locales?: Array<Locale>;
+  orderBy?: InputMaybe<HomePageOrderByInput>;
+  skip?: InputMaybe<Scalars['Int']>;
+  stage?: Stage;
+  where?: InputMaybe<HomePageWhereInput>;
 };
 
 
@@ -4358,7 +4947,7 @@ export type ScheduledOperationUpdatedByArgs = {
   locales?: InputMaybe<Array<Locale>>;
 };
 
-export type ScheduledOperationAffectedDocument = Asset | Page | Project | ProjectType | Technology | TechnologyLevel;
+export type ScheduledOperationAffectedDocument = Asset | HomePage | Page | Project | ProjectType | Technology | TechnologyLevel;
 
 export type ScheduledOperationConnectInput = {
   /** Allow to specify document position in list of connected documents, will default to appending at end of list */
@@ -6877,6 +7466,11 @@ export enum _SystemDateTimeFieldVariation {
   Localization = 'localization'
 }
 
+export type GetHomePageQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetHomePageQuery = { __typename?: 'Query', homePages: Array<{ __typename?: 'HomePage', projects: Array<{ __typename?: 'Project', name: string, slug?: string | null | undefined, demoUrl: string, gitHubUrl?: string | null | undefined, ctaMessage: string, image: { __typename?: 'Asset', url: string }, summary: { __typename?: 'RichText', raw: any }, technologies: Array<{ __typename?: 'Technology', slug: string }>, type?: { __typename?: 'ProjectType', name: string, slug: string } | null | undefined }> }> };
+
 export type ProjectSummaryFragment = { __typename?: 'Project', name: string, slug?: string | null | undefined, demoUrl: string, gitHubUrl?: string | null | undefined, ctaMessage: string, image: { __typename?: 'Asset', url: string }, summary: { __typename?: 'RichText', raw: any }, technologies: Array<{ __typename?: 'Technology', slug: string }>, type?: { __typename?: 'ProjectType', name: string, slug: string } | null | undefined };
 
 export type GetProjectsPageQueryVariables = Exact<{ [key: string]: never; }>;
@@ -6892,7 +7486,7 @@ export const ProjectSummaryFragmentDoc = gql`
   gitHubUrl
   ctaMessage
   image {
-    url
+    url(transformation: {image: {resize: {height: 720, width: 1280}}})
   }
   summary {
     raw
@@ -6908,6 +7502,15 @@ export const ProjectSummaryFragmentDoc = gql`
   }
 }
     `;
+export const GetHomePageDocument = gql`
+    query getHomePage {
+  homePages(first: 1) {
+    projects {
+      ...ProjectSummary
+    }
+  }
+}
+    ${ProjectSummaryFragmentDoc}`;
 export const GetProjectsPageDocument = gql`
     query getProjectsPage {
   page(where: {slug: "projects"}) {
@@ -6935,6 +7538,9 @@ const defaultWrapper: SdkFunctionWrapper = (action, _operationName) => action();
 
 export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = defaultWrapper) {
   return {
+    getHomePage(variables?: GetHomePageQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<GetHomePageQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<GetHomePageQuery>(GetHomePageDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'getHomePage');
+    },
     getProjectsPage(variables?: GetProjectsPageQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<GetProjectsPageQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<GetProjectsPageQuery>(GetProjectsPageDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'getProjectsPage');
     }

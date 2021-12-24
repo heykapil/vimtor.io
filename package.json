@@ -13,12 +13,10 @@
         "graphql": "graphql-codegen -r dotenv/config --watch"
     },
     "dependencies": {
-        "@contentful/rich-text-react-renderer": "^15.10.0",
         "@formspree/react": "^2.2.3",
         "@graphcms/rich-text-react-renderer": "^0.4.0",
         "@headlessui/react": "^1.4.2",
         "@heroicons/react": "^1.0.3",
-        "contentful": "^9.1.5",
         "graphql": "^16.2.0",
         "graphql-request": "^3.7.0",
         "lodash": "^4.17.21",

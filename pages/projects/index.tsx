@@ -10,7 +10,7 @@ import Page from "../../components/page/page";
 import ProjectItem from "../../components/projects/project-item";
 import PageTitle from "../../components/page/page-title";
 import PageSubtitle from "../../components/page/page-subtitle";
-import graphCms from "../../utils/graphcms";
+import graphCms from "../../utils/graph-cms";
 import { GetProjectsPageQuery } from "../../utils/schema";
 import { shuffle } from "lodash";
 

@@ -5,7 +5,7 @@ fragment ProjectSummary on Project {
     gitHubUrl
     ctaMessage
     image {
-        url
+        url(transformation: {image: {resize: {height: 720, width: 1280}}})
     }
     summary {
         raw
