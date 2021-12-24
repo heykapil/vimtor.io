@@ -9,14 +9,18 @@
         "lint": "next lint",
         "prepare": "husky install",
         "format": "prettier . --write",
-        "pre-commit": "lint-staged"
+        "pre-commit": "lint-staged",
+        "graphql": "graphql-codegen -r dotenv/config --watch"
     },
     "dependencies": {
         "@contentful/rich-text-react-renderer": "^15.10.0",
         "@formspree/react": "^2.2.3",
+        "@graphcms/rich-text-react-renderer": "^0.4.0",
         "@headlessui/react": "^1.4.2",
         "@heroicons/react": "^1.0.3",
         "contentful": "^9.1.5",
+        "graphql": "^16.2.0",
+        "graphql-request": "^3.7.0",
         "lodash": "^4.17.21",
         "next": "^12.0.7",
         "react": "^17.0.2",
@@ -25,6 +29,11 @@
     },
     "devDependencies": {
         "@babel/core": "^7.15.0",
+        "@graphql-codegen/cli": "2.3.0",
+        "@graphql-codegen/schema-ast": "^2.4.0",
+        "@graphql-codegen/typescript": "^2.4.1",
+        "@graphql-codegen/typescript-graphql-request": "^4.3.2",
+        "@graphql-codegen/typescript-operations": "^2.2.1",
         "@tailwindcss/forms": "^0.4.0",
         "@types/lodash": "^4.14.172",
         "@types/marked": "^2.0.4",

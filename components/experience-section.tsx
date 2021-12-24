@@ -19,11 +19,11 @@ function ExperienceSection({ projects }: ExperienceSectionProps) {
                 Experience <Emoji label="rocket" icon="🚀" animation="rocket" reset={false} />
             </SectionTitle>
             <SectionSubtitle>Some of the things I&apos;ve built</SectionSubtitle>
-            <ProjectList>
-                {projects.map((project) => (
-                    <ProjectItem key={project.title} project={project} />
-                ))}
-            </ProjectList>
+            {/*<ProjectList>*/}
+            {/*    {projects.map((project) => (*/}
+            {/*        <ProjectItem key={project.title} project={project} />*/}
+            {/*    ))}*/}
+            {/*</ProjectList>*/}
             <SectionCTO>
                 Feel free to see{" "}
                 <Link href="/projects">

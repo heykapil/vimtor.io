@@ -1,31 +1,30 @@
 import Emoji from "../../components/emoji";
 import ProjectList from "../../components/projects/project-list";
-import { useEffect } from "react";
-import { Project } from "../../utils/types";
+import { useEffect, useMemo } from "react";
 import { useCounter } from "react-use";
 import { GetStaticProps } from "next";
-import { getProjects, getProjectTypes, getTechnologies } from "../../utils/data";
-import LabelFilters, { Label } from "../../components/label-filters";
+import LabelFilters from "../../components/label-filters";
 import EmptyMessage from "../../components/empty-message";
 import { useQueryArrayState } from "../../hooks/use-query-state";
-import { shuffle } from "lodash";
 import Page from "../../components/page/page";
 import ProjectItem from "../../components/projects/project-item";
 import PageTitle from "../../components/page/page-title";
 import PageSubtitle from "../../components/page/page-subtitle";
+import graphCms from "../../utils/graphcms";
+import { GetProjectsPageQuery } from "../../utils/schema";
+import { shuffle } from "lodash";
 
-interface ProjectProps {
-    projects: Array<Project>;
-    labels: Array<Label>;
-}
-
-export default function Projects({ projects, labels }: ProjectProps) {
+export default function Projects({ page, projects, projectTypes, technologies }: GetProjectsPageQuery) {
     const [totalTimesEmptyListWasShown, { inc: incrementTotalTimesEmptyListWasShown }] = useCounter(0);
     const [selectedLabels, setSelectedLabels] = useQueryArrayState("labels");
 
+    const labels = useMemo(() => {
+        return shuffle([...projectTypes, ...technologies]);
+    }, [projectTypes, technologies]);
+
     const visibleProjects = projects.filter((project) => {
         return selectedLabels.every((slug) => {
-            return project.type.fields.slug === slug || project.technologies.some((technology) => technology.fields.slug === slug);
+            return project.type?.slug === slug || project.technologies.some((technology) => technology.slug === slug);
         });
     });
 
@@ -35,17 +34,21 @@ export default function Projects({ projects, labels }: ProjectProps) {
         }
     }, [visibleProjects.length, incrementTotalTimesEmptyListWasShown]);
 
+    if (!page) {
+        return null;
+    }
+
     return (
         <Page title="Projects" description="List of projects made by Victor Navarro">
             <PageTitle>
-                All my projects <Emoji label="rocket" icon="🚀" reset={false} animation="rocket" />
+                {page.title} <Emoji label="rocket" icon="🚀" reset={false} animation="rocket" />
             </PageTitle>
-            <PageSubtitle>A list of projects I worked on that are worth mentioning</PageSubtitle>
+            <PageSubtitle>{page.description}</PageSubtitle>
             <LabelFilters value={selectedLabels} labels={labels} onChange={setSelectedLabels} />
             {visibleProjects.length !== 0 ? (
                 <ProjectList>
                     {projects.map((project) => (
-                        <ProjectItem key={project.title} project={project} />
+                        <ProjectItem key={project.slug} {...project} />
                     ))}
                 </ProjectList>
             ) : (
@@ -55,16 +58,10 @@ export default function Projects({ projects, labels }: ProjectProps) {
     );
 }
 
-export const getStaticProps: GetStaticProps<ProjectProps> = async () => {
-    const projects = await getProjects();
-    const technologies = await getTechnologies();
-    const projectTypes = await getProjectTypes();
-    const labels: Array<Label> = shuffle([...technologies, ...projectTypes]);
+export const getStaticProps: GetStaticProps<GetProjectsPageQuery> = async () => {
+    const response = await graphCms.getProjectsPage();
     return {
-        props: {
-            projects,
-            labels,
-        },
+        props: response,
         revalidate: 10,
     };
 };

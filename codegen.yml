@@ -1,0 +1,12 @@
+overwrite: true
+schema: "${GRAPHCMS_CONTENT_API}"
+documents: "queries/*.graphql"
+generates:
+  ./utils/schema.ts:
+    plugins:
+      - "typescript"
+      - "typescript-operations"
+      - "typescript-graphql-request"
+  ./schema.graphql:
+    plugins:
+      - "schema-ast"

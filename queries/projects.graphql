@@ -1,0 +1,40 @@
+fragment ProjectSummary on Project {
+    name
+    slug
+    demoUrl
+    gitHubUrl
+    ctaMessage
+    image {
+        url
+    }
+    summary {
+        raw
+    }
+    technologies {
+        ... on Technology {
+            slug
+        }
+    }
+    type {
+        name
+        slug
+    }
+}
+
+query getProjectsPage {
+    page(where: { slug: "projects" }) {
+        title
+        description
+    }
+    technologies {
+        name
+        slug
+    }
+    projectTypes {
+        name
+        slug
+    }
+    projects {
+        ...ProjectSummary
+    }
+}

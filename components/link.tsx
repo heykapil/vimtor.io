@@ -3,7 +3,7 @@ import { CSSProperties, ReactNode } from "react";
 import { classNames } from "../utils/style";
 
 export interface LinkProps {
-    href: string;
+    href?: string;
     className?: string;
     children: ReactNode;
     style?: CSSProperties;
@@ -12,7 +12,7 @@ export interface LinkProps {
 
 function Link({ href, className, onClick, style, children }: LinkProps) {
     return (
-        <NextLink href={href}>
+        <NextLink href={href as string}>
             <a
                 onClick={onClick}
                 style={style}
