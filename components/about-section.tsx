@@ -21,13 +21,13 @@ function AboutSection() {
                         Teacher in fullstack at <Link href="https://nuclio.school/master-full-stack-developer/">Nuclio Digital School</Link>
                     </li>
                     <li>Doing freelance jobs from time to time</li>
-                    <li>Always learning</li>
+                    <li>Always, always, always learning</li>
                 </ul>
             </div>
             <SectionCTO>
-                If you are interested in my tech stack,
+                Feel free to check out my <Link href="/technologies">tech stack</Link>
                 <br />
-                you can check it out on <Link href="https://stackshare.io/vimtor/my-stack">stackshare.io</Link>
+                to know what technologies I use everyday
             </SectionCTO>
         </Section>
     );

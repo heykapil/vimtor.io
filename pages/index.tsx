@@ -14,8 +14,11 @@ import Link from "next/link";
 import Section from "../components/section/section";
 import { GetHomePageQuery } from "../utils/schema";
 
-export default function Home({ homePages }: GetHomePageQuery) {
-    const projects = homePages[0].projects;
+export default function Home({ page }: GetHomePageQuery) {
+    if (!page) {
+        return null;
+    }
+
     return (
         <Page title="Home" description="Personal website of Victor Navarro for portfolio and contact">
             <IntroSection />
@@ -26,7 +29,7 @@ export default function Home({ homePages }: GetHomePageQuery) {
                 </SectionTitle>
                 <SectionSubtitle>Some of the things I&apos;ve built</SectionSubtitle>
                 <ProjectList>
-                    {projects.map((project) => (
+                    {page.projects.map((project) => (
                         <ProjectItem key={project.slug} {...project} />
                     ))}
                 </ProjectList>

@@ -1,0 +1,19 @@
+fragment TechnologySummary on Technology {
+    name
+    slug
+    icon {
+        url(transformation: {image: {resize: {height: 200, width: 200}}})
+    }
+}
+
+query getTechnologiesPage {
+    page: technologiesPage(where: {id: "ckxkkludszium0b606slka2fd"}) {
+        levels {
+            name
+            description
+            technologies {
+                ...TechnologySummary
+            }
+        }
+    }
+}

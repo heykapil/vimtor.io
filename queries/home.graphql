@@ -1,5 +1,5 @@
 query getHomePage {
-    homePages(first: 1) {
+    page: homePage(where: {id: "ckxkjakzszahn0c96vu2zuy7j"}) {
         projects {
             ...ProjectSummary
         }

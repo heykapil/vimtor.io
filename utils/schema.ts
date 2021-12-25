@@ -1239,14 +1239,14 @@ export type Mutation = {
   createAsset?: Maybe<Asset>;
   /** Create one homePage */
   createHomePage?: Maybe<HomePage>;
-  /** Create one page */
-  createPage?: Maybe<Page>;
   /** Create one project */
   createProject?: Maybe<Project>;
   /** Create one projectType */
   createProjectType?: Maybe<ProjectType>;
   /** Create one scheduledRelease */
   createScheduledRelease?: Maybe<ScheduledRelease>;
+  /** Create one technologiesPage */
+  createTechnologiesPage?: Maybe<TechnologiesPage>;
   /** Create one technology */
   createTechnology?: Maybe<Technology>;
   /** Create one technologyLevel */
@@ -1270,13 +1270,6 @@ export type Mutation = {
   /** Delete many HomePage documents, return deleted documents */
   deleteManyHomePagesConnection: HomePageConnection;
   /**
-   * Delete many Page documents
-   * @deprecated Please use the new paginated many mutation (deleteManyPagesConnection)
-   */
-  deleteManyPages: BatchPayload;
-  /** Delete many Page documents, return deleted documents */
-  deleteManyPagesConnection: PageConnection;
-  /**
    * Delete many ProjectType documents
    * @deprecated Please use the new paginated many mutation (deleteManyProjectTypesConnection)
    */
@@ -1298,14 +1291,19 @@ export type Mutation = {
   /** Delete many Technology documents, return deleted documents */
   deleteManyTechnologiesConnection: TechnologyConnection;
   /**
+   * Delete many TechnologiesPage documents
+   * @deprecated Please use the new paginated many mutation (deleteManyTechnologiesPagesConnection)
+   */
+  deleteManyTechnologiesPages: BatchPayload;
+  /** Delete many TechnologiesPage documents, return deleted documents */
+  deleteManyTechnologiesPagesConnection: TechnologiesPageConnection;
+  /**
    * Delete many TechnologyLevel documents
    * @deprecated Please use the new paginated many mutation (deleteManyTechnologyLevelsConnection)
    */
   deleteManyTechnologyLevels: BatchPayload;
   /** Delete many TechnologyLevel documents, return deleted documents */
   deleteManyTechnologyLevelsConnection: TechnologyLevelConnection;
-  /** Delete one page from _all_ existing stages. Returns deleted document. */
-  deletePage?: Maybe<Page>;
   /** Delete one project from _all_ existing stages. Returns deleted document. */
   deleteProject?: Maybe<Project>;
   /** Delete one projectType from _all_ existing stages. Returns deleted document. */
@@ -1314,6 +1312,8 @@ export type Mutation = {
   deleteScheduledOperation?: Maybe<ScheduledOperation>;
   /** Delete one scheduledRelease from _all_ existing stages. Returns deleted document. */
   deleteScheduledRelease?: Maybe<ScheduledRelease>;
+  /** Delete one technologiesPage from _all_ existing stages. Returns deleted document. */
+  deleteTechnologiesPage?: Maybe<TechnologiesPage>;
   /** Delete one technology from _all_ existing stages. Returns deleted document. */
   deleteTechnology?: Maybe<Technology>;
   /** Delete one technologyLevel from _all_ existing stages. Returns deleted document. */
@@ -1337,13 +1337,6 @@ export type Mutation = {
   /** Publish many HomePage documents */
   publishManyHomePagesConnection: HomePageConnection;
   /**
-   * Publish many Page documents
-   * @deprecated Please use the new paginated many mutation (publishManyPagesConnection)
-   */
-  publishManyPages: BatchPayload;
-  /** Publish many Page documents */
-  publishManyPagesConnection: PageConnection;
-  /**
    * Publish many ProjectType documents
    * @deprecated Please use the new paginated many mutation (publishManyProjectTypesConnection)
    */
@@ -1365,18 +1358,25 @@ export type Mutation = {
   /** Publish many Technology documents */
   publishManyTechnologiesConnection: TechnologyConnection;
   /**
+   * Publish many TechnologiesPage documents
+   * @deprecated Please use the new paginated many mutation (publishManyTechnologiesPagesConnection)
+   */
+  publishManyTechnologiesPages: BatchPayload;
+  /** Publish many TechnologiesPage documents */
+  publishManyTechnologiesPagesConnection: TechnologiesPageConnection;
+  /**
    * Publish many TechnologyLevel documents
    * @deprecated Please use the new paginated many mutation (publishManyTechnologyLevelsConnection)
    */
   publishManyTechnologyLevels: BatchPayload;
   /** Publish many TechnologyLevel documents */
   publishManyTechnologyLevelsConnection: TechnologyLevelConnection;
-  /** Publish one page */
-  publishPage?: Maybe<Page>;
   /** Publish one project */
   publishProject?: Maybe<Project>;
   /** Publish one projectType */
   publishProjectType?: Maybe<ProjectType>;
+  /** Publish one technologiesPage */
+  publishTechnologiesPage?: Maybe<TechnologiesPage>;
   /** Publish one technology */
   publishTechnology?: Maybe<Technology>;
   /** Publish one technologyLevel */
@@ -1385,12 +1385,12 @@ export type Mutation = {
   schedulePublishAsset?: Maybe<Asset>;
   /** Schedule to publish one homePage */
   schedulePublishHomePage?: Maybe<HomePage>;
-  /** Schedule to publish one page */
-  schedulePublishPage?: Maybe<Page>;
   /** Schedule to publish one project */
   schedulePublishProject?: Maybe<Project>;
   /** Schedule to publish one projectType */
   schedulePublishProjectType?: Maybe<ProjectType>;
+  /** Schedule to publish one technologiesPage */
+  schedulePublishTechnologiesPage?: Maybe<TechnologiesPage>;
   /** Schedule to publish one technology */
   schedulePublishTechnology?: Maybe<Technology>;
   /** Schedule to publish one technologyLevel */
@@ -1399,12 +1399,12 @@ export type Mutation = {
   scheduleUnpublishAsset?: Maybe<Asset>;
   /** Unpublish one homePage from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
   scheduleUnpublishHomePage?: Maybe<HomePage>;
-  /** Unpublish one page from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
-  scheduleUnpublishPage?: Maybe<Page>;
   /** Unpublish one project from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
   scheduleUnpublishProject?: Maybe<Project>;
   /** Unpublish one projectType from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
   scheduleUnpublishProjectType?: Maybe<ProjectType>;
+  /** Unpublish one technologiesPage from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
+  scheduleUnpublishTechnologiesPage?: Maybe<TechnologiesPage>;
   /** Unpublish one technology from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
   scheduleUnpublishTechnology?: Maybe<Technology>;
   /** Unpublish one technologyLevel from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
@@ -1428,13 +1428,6 @@ export type Mutation = {
   /** Find many HomePage documents that match criteria in specified stage and unpublish from target stages */
   unpublishManyHomePagesConnection: HomePageConnection;
   /**
-   * Unpublish many Page documents
-   * @deprecated Please use the new paginated many mutation (unpublishManyPagesConnection)
-   */
-  unpublishManyPages: BatchPayload;
-  /** Find many Page documents that match criteria in specified stage and unpublish from target stages */
-  unpublishManyPagesConnection: PageConnection;
-  /**
    * Unpublish many ProjectType documents
    * @deprecated Please use the new paginated many mutation (unpublishManyProjectTypesConnection)
    */
@@ -1456,18 +1449,25 @@ export type Mutation = {
   /** Find many Technology documents that match criteria in specified stage and unpublish from target stages */
   unpublishManyTechnologiesConnection: TechnologyConnection;
   /**
+   * Unpublish many TechnologiesPage documents
+   * @deprecated Please use the new paginated many mutation (unpublishManyTechnologiesPagesConnection)
+   */
+  unpublishManyTechnologiesPages: BatchPayload;
+  /** Find many TechnologiesPage documents that match criteria in specified stage and unpublish from target stages */
+  unpublishManyTechnologiesPagesConnection: TechnologiesPageConnection;
+  /**
    * Unpublish many TechnologyLevel documents
    * @deprecated Please use the new paginated many mutation (unpublishManyTechnologyLevelsConnection)
    */
   unpublishManyTechnologyLevels: BatchPayload;
   /** Find many TechnologyLevel documents that match criteria in specified stage and unpublish from target stages */
   unpublishManyTechnologyLevelsConnection: TechnologyLevelConnection;
-  /** Unpublish one page from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
-  unpublishPage?: Maybe<Page>;
   /** Unpublish one project from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
   unpublishProject?: Maybe<Project>;
   /** Unpublish one projectType from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
   unpublishProjectType?: Maybe<ProjectType>;
+  /** Unpublish one technologiesPage from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
+  unpublishTechnologiesPage?: Maybe<TechnologiesPage>;
   /** Unpublish one technology from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
   unpublishTechnology?: Maybe<Technology>;
   /** Unpublish one technologyLevel from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
@@ -1491,13 +1491,6 @@ export type Mutation = {
   /** Update many HomePage documents */
   updateManyHomePagesConnection: HomePageConnection;
   /**
-   * Update many pages
-   * @deprecated Please use the new paginated many mutation (updateManyPagesConnection)
-   */
-  updateManyPages: BatchPayload;
-  /** Update many Page documents */
-  updateManyPagesConnection: PageConnection;
-  /**
    * Update many projectTypes
    * @deprecated Please use the new paginated many mutation (updateManyProjectTypesConnection)
    */
@@ -1519,20 +1512,27 @@ export type Mutation = {
   /** Update many Technology documents */
   updateManyTechnologiesConnection: TechnologyConnection;
   /**
+   * Update many technologiesPages
+   * @deprecated Please use the new paginated many mutation (updateManyTechnologiesPagesConnection)
+   */
+  updateManyTechnologiesPages: BatchPayload;
+  /** Update many TechnologiesPage documents */
+  updateManyTechnologiesPagesConnection: TechnologiesPageConnection;
+  /**
    * Update many technologyLevels
    * @deprecated Please use the new paginated many mutation (updateManyTechnologyLevelsConnection)
    */
   updateManyTechnologyLevels: BatchPayload;
   /** Update many TechnologyLevel documents */
   updateManyTechnologyLevelsConnection: TechnologyLevelConnection;
-  /** Update one page */
-  updatePage?: Maybe<Page>;
   /** Update one project */
   updateProject?: Maybe<Project>;
   /** Update one projectType */
   updateProjectType?: Maybe<ProjectType>;
   /** Update one scheduledRelease */
   updateScheduledRelease?: Maybe<ScheduledRelease>;
+  /** Update one technologiesPage */
+  updateTechnologiesPage?: Maybe<TechnologiesPage>;
   /** Update one technology */
   updateTechnology?: Maybe<Technology>;
   /** Update one technologyLevel */
@@ -1541,12 +1541,12 @@ export type Mutation = {
   upsertAsset?: Maybe<Asset>;
   /** Upsert one homePage */
   upsertHomePage?: Maybe<HomePage>;
-  /** Upsert one page */
-  upsertPage?: Maybe<Page>;
   /** Upsert one project */
   upsertProject?: Maybe<Project>;
   /** Upsert one projectType */
   upsertProjectType?: Maybe<ProjectType>;
+  /** Upsert one technologiesPage */
+  upsertTechnologiesPage?: Maybe<TechnologiesPage>;
   /** Upsert one technology */
   upsertTechnology?: Maybe<Technology>;
   /** Upsert one technologyLevel */
@@ -1564,11 +1564,6 @@ export type MutationCreateHomePageArgs = {
 };
 
 
-export type MutationCreatePageArgs = {
-  data: PageCreateInput;
-};
-
-
 export type MutationCreateProjectArgs = {
   data: ProjectCreateInput;
 };
@@ -1581,6 +1576,11 @@ export type MutationCreateProjectTypeArgs = {
 
 export type MutationCreateScheduledReleaseArgs = {
   data: ScheduledReleaseCreateInput;
+};
+
+
+export type MutationCreateTechnologiesPageArgs = {
+  data: TechnologiesPageCreateInput;
 };
 
 
@@ -1634,21 +1634,6 @@ export type MutationDeleteManyHomePagesConnectionArgs = {
 };
 
 
-export type MutationDeleteManyPagesArgs = {
-  where?: InputMaybe<PageManyWhereInput>;
-};
-
-
-export type MutationDeleteManyPagesConnectionArgs = {
-  after?: InputMaybe<Scalars['ID']>;
-  before?: InputMaybe<Scalars['ID']>;
-  first?: InputMaybe<Scalars['Int']>;
-  last?: InputMaybe<Scalars['Int']>;
-  skip?: InputMaybe<Scalars['Int']>;
-  where?: InputMaybe<PageManyWhereInput>;
-};
-
-
 export type MutationDeleteManyProjectTypesArgs = {
   where?: InputMaybe<ProjectTypeManyWhereInput>;
 };
@@ -1694,6 +1679,21 @@ export type MutationDeleteManyTechnologiesConnectionArgs = {
 };
 
 
+export type MutationDeleteManyTechnologiesPagesArgs = {
+  where?: InputMaybe<TechnologiesPageManyWhereInput>;
+};
+
+
+export type MutationDeleteManyTechnologiesPagesConnectionArgs = {
+  after?: InputMaybe<Scalars['ID']>;
+  before?: InputMaybe<Scalars['ID']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  skip?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<TechnologiesPageManyWhereInput>;
+};
+
+
 export type MutationDeleteManyTechnologyLevelsArgs = {
   where?: InputMaybe<TechnologyLevelManyWhereInput>;
 };
@@ -1706,11 +1706,6 @@ export type MutationDeleteManyTechnologyLevelsConnectionArgs = {
   last?: InputMaybe<Scalars['Int']>;
   skip?: InputMaybe<Scalars['Int']>;
   where?: InputMaybe<TechnologyLevelManyWhereInput>;
-};
-
-
-export type MutationDeletePageArgs = {
-  where: PageWhereUniqueInput;
 };
 
 
@@ -1731,6 +1726,11 @@ export type MutationDeleteScheduledOperationArgs = {
 
 export type MutationDeleteScheduledReleaseArgs = {
   where: ScheduledReleaseWhereUniqueInput;
+};
+
+
+export type MutationDeleteTechnologiesPageArgs = {
+  where: TechnologiesPageWhereUniqueInput;
 };
 
 
@@ -1798,30 +1798,6 @@ export type MutationPublishManyHomePagesConnectionArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   to?: Array<Stage>;
   where?: InputMaybe<HomePageManyWhereInput>;
-};
-
-
-export type MutationPublishManyPagesArgs = {
-  locales?: InputMaybe<Array<Locale>>;
-  publishBase?: InputMaybe<Scalars['Boolean']>;
-  to?: Array<Stage>;
-  where?: InputMaybe<PageManyWhereInput>;
-  withDefaultLocale?: InputMaybe<Scalars['Boolean']>;
-};
-
-
-export type MutationPublishManyPagesConnectionArgs = {
-  after?: InputMaybe<Scalars['ID']>;
-  before?: InputMaybe<Scalars['ID']>;
-  first?: InputMaybe<Scalars['Int']>;
-  from?: InputMaybe<Stage>;
-  last?: InputMaybe<Scalars['Int']>;
-  locales?: InputMaybe<Array<Locale>>;
-  publishBase?: InputMaybe<Scalars['Boolean']>;
-  skip?: InputMaybe<Scalars['Int']>;
-  to?: Array<Stage>;
-  where?: InputMaybe<PageManyWhereInput>;
-  withDefaultLocale?: InputMaybe<Scalars['Boolean']>;
 };
 
 
@@ -1897,6 +1873,24 @@ export type MutationPublishManyTechnologiesConnectionArgs = {
 };
 
 
+export type MutationPublishManyTechnologiesPagesArgs = {
+  to?: Array<Stage>;
+  where?: InputMaybe<TechnologiesPageManyWhereInput>;
+};
+
+
+export type MutationPublishManyTechnologiesPagesConnectionArgs = {
+  after?: InputMaybe<Scalars['ID']>;
+  before?: InputMaybe<Scalars['ID']>;
+  first?: InputMaybe<Scalars['Int']>;
+  from?: InputMaybe<Stage>;
+  last?: InputMaybe<Scalars['Int']>;
+  skip?: InputMaybe<Scalars['Int']>;
+  to?: Array<Stage>;
+  where?: InputMaybe<TechnologiesPageManyWhereInput>;
+};
+
+
 export type MutationPublishManyTechnologyLevelsArgs = {
   locales?: InputMaybe<Array<Locale>>;
   publishBase?: InputMaybe<Scalars['Boolean']>;
@@ -1921,15 +1915,6 @@ export type MutationPublishManyTechnologyLevelsConnectionArgs = {
 };
 
 
-export type MutationPublishPageArgs = {
-  locales?: InputMaybe<Array<Locale>>;
-  publishBase?: InputMaybe<Scalars['Boolean']>;
-  to?: Array<Stage>;
-  where: PageWhereUniqueInput;
-  withDefaultLocale?: InputMaybe<Scalars['Boolean']>;
-};
-
-
 export type MutationPublishProjectArgs = {
   locales?: InputMaybe<Array<Locale>>;
   publishBase?: InputMaybe<Scalars['Boolean']>;
@@ -1945,6 +1930,12 @@ export type MutationPublishProjectTypeArgs = {
   to?: Array<Stage>;
   where: ProjectTypeWhereUniqueInput;
   withDefaultLocale?: InputMaybe<Scalars['Boolean']>;
+};
+
+
+export type MutationPublishTechnologiesPageArgs = {
+  to?: Array<Stage>;
+  where: TechnologiesPageWhereUniqueInput;
 };
 
 
@@ -1985,17 +1976,6 @@ export type MutationSchedulePublishHomePageArgs = {
 };
 
 
-export type MutationSchedulePublishPageArgs = {
-  locales?: InputMaybe<Array<Locale>>;
-  publishBase?: InputMaybe<Scalars['Boolean']>;
-  releaseAt?: InputMaybe<Scalars['DateTime']>;
-  releaseId?: InputMaybe<Scalars['String']>;
-  to?: Array<Stage>;
-  where: PageWhereUniqueInput;
-  withDefaultLocale?: InputMaybe<Scalars['Boolean']>;
-};
-
-
 export type MutationSchedulePublishProjectArgs = {
   locales?: InputMaybe<Array<Locale>>;
   publishBase?: InputMaybe<Scalars['Boolean']>;
@@ -2015,6 +1995,14 @@ export type MutationSchedulePublishProjectTypeArgs = {
   to?: Array<Stage>;
   where: ProjectTypeWhereUniqueInput;
   withDefaultLocale?: InputMaybe<Scalars['Boolean']>;
+};
+
+
+export type MutationSchedulePublishTechnologiesPageArgs = {
+  releaseAt?: InputMaybe<Scalars['DateTime']>;
+  releaseId?: InputMaybe<Scalars['String']>;
+  to?: Array<Stage>;
+  where: TechnologiesPageWhereUniqueInput;
 };
 
 
@@ -2058,16 +2046,6 @@ export type MutationScheduleUnpublishHomePageArgs = {
 };
 
 
-export type MutationScheduleUnpublishPageArgs = {
-  from?: Array<Stage>;
-  locales?: InputMaybe<Array<Locale>>;
-  releaseAt?: InputMaybe<Scalars['DateTime']>;
-  releaseId?: InputMaybe<Scalars['String']>;
-  unpublishBase?: InputMaybe<Scalars['Boolean']>;
-  where: PageWhereUniqueInput;
-};
-
-
 export type MutationScheduleUnpublishProjectArgs = {
   from?: Array<Stage>;
   locales?: InputMaybe<Array<Locale>>;
@@ -2085,6 +2063,14 @@ export type MutationScheduleUnpublishProjectTypeArgs = {
   releaseId?: InputMaybe<Scalars['String']>;
   unpublishBase?: InputMaybe<Scalars['Boolean']>;
   where: ProjectTypeWhereUniqueInput;
+};
+
+
+export type MutationScheduleUnpublishTechnologiesPageArgs = {
+  from?: Array<Stage>;
+  releaseAt?: InputMaybe<Scalars['DateTime']>;
+  releaseId?: InputMaybe<Scalars['String']>;
+  where: TechnologiesPageWhereUniqueInput;
 };
 
 
@@ -2162,28 +2148,6 @@ export type MutationUnpublishManyHomePagesConnectionArgs = {
 };
 
 
-export type MutationUnpublishManyPagesArgs = {
-  from?: Array<Stage>;
-  locales?: InputMaybe<Array<Locale>>;
-  unpublishBase?: InputMaybe<Scalars['Boolean']>;
-  where?: InputMaybe<PageManyWhereInput>;
-};
-
-
-export type MutationUnpublishManyPagesConnectionArgs = {
-  after?: InputMaybe<Scalars['ID']>;
-  before?: InputMaybe<Scalars['ID']>;
-  first?: InputMaybe<Scalars['Int']>;
-  from?: Array<Stage>;
-  last?: InputMaybe<Scalars['Int']>;
-  locales?: InputMaybe<Array<Locale>>;
-  skip?: InputMaybe<Scalars['Int']>;
-  stage?: InputMaybe<Stage>;
-  unpublishBase?: InputMaybe<Scalars['Boolean']>;
-  where?: InputMaybe<PageManyWhereInput>;
-};
-
-
 export type MutationUnpublishManyProjectTypesArgs = {
   from?: Array<Stage>;
   locales?: InputMaybe<Array<Locale>>;
@@ -2250,6 +2214,24 @@ export type MutationUnpublishManyTechnologiesConnectionArgs = {
 };
 
 
+export type MutationUnpublishManyTechnologiesPagesArgs = {
+  from?: Array<Stage>;
+  where?: InputMaybe<TechnologiesPageManyWhereInput>;
+};
+
+
+export type MutationUnpublishManyTechnologiesPagesConnectionArgs = {
+  after?: InputMaybe<Scalars['ID']>;
+  before?: InputMaybe<Scalars['ID']>;
+  first?: InputMaybe<Scalars['Int']>;
+  from?: Array<Stage>;
+  last?: InputMaybe<Scalars['Int']>;
+  skip?: InputMaybe<Scalars['Int']>;
+  stage?: InputMaybe<Stage>;
+  where?: InputMaybe<TechnologiesPageManyWhereInput>;
+};
+
+
 export type MutationUnpublishManyTechnologyLevelsArgs = {
   from?: Array<Stage>;
   locales?: InputMaybe<Array<Locale>>;
@@ -2272,14 +2254,6 @@ export type MutationUnpublishManyTechnologyLevelsConnectionArgs = {
 };
 
 
-export type MutationUnpublishPageArgs = {
-  from?: Array<Stage>;
-  locales?: InputMaybe<Array<Locale>>;
-  unpublishBase?: InputMaybe<Scalars['Boolean']>;
-  where: PageWhereUniqueInput;
-};
-
-
 export type MutationUnpublishProjectArgs = {
   from?: Array<Stage>;
   locales?: InputMaybe<Array<Locale>>;
@@ -2293,6 +2267,12 @@ export type MutationUnpublishProjectTypeArgs = {
   locales?: InputMaybe<Array<Locale>>;
   unpublishBase?: InputMaybe<Scalars['Boolean']>;
   where: ProjectTypeWhereUniqueInput;
+};
+
+
+export type MutationUnpublishTechnologiesPageArgs = {
+  from?: Array<Stage>;
+  where: TechnologiesPageWhereUniqueInput;
 };
 
 
@@ -2358,23 +2338,6 @@ export type MutationUpdateManyHomePagesConnectionArgs = {
 };
 
 
-export type MutationUpdateManyPagesArgs = {
-  data: PageUpdateManyInput;
-  where?: InputMaybe<PageManyWhereInput>;
-};
-
-
-export type MutationUpdateManyPagesConnectionArgs = {
-  after?: InputMaybe<Scalars['ID']>;
-  before?: InputMaybe<Scalars['ID']>;
-  data: PageUpdateManyInput;
-  first?: InputMaybe<Scalars['Int']>;
-  last?: InputMaybe<Scalars['Int']>;
-  skip?: InputMaybe<Scalars['Int']>;
-  where?: InputMaybe<PageManyWhereInput>;
-};
-
-
 export type MutationUpdateManyProjectTypesArgs = {
   data: ProjectTypeUpdateManyInput;
   where?: InputMaybe<ProjectTypeManyWhereInput>;
@@ -2426,6 +2389,23 @@ export type MutationUpdateManyTechnologiesConnectionArgs = {
 };
 
 
+export type MutationUpdateManyTechnologiesPagesArgs = {
+  data: TechnologiesPageUpdateManyInput;
+  where?: InputMaybe<TechnologiesPageManyWhereInput>;
+};
+
+
+export type MutationUpdateManyTechnologiesPagesConnectionArgs = {
+  after?: InputMaybe<Scalars['ID']>;
+  before?: InputMaybe<Scalars['ID']>;
+  data: TechnologiesPageUpdateManyInput;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  skip?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<TechnologiesPageManyWhereInput>;
+};
+
+
 export type MutationUpdateManyTechnologyLevelsArgs = {
   data: TechnologyLevelUpdateManyInput;
   where?: InputMaybe<TechnologyLevelManyWhereInput>;
@@ -2440,12 +2420,6 @@ export type MutationUpdateManyTechnologyLevelsConnectionArgs = {
   last?: InputMaybe<Scalars['Int']>;
   skip?: InputMaybe<Scalars['Int']>;
   where?: InputMaybe<TechnologyLevelManyWhereInput>;
-};
-
-
-export type MutationUpdatePageArgs = {
-  data: PageUpdateInput;
-  where: PageWhereUniqueInput;
 };
 
 
@@ -2464,6 +2438,12 @@ export type MutationUpdateProjectTypeArgs = {
 export type MutationUpdateScheduledReleaseArgs = {
   data: ScheduledReleaseUpdateInput;
   where: ScheduledReleaseWhereUniqueInput;
+};
+
+
+export type MutationUpdateTechnologiesPageArgs = {
+  data: TechnologiesPageUpdateInput;
+  where: TechnologiesPageWhereUniqueInput;
 };
 
 
@@ -2491,12 +2471,6 @@ export type MutationUpsertHomePageArgs = {
 };
 
 
-export type MutationUpsertPageArgs = {
-  upsert: PageUpsertInput;
-  where: PageWhereUniqueInput;
-};
-
-
 export type MutationUpsertProjectArgs = {
   upsert: ProjectUpsertInput;
   where: ProjectWhereUniqueInput;
@@ -2506,6 +2480,12 @@ export type MutationUpsertProjectArgs = {
 export type MutationUpsertProjectTypeArgs = {
   upsert: ProjectTypeUpsertInput;
   where: ProjectTypeWhereUniqueInput;
+};
+
+
+export type MutationUpsertTechnologiesPageArgs = {
+  upsert: TechnologiesPageUpsertInput;
+  where: TechnologiesPageWhereUniqueInput;
 };
 
 
@@ -2528,169 +2508,6 @@ export type Node = {
   stage: Stage;
 };
 
-export type Page = Node & {
-  __typename?: 'Page';
-  /** The time the document was created */
-  createdAt: Scalars['DateTime'];
-  /** User that created this document */
-  createdBy?: Maybe<User>;
-  description: Scalars['String'];
-  /** Get the document in other stages */
-  documentInStages: Array<Page>;
-  /** List of Page versions */
-  history: Array<Version>;
-  /** The unique identifier */
-  id: Scalars['ID'];
-  /** System Locale field */
-  locale: Locale;
-  /** Get the other localizations for this document */
-  localizations: Array<Page>;
-  /** The time the document was published. Null on documents in draft stage. */
-  publishedAt?: Maybe<Scalars['DateTime']>;
-  /** User that last published this document */
-  publishedBy?: Maybe<User>;
-  scheduledIn: Array<ScheduledOperation>;
-  slug: Scalars['String'];
-  /** System stage field */
-  stage: Stage;
-  title: Scalars['String'];
-  /** The time the document was updated */
-  updatedAt: Scalars['DateTime'];
-  /** User that last updated this document */
-  updatedBy?: Maybe<User>;
-};
-
-
-export type PageCreatedAtArgs = {
-  variation?: SystemDateTimeFieldVariation;
-};
-
-
-export type PageCreatedByArgs = {
-  locales?: InputMaybe<Array<Locale>>;
-};
-
-
-export type PageDocumentInStagesArgs = {
-  includeCurrent?: Scalars['Boolean'];
-  inheritLocale?: Scalars['Boolean'];
-  stages?: Array<Stage>;
-};
-
-
-export type PageHistoryArgs = {
-  limit?: Scalars['Int'];
-  skip?: Scalars['Int'];
-  stageOverride?: InputMaybe<Stage>;
-};
-
-
-export type PageLocalizationsArgs = {
-  includeCurrent?: Scalars['Boolean'];
-  locales?: Array<Locale>;
-};
-
-
-export type PagePublishedAtArgs = {
-  variation?: SystemDateTimeFieldVariation;
-};
-
-
-export type PagePublishedByArgs = {
-  locales?: InputMaybe<Array<Locale>>;
-};
-
-
-export type PageScheduledInArgs = {
-  after?: InputMaybe<Scalars['String']>;
-  before?: InputMaybe<Scalars['String']>;
-  first?: InputMaybe<Scalars['Int']>;
-  last?: InputMaybe<Scalars['Int']>;
-  locales?: InputMaybe<Array<Locale>>;
-  skip?: InputMaybe<Scalars['Int']>;
-  where?: InputMaybe<ScheduledOperationWhereInput>;
-};
-
-
-export type PageUpdatedAtArgs = {
-  variation?: SystemDateTimeFieldVariation;
-};
-
-
-export type PageUpdatedByArgs = {
-  locales?: InputMaybe<Array<Locale>>;
-};
-
-export type PageConnectInput = {
-  /** Allow to specify document position in list of connected documents, will default to appending at end of list */
-  position?: InputMaybe<ConnectPositionInput>;
-  /** Document to connect */
-  where: PageWhereUniqueInput;
-};
-
-/** A connection to a list of items. */
-export type PageConnection = {
-  __typename?: 'PageConnection';
-  aggregate: Aggregate;
-  /** A list of edges. */
-  edges: Array<PageEdge>;
-  /** Information to aid in pagination. */
-  pageInfo: PageInfo;
-};
-
-export type PageCreateInput = {
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  /** description input for default locale (en) */
-  description: Scalars['String'];
-  /** Inline mutations for managing document localizations excluding the default locale */
-  localizations?: InputMaybe<PageCreateLocalizationsInput>;
-  slug: Scalars['String'];
-  /** title input for default locale (en) */
-  title: Scalars['String'];
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
-};
-
-export type PageCreateLocalizationDataInput = {
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  description: Scalars['String'];
-  title: Scalars['String'];
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
-};
-
-export type PageCreateLocalizationInput = {
-  /** Localization input */
-  data: PageCreateLocalizationDataInput;
-  locale: Locale;
-};
-
-export type PageCreateLocalizationsInput = {
-  /** Create localizations for the newly-created document */
-  create?: InputMaybe<Array<PageCreateLocalizationInput>>;
-};
-
-export type PageCreateManyInlineInput = {
-  /** Connect multiple existing Page documents */
-  connect?: InputMaybe<Array<PageWhereUniqueInput>>;
-  /** Create and connect multiple existing Page documents */
-  create?: InputMaybe<Array<PageCreateInput>>;
-};
-
-export type PageCreateOneInlineInput = {
-  /** Connect one existing Page document */
-  connect?: InputMaybe<PageWhereUniqueInput>;
-  /** Create and connect one Page document */
-  create?: InputMaybe<PageCreateInput>;
-};
-
-/** An edge in a connection. */
-export type PageEdge = {
-  __typename?: 'PageEdge';
-  /** A cursor for use in pagination. */
-  cursor: Scalars['String'];
-  /** The item at the end of the edge. */
-  node: Page;
-};
-
 /** Information about pagination in a connection. */
 export type PageInfo = {
   __typename?: 'PageInfo';
@@ -2704,389 +2521,6 @@ export type PageInfo = {
   pageSize?: Maybe<Scalars['Int']>;
   /** When paginating backwards, the cursor to continue. */
   startCursor?: Maybe<Scalars['String']>;
-};
-
-/** Identifies documents */
-export type PageManyWhereInput = {
-  /** Logical AND on all given filters. */
-  AND?: InputMaybe<Array<PageWhereInput>>;
-  /** Logical NOT on all given filters combined by AND. */
-  NOT?: InputMaybe<Array<PageWhereInput>>;
-  /** Logical OR on all given filters. */
-  OR?: InputMaybe<Array<PageWhereInput>>;
-  /** Contains search across all appropriate fields. */
-  _search?: InputMaybe<Scalars['String']>;
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  /** All values greater than the given value. */
-  createdAt_gt?: InputMaybe<Scalars['DateTime']>;
-  /** All values greater than or equal the given value. */
-  createdAt_gte?: InputMaybe<Scalars['DateTime']>;
-  /** All values that are contained in given list. */
-  createdAt_in?: InputMaybe<Array<Scalars['DateTime']>>;
-  /** All values less than the given value. */
-  createdAt_lt?: InputMaybe<Scalars['DateTime']>;
-  /** All values less than or equal the given value. */
-  createdAt_lte?: InputMaybe<Scalars['DateTime']>;
-  /** All values that are not equal to given value. */
-  createdAt_not?: InputMaybe<Scalars['DateTime']>;
-  /** All values that are not contained in given list. */
-  createdAt_not_in?: InputMaybe<Array<Scalars['DateTime']>>;
-  createdBy?: InputMaybe<UserWhereInput>;
-  id?: InputMaybe<Scalars['ID']>;
-  /** All values containing the given string. */
-  id_contains?: InputMaybe<Scalars['ID']>;
-  /** All values ending with the given string. */
-  id_ends_with?: InputMaybe<Scalars['ID']>;
-  /** All values that are contained in given list. */
-  id_in?: InputMaybe<Array<Scalars['ID']>>;
-  /** All values that are not equal to given value. */
-  id_not?: InputMaybe<Scalars['ID']>;
-  /** All values not containing the given string. */
-  id_not_contains?: InputMaybe<Scalars['ID']>;
-  /** All values not ending with the given string */
-  id_not_ends_with?: InputMaybe<Scalars['ID']>;
-  /** All values that are not contained in given list. */
-  id_not_in?: InputMaybe<Array<Scalars['ID']>>;
-  /** All values not starting with the given string. */
-  id_not_starts_with?: InputMaybe<Scalars['ID']>;
-  /** All values starting with the given string. */
-  id_starts_with?: InputMaybe<Scalars['ID']>;
-  publishedAt?: InputMaybe<Scalars['DateTime']>;
-  /** All values greater than the given value. */
-  publishedAt_gt?: InputMaybe<Scalars['DateTime']>;
-  /** All values greater than or equal the given value. */
-  publishedAt_gte?: InputMaybe<Scalars['DateTime']>;
-  /** All values that are contained in given list. */
-  publishedAt_in?: InputMaybe<Array<Scalars['DateTime']>>;
-  /** All values less than the given value. */
-  publishedAt_lt?: InputMaybe<Scalars['DateTime']>;
-  /** All values less than or equal the given value. */
-  publishedAt_lte?: InputMaybe<Scalars['DateTime']>;
-  /** All values that are not equal to given value. */
-  publishedAt_not?: InputMaybe<Scalars['DateTime']>;
-  /** All values that are not contained in given list. */
-  publishedAt_not_in?: InputMaybe<Array<Scalars['DateTime']>>;
-  publishedBy?: InputMaybe<UserWhereInput>;
-  scheduledIn_every?: InputMaybe<ScheduledOperationWhereInput>;
-  scheduledIn_none?: InputMaybe<ScheduledOperationWhereInput>;
-  scheduledIn_some?: InputMaybe<ScheduledOperationWhereInput>;
-  slug?: InputMaybe<Scalars['String']>;
-  /** All values containing the given string. */
-  slug_contains?: InputMaybe<Scalars['String']>;
-  /** All values ending with the given string. */
-  slug_ends_with?: InputMaybe<Scalars['String']>;
-  /** All values that are contained in given list. */
-  slug_in?: InputMaybe<Array<Scalars['String']>>;
-  /** All values that are not equal to given value. */
-  slug_not?: InputMaybe<Scalars['String']>;
-  /** All values not containing the given string. */
-  slug_not_contains?: InputMaybe<Scalars['String']>;
-  /** All values not ending with the given string */
-  slug_not_ends_with?: InputMaybe<Scalars['String']>;
-  /** All values that are not contained in given list. */
-  slug_not_in?: InputMaybe<Array<Scalars['String']>>;
-  /** All values not starting with the given string. */
-  slug_not_starts_with?: InputMaybe<Scalars['String']>;
-  /** All values starting with the given string. */
-  slug_starts_with?: InputMaybe<Scalars['String']>;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
-  /** All values greater than the given value. */
-  updatedAt_gt?: InputMaybe<Scalars['DateTime']>;
-  /** All values greater than or equal the given value. */
-  updatedAt_gte?: InputMaybe<Scalars['DateTime']>;
-  /** All values that are contained in given list. */
-  updatedAt_in?: InputMaybe<Array<Scalars['DateTime']>>;
-  /** All values less than the given value. */
-  updatedAt_lt?: InputMaybe<Scalars['DateTime']>;
-  /** All values less than or equal the given value. */
-  updatedAt_lte?: InputMaybe<Scalars['DateTime']>;
-  /** All values that are not equal to given value. */
-  updatedAt_not?: InputMaybe<Scalars['DateTime']>;
-  /** All values that are not contained in given list. */
-  updatedAt_not_in?: InputMaybe<Array<Scalars['DateTime']>>;
-  updatedBy?: InputMaybe<UserWhereInput>;
-};
-
-export enum PageOrderByInput {
-  CreatedAtAsc = 'createdAt_ASC',
-  CreatedAtDesc = 'createdAt_DESC',
-  DescriptionAsc = 'description_ASC',
-  DescriptionDesc = 'description_DESC',
-  IdAsc = 'id_ASC',
-  IdDesc = 'id_DESC',
-  PublishedAtAsc = 'publishedAt_ASC',
-  PublishedAtDesc = 'publishedAt_DESC',
-  SlugAsc = 'slug_ASC',
-  SlugDesc = 'slug_DESC',
-  TitleAsc = 'title_ASC',
-  TitleDesc = 'title_DESC',
-  UpdatedAtAsc = 'updatedAt_ASC',
-  UpdatedAtDesc = 'updatedAt_DESC'
-}
-
-export type PageUpdateInput = {
-  /** description input for default locale (en) */
-  description?: InputMaybe<Scalars['String']>;
-  /** Manage document localizations */
-  localizations?: InputMaybe<PageUpdateLocalizationsInput>;
-  slug?: InputMaybe<Scalars['String']>;
-  /** title input for default locale (en) */
-  title?: InputMaybe<Scalars['String']>;
-};
-
-export type PageUpdateLocalizationDataInput = {
-  description?: InputMaybe<Scalars['String']>;
-  title?: InputMaybe<Scalars['String']>;
-};
-
-export type PageUpdateLocalizationInput = {
-  data: PageUpdateLocalizationDataInput;
-  locale: Locale;
-};
-
-export type PageUpdateLocalizationsInput = {
-  /** Localizations to create */
-  create?: InputMaybe<Array<PageCreateLocalizationInput>>;
-  /** Localizations to delete */
-  delete?: InputMaybe<Array<Locale>>;
-  /** Localizations to update */
-  update?: InputMaybe<Array<PageUpdateLocalizationInput>>;
-  upsert?: InputMaybe<Array<PageUpsertLocalizationInput>>;
-};
-
-export type PageUpdateManyInlineInput = {
-  /** Connect multiple existing Page documents */
-  connect?: InputMaybe<Array<PageConnectInput>>;
-  /** Create and connect multiple Page documents */
-  create?: InputMaybe<Array<PageCreateInput>>;
-  /** Delete multiple Page documents */
-  delete?: InputMaybe<Array<PageWhereUniqueInput>>;
-  /** Disconnect multiple Page documents */
-  disconnect?: InputMaybe<Array<PageWhereUniqueInput>>;
-  /** Override currently-connected documents with multiple existing Page documents */
-  set?: InputMaybe<Array<PageWhereUniqueInput>>;
-  /** Update multiple Page documents */
-  update?: InputMaybe<Array<PageUpdateWithNestedWhereUniqueInput>>;
-  /** Upsert multiple Page documents */
-  upsert?: InputMaybe<Array<PageUpsertWithNestedWhereUniqueInput>>;
-};
-
-export type PageUpdateManyInput = {
-  /** description input for default locale (en) */
-  description?: InputMaybe<Scalars['String']>;
-  /** Optional updates to localizations */
-  localizations?: InputMaybe<PageUpdateManyLocalizationsInput>;
-  /** title input for default locale (en) */
-  title?: InputMaybe<Scalars['String']>;
-};
-
-export type PageUpdateManyLocalizationDataInput = {
-  description?: InputMaybe<Scalars['String']>;
-  title?: InputMaybe<Scalars['String']>;
-};
-
-export type PageUpdateManyLocalizationInput = {
-  data: PageUpdateManyLocalizationDataInput;
-  locale: Locale;
-};
-
-export type PageUpdateManyLocalizationsInput = {
-  /** Localizations to update */
-  update?: InputMaybe<Array<PageUpdateManyLocalizationInput>>;
-};
-
-export type PageUpdateManyWithNestedWhereInput = {
-  /** Update many input */
-  data: PageUpdateManyInput;
-  /** Document search */
-  where: PageWhereInput;
-};
-
-export type PageUpdateOneInlineInput = {
-  /** Connect existing Page document */
-  connect?: InputMaybe<PageWhereUniqueInput>;
-  /** Create and connect one Page document */
-  create?: InputMaybe<PageCreateInput>;
-  /** Delete currently connected Page document */
-  delete?: InputMaybe<Scalars['Boolean']>;
-  /** Disconnect currently connected Page document */
-  disconnect?: InputMaybe<Scalars['Boolean']>;
-  /** Update single Page document */
-  update?: InputMaybe<PageUpdateWithNestedWhereUniqueInput>;
-  /** Upsert single Page document */
-  upsert?: InputMaybe<PageUpsertWithNestedWhereUniqueInput>;
-};
-
-export type PageUpdateWithNestedWhereUniqueInput = {
-  /** Document to update */
-  data: PageUpdateInput;
-  /** Unique document search */
-  where: PageWhereUniqueInput;
-};
-
-export type PageUpsertInput = {
-  /** Create document if it didn't exist */
-  create: PageCreateInput;
-  /** Update document if it exists */
-  update: PageUpdateInput;
-};
-
-export type PageUpsertLocalizationInput = {
-  create: PageCreateLocalizationDataInput;
-  locale: Locale;
-  update: PageUpdateLocalizationDataInput;
-};
-
-export type PageUpsertWithNestedWhereUniqueInput = {
-  /** Upsert data */
-  data: PageUpsertInput;
-  /** Unique document search */
-  where: PageWhereUniqueInput;
-};
-
-/** Identifies documents */
-export type PageWhereInput = {
-  /** Logical AND on all given filters. */
-  AND?: InputMaybe<Array<PageWhereInput>>;
-  /** Logical NOT on all given filters combined by AND. */
-  NOT?: InputMaybe<Array<PageWhereInput>>;
-  /** Logical OR on all given filters. */
-  OR?: InputMaybe<Array<PageWhereInput>>;
-  /** Contains search across all appropriate fields. */
-  _search?: InputMaybe<Scalars['String']>;
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  /** All values greater than the given value. */
-  createdAt_gt?: InputMaybe<Scalars['DateTime']>;
-  /** All values greater than or equal the given value. */
-  createdAt_gte?: InputMaybe<Scalars['DateTime']>;
-  /** All values that are contained in given list. */
-  createdAt_in?: InputMaybe<Array<Scalars['DateTime']>>;
-  /** All values less than the given value. */
-  createdAt_lt?: InputMaybe<Scalars['DateTime']>;
-  /** All values less than or equal the given value. */
-  createdAt_lte?: InputMaybe<Scalars['DateTime']>;
-  /** All values that are not equal to given value. */
-  createdAt_not?: InputMaybe<Scalars['DateTime']>;
-  /** All values that are not contained in given list. */
-  createdAt_not_in?: InputMaybe<Array<Scalars['DateTime']>>;
-  createdBy?: InputMaybe<UserWhereInput>;
-  description?: InputMaybe<Scalars['String']>;
-  /** All values containing the given string. */
-  description_contains?: InputMaybe<Scalars['String']>;
-  /** All values ending with the given string. */
-  description_ends_with?: InputMaybe<Scalars['String']>;
-  /** All values that are contained in given list. */
-  description_in?: InputMaybe<Array<Scalars['String']>>;
-  /** All values that are not equal to given value. */
-  description_not?: InputMaybe<Scalars['String']>;
-  /** All values not containing the given string. */
-  description_not_contains?: InputMaybe<Scalars['String']>;
-  /** All values not ending with the given string */
-  description_not_ends_with?: InputMaybe<Scalars['String']>;
-  /** All values that are not contained in given list. */
-  description_not_in?: InputMaybe<Array<Scalars['String']>>;
-  /** All values not starting with the given string. */
-  description_not_starts_with?: InputMaybe<Scalars['String']>;
-  /** All values starting with the given string. */
-  description_starts_with?: InputMaybe<Scalars['String']>;
-  id?: InputMaybe<Scalars['ID']>;
-  /** All values containing the given string. */
-  id_contains?: InputMaybe<Scalars['ID']>;
-  /** All values ending with the given string. */
-  id_ends_with?: InputMaybe<Scalars['ID']>;
-  /** All values that are contained in given list. */
-  id_in?: InputMaybe<Array<Scalars['ID']>>;
-  /** All values that are not equal to given value. */
-  id_not?: InputMaybe<Scalars['ID']>;
-  /** All values not containing the given string. */
-  id_not_contains?: InputMaybe<Scalars['ID']>;
-  /** All values not ending with the given string */
-  id_not_ends_with?: InputMaybe<Scalars['ID']>;
-  /** All values that are not contained in given list. */
-  id_not_in?: InputMaybe<Array<Scalars['ID']>>;
-  /** All values not starting with the given string. */
-  id_not_starts_with?: InputMaybe<Scalars['ID']>;
-  /** All values starting with the given string. */
-  id_starts_with?: InputMaybe<Scalars['ID']>;
-  publishedAt?: InputMaybe<Scalars['DateTime']>;
-  /** All values greater than the given value. */
-  publishedAt_gt?: InputMaybe<Scalars['DateTime']>;
-  /** All values greater than or equal the given value. */
-  publishedAt_gte?: InputMaybe<Scalars['DateTime']>;
-  /** All values that are contained in given list. */
-  publishedAt_in?: InputMaybe<Array<Scalars['DateTime']>>;
-  /** All values less than the given value. */
-  publishedAt_lt?: InputMaybe<Scalars['DateTime']>;
-  /** All values less than or equal the given value. */
-  publishedAt_lte?: InputMaybe<Scalars['DateTime']>;
-  /** All values that are not equal to given value. */
-  publishedAt_not?: InputMaybe<Scalars['DateTime']>;
-  /** All values that are not contained in given list. */
-  publishedAt_not_in?: InputMaybe<Array<Scalars['DateTime']>>;
-  publishedBy?: InputMaybe<UserWhereInput>;
-  scheduledIn_every?: InputMaybe<ScheduledOperationWhereInput>;
-  scheduledIn_none?: InputMaybe<ScheduledOperationWhereInput>;
-  scheduledIn_some?: InputMaybe<ScheduledOperationWhereInput>;
-  slug?: InputMaybe<Scalars['String']>;
-  /** All values containing the given string. */
-  slug_contains?: InputMaybe<Scalars['String']>;
-  /** All values ending with the given string. */
-  slug_ends_with?: InputMaybe<Scalars['String']>;
-  /** All values that are contained in given list. */
-  slug_in?: InputMaybe<Array<Scalars['String']>>;
-  /** All values that are not equal to given value. */
-  slug_not?: InputMaybe<Scalars['String']>;
-  /** All values not containing the given string. */
-  slug_not_contains?: InputMaybe<Scalars['String']>;
-  /** All values not ending with the given string */
-  slug_not_ends_with?: InputMaybe<Scalars['String']>;
-  /** All values that are not contained in given list. */
-  slug_not_in?: InputMaybe<Array<Scalars['String']>>;
-  /** All values not starting with the given string. */
-  slug_not_starts_with?: InputMaybe<Scalars['String']>;
-  /** All values starting with the given string. */
-  slug_starts_with?: InputMaybe<Scalars['String']>;
-  title?: InputMaybe<Scalars['String']>;
-  /** All values containing the given string. */
-  title_contains?: InputMaybe<Scalars['String']>;
-  /** All values ending with the given string. */
-  title_ends_with?: InputMaybe<Scalars['String']>;
-  /** All values that are contained in given list. */
-  title_in?: InputMaybe<Array<Scalars['String']>>;
-  /** All values that are not equal to given value. */
-  title_not?: InputMaybe<Scalars['String']>;
-  /** All values not containing the given string. */
-  title_not_contains?: InputMaybe<Scalars['String']>;
-  /** All values not ending with the given string */
-  title_not_ends_with?: InputMaybe<Scalars['String']>;
-  /** All values that are not contained in given list. */
-  title_not_in?: InputMaybe<Array<Scalars['String']>>;
-  /** All values not starting with the given string. */
-  title_not_starts_with?: InputMaybe<Scalars['String']>;
-  /** All values starting with the given string. */
-  title_starts_with?: InputMaybe<Scalars['String']>;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
-  /** All values greater than the given value. */
-  updatedAt_gt?: InputMaybe<Scalars['DateTime']>;
-  /** All values greater than or equal the given value. */
-  updatedAt_gte?: InputMaybe<Scalars['DateTime']>;
-  /** All values that are contained in given list. */
-  updatedAt_in?: InputMaybe<Array<Scalars['DateTime']>>;
-  /** All values less than the given value. */
-  updatedAt_lt?: InputMaybe<Scalars['DateTime']>;
-  /** All values less than or equal the given value. */
-  updatedAt_lte?: InputMaybe<Scalars['DateTime']>;
-  /** All values that are not equal to given value. */
-  updatedAt_not?: InputMaybe<Scalars['DateTime']>;
-  /** All values that are not contained in given list. */
-  updatedAt_not_in?: InputMaybe<Array<Scalars['DateTime']>>;
-  updatedBy?: InputMaybe<UserWhereInput>;
-};
-
-/** References Page record uniquely */
-export type PageWhereUniqueInput = {
-  id?: InputMaybe<Scalars['ID']>;
-  slug?: InputMaybe<Scalars['String']>;
 };
 
 export type Project = Node & {
@@ -4408,14 +3842,6 @@ export type Query = {
   homePagesConnection: HomePageConnection;
   /** Fetches an object given its ID */
   node?: Maybe<Node>;
-  /** Retrieve a single page */
-  page?: Maybe<Page>;
-  /** Retrieve document version */
-  pageVersion?: Maybe<DocumentVersion>;
-  /** Retrieve multiple pages */
-  pages: Array<Page>;
-  /** Retrieve multiple pages using the Relay connection interface */
-  pagesConnection: PageConnection;
   /** Retrieve a single project */
   project?: Maybe<Project>;
   /** Retrieve a single projectType */
@@ -4448,6 +3874,14 @@ export type Query = {
   technologies: Array<Technology>;
   /** Retrieve multiple technologies using the Relay connection interface */
   technologiesConnection: TechnologyConnection;
+  /** Retrieve a single technologiesPage */
+  technologiesPage?: Maybe<TechnologiesPage>;
+  /** Retrieve document version */
+  technologiesPageVersion?: Maybe<DocumentVersion>;
+  /** Retrieve multiple technologiesPages */
+  technologiesPages: Array<TechnologiesPage>;
+  /** Retrieve multiple technologiesPages using the Relay connection interface */
+  technologiesPagesConnection: TechnologiesPageConnection;
   /** Retrieve a single technology */
   technology?: Maybe<Technology>;
   /** Retrieve a single technologyLevel */
@@ -4549,44 +3983,6 @@ export type QueryNodeArgs = {
   id: Scalars['ID'];
   locales?: Array<Locale>;
   stage?: Stage;
-};
-
-
-export type QueryPageArgs = {
-  locales?: Array<Locale>;
-  stage?: Stage;
-  where: PageWhereUniqueInput;
-};
-
-
-export type QueryPageVersionArgs = {
-  where: VersionWhereInput;
-};
-
-
-export type QueryPagesArgs = {
-  after?: InputMaybe<Scalars['String']>;
-  before?: InputMaybe<Scalars['String']>;
-  first?: InputMaybe<Scalars['Int']>;
-  last?: InputMaybe<Scalars['Int']>;
-  locales?: Array<Locale>;
-  orderBy?: InputMaybe<PageOrderByInput>;
-  skip?: InputMaybe<Scalars['Int']>;
-  stage?: Stage;
-  where?: InputMaybe<PageWhereInput>;
-};
-
-
-export type QueryPagesConnectionArgs = {
-  after?: InputMaybe<Scalars['String']>;
-  before?: InputMaybe<Scalars['String']>;
-  first?: InputMaybe<Scalars['Int']>;
-  last?: InputMaybe<Scalars['Int']>;
-  locales?: Array<Locale>;
-  orderBy?: InputMaybe<PageOrderByInput>;
-  skip?: InputMaybe<Scalars['Int']>;
-  stage?: Stage;
-  where?: InputMaybe<PageWhereInput>;
 };
 
 
@@ -4755,6 +4151,44 @@ export type QueryTechnologiesConnectionArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   stage?: Stage;
   where?: InputMaybe<TechnologyWhereInput>;
+};
+
+
+export type QueryTechnologiesPageArgs = {
+  locales?: Array<Locale>;
+  stage?: Stage;
+  where: TechnologiesPageWhereUniqueInput;
+};
+
+
+export type QueryTechnologiesPageVersionArgs = {
+  where: VersionWhereInput;
+};
+
+
+export type QueryTechnologiesPagesArgs = {
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  locales?: Array<Locale>;
+  orderBy?: InputMaybe<TechnologiesPageOrderByInput>;
+  skip?: InputMaybe<Scalars['Int']>;
+  stage?: Stage;
+  where?: InputMaybe<TechnologiesPageWhereInput>;
+};
+
+
+export type QueryTechnologiesPagesConnectionArgs = {
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  locales?: Array<Locale>;
+  orderBy?: InputMaybe<TechnologiesPageOrderByInput>;
+  skip?: InputMaybe<Scalars['Int']>;
+  stage?: Stage;
+  where?: InputMaybe<TechnologiesPageWhereInput>;
 };
 
 
@@ -4947,7 +4381,7 @@ export type ScheduledOperationUpdatedByArgs = {
   locales?: InputMaybe<Array<Locale>>;
 };
 
-export type ScheduledOperationAffectedDocument = Asset | HomePage | Page | Project | ProjectType | Technology | TechnologyLevel;
+export type ScheduledOperationAffectedDocument = Asset | HomePage | Project | ProjectType | TechnologiesPage | Technology | TechnologyLevel;
 
 export type ScheduledOperationConnectInput = {
   /** Allow to specify document position in list of connected documents, will default to appending at end of list */
@@ -5872,6 +5306,385 @@ export enum SystemDateTimeFieldVariation {
   Localization = 'LOCALIZATION'
 }
 
+export type TechnologiesPage = Node & {
+  __typename?: 'TechnologiesPage';
+  /** The time the document was created */
+  createdAt: Scalars['DateTime'];
+  /** User that created this document */
+  createdBy?: Maybe<User>;
+  /** Get the document in other stages */
+  documentInStages: Array<TechnologiesPage>;
+  /** List of TechnologiesPage versions */
+  history: Array<Version>;
+  /** The unique identifier */
+  id: Scalars['ID'];
+  levels: Array<TechnologyLevel>;
+  /** The time the document was published. Null on documents in draft stage. */
+  publishedAt?: Maybe<Scalars['DateTime']>;
+  /** User that last published this document */
+  publishedBy?: Maybe<User>;
+  scheduledIn: Array<ScheduledOperation>;
+  /** System stage field */
+  stage: Stage;
+  /** The time the document was updated */
+  updatedAt: Scalars['DateTime'];
+  /** User that last updated this document */
+  updatedBy?: Maybe<User>;
+};
+
+
+export type TechnologiesPageCreatedByArgs = {
+  locales?: InputMaybe<Array<Locale>>;
+};
+
+
+export type TechnologiesPageDocumentInStagesArgs = {
+  includeCurrent?: Scalars['Boolean'];
+  inheritLocale?: Scalars['Boolean'];
+  stages?: Array<Stage>;
+};
+
+
+export type TechnologiesPageHistoryArgs = {
+  limit?: Scalars['Int'];
+  skip?: Scalars['Int'];
+  stageOverride?: InputMaybe<Stage>;
+};
+
+
+export type TechnologiesPageLevelsArgs = {
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  locales?: InputMaybe<Array<Locale>>;
+  orderBy?: InputMaybe<TechnologyLevelOrderByInput>;
+  skip?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<TechnologyLevelWhereInput>;
+};
+
+
+export type TechnologiesPagePublishedByArgs = {
+  locales?: InputMaybe<Array<Locale>>;
+};
+
+
+export type TechnologiesPageScheduledInArgs = {
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  locales?: InputMaybe<Array<Locale>>;
+  skip?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<ScheduledOperationWhereInput>;
+};
+
+
+export type TechnologiesPageUpdatedByArgs = {
+  locales?: InputMaybe<Array<Locale>>;
+};
+
+export type TechnologiesPageConnectInput = {
+  /** Allow to specify document position in list of connected documents, will default to appending at end of list */
+  position?: InputMaybe<ConnectPositionInput>;
+  /** Document to connect */
+  where: TechnologiesPageWhereUniqueInput;
+};
+
+/** A connection to a list of items. */
+export type TechnologiesPageConnection = {
+  __typename?: 'TechnologiesPageConnection';
+  aggregate: Aggregate;
+  /** A list of edges. */
+  edges: Array<TechnologiesPageEdge>;
+  /** Information to aid in pagination. */
+  pageInfo: PageInfo;
+};
+
+export type TechnologiesPageCreateInput = {
+  createdAt?: InputMaybe<Scalars['DateTime']>;
+  levels?: InputMaybe<TechnologyLevelCreateManyInlineInput>;
+  updatedAt?: InputMaybe<Scalars['DateTime']>;
+};
+
+export type TechnologiesPageCreateManyInlineInput = {
+  /** Connect multiple existing TechnologiesPage documents */
+  connect?: InputMaybe<Array<TechnologiesPageWhereUniqueInput>>;
+  /** Create and connect multiple existing TechnologiesPage documents */
+  create?: InputMaybe<Array<TechnologiesPageCreateInput>>;
+};
+
+export type TechnologiesPageCreateOneInlineInput = {
+  /** Connect one existing TechnologiesPage document */
+  connect?: InputMaybe<TechnologiesPageWhereUniqueInput>;
+  /** Create and connect one TechnologiesPage document */
+  create?: InputMaybe<TechnologiesPageCreateInput>;
+};
+
+/** An edge in a connection. */
+export type TechnologiesPageEdge = {
+  __typename?: 'TechnologiesPageEdge';
+  /** A cursor for use in pagination. */
+  cursor: Scalars['String'];
+  /** The item at the end of the edge. */
+  node: TechnologiesPage;
+};
+
+/** Identifies documents */
+export type TechnologiesPageManyWhereInput = {
+  /** Logical AND on all given filters. */
+  AND?: InputMaybe<Array<TechnologiesPageWhereInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: InputMaybe<Array<TechnologiesPageWhereInput>>;
+  /** Logical OR on all given filters. */
+  OR?: InputMaybe<Array<TechnologiesPageWhereInput>>;
+  /** Contains search across all appropriate fields. */
+  _search?: InputMaybe<Scalars['String']>;
+  createdAt?: InputMaybe<Scalars['DateTime']>;
+  /** All values greater than the given value. */
+  createdAt_gt?: InputMaybe<Scalars['DateTime']>;
+  /** All values greater than or equal the given value. */
+  createdAt_gte?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are contained in given list. */
+  createdAt_in?: InputMaybe<Array<Scalars['DateTime']>>;
+  /** All values less than the given value. */
+  createdAt_lt?: InputMaybe<Scalars['DateTime']>;
+  /** All values less than or equal the given value. */
+  createdAt_lte?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are not equal to given value. */
+  createdAt_not?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are not contained in given list. */
+  createdAt_not_in?: InputMaybe<Array<Scalars['DateTime']>>;
+  createdBy?: InputMaybe<UserWhereInput>;
+  id?: InputMaybe<Scalars['ID']>;
+  /** All values containing the given string. */
+  id_contains?: InputMaybe<Scalars['ID']>;
+  /** All values ending with the given string. */
+  id_ends_with?: InputMaybe<Scalars['ID']>;
+  /** All values that are contained in given list. */
+  id_in?: InputMaybe<Array<Scalars['ID']>>;
+  /** All values that are not equal to given value. */
+  id_not?: InputMaybe<Scalars['ID']>;
+  /** All values not containing the given string. */
+  id_not_contains?: InputMaybe<Scalars['ID']>;
+  /** All values not ending with the given string */
+  id_not_ends_with?: InputMaybe<Scalars['ID']>;
+  /** All values that are not contained in given list. */
+  id_not_in?: InputMaybe<Array<Scalars['ID']>>;
+  /** All values not starting with the given string. */
+  id_not_starts_with?: InputMaybe<Scalars['ID']>;
+  /** All values starting with the given string. */
+  id_starts_with?: InputMaybe<Scalars['ID']>;
+  levels_every?: InputMaybe<TechnologyLevelWhereInput>;
+  levels_none?: InputMaybe<TechnologyLevelWhereInput>;
+  levels_some?: InputMaybe<TechnologyLevelWhereInput>;
+  publishedAt?: InputMaybe<Scalars['DateTime']>;
+  /** All values greater than the given value. */
+  publishedAt_gt?: InputMaybe<Scalars['DateTime']>;
+  /** All values greater than or equal the given value. */
+  publishedAt_gte?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are contained in given list. */
+  publishedAt_in?: InputMaybe<Array<Scalars['DateTime']>>;
+  /** All values less than the given value. */
+  publishedAt_lt?: InputMaybe<Scalars['DateTime']>;
+  /** All values less than or equal the given value. */
+  publishedAt_lte?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are not equal to given value. */
+  publishedAt_not?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are not contained in given list. */
+  publishedAt_not_in?: InputMaybe<Array<Scalars['DateTime']>>;
+  publishedBy?: InputMaybe<UserWhereInput>;
+  scheduledIn_every?: InputMaybe<ScheduledOperationWhereInput>;
+  scheduledIn_none?: InputMaybe<ScheduledOperationWhereInput>;
+  scheduledIn_some?: InputMaybe<ScheduledOperationWhereInput>;
+  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  /** All values greater than the given value. */
+  updatedAt_gt?: InputMaybe<Scalars['DateTime']>;
+  /** All values greater than or equal the given value. */
+  updatedAt_gte?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are contained in given list. */
+  updatedAt_in?: InputMaybe<Array<Scalars['DateTime']>>;
+  /** All values less than the given value. */
+  updatedAt_lt?: InputMaybe<Scalars['DateTime']>;
+  /** All values less than or equal the given value. */
+  updatedAt_lte?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are not equal to given value. */
+  updatedAt_not?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are not contained in given list. */
+  updatedAt_not_in?: InputMaybe<Array<Scalars['DateTime']>>;
+  updatedBy?: InputMaybe<UserWhereInput>;
+};
+
+export enum TechnologiesPageOrderByInput {
+  CreatedAtAsc = 'createdAt_ASC',
+  CreatedAtDesc = 'createdAt_DESC',
+  IdAsc = 'id_ASC',
+  IdDesc = 'id_DESC',
+  PublishedAtAsc = 'publishedAt_ASC',
+  PublishedAtDesc = 'publishedAt_DESC',
+  UpdatedAtAsc = 'updatedAt_ASC',
+  UpdatedAtDesc = 'updatedAt_DESC'
+}
+
+export type TechnologiesPageUpdateInput = {
+  levels?: InputMaybe<TechnologyLevelUpdateManyInlineInput>;
+};
+
+export type TechnologiesPageUpdateManyInlineInput = {
+  /** Connect multiple existing TechnologiesPage documents */
+  connect?: InputMaybe<Array<TechnologiesPageConnectInput>>;
+  /** Create and connect multiple TechnologiesPage documents */
+  create?: InputMaybe<Array<TechnologiesPageCreateInput>>;
+  /** Delete multiple TechnologiesPage documents */
+  delete?: InputMaybe<Array<TechnologiesPageWhereUniqueInput>>;
+  /** Disconnect multiple TechnologiesPage documents */
+  disconnect?: InputMaybe<Array<TechnologiesPageWhereUniqueInput>>;
+  /** Override currently-connected documents with multiple existing TechnologiesPage documents */
+  set?: InputMaybe<Array<TechnologiesPageWhereUniqueInput>>;
+  /** Update multiple TechnologiesPage documents */
+  update?: InputMaybe<Array<TechnologiesPageUpdateWithNestedWhereUniqueInput>>;
+  /** Upsert multiple TechnologiesPage documents */
+  upsert?: InputMaybe<Array<TechnologiesPageUpsertWithNestedWhereUniqueInput>>;
+};
+
+export type TechnologiesPageUpdateManyInput = {
+  /** No fields in updateMany data input */
+  _?: InputMaybe<Scalars['String']>;
+};
+
+export type TechnologiesPageUpdateManyWithNestedWhereInput = {
+  /** Update many input */
+  data: TechnologiesPageUpdateManyInput;
+  /** Document search */
+  where: TechnologiesPageWhereInput;
+};
+
+export type TechnologiesPageUpdateOneInlineInput = {
+  /** Connect existing TechnologiesPage document */
+  connect?: InputMaybe<TechnologiesPageWhereUniqueInput>;
+  /** Create and connect one TechnologiesPage document */
+  create?: InputMaybe<TechnologiesPageCreateInput>;
+  /** Delete currently connected TechnologiesPage document */
+  delete?: InputMaybe<Scalars['Boolean']>;
+  /** Disconnect currently connected TechnologiesPage document */
+  disconnect?: InputMaybe<Scalars['Boolean']>;
+  /** Update single TechnologiesPage document */
+  update?: InputMaybe<TechnologiesPageUpdateWithNestedWhereUniqueInput>;
+  /** Upsert single TechnologiesPage document */
+  upsert?: InputMaybe<TechnologiesPageUpsertWithNestedWhereUniqueInput>;
+};
+
+export type TechnologiesPageUpdateWithNestedWhereUniqueInput = {
+  /** Document to update */
+  data: TechnologiesPageUpdateInput;
+  /** Unique document search */
+  where: TechnologiesPageWhereUniqueInput;
+};
+
+export type TechnologiesPageUpsertInput = {
+  /** Create document if it didn't exist */
+  create: TechnologiesPageCreateInput;
+  /** Update document if it exists */
+  update: TechnologiesPageUpdateInput;
+};
+
+export type TechnologiesPageUpsertWithNestedWhereUniqueInput = {
+  /** Upsert data */
+  data: TechnologiesPageUpsertInput;
+  /** Unique document search */
+  where: TechnologiesPageWhereUniqueInput;
+};
+
+/** Identifies documents */
+export type TechnologiesPageWhereInput = {
+  /** Logical AND on all given filters. */
+  AND?: InputMaybe<Array<TechnologiesPageWhereInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: InputMaybe<Array<TechnologiesPageWhereInput>>;
+  /** Logical OR on all given filters. */
+  OR?: InputMaybe<Array<TechnologiesPageWhereInput>>;
+  /** Contains search across all appropriate fields. */
+  _search?: InputMaybe<Scalars['String']>;
+  createdAt?: InputMaybe<Scalars['DateTime']>;
+  /** All values greater than the given value. */
+  createdAt_gt?: InputMaybe<Scalars['DateTime']>;
+  /** All values greater than or equal the given value. */
+  createdAt_gte?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are contained in given list. */
+  createdAt_in?: InputMaybe<Array<Scalars['DateTime']>>;
+  /** All values less than the given value. */
+  createdAt_lt?: InputMaybe<Scalars['DateTime']>;
+  /** All values less than or equal the given value. */
+  createdAt_lte?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are not equal to given value. */
+  createdAt_not?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are not contained in given list. */
+  createdAt_not_in?: InputMaybe<Array<Scalars['DateTime']>>;
+  createdBy?: InputMaybe<UserWhereInput>;
+  id?: InputMaybe<Scalars['ID']>;
+  /** All values containing the given string. */
+  id_contains?: InputMaybe<Scalars['ID']>;
+  /** All values ending with the given string. */
+  id_ends_with?: InputMaybe<Scalars['ID']>;
+  /** All values that are contained in given list. */
+  id_in?: InputMaybe<Array<Scalars['ID']>>;
+  /** All values that are not equal to given value. */
+  id_not?: InputMaybe<Scalars['ID']>;
+  /** All values not containing the given string. */
+  id_not_contains?: InputMaybe<Scalars['ID']>;
+  /** All values not ending with the given string */
+  id_not_ends_with?: InputMaybe<Scalars['ID']>;
+  /** All values that are not contained in given list. */
+  id_not_in?: InputMaybe<Array<Scalars['ID']>>;
+  /** All values not starting with the given string. */
+  id_not_starts_with?: InputMaybe<Scalars['ID']>;
+  /** All values starting with the given string. */
+  id_starts_with?: InputMaybe<Scalars['ID']>;
+  levels_every?: InputMaybe<TechnologyLevelWhereInput>;
+  levels_none?: InputMaybe<TechnologyLevelWhereInput>;
+  levels_some?: InputMaybe<TechnologyLevelWhereInput>;
+  publishedAt?: InputMaybe<Scalars['DateTime']>;
+  /** All values greater than the given value. */
+  publishedAt_gt?: InputMaybe<Scalars['DateTime']>;
+  /** All values greater than or equal the given value. */
+  publishedAt_gte?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are contained in given list. */
+  publishedAt_in?: InputMaybe<Array<Scalars['DateTime']>>;
+  /** All values less than the given value. */
+  publishedAt_lt?: InputMaybe<Scalars['DateTime']>;
+  /** All values less than or equal the given value. */
+  publishedAt_lte?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are not equal to given value. */
+  publishedAt_not?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are not contained in given list. */
+  publishedAt_not_in?: InputMaybe<Array<Scalars['DateTime']>>;
+  publishedBy?: InputMaybe<UserWhereInput>;
+  scheduledIn_every?: InputMaybe<ScheduledOperationWhereInput>;
+  scheduledIn_none?: InputMaybe<ScheduledOperationWhereInput>;
+  scheduledIn_some?: InputMaybe<ScheduledOperationWhereInput>;
+  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  /** All values greater than the given value. */
+  updatedAt_gt?: InputMaybe<Scalars['DateTime']>;
+  /** All values greater than or equal the given value. */
+  updatedAt_gte?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are contained in given list. */
+  updatedAt_in?: InputMaybe<Array<Scalars['DateTime']>>;
+  /** All values less than the given value. */
+  updatedAt_lt?: InputMaybe<Scalars['DateTime']>;
+  /** All values less than or equal the given value. */
+  updatedAt_lte?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are not equal to given value. */
+  updatedAt_not?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are not contained in given list. */
+  updatedAt_not_in?: InputMaybe<Array<Scalars['DateTime']>>;
+  updatedBy?: InputMaybe<UserWhereInput>;
+};
+
+/** References TechnologiesPage record uniquely */
+export type TechnologiesPageWhereUniqueInput = {
+  id?: InputMaybe<Scalars['ID']>;
+};
+
 export type Technology = Node & {
   __typename?: 'Technology';
   /** The time the document was created */
@@ -6179,6 +5992,7 @@ export type TechnologyLevelConnection = {
 };
 
 export type TechnologyLevelCreateInput = {
+  ckxkkl6xo3seo01xp7g1k4r42?: InputMaybe<TechnologiesPageCreateManyInlineInput>;
   createdAt?: InputMaybe<Scalars['DateTime']>;
   /** description input for default locale (en) */
   description: Scalars['String'];
@@ -6409,6 +6223,7 @@ export type TechnologyLevelTechnologiesWhereUniqueInput = {
 };
 
 export type TechnologyLevelUpdateInput = {
+  ckxkkl6xo3seo01xp7g1k4r42?: InputMaybe<TechnologiesPageUpdateManyInlineInput>;
   /** description input for default locale (en) */
   description?: InputMaybe<Scalars['String']>;
   /** Manage document localizations */
@@ -7469,14 +7284,21 @@ export enum _SystemDateTimeFieldVariation {
 export type GetHomePageQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetHomePageQuery = { __typename?: 'Query', homePages: Array<{ __typename?: 'HomePage', projects: Array<{ __typename?: 'Project', name: string, slug?: string | null | undefined, demoUrl: string, gitHubUrl?: string | null | undefined, ctaMessage: string, image: { __typename?: 'Asset', url: string }, summary: { __typename?: 'RichText', raw: any }, technologies: Array<{ __typename?: 'Technology', slug: string }>, type?: { __typename?: 'ProjectType', name: string, slug: string } | null | undefined }> }> };
+export type GetHomePageQuery = { __typename?: 'Query', page?: { __typename?: 'HomePage', projects: Array<{ __typename?: 'Project', name: string, slug?: string | null | undefined, demoUrl: string, gitHubUrl?: string | null | undefined, ctaMessage: string, image: { __typename?: 'Asset', url: string }, summary: { __typename?: 'RichText', raw: any }, technologies: Array<{ __typename?: 'Technology', slug: string }>, type?: { __typename?: 'ProjectType', name: string, slug: string } | null | undefined }> } | null | undefined };
 
 export type ProjectSummaryFragment = { __typename?: 'Project', name: string, slug?: string | null | undefined, demoUrl: string, gitHubUrl?: string | null | undefined, ctaMessage: string, image: { __typename?: 'Asset', url: string }, summary: { __typename?: 'RichText', raw: any }, technologies: Array<{ __typename?: 'Technology', slug: string }>, type?: { __typename?: 'ProjectType', name: string, slug: string } | null | undefined };
 
 export type GetProjectsPageQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetProjectsPageQuery = { __typename?: 'Query', page?: { __typename?: 'Page', title: string, description: string } | null | undefined, technologies: Array<{ __typename?: 'Technology', name: string, slug: string }>, projectTypes: Array<{ __typename?: 'ProjectType', name: string, slug: string }>, projects: Array<{ __typename?: 'Project', name: string, slug?: string | null | undefined, demoUrl: string, gitHubUrl?: string | null | undefined, ctaMessage: string, image: { __typename?: 'Asset', url: string }, summary: { __typename?: 'RichText', raw: any }, technologies: Array<{ __typename?: 'Technology', slug: string }>, type?: { __typename?: 'ProjectType', name: string, slug: string } | null | undefined }> };
+export type GetProjectsPageQuery = { __typename?: 'Query', technologies: Array<{ __typename?: 'Technology', name: string, slug: string }>, projectTypes: Array<{ __typename?: 'ProjectType', name: string, slug: string }>, projects: Array<{ __typename?: 'Project', name: string, slug?: string | null | undefined, demoUrl: string, gitHubUrl?: string | null | undefined, ctaMessage: string, image: { __typename?: 'Asset', url: string }, summary: { __typename?: 'RichText', raw: any }, technologies: Array<{ __typename?: 'Technology', slug: string }>, type?: { __typename?: 'ProjectType', name: string, slug: string } | null | undefined }> };
+
+export type TechnologySummaryFragment = { __typename?: 'Technology', name: string, slug: string, icon: { __typename?: 'Asset', url: string } };
+
+export type GetTechnologiesPageQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetTechnologiesPageQuery = { __typename?: 'Query', page?: { __typename?: 'TechnologiesPage', levels: Array<{ __typename?: 'TechnologyLevel', name: string, description: string, technologies: Array<{ __typename?: 'Technology', name: string, slug: string, icon: { __typename?: 'Asset', url: string } }> }> } | null | undefined };
 
 export const ProjectSummaryFragmentDoc = gql`
     fragment ProjectSummary on Project {
@@ -7502,9 +7324,18 @@ export const ProjectSummaryFragmentDoc = gql`
   }
 }
     `;
+export const TechnologySummaryFragmentDoc = gql`
+    fragment TechnologySummary on Technology {
+  name
+  slug
+  icon {
+    url(transformation: {image: {resize: {height: 200, width: 200}}})
+  }
+}
+    `;
 export const GetHomePageDocument = gql`
     query getHomePage {
-  homePages(first: 1) {
+  page: homePage(where: {id: "ckxkjakzszahn0c96vu2zuy7j"}) {
     projects {
       ...ProjectSummary
     }
@@ -7513,10 +7344,6 @@ export const GetHomePageDocument = gql`
     ${ProjectSummaryFragmentDoc}`;
 export const GetProjectsPageDocument = gql`
     query getProjectsPage {
-  page(where: {slug: "projects"}) {
-    title
-    description
-  }
   technologies {
     name
     slug
@@ -7530,6 +7357,19 @@ export const GetProjectsPageDocument = gql`
   }
 }
     ${ProjectSummaryFragmentDoc}`;
+export const GetTechnologiesPageDocument = gql`
+    query getTechnologiesPage {
+  page: technologiesPage(where: {id: "ckxkkludszium0b606slka2fd"}) {
+    levels {
+      name
+      description
+      technologies {
+        ...TechnologySummary
+      }
+    }
+  }
+}
+    ${TechnologySummaryFragmentDoc}`;
 
 export type SdkFunctionWrapper = <T>(action: (requestHeaders?:Record<string, string>) => Promise<T>, operationName: string) => Promise<T>;
 
@@ -7543,6 +7383,9 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     },
     getProjectsPage(variables?: GetProjectsPageQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<GetProjectsPageQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<GetProjectsPageQuery>(GetProjectsPageDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'getProjectsPage');
+    },
+    getTechnologiesPage(variables?: GetTechnologiesPageQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<GetTechnologiesPageQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<GetTechnologiesPageQuery>(GetTechnologiesPageDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'getTechnologiesPage');
     }
   };
 }

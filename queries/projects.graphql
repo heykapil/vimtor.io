@@ -22,10 +22,6 @@ fragment ProjectSummary on Project {
 }
 
 query getProjectsPage {
-    page(where: { slug: "projects" }) {
-        title
-        description
-    }
     technologies {
         name
         slug

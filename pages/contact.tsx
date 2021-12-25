@@ -9,7 +9,7 @@ import PageSubtitle from "../components/page/page-subtitle";
 export default function Contact() {
     return (
         <Page title="Contact" description="Send me an email so we can start a conversation">
-            <PageTitle className="">
+            <PageTitle>
                 Contact <Emoji label="call me hand" icon="🤙" />
             </PageTitle>
             <PageSubtitle>Get in touch! I don&apos;t bite...</PageSubtitle>

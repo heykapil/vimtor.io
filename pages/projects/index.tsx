@@ -14,7 +14,7 @@ import graphCms from "../../utils/graph-cms";
 import { GetProjectsPageQuery } from "../../utils/schema";
 import { shuffle } from "lodash";
 
-export default function Projects({ page, projects, projectTypes, technologies }: GetProjectsPageQuery) {
+export default function Projects({ projects, projectTypes, technologies }: GetProjectsPageQuery) {
     const [totalTimesEmptyListWasShown, { inc: incrementTotalTimesEmptyListWasShown }] = useCounter(0);
     const [selectedLabels, setSelectedLabels] = useQueryArrayState("labels");
 
@@ -34,16 +34,12 @@ export default function Projects({ page, projects, projectTypes, technologies }:
         }
     }, [visibleProjects.length, incrementTotalTimesEmptyListWasShown]);
 
-    if (!page) {
-        return null;
-    }
-
     return (
         <Page title="Projects" description="List of projects made by Victor Navarro">
             <PageTitle>
-                {page.title} <Emoji label="rocket" icon="🚀" reset={false} animation="rocket" />
+                All my projects <Emoji label="rocket" icon="🚀" reset={false} animation="rocket" />
             </PageTitle>
-            <PageSubtitle>{page.description}</PageSubtitle>
+            <PageSubtitle>A list of projects I worked on that are worth mentioning</PageSubtitle>
             <LabelFilters value={selectedLabels} labels={labels} onChange={setSelectedLabels} />
             {visibleProjects.length !== 0 ? (
                 <ProjectList>
