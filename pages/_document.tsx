@@ -8,8 +8,6 @@ class MyDocument extends Document {
             page: true,
         };
 
-        console.log(options);
-
         if (process.env.NODE_ENV === "development") {
             return snippet.max(options);
         }
