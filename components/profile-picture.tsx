@@ -5,13 +5,19 @@ import profile1 from "../public/images/profile.jpg";
 import profile2 from "../public/images/profile-2.png";
 import profile3 from "../public/images/profile-3.png";
 import { Transition } from "@headlessui/react";
-import { useCounter } from "react-use";
+import { useState } from "react";
+import { trackEvent } from "../utils/analytics";
 
 const profileImages = [profile1, profile2, profile3];
 
 function ProfilePicture() {
-    const [currentProfileIndex, { inc: incrementProfileIndex }] = useCounter(0);
-    const profileHasChanged = currentProfileIndex > 0;
+    const [profileIndex, setProfileIndex] = useState(0);
+    const profileHasChanged = profileIndex > 0;
+
+    function showNextPicture() {
+        setProfileIndex(profileIndex + 1);
+        trackEvent("Picture Clicked", { time: Date.now() });
+    }
 
     return (
         <div className="relative mb-4 sm:mr-12 sm:mb-0">
@@ -19,12 +25,12 @@ function ProfilePicture() {
             <button
                 aria-describedby="profile-bubble"
                 className="transition-all rounded-full opacity-0 motion-safe:animate-bounce-in overflow-hidden w-[200px] h-[200px] outline-none ring-gray-900 focus:ring-4 hover:ring-4 ring-opacity-80"
-                onClick={() => incrementProfileIndex()}
+                onClick={showNextPicture}
             >
                 {profileImages.map((src, index) => (
                     <Transition
                         key={index}
-                        show={currentProfileIndex % profileImages.length === index}
+                        show={profileIndex % profileImages.length === index}
                         unmount={false}
                         enter="transition-all duration-75"
                         enterFrom="blur"

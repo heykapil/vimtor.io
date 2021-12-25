@@ -1,6 +1,22 @@
 import Document, { Head, Html, Main, NextScript } from "next/document";
+import * as snippet from "@segment/snippet";
 
 class MyDocument extends Document {
+    renderSnippet() {
+        const options = {
+            apiKey: process.env.ANALYTICS_WRITE_KEY,
+            page: true,
+        };
+
+        console.log(options);
+
+        if (process.env.NODE_ENV === "development") {
+            return snippet.max(options);
+        }
+
+        return snippet.min(options);
+    }
+
     render() {
         return (
             <Html lang="en" className="scroll-smooth scroll-pt-24 subpixel-antialiased">
@@ -13,6 +29,7 @@ class MyDocument extends Document {
                     <meta name="msapplication-TileColor" content="#ffffff" />
                     <meta name="theme-color" content="#ffffff" />
                     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet" />
+                    <script dangerouslySetInnerHTML={{ __html: this.renderSnippet() }} />
                 </Head>
                 <body>
                     <Main />
