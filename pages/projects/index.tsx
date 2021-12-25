@@ -1,8 +1,8 @@
 import Emoji from "../../components/emoji";
 import ProjectList from "../../components/projects/project-list";
-import { useEffect, useMemo } from "react";
+import { useEffect, useState } from "react";
 import { useCounter } from "react-use";
-import { GetStaticProps } from "next";
+import { GetServerSidePropsContext, InferGetServerSidePropsType } from "next";
 import LabelFilters from "../../components/label-filters";
 import EmptyMessage from "../../components/empty-message";
 import { useQueryArrayState } from "../../hooks/use-query-state";
@@ -11,16 +11,11 @@ import ProjectItem from "../../components/projects/project-item";
 import PageTitle from "../../components/page/page-title";
 import PageSubtitle from "../../components/page/page-subtitle";
 import graphCms from "../../utils/graph-cms";
-import { GetProjectsPageQuery } from "../../utils/schema";
 import { shuffle } from "lodash";
 
-export default function Projects({ projects, projectTypes, technologies }: GetProjectsPageQuery) {
-    const [totalTimesEmptyListWasShown, { inc: incrementTotalTimesEmptyListWasShown }] = useCounter(0);
+export default function Projects({ projects, labels }: InferGetServerSidePropsType<typeof getServerSideProps>) {
+    const [emptyListCount, setEmptyListCount] = useState(0);
     const [selectedLabels, setSelectedLabels] = useQueryArrayState("labels");
-
-    const labels = useMemo(() => {
-        return shuffle([...projectTypes, ...technologies]);
-    }, [projectTypes, technologies]);
 
     const visibleProjects = projects.filter((project) => {
         return selectedLabels.every((slug) => {
@@ -30,9 +25,9 @@ export default function Projects({ projects, projectTypes, technologies }: GetPr
 
     useEffect(() => {
         if (visibleProjects.length === 0) {
-            incrementTotalTimesEmptyListWasShown();
+            setEmptyListCount((c) => c + 1);
         }
-    }, [visibleProjects.length, incrementTotalTimesEmptyListWasShown]);
+    }, [visibleProjects.length]);
 
     return (
         <Page title="Projects" description="List of projects made by Victor Navarro">
@@ -48,16 +43,23 @@ export default function Projects({ projects, projectTypes, technologies }: GetPr
                     ))}
                 </ProjectList>
             ) : (
-                <EmptyMessage shownCount={totalTimesEmptyListWasShown} />
+                <EmptyMessage shownCount={emptyListCount} />
             )}
         </Page>
     );
 }
 
-export const getStaticProps: GetStaticProps<GetProjectsPageQuery> = async () => {
-    const response = await graphCms.getProjectsPage();
+export async function getServerSideProps(context: GetServerSidePropsContext) {
+    const { projects, projectTypes, technologies } = await graphCms.getProjectsPage();
+    const labels = shuffle([...projectTypes, ...technologies]);
+    if (context.query.labels) {
+        const selectedLabels = (context.query.labels as string).split(",");
+        labels.sort(({ slug }) => (selectedLabels.includes(slug) ? -1 : 1));
+    }
     return {
-        props: response,
-        revalidate: 10,
+        props: {
+            projects,
+            labels,
+        },
     };
-};
+}
