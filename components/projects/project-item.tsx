@@ -5,7 +5,9 @@ import ImageShadow from "../image-shadow";
 import { RichText } from "@graphcms/rich-text-react-renderer";
 import { ProjectSummaryFragment } from "../../utils/schema";
 
-function ProjectItem({ name, image, summary, demoUrl, ctaMessage, gitHubUrl }: ProjectSummaryFragment) {
+interface ProjectItemProps extends ProjectSummaryFragment {}
+
+function ProjectItem({ name, image, summary, demoUrl, ctaMessage, gitHubUrl }: ProjectItemProps) {
     return (
         <li className="transition-all duration-100 ease-in mt-16 sm:flex sm:items-center sm:pl-5 sm:mt-0 md:px-5 md:max-w-[800px] md:min-h-[250px]">
             <div className="max-w-[90%] m-0 mx-auto w-full sm:w-1/2 sm:mr-8 sm:text-left md:mr-12">

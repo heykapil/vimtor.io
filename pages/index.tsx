@@ -1,7 +1,6 @@
 import IntroSection from "../components/intro-section";
 import AboutSection from "../components/about-section";
 import ContactSection from "../components/contact/contact-section";
-import { GetStaticProps, InferGetStaticPropsType } from "next";
 import Page from "../components/page/page";
 import graphCms from "../utils/graph-cms";
 import SectionTitle from "../components/section/section-title";
@@ -12,13 +11,14 @@ import ProjectItem from "../components/projects/project-item";
 import SectionCTO from "../components/section/section-cta";
 import Link from "next/link";
 import Section from "../components/section/section";
-import { GetHomePageQuery } from "../utils/schema";
+import { GetStaticProps } from "next";
+import { ProjectSummaryFragment } from "../utils/schema";
 
-export default function Home({ page }: GetHomePageQuery) {
-    if (!page) {
-        return null;
-    }
+interface HomeProps {
+    projects: Array<ProjectSummaryFragment>;
+}
 
+export default function Home({ projects }: HomeProps) {
     return (
         <Page title="Home" description="Personal website of Victor Navarro for portfolio and contact">
             <IntroSection />
@@ -29,7 +29,7 @@ export default function Home({ page }: GetHomePageQuery) {
                 </SectionTitle>
                 <SectionSubtitle>Some of the things I&apos;ve built</SectionSubtitle>
                 <ProjectList>
-                    {page.projects.map((project) => (
+                    {projects.map((project) => (
                         <ProjectItem key={project.slug} {...project} />
                     ))}
                 </ProjectList>
@@ -47,10 +47,19 @@ export default function Home({ page }: GetHomePageQuery) {
     );
 }
 
-export const getStaticProps: GetStaticProps = async () => {
-    const response = await graphCms.getHomePage();
+export const getStaticProps: GetStaticProps<HomeProps> = async () => {
+    const { page } = await graphCms.getHomePage();
+
+    if (!page) {
+        return {
+            notFound: true,
+        };
+    }
+
     return {
-        props: response,
-        revalidate: 10,
+        revalidate: 3600,
+        props: {
+            projects: page.projects,
+        },
     };
 };

@@ -7295,6 +7295,8 @@ export type GetProjectsPageQuery = { __typename?: 'Query', technologies: Array<{
 
 export type TechnologySummaryFragment = { __typename?: 'Technology', name: string, slug: string, icon: { __typename?: 'Asset', url: string } };
 
+export type TechnologyLevelSummaryFragment = { __typename?: 'TechnologyLevel', name: string, description: string, technologies: Array<{ __typename?: 'Technology', name: string, slug: string, icon: { __typename?: 'Asset', url: string } }> };
+
 export type GetTechnologiesPageQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -7333,6 +7335,15 @@ export const TechnologySummaryFragmentDoc = gql`
   }
 }
     `;
+export const TechnologyLevelSummaryFragmentDoc = gql`
+    fragment TechnologyLevelSummary on TechnologyLevel {
+  name
+  description
+  technologies {
+    ...TechnologySummary
+  }
+}
+    ${TechnologySummaryFragmentDoc}`;
 export const GetHomePageDocument = gql`
     query getHomePage {
   page: homePage(where: {id: "ckxkjakzszahn0c96vu2zuy7j"}) {
@@ -7361,15 +7372,11 @@ export const GetTechnologiesPageDocument = gql`
     query getTechnologiesPage {
   page: technologiesPage(where: {id: "ckxkkludszium0b606slka2fd"}) {
     levels {
-      name
-      description
-      technologies {
-        ...TechnologySummary
-      }
+      ...TechnologyLevelSummary
     }
   }
 }
-    ${TechnologySummaryFragmentDoc}`;
+    ${TechnologyLevelSummaryFragmentDoc}`;
 
 export type SdkFunctionWrapper = <T>(action: (requestHeaders?:Record<string, string>) => Promise<T>, operationName: string) => Promise<T>;
 

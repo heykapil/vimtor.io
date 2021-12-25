@@ -6,16 +6,16 @@ import PageTitle from "../components/page/page-title";
 import PageSubtitle from "../components/page/page-subtitle";
 import { GetStaticProps } from "next";
 import graphCms from "../utils/graph-cms";
-import { GetTechnologiesPageQuery } from "../utils/schema";
+import { TechnologyLevelSummaryFragment } from "../utils/schema";
 import { Transition } from "@headlessui/react";
 import { useState } from "react";
 
-export default function Technologies({ page }: GetTechnologiesPageQuery) {
-    const [showTooltip, setShowTooltip] = useState(true);
+interface TechnologiesProps {
+    levels: Array<TechnologyLevelSummaryFragment>;
+}
 
-    if (!page) {
-        return null;
-    }
+export default function Technologies({ levels }: TechnologiesProps) {
+    const [showTooltip, setShowTooltip] = useState(true);
 
     return (
         <Page title="Technologies" description="See the technologies I used in the past">
@@ -24,7 +24,7 @@ export default function Technologies({ page }: GetTechnologiesPageQuery) {
             </PageTitle>
             <PageSubtitle>These are the technologies I&apos;ve used over the years</PageSubtitle>
             <div className="space-y-12 max-w-4xl mx-auto">
-                {page.levels.map((level, index) => (
+                {levels.map((level, index) => (
                     <section key={level.name}>
                         <div className="px-6 md:text-center md:max-w-[40ch] mx-auto">
                             <h2 className="text-2xl font-bold mx-auto">{level.name}</h2>
@@ -72,10 +72,19 @@ export default function Technologies({ page }: GetTechnologiesPageQuery) {
     );
 }
 
-export const getStaticProps: GetStaticProps = async () => {
-    const response = await graphCms.getTechnologiesPage();
+export const getStaticProps: GetStaticProps<TechnologiesProps> = async () => {
+    const { page } = await graphCms.getTechnologiesPage();
+
+    if (!page) {
+        return {
+            notFound: true,
+        };
+    }
+
     return {
-        props: response,
-        revalidate: 10,
+        revalidate: 3600,
+        props: {
+            levels: page.levels,
+        },
     };
 };
