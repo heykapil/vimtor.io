@@ -17,6 +17,7 @@
         "@graphcms/rich-text-react-renderer": "^0.4.0",
         "@headlessui/react": "^1.4.2",
         "@heroicons/react": "^1.0.3",
+        "@react-pdf/renderer": "^2.0.21",
         "@segment/snippet": "^4.15.3",
         "graphql": "^16.2.0",
         "graphql-request": "^3.7.0",
