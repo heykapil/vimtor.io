@@ -5,7 +5,7 @@ import Footer from "../components/footer";
 
 export default function MyApp({ Component, pageProps }: AppProps) {
     return (
-        <div className="min-h-screen bg-white text-gray-900 overflow-x-hidden">
+        <div className="min-h-screen bg-white text-gray-900 overflow-x-hidden subpixel-antialiased">
             <Navbar />
             <Component {...pageProps} />
             <Footer />
