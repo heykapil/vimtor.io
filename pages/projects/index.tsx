@@ -22,17 +22,19 @@ export default function Projects({ projects, labels }: ProjectsProps) {
     const [emptyListCount, setEmptyListCount] = useState(0);
     const [selectedLabels, setSelectedLabels] = useQueryArrayState("labels");
 
-    const visibleProjects = projects.filter((project) => {
-        return selectedLabels.every((slug) => {
-            return project.type?.slug === slug || project.technologies.some((technology) => technology.slug === slug);
+    const visibleProjects = useMemo(() => {
+        return projects.filter((project) => {
+            return selectedLabels.every((slug) => {
+                return project.type?.slug === slug || project.technologies.some((technology) => technology.slug === slug);
+            });
         });
-    });
+    }, [projects, selectedLabels]);
 
     useEffect(() => {
         if (visibleProjects.length === 0) {
             setEmptyListCount((c) => c + 1);
         }
-    }, [visibleProjects.length]);
+    }, [visibleProjects]);
 
     return (
         <Page title="Projects" description="List of projects made by Victor Navarro">
