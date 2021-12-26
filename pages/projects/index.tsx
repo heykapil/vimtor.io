@@ -1,7 +1,7 @@
 import Emoji from "../../components/emoji";
 import ProjectList from "../../components/projects/project-list";
-import { useEffect, useState } from "react";
-import { GetServerSideProps } from "next";
+import { useEffect, useMemo, useState } from "react";
+import { GetStaticProps } from "next";
 import LabelFilters, { Label } from "../../components/label-filters";
 import EmptyMessage from "../../components/empty-message";
 import { useQueryArrayState } from "../../hooks/use-query-state";
@@ -54,17 +54,9 @@ export default function Projects({ projects, labels }: ProjectsProps) {
     );
 }
 
-export const getServerSideProps: GetServerSideProps<ProjectsProps> = async ({ res, query }) => {
+export const getStaticProps: GetStaticProps<ProjectsProps> = async () => {
     const { projects, projectTypes, technologies } = await graphCms.getProjectsPage();
-
     const labels = shuffle([...projectTypes, ...technologies]);
-    if (query.labels) {
-        const selectedLabels = (query.labels as string).split(",");
-        labels.sort(({ slug }) => (selectedLabels.includes(slug) ? -1 : 1));
-    }
-
-    res.setHeader("Cache-Control", "public, s-maxage=60, stale-while-revalidate=59");
-
     return {
         props: {
             projects,

@@ -3,6 +3,7 @@ import { useCallback, useState } from "react";
 import { useEffectOnce, useEvent } from "react-use";
 import { Transition } from "@headlessui/react";
 import { classNames } from "../utils/style";
+import { useInitialValue } from "../hooks/use-initial-value";
 
 export interface Label {
     name: string;
@@ -17,6 +18,7 @@ interface LabelFiltersProps {
 
 function LabelFilters({ value, onChange, labels }: LabelFiltersProps) {
     const [showScrollHelper, setShowScrollHelper] = useState(false);
+    const initialValue = useInitialValue(value);
 
     const checkSmallScreen = useCallback(() => {
         setShowScrollHelper(window.screen.width < 600);
@@ -36,6 +38,7 @@ function LabelFilters({ value, onChange, labels }: LabelFiltersProps) {
             >
                 {labels.map((label) => {
                     const isChecked = value.includes(label.slug);
+                    const isInitial = initialValue.includes(label.slug);
                     return (
                         <button
                             key={label.slug}
@@ -44,7 +47,8 @@ function LabelFilters({ value, onChange, labels }: LabelFiltersProps) {
                             tabIndex={0}
                             className={classNames(
                                 "border border-gray-400 rounded-full py-2 px-4 cursor-pointer mr-4 shrink-0 select-none transition-all duration-100 ease-in outline-none hover:bg-gray-100 focus:bg-gray-100 mb-4",
-                                isChecked ? "border-gray-900 bg-gray-900 text-gray-100 hover:bg-gray-900 focus:bg-gray-900" : ""
+                                isChecked ? "border-gray-900 bg-gray-900 text-gray-100 hover:bg-gray-900 focus:bg-gray-900" : "",
+                                isInitial ? "order-first sm:order-none" : ""
                             )}
                             onClick={() => {
                                 if (isChecked) {
