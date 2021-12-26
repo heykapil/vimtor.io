@@ -54,14 +54,16 @@ export default function Projects({ projects, labels }: ProjectsProps) {
     );
 }
 
-export const getServerSideProps: GetServerSideProps<ProjectsProps> = async (context) => {
+export const getServerSideProps: GetServerSideProps<ProjectsProps> = async ({ res, query }) => {
     const { projects, projectTypes, technologies } = await graphCms.getProjectsPage();
 
     const labels = shuffle([...projectTypes, ...technologies]);
-    if (context.query.labels) {
-        const selectedLabels = (context.query.labels as string).split(",");
+    if (query.labels) {
+        const selectedLabels = (query.labels as string).split(",");
         labels.sort(({ slug }) => (selectedLabels.includes(slug) ? -1 : 1));
     }
+
+    res.setHeader("Cache-Control", "public, s-maxage=60, stale-while-revalidate=59");
 
     return {
         props: {
