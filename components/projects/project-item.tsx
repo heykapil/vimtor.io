@@ -10,7 +10,7 @@ interface ProjectItemProps extends ProjectSummaryFragment {}
 function ProjectItem({ name, image, summary, demoUrl, ctaMessage, gitHubUrl }: ProjectItemProps) {
     return (
         <li className="transition-all duration-100 ease-in mt-16 sm:flex sm:items-center sm:pl-5 sm:mt-0 md:px-5 md:max-w-[800px] md:min-h-[250px]">
-            <div className="max-w-[90%] m-0 mx-auto w-full sm:w-1/2 sm:mr-8 sm:text-left md:mr-12">
+            <div className="max-w-[90%] m-0 mx-auto w-full text-center sm:w-1/2 sm:mr-8 sm:text-left md:mr-12">
                 <h3 className="mb-3 font-bold text-2xl">{name}</h3>
                 <RichText renderers={{ a: Link }} content={summary.raw} />
                 <div className="flex justify-center items-center mt-4 space-x-3 sm:justify-start">

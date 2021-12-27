@@ -20,7 +20,7 @@ interface HomeProps {
 
 export default function Home({ projects }: HomeProps) {
     return (
-        <Page title="Home" description="Personal website of Victor Navarro for portfolio and contact">
+        <Page title="Home" description="Personal website of Victor Navarro for portfolio and contact" className="mt-8">
             <IntroSection />
             <AboutSection />
             <Section className="opacity-0 motion-safe:animate-fade-in-down animation-delay-3000">

@@ -14,7 +14,7 @@ Router.events.on("routeChangeComplete", trackPage);
 
 function Page({ children, title, description, className }: PageProps) {
     return (
-        <main className={classNames("shrink-0 grow", className)}>
+        <main className={classNames("sm:mt-8", className)}>
             <Head>
                 <title>{title} - Victor Navarro</title>
                 <meta name="description" content={description} />
