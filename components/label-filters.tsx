@@ -46,8 +46,10 @@ function LabelFilters({ value, onChange, labels }: LabelFiltersProps) {
                             aria-checked={isChecked}
                             tabIndex={0}
                             className={classNames(
-                                "border border-gray-400 rounded-full py-2 px-4 cursor-pointer mr-4 shrink-0 select-none transition-all duration-100 ease-in outline-none hover:bg-gray-100 focus:bg-gray-100 mb-4",
-                                isChecked ? "border-gray-900 bg-gray-900 text-gray-100 hover:bg-gray-900 focus:bg-gray-900" : "",
+                                "border rounded-full py-2 px-4 cursor-pointer mr-4 shrink-0 select-none transition-all duration-100 ease-in outline-none mb-4",
+                                isChecked
+                                    ? "border-gray-800 bg-gray-800 text-gray-100 hover:bg-gray-700"
+                                    : "border-gray-400 bg-white hover:bg-gray-100 focus:bg-gray-100",
                                 isInitial ? "order-first sm:order-none" : ""
                             )}
                             onClick={() => {
