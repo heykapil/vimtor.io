@@ -7331,7 +7331,7 @@ export const TechnologySummaryFragmentDoc = gql`
   name
   slug
   icon {
-    url(transformation: {image: {resize: {height: 200, width: 200}}})
+    url(transformation: {image: {resize: {height: 192, width: 192}}})
   }
 }
     `;
