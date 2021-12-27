@@ -18,7 +18,7 @@ function Emoji({ label, icon, animation = "wiggle", reset = true }: EmojiProps) 
 
     return (
         <span
-            className={classNames("inline-block emoji", hovered ? animations[animation] : "")}
+            className={classNames("inline-block font-emoji", hovered ? animations[animation] : "")}
             role="img"
             aria-label={label}
             onMouseEnter={() => {
