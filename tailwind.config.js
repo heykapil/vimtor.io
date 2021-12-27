@@ -35,6 +35,7 @@ module.exports = {
         extend: {
             fontFamily: {
                 sans: ["Nunito", ...defaultTheme.fontFamily.sans],
+                emoji: ["Segoe UI Emoji", "Nunito", ...defaultTheme.fontFamily.sans],
             },
             keyframes: {
                 "fade-in-down": {

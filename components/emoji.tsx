@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { classNames } from "../utils/style";
 
 const animations = {
     wiggle: "animate-wiggle",
@@ -17,7 +18,7 @@ function Emoji({ label, icon, animation = "wiggle", reset = true }: EmojiProps) 
 
     return (
         <span
-            className={`inline-block ${hovered ? animations[animation] : ""}`}
+            className={classNames("inline-block emoji", hovered ? animations[animation] : "")}
             role="img"
             aria-label={label}
             onMouseEnter={() => {
