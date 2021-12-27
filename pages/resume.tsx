@@ -10,20 +10,22 @@ import Link from "../components/link";
 import { DownloadIcon } from "@heroicons/react/solid";
 import { GetStaticProps } from "next";
 import { ProjectSummaryFragment } from "../utils/schema";
+import Button from "../components/button";
+import SectionButtons from "../components/section/section-buttons";
 
 // This is needed so @react-pdf/renderer does not explode
 const PDFButtons = dynamic(() => import("../components/pdf-buttons"), {
     ssr: false,
     loading: () => (
-        <div className="sm:flex max-w-[50vh] px-4 sm:max-w-none sm:gap-3 mx-auto space-y-3 sm:space-y-0 justify-center items-center">
-            <button className="w-full sm:w-auto inline-flex justify-center items-center px-6 py-3 border border-2 border-transparent shadow-sm text-lg font-medium rounded-full text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-600">
+        <SectionButtons>
+            <Button variant="primary" size="medium" className="w-full sm:w-auto">
                 <DownloadIcon className="-ml-1 mr-3 h-5 w-5" aria-hidden="true" />
                 Download
-            </button>
-            <button className="w-full sm:w-auto inline-flex justify-center items-center px-6 py-3 border border-2 border-gray-800 shadow-sm text-lg font-medium rounded-full text-gray-800 bg-white hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-600">
+            </Button>
+            <Button variant="secondary" size="medium" className="w-full sm:w-auto">
                 View PDF
-            </button>
-        </div>
+            </Button>
+        </SectionButtons>
     ),
 });
 
