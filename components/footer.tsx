@@ -49,9 +49,6 @@ function Footer() {
                 </SocialItem>
             </ul>
             <p className="text-center text-gray-500 mt-16">
-                Victor Navarro &copy; 2021 <br />
-            </p>
-            <p className="text-center text-gray-500 mt-2">
                 Built with <Link href="https://nextjs.org">Next JS</Link> and <Link href="https://tailwindcss.com">Tailwind CSS</Link>
             </p>
         </footer>
