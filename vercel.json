@@ -1,3 +1,9 @@
 {
-  "rewrites": [{ "source": "/studio/(.*)", "destination": "/studio/index.html" }]
+  "version": 2,
+  "rewrites": [
+    {
+      "source": "/studio/(.*)",
+      "destination": "/studio/index.html"
+    }
+  ]
 }
