@@ -12,6 +12,9 @@ import { GetStaticProps } from "next";
 import { ProjectSummaryFragment } from "../utils/schema";
 import Button from "../components/button";
 import SectionButtons from "../components/section/section-buttons";
+import ResumeSection from "../components/resume-pdf/resume-section";
+import ResumeSectionItem from "../components/resume-pdf/resume-section-item";
+import { client } from "../utils/prismic";
 
 // This is needed so @react-pdf/renderer does not explode
 const PDFButtons = dynamic(() => import("../components/pdf-buttons"), {
@@ -28,15 +31,36 @@ const PDFButtons = dynamic(() => import("../components/pdf-buttons"), {
         </SectionButtons>
     ),
 });
-
-const styles = StyleSheet.create({
+StyleSheet.create({
+    header: {
+        marginBottom: 16,
+    },
+    title: {
+        textAlign: "center",
+        fontSize: 24,
+        fontWeight: "bold",
+        marginBottom: 8,
+    },
+    subtitle: {
+        textAlign: "center",
+    },
     page: {
-        backgroundColor: "#E4E4E4",
+        padding: 24,
     },
     section: {
-        margin: 10,
-        padding: 10,
-        flexGrow: 1,
+        marginTop: 8,
+    },
+    item: {
+        display: "flex",
+        flexDirection: "row",
+        justifyContent: "space-between",
+        fontSize: 14,
+    },
+    itemRight: {
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "flex-end",
+        color: "#8d8d8d",
     },
 });
 
@@ -47,12 +71,20 @@ interface ResumeProps {
 export default function Resume({ projects }: ResumeProps) {
     const ResumeDocument = () => (
         <Document>
-            <Slide size="A4" style={styles.page}>
-                {projects?.map((project) => (
-                    <View key={project.slug} style={styles.section}>
-                        <Text>{project.name}</Text>
-                    </View>
-                ))}
+            <Slide size="A4" style={{ paddingVertical: 64, paddingHorizontal: 36 }}>
+                <View style={{ marginBottom: 24, textAlign: "center" }}>
+                    <Text style={{ fontSize: 24, marginBottom: 12 }}>Victor Navarro</Text>
+                    <Text style={{ fontSize: 16 }}>22 years | Website | victor@vimtor.io | GitHub</Text>
+                </View>
+                <ResumeSection title="Experience">
+                    <ResumeSectionItem
+                        title="Computer Science"
+                        subtitle="Universitat Pompeu Fabra"
+                        startDate={new Date(2021, 1)}
+                        endDate={new Date(2022, 7)}
+                        accessoryTitle="Barcelona"
+                    />
+                </ResumeSection>
             </Slide>
         </Document>
     );
@@ -62,7 +94,7 @@ export default function Resume({ projects }: ResumeProps) {
             <PageTitle>
                 Resume <Emoji label="paper document" icon="📄" />
             </PageTitle>
-            <PageSubtitle>Here&apos;s my resume on PDF in case you are one of those</PageSubtitle>
+            <PageSubtitle>Here&apos;s my resume for the good old days</PageSubtitle>
             <PDFButtons document={<ResumeDocument />} fileName="Victor Navarro Resume" />
             <SectionCTA className="text-center">
                 The file is generated from this website contents
@@ -75,6 +107,8 @@ export default function Resume({ projects }: ResumeProps) {
 
 export const getStaticProps: GetStaticProps<ResumeProps> = async () => {
     const { projects } = await graphCms.getProjectsPage();
+    const response = await client.getSingle("home_page");
+    console.log(response.data.projects[0].project);
     return {
         props: {
             projects,
