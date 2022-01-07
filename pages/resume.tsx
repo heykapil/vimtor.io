@@ -14,7 +14,6 @@ import Button from "../components/button";
 import SectionButtons from "../components/section/section-buttons";
 import ResumeSection from "../components/resume-pdf/resume-section";
 import ResumeSectionItem from "../components/resume-pdf/resume-section-item";
-import { client } from "../utils/prismic";
 
 // This is needed so @react-pdf/renderer does not explode
 const PDFButtons = dynamic(() => import("../components/pdf-buttons"), {
@@ -107,8 +106,7 @@ export default function Resume({ projects }: ResumeProps) {
 
 export const getStaticProps: GetStaticProps<ResumeProps> = async () => {
     const { projects } = await graphCms.getProjectsPage();
-    const response = await client.getSingle("home_page");
-    console.log(response.data.projects[0].project);
+
     return {
         props: {
             projects,
