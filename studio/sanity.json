@@ -1,7 +1,8 @@
 {
   "root": true,
   "project": {
-    "name": "vimtor.io"
+    "name": "vimtor.io",
+    "basePath": "/studio"
   },
   "api": {
     "projectId": "3e4p2gbc",
