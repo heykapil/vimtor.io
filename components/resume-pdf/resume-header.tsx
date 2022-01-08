@@ -5,15 +5,21 @@ interface ResumeHeaderProps {}
 const styles = StyleSheet.create({
     header: {
         marginBottom: 24,
-        textAlign: "center",
+    },
+    name: {
+        fontSize: 24,
+        marginBottom: 12,
+    },
+    subtitle: {
+        fontSize: 16,
     },
 });
 
 function ResumeHeader({}: ResumeHeaderProps) {
     return (
         <View style={styles.header}>
-            <Text style={{ fontSize: 24, marginBottom: 12 }}>Victor Navarro</Text>
-            <Text style={{ fontSize: 16 }}>22 years | Website | victor@vimtor.io | GitHub</Text>
+            <Text style={styles.name}>Victor Navarro</Text>
+            <Text style={styles.subtitle}>22 years | Website | victor@vimtor.io | GitHub</Text>
         </View>
     );
 }
