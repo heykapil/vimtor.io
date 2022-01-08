@@ -13,14 +13,5 @@ import education from "./education";
 
 export default createSchema({
     name: "default",
-    types: schemaTypes.concat([
-        resume,
-        education,
-        technologiesPage,
-        projectType,
-        homePage,
-        technology,
-        project,
-        blockContent,
-    ]),
+    types: schemaTypes.concat([resume, education, technologiesPage, projectType, homePage, technology, project, blockContent]),
 });

@@ -47,8 +47,8 @@ export default {
             type: "url",
             inputComponent: UrlInput,
             options: {
-                baseUrl: 'https://github.com/'
-            }
+                baseUrl: "https://github.com/",
+            },
         },
         {
             name: "summary",

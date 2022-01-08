@@ -7,16 +7,16 @@ export default {
             name: "contactInformation",
             title: "Contact Information",
             options: {
-                columns: 2
-            }
-        }
+                columns: 2,
+            },
+        },
     ],
     fields: [
         {
-          name: "location",
-          title: "Location",
-          type: "string",
-          fieldset: "contactInformation"
+            name: "location",
+            title: "Location",
+            type: "string",
+            fieldset: "contactInformation",
         },
         {
             name: "email",
@@ -38,6 +38,6 @@ export default {
             title: "Education",
             type: "array",
             of: [{ type: "reference", to: { type: "education" } }],
-        }
+        },
     ],
 };
