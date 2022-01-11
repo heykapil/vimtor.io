@@ -6,7 +6,7 @@ import { useId } from "@reach/auto-id";
 
 const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
-const SimpleDateInput = React.forwardRef((props, ref) => {
+const SimpleDateInput = React.forwardRef((props) => {
     const { type, value, readOnly, markers, presence, compareValue, onFocus, onBlur, onChange } = props;
 
     const inputId = useId();
@@ -46,7 +46,14 @@ const SimpleDateInput = React.forwardRef((props, ref) => {
         >
             <Flex gap={3}>
                 <Box flex={1}>
-                    <Select readOnly={readOnly} placeholder="January" value={currentValue ? currentValue.getMonth() : ""} onChange={handleMonthChange}>
+                    <Select
+                        readOnly={readOnly}
+                        placeholder="January"
+                        value={currentValue ? currentValue.getMonth() : ""}
+                        onChange={handleMonthChange}
+                        onFocus={onFocus}
+                        onBlur={onBlur}
+                    >
                         {months.map((month, index) => (
                             <option key={index} value={index} selected={index === new Date().getMonth()}>
                                 {month}
@@ -61,6 +68,8 @@ const SimpleDateInput = React.forwardRef((props, ref) => {
                         placeholder="2021"
                         value={currentValue ? currentValue.getFullYear() : ""}
                         onChange={handleYearChange}
+                        onFocus={onFocus}
+                        onBlur={onBlur}
                     />
                 </Box>
             </Flex>

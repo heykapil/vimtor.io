@@ -43,7 +43,6 @@ export default {
             name: "currentlyWorking",
             title: "Currently Working",
             type: "boolean",
-            description: "Are you currently working in this project?",
         },
         {
             name: "startedOn",
@@ -65,6 +64,9 @@ export default {
             to: { type: "project" },
         },
     ],
+    initialValue: {
+        currentlyWorking: false,
+    },
     preview: {
         select: {
             jobTitle: "jobTitle",
