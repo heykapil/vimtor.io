@@ -17,6 +17,7 @@ export default {
             title: "Location",
             type: "string",
             fieldset: "contactInformation",
+            placeholder: "Barcelona, Spain",
         },
         {
             name: "email",
@@ -31,7 +32,7 @@ export default {
             name: "experience",
             title: "Experience",
             type: "array",
-            of: [{ type: "reference", to: { type: "project" } }],
+            of: [{ type: "reference", to: { type: "jobExperience" } }],
         },
         {
             name: "education",

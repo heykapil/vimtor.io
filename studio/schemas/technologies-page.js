@@ -1,3 +1,5 @@
+import React from "react";
+
 export default {
     name: "technologiesPage",
     title: "Technologies Page",
@@ -9,7 +11,7 @@ export default {
             type: "array",
             of: [
                 {
-                    type: "document",
+                    type: "object",
                     name: "level",
                     fields: [
                         {

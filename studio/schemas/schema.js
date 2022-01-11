@@ -8,10 +8,23 @@ import technologiesPage from "./technologies-page";
 import homePage from "./home-page";
 import project from "./project";
 import projectType from "./project-type";
-import resume from "./resume-page";
+import resumePage from "./resume-page";
 import education from "./education";
+import simpleRichText from "./simple-rich-text";
+import jobExperience from "./job-experience";
 
 export default createSchema({
     name: "default",
-    types: schemaTypes.concat([resume, education, technologiesPage, projectType, homePage, technology, project, blockContent]),
+    types: schemaTypes.concat([
+        simpleRichText,
+        resumePage,
+        education,
+        jobExperience,
+        technologiesPage,
+        projectType,
+        homePage,
+        technology,
+        project,
+        blockContent,
+    ]),
 });
