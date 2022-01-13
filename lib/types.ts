@@ -1,28 +1,37 @@
+export type Slug = string;
+
+export type RichText = any;
+
+export interface JobExperience {
+    jobTitle: string;
+    employmentType: string;
+    startedOn: Date;
+    endedOn: Date;
+    currentlyWorking: boolean;
+    projectName: string;
+}
+
 export interface Education {
     title: string;
     schoolName: string;
-    startDate: Date;
-    endDate: Date;
+    schoolUrl: string;
+    startedOn: Date;
+    endedOn: Date;
 }
 
-export interface ProjectType {
+export interface ProjectTag {
     slug: string;
     name: string;
 }
 
 export interface Project {
-    slug: string;
-    title: string;
-    summary: string;
+    name: string;
+    summary: RichText;
     banner: string;
     demoUrl: string;
     ctaMessage: string;
     gitHubRepositoryUrl: string;
-    type: ProjectType;
-    technologies: Array<string>;
-    startDate: Date;
-    endDate: Date;
-    experienceDescription: string;
+    tags: Array<Slug>;
 }
 
 export interface Technology {
@@ -46,6 +55,13 @@ export interface TechnologiesPage {
 }
 
 export interface ResumePage {
-    experience: Array<Project>;
-    educations: Array<Education>;
+    location: string;
+    email: string;
+    experience: Array<JobExperience>;
+    education: Array<Education>;
+}
+
+export interface ProjectsPage {
+    projects: Array<Project>;
+    tags: Array<ProjectTag>;
 }
