@@ -27,7 +27,8 @@ const jobExperienceQuery = groq`
       startedOn,
       endedOn,
       currentlyWorking,
-      'projectName': relatedProject->.name
+      'projectName': relatedProject->.name,
+      'technologies': relatedProject->.technologies[]->.name
     }
 `;
 

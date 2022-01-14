@@ -9,6 +9,7 @@ export interface JobExperience {
     endedOn: string;
     currentlyWorking: boolean;
     projectName: string;
+    technologies: Array<string>;
 }
 
 export interface School {
