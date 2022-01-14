@@ -34,10 +34,13 @@ const jobExperienceQuery = groq`
 const educationQuery = groq`
     {
       title,
-      schoolName,
-      schoolUrl,
+      description,
       startedOn,
-      endedOn
+      endedOn,
+      school{
+        name,
+        url
+      }
     }
 `;
 

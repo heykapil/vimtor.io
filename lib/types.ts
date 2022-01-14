@@ -5,18 +5,23 @@ export type RichText = Record<any, any>;
 export interface JobExperience {
     jobTitle: string;
     employmentType: string;
-    startedOn: Date;
-    endedOn: Date;
+    startedOn: string;
+    endedOn: string;
     currentlyWorking: boolean;
     projectName: string;
 }
 
+export interface School {
+    name: string;
+    url: string;
+}
+
 export interface Education {
     title: string;
-    schoolName: string;
-    schoolUrl: string;
-    startedOn: Date;
-    endedOn: Date;
+    description: string;
+    startedOn: string;
+    endedOn: string;
+    school: School;
 }
 
 export interface ProjectTag {

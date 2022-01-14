@@ -7,9 +7,14 @@ export default {
     fieldsets: [{ name: "school", title: "School", options: { columns: 2 } }],
     fields: [
         {
-            name: "degree",
-            title: "Degree",
+            name: "title",
+            title: "Title",
             type: "string",
+        },
+        {
+            name: "description",
+            title: "Description",
+            type: "text",
         },
         {
             name: "school",
@@ -48,7 +53,7 @@ export default {
     ],
     preview: {
         select: {
-            title: "degree",
+            title: "title",
             subtitle: "school.name",
             media: "school.logo",
         },
