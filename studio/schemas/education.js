@@ -46,4 +46,11 @@ export default {
             inputComponent: SimpleDateInput,
         },
     ],
+    preview: {
+        select: {
+            title: "degree",
+            subtitle: "school.name",
+            media: "school.logo",
+        },
+    },
 };
