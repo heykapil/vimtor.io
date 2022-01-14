@@ -1,7 +1,7 @@
 import { Disclosure, Transition } from "@headlessui/react";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { classNames } from "../../utils/style";
+import { classNames } from "../../lib/style";
 
 interface NavbarItemProps {
     children: string;

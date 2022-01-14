@@ -1,7 +1,7 @@
 import Emoji from "./emoji";
 import Link from "./link";
 import { ComponentPropsWithoutRef } from "react";
-import { classNames } from "../utils/style";
+import { classNames } from "../lib/style";
 
 interface EmptyMessageProps {
     shownCount: number;

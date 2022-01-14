@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { classNames } from "../utils/style";
+import { classNames } from "../lib/style";
 
 const animations = {
     wiggle: "animate-wiggle",

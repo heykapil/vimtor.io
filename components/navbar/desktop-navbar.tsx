@@ -2,7 +2,7 @@ import { Transition } from "@headlessui/react";
 import Link from "next/link";
 import Button from "../button";
 import { useRouter } from "next/router";
-import { classNames } from "../../utils/style";
+import { classNames } from "../../lib/style";
 
 interface NavbarItemProps {
     href: string;

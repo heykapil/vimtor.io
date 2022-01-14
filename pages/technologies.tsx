@@ -5,16 +5,12 @@ import Link from "../components/link";
 import PageTitle from "../components/page/page-title";
 import PageSubtitle from "../components/page/page-subtitle";
 import { GetStaticProps } from "next";
-import graphCms from "../utils/graph-cms";
-import { TechnologyLevelSummaryFragment } from "../utils/schema";
 import { Transition } from "@headlessui/react";
 import { useState } from "react";
+import { TechnologiesPage } from "../lib/types";
+import { getTechnologiesPage } from "../lib/sanity/api";
 
-interface TechnologiesProps {
-    levels: Array<TechnologyLevelSummaryFragment>;
-}
-
-export default function Technologies({ levels }: TechnologiesProps) {
+export default function Technologies({ levels }: TechnologiesPage) {
     const [showTooltip, setShowTooltip] = useState(true);
 
     return (
@@ -36,9 +32,9 @@ export default function Technologies({ levels }: TechnologiesProps) {
                         >
                             {level.technologies.map((technology) => (
                                 <li className="shrink-0 hover:opacity-80 transition-opacity" key={technology.slug}>
-                                    <Link href={`/projects?labels=${encodeURIComponent(technology.slug)}`}>
+                                    <Link href={`/projects?tags=${technology.slug}`}>
                                         <a title={`See projects using ${technology.name}`}>
-                                            <Image src={technology.icon.url} alt={`${technology.name} icon`} width={96} height={96} />
+                                            <Image src={technology.icon} alt={`${technology.name} icon`} width={96} height={96} />
                                         </a>
                                     </Link>
                                 </li>
@@ -72,19 +68,9 @@ export default function Technologies({ levels }: TechnologiesProps) {
     );
 }
 
-export const getStaticProps: GetStaticProps<TechnologiesProps> = async () => {
-    const { page } = await graphCms.getTechnologiesPage();
-
-    if (!page) {
-        return {
-            notFound: true,
-        };
-    }
-
+export const getStaticProps: GetStaticProps<TechnologiesPage> = async () => {
     return {
         revalidate: 3600,
-        props: {
-            levels: page.levels,
-        },
+        props: await getTechnologiesPage(),
     };
 };

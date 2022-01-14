@@ -1,4 +1,4 @@
-import { classNames } from "../../utils/style";
+import { classNames } from "../../lib/style";
 import { ComponentPropsWithoutRef } from "react";
 
 function SectionTitle({ className, ...props }: ComponentPropsWithoutRef<"h2">) {

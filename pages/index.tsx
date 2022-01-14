@@ -2,7 +2,6 @@ import IntroSection from "../components/intro-section";
 import AboutSection from "../components/about-section";
 import ContactSection from "../components/contact/contact-section";
 import Page from "../components/page/page";
-import graphCms from "../utils/graph-cms";
 import SectionTitle from "../components/section/section-title";
 import Emoji from "../components/emoji";
 import SectionSubtitle from "../components/section/section-subtitle";
@@ -12,13 +11,10 @@ import SectionCTO from "../components/section/section-cta";
 import Link from "next/link";
 import Section from "../components/section/section";
 import { GetStaticProps } from "next";
-import { ProjectSummaryFragment } from "../utils/schema";
+import { getHomePage } from "../lib/sanity/api";
+import { HomePage } from "../lib/types";
 
-interface HomeProps {
-    projects: Array<ProjectSummaryFragment>;
-}
-
-export default function Home({ projects }: HomeProps) {
+export default function Home({ projects }: HomePage) {
     return (
         <Page title="Home" description="Personal website of Victor Navarro for portfolio and contact" className="mt-8">
             <IntroSection />
@@ -30,7 +26,7 @@ export default function Home({ projects }: HomeProps) {
                 <SectionSubtitle>Some of the things I&apos;ve built</SectionSubtitle>
                 <ProjectList>
                     {projects.map((project) => (
-                        <ProjectItem key={project.slug} {...project} />
+                        <ProjectItem key={project.name} {...project} />
                     ))}
                 </ProjectList>
                 <SectionCTO>
@@ -47,19 +43,9 @@ export default function Home({ projects }: HomeProps) {
     );
 }
 
-export const getStaticProps: GetStaticProps<HomeProps> = async () => {
-    const { page } = await graphCms.getHomePage();
-
-    if (!page) {
-        return {
-            notFound: true,
-        };
-    }
-
+export const getStaticProps: GetStaticProps<HomePage> = async () => {
     return {
         revalidate: 3600,
-        props: {
-            projects: page.projects,
-        },
+        props: await getHomePage(),
     };
 };

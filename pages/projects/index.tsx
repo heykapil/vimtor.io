@@ -2,33 +2,25 @@ import Emoji from "../../components/emoji";
 import ProjectList from "../../components/projects/project-list";
 import { useEffect, useMemo, useState } from "react";
 import { GetStaticProps } from "next";
-import LabelFilters, { Label } from "../../components/label-filters";
+import TagFilters from "../../components/tag-filters";
 import EmptyMessage from "../../components/empty-message";
 import { useQueryArrayState } from "../../hooks/use-query-state";
 import Page from "../../components/page/page";
 import ProjectItem from "../../components/projects/project-item";
 import PageTitle from "../../components/page/page-title";
 import PageSubtitle from "../../components/page/page-subtitle";
-import graphCms from "../../utils/graph-cms";
-import { shuffle } from "lodash";
-import { ProjectSummaryFragment } from "../../utils/schema";
+import { ProjectsPage } from "../../lib/types";
+import { getProjectsPage } from "../../lib/sanity/api";
 
-interface ProjectsProps {
-    projects: Array<ProjectSummaryFragment>;
-    labels: Array<Label>;
-}
-
-export default function Projects({ projects, labels }: ProjectsProps) {
+export default function Projects({ projects, tags }: ProjectsPage) {
     const [emptyListCount, setEmptyListCount] = useState(0);
-    const [selectedLabels, setSelectedLabels] = useQueryArrayState("labels");
+    const [selectedTags, setSelectedTags] = useQueryArrayState("tags");
 
     const visibleProjects = useMemo(() => {
         return projects.filter((project) => {
-            return selectedLabels.every((slug) => {
-                return project.type?.slug === slug || project.technologies.some((technology) => technology.slug === slug);
-            });
+            return selectedTags.every((slug) => project.tags.includes(slug));
         });
-    }, [projects, selectedLabels]);
+    }, [selectedTags, projects]);
 
     useEffect(() => {
         if (visibleProjects.length === 0) {
@@ -42,11 +34,11 @@ export default function Projects({ projects, labels }: ProjectsProps) {
                 All my projects <Emoji label="rocket" icon="🚀" reset={false} animation="rocket" />
             </PageTitle>
             <PageSubtitle>A list of projects I worked on that are worth mentioning</PageSubtitle>
-            <LabelFilters value={selectedLabels} labels={labels} onChange={setSelectedLabels} />
+            <TagFilters value={selectedTags} labels={tags} onChange={setSelectedTags} />
             {visibleProjects.length !== 0 ? (
                 <ProjectList>
-                    {projects.map((project) => (
-                        <ProjectItem key={project.slug} {...project} />
+                    {visibleProjects.map((project) => (
+                        <ProjectItem key={project.name} {...project} />
                     ))}
                 </ProjectList>
             ) : (
@@ -56,13 +48,8 @@ export default function Projects({ projects, labels }: ProjectsProps) {
     );
 }
 
-export const getStaticProps: GetStaticProps<ProjectsProps> = async () => {
-    const { projects, projectTypes, technologies } = await graphCms.getProjectsPage();
-    const labels = shuffle([...projectTypes, ...technologies]);
+export const getStaticProps: GetStaticProps<ProjectsPage> = async () => {
     return {
-        props: {
-            projects,
-            labels,
-        },
+        props: await getProjectsPage(),
     };
 };

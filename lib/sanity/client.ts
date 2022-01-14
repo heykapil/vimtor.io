@@ -1,7 +1,7 @@
-import { ClientConfig, createClient, createImageUrlBuilder, createPortableTextComponent } from "next-sanity";
+import { ClientConfig, createClient, createImageUrlBuilder } from "next-sanity";
 import { SanityImageSource } from "@sanity/image-url/lib/types/types";
 
-const config: ClientConfig = {
+export const config: ClientConfig = {
     /**
      * Find your project ID and dataset in `sanity.json` in your studio project.
      * These are considered “public”, but you can use environment variables
@@ -21,11 +21,6 @@ const config: ClientConfig = {
 };
 
 export const urlFor = (source: SanityImageSource) => createImageUrlBuilder(config).image(source);
-
-export const PortableText = createPortableTextComponent({
-    ...config,
-    serializers: {},
-});
 
 export const sanityClient = createClient(config);
 

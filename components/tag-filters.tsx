@@ -2,21 +2,17 @@ import Emoji from "./emoji";
 import { useCallback, useState } from "react";
 import { useEffectOnce, useEvent } from "react-use";
 import { Transition } from "@headlessui/react";
-import { classNames } from "../utils/style";
+import { classNames } from "../lib/style";
 import { useInitialValue } from "../hooks/use-initial-value";
+import { ProjectTag } from "../lib/types";
 
-export interface Label {
-    name: string;
-    slug: string;
-}
-
-interface LabelFiltersProps {
+interface TagFiltersProps {
     value: Array<string>;
     onChange: (value: string[]) => void;
-    labels: Array<Label>;
+    labels: Array<ProjectTag>;
 }
 
-function LabelFilters({ value, onChange, labels }: LabelFiltersProps) {
+function TagFilters({ value, onChange, labels }: TagFiltersProps) {
     const [showScrollHelper, setShowScrollHelper] = useState(false);
     const initialValue = useInitialValue(value);
 
@@ -95,4 +91,4 @@ function LabelFilters({ value, onChange, labels }: LabelFiltersProps) {
     );
 }
 
-export default LabelFilters;
+export default TagFilters;

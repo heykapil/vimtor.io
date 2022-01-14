@@ -3,17 +3,17 @@ import Emoji from "../components/emoji";
 import SectionCTA from "../components/section/section-cta";
 import PageTitle from "../components/page/page-title";
 import PageSubtitle from "../components/page/page-subtitle";
-import { Document, Page as Slide, StyleSheet, Text, View } from "@react-pdf/renderer";
+import { Document, Page as Slide, View, Text } from "@react-pdf/renderer";
 import dynamic from "next/dynamic";
-import graphCms from "../utils/graph-cms";
 import Link from "../components/link";
 import { DownloadIcon } from "@heroicons/react/solid";
 import { GetStaticProps } from "next";
-import { ProjectSummaryFragment } from "../utils/schema";
 import Button from "../components/button";
 import SectionButtons from "../components/section/section-buttons";
 import ResumeSection from "../components/resume-pdf/resume-section";
 import ResumeSectionItem from "../components/resume-pdf/resume-section-item";
+import { ResumePage } from "../lib/types";
+import { getResumePage } from "../lib/sanity/api";
 
 // This is needed so @react-pdf/renderer does not explode
 const PDFButtons = dynamic(() => import("../components/pdf-buttons"), {
@@ -30,50 +30,16 @@ const PDFButtons = dynamic(() => import("../components/pdf-buttons"), {
         </SectionButtons>
     ),
 });
-StyleSheet.create({
-    header: {
-        marginBottom: 16,
-    },
-    title: {
-        textAlign: "center",
-        fontSize: 24,
-        fontWeight: "bold",
-        marginBottom: 8,
-    },
-    subtitle: {
-        textAlign: "center",
-    },
-    page: {
-        padding: 24,
-    },
-    section: {
-        marginTop: 8,
-    },
-    item: {
-        display: "flex",
-        flexDirection: "row",
-        justifyContent: "space-between",
-        fontSize: 14,
-    },
-    itemRight: {
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "flex-end",
-        color: "#8d8d8d",
-    },
-});
 
-interface ResumeProps {
-    projects: Array<ProjectSummaryFragment>;
-}
-
-export default function Resume({ projects }: ResumeProps) {
+export default function Resume({ location, email, experience, education }: ResumePage) {
     const ResumeDocument = () => (
         <Document>
             <Slide size="A4" style={{ paddingVertical: 64, paddingHorizontal: 36 }}>
                 <View style={{ marginBottom: 24, textAlign: "center" }}>
                     <Text style={{ fontSize: 24, marginBottom: 12 }}>Victor Navarro</Text>
-                    <Text style={{ fontSize: 16 }}>22 years | Website | victor@vimtor.io | GitHub</Text>
+                    <Text style={{ fontSize: 16 }}>
+                        {location} {email}
+                    </Text>
                 </View>
                 <ResumeSection title="Experience">
                     <ResumeSectionItem
@@ -104,12 +70,8 @@ export default function Resume({ projects }: ResumeProps) {
     );
 }
 
-export const getStaticProps: GetStaticProps<ResumeProps> = async () => {
-    const { projects } = await graphCms.getProjectsPage();
-
+export const getStaticProps: GetStaticProps<ResumePage> = async () => {
     return {
-        props: {
-            projects,
-        },
+        props: await getResumePage(),
     };
 };

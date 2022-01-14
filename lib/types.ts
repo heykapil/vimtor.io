@@ -1,6 +1,6 @@
 export type Slug = string;
 
-export type RichText = any;
+export type RichText = Record<any, any>;
 
 export interface JobExperience {
     jobTitle: string;

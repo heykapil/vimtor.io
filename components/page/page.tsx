@@ -1,7 +1,7 @@
-import { classNames } from "../../utils/style";
+import { classNames } from "../../lib/style";
 import Head from "next/head";
 import { Router } from "next/router";
-import { trackPage } from "../../utils/analytics";
+import { trackPage } from "../../lib/analytics";
 
 interface PageProps {
     title: string;

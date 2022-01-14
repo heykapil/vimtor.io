@@ -1,4 +1,4 @@
-import { classNames } from "../../utils/style";
+import { classNames } from "../../lib/style";
 
 interface SectionButtonsProps {
     children: any;

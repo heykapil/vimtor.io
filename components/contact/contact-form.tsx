@@ -1,4 +1,4 @@
-import { classNames } from "../../utils/style";
+import { classNames } from "../../lib/style";
 import ContactMessage from "./contact-message";
 import { useEffect, useState } from "react";
 import { useForm } from "@formspree/react";

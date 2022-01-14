@@ -79,7 +79,7 @@ export const homePageQuery = groq`
 
 export const projectsPageQuery = groq`
     {
-        projects: ${projectsQuery},
-        tags: ${projectTagsQuery}
+        'projects': ${projectsQuery},
+        'tags': ${projectTagsQuery}
     }
 `;

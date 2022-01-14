@@ -1,7 +1,0 @@
-query getHomePage {
-    page: homePage(where: { id: "ckxkjakzszahn0c96vu2zuy7j" }) {
-        projects {
-            ...ProjectSummary
-        }
-    }
-}
