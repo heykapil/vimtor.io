@@ -6,21 +6,18 @@ import SectionButtons from "./section/section-buttons";
 
 interface PdfButtonsProps extends Omit<ComponentProps<typeof PDFDownloadLink>, "children" | "style"> {}
 
-function PdfButtons({ document, fileName, className }: PdfButtonsProps) {
+function PdfButtons({ document, fileName }: PdfButtonsProps) {
     const [{ url }] = usePDF({ document });
 
     return (
         <SectionButtons>
-            <PDFViewer width={900} height={1800}>
-                {document}
-            </PDFViewer>
-            {/*<Button download={fileName} href={url || ""} variant="primary" size="medium" className="w-full sm:w-auto">*/}
-            {/*    <DownloadIcon className="-ml-1 mr-3 h-5 w-5" aria-hidden="true" />*/}
-            {/*    Download*/}
-            {/*</Button>*/}
-            {/*<Button variant="secondary" size="medium" href={url || ""} target="_blank" rel="noreferrer" className="w-full sm:w-auto">*/}
-            {/*    View PDF*/}
-            {/*</Button>*/}
+            <Button download={fileName} href={url || ""} variant="primary" size="medium" className="w-full sm:w-auto">
+                <DownloadIcon className="-ml-1 mr-3 h-5 w-5" aria-hidden="true" />
+                Download
+            </Button>
+            <Button variant="secondary" size="medium" href={url || ""} target="_blank" rel="noreferrer" className="w-full sm:w-auto">
+                View PDF
+            </Button>
         </SectionButtons>
     );
 }

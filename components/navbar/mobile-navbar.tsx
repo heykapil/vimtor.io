@@ -44,6 +44,7 @@ function MobileNavbar() {
                 <div className="px-2 pt-2 pb-5 space-y-2">
                     <NavbarItem href="/projects">Projects</NavbarItem>
                     <NavbarItem href="/technologies">Technologies</NavbarItem>
+                    <NavbarItem href="/resume">Resume</NavbarItem>
                     <NavbarItem href="/contact">Contact</NavbarItem>
                 </div>
             </Disclosure.Panel>

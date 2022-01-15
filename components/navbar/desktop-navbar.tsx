@@ -38,6 +38,7 @@ function DesktopNavbar() {
                 <Transition appear show className="flex items-baseline space-x-8">
                     <NavbarItem href="/projects">Projects</NavbarItem>
                     <NavbarItem href="/technologies">Technologies</NavbarItem>
+                    <NavbarItem href="/resume">Resume</NavbarItem>
                     <Transition.Child enter="transition delay-700 duration-700 ease-elastic" enterFrom="opacity-0 scale-75" enterTo="opacity-100 scale-100">
                         <Link href="/contact" passHref>
                             <Button variant="primary" size="small">

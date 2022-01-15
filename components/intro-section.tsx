@@ -12,7 +12,7 @@ function IntroSection() {
                 <div className="text-xl">
                     <p>Hi, I am Victor Navarro!</p>
                     <p>When I was a child, my dream was to become an inventor</p>
-                    <p className="mt-5">This is my best attempt</p>
+                    <p className="mt-5">Today, I help quality businesses build quality software</p>
                 </div>
             </div>
         </header>
