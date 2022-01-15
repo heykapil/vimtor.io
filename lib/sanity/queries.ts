@@ -23,11 +23,13 @@ const technologyQuery = groq`
 const jobExperienceQuery = groq`
     {
       jobTitle,
+      jobDescription,
       employmentType,
       startedOn,
       endedOn,
       currentlyWorking,
       'projectName': relatedProject->.name,
+      'projectUrl': relatedProject->.demoUrl,
       'technologies': relatedProject->.technologies[]->.name
     }
 `;

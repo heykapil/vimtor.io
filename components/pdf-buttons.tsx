@@ -1,4 +1,4 @@
-import { PDFDownloadLink, usePDF } from "@react-pdf/renderer";
+import { PDFDownloadLink, PDFViewer, usePDF } from "@react-pdf/renderer";
 import { DownloadIcon } from "@heroicons/react/solid";
 import { ComponentProps } from "react";
 import Button from "./button";
@@ -11,13 +11,16 @@ function PdfButtons({ document, fileName, className }: PdfButtonsProps) {
 
     return (
         <SectionButtons>
-            <Button download={fileName} href={url || ""} variant="primary" size="medium" className="w-full sm:w-auto">
-                <DownloadIcon className="-ml-1 mr-3 h-5 w-5" aria-hidden="true" />
-                Download
-            </Button>
-            <Button variant="secondary" size="medium" href={url || ""} target="_blank" rel="noreferrer" className="w-full sm:w-auto">
-                View PDF
-            </Button>
+            <PDFViewer width={900} height={1800}>
+                {document}
+            </PDFViewer>
+            {/*<Button download={fileName} href={url || ""} variant="primary" size="medium" className="w-full sm:w-auto">*/}
+            {/*    <DownloadIcon className="-ml-1 mr-3 h-5 w-5" aria-hidden="true" />*/}
+            {/*    Download*/}
+            {/*</Button>*/}
+            {/*<Button variant="secondary" size="medium" href={url || ""} target="_blank" rel="noreferrer" className="w-full sm:w-auto">*/}
+            {/*    View PDF*/}
+            {/*</Button>*/}
         </SectionButtons>
     );
 }

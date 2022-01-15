@@ -4,11 +4,13 @@ export type RichText = Record<any, any>;
 
 export interface JobExperience {
     jobTitle: string;
+    jobDescription: string;
     employmentType: string;
     startedOn: string;
-    endedOn: string;
+    endedOn?: string;
     currentlyWorking: boolean;
     projectName: string;
+    projectUrl: string;
     technologies: Array<string>;
 }
 
