@@ -4,6 +4,7 @@ import Image from "next/image";
 import ImageShadow from "../image-shadow";
 import { Project } from "../../lib/types";
 import RichTextRenderer from "../rich-text-renderer";
+import { urlFor } from "../../lib/sanity/client";
 
 function ProjectItem({ name, banner, summary, demoUrl, ctaMessage, gitHubRepositoryUrl }: Project) {
     return (
@@ -25,7 +26,7 @@ function ProjectItem({ name, banner, summary, demoUrl, ctaMessage, gitHubReposit
                 className="block mt-9 transition-all w-full h-[256px] relative overflow-hidden rounded-0 focus:outline-none ring-gray-900 focus:ring-4 hover:ring-4 ring-opacity-80 sm:shrink-0 sm:w-1/2 sm:h-[250px] sm:mt-0 sm:rounded-tl-[16px] sm:rounded-bl-[16px] md:rounded-2xl"
                 aria-label={`${name} source`}
             >
-                <Image src={banner} alt={name} layout="fill" objectFit="cover" />
+                <Image src={urlFor(banner).width(1000).quality(100).url() as string} alt={name} layout="fill" objectFit="cover" />
                 <ImageShadow className="sm:rounded-tl-[16px] sm:rounded-bl-[16px] md:rounded-2xl" />
             </a>
         </li>

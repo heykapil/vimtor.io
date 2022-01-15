@@ -4,7 +4,7 @@ const projectQuery = groq`
     {
       name,
       summary,
-      "banner": banner.asset->.url,
+      "banner": banner.asset,
       demoUrl,
       ctaMessage,
       gitHubRepositoryUrl,

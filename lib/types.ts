@@ -2,6 +2,8 @@ export type Slug = string;
 
 export type RichText = Record<any, any>;
 
+export type Image = unknown;
+
 export interface JobExperience {
     jobTitle: string;
     jobDescription: string;
@@ -35,7 +37,7 @@ export interface ProjectTag {
 export interface Project {
     name: string;
     summary: RichText;
-    banner: string;
+    banner: Image;
     demoUrl: string;
     ctaMessage: string;
     gitHubRepositoryUrl: string;

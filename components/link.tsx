@@ -11,6 +11,8 @@ function Link({ href, className, ...props }: LinkProps) {
         <NextLink href={href as string}>
             <a
                 {...props}
+                target={href && href.startsWith("http") ? "_blank" : undefined}
+                rel="noreferrer"
                 className={classNames(
                     "transition duration-200 ease-in-out text-gray-400 outline-none underline hover:text-gray-800 focus:text-gray-800",
                     className
