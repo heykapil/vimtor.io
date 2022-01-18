@@ -10,8 +10,6 @@ export default function Blog() {
     const { replace, prefetch, asPath } = useRouter();
     const [state, handleSubmit] = useForm("mayvqjpj");
 
-    console.log(asPath);
-
     useEffect(() => {
         if (state.succeeded) {
             replace("/");
