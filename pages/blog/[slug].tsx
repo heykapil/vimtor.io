@@ -7,8 +7,10 @@ import { useForm } from "@formspree/react";
 import { useRouter } from "next/router";
 
 export default function Blog() {
-    const { replace, prefetch } = useRouter();
+    const { replace, prefetch, asPath } = useRouter();
     const [state, handleSubmit] = useForm("mayvqjpj");
+
+    console.log(asPath);
 
     useEffect(() => {
         if (state.succeeded) {
@@ -23,6 +25,7 @@ export default function Blog() {
             <PageTitle>Blog post not ready</PageTitle>
             <PageSubtitle>Submit your email so I can notify you&nbsp;when it&apos;s written</PageSubtitle>
             <form onSubmit={handleSubmit} className="flex justify-center rounded-md shadow-sm px-4">
+                <input hidden name="path" value={asPath} />
                 <div className="relative flex items-stretch focus-within:z-10">
                     <input
                         type="email"
