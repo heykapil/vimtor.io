@@ -4,7 +4,20 @@ import { Box, Flex, Select, TextInput } from "@sanity/ui";
 import PatchEvent, { set, unset } from "@sanity/form-builder/PatchEvent";
 import { useId } from "@reach/auto-id";
 
-const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+const months = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+];
 
 const SimpleDateInput = React.forwardRef((props) => {
     const { type, value, readOnly, markers, presence, compareValue, onFocus, onBlur, onChange } = props;

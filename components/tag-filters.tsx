@@ -14,7 +14,7 @@ interface TagFiltersProps {
 
 function TagFilters({ value, onChange, labels }: TagFiltersProps) {
     const [showScrollHelper, setShowScrollHelper] = useState(false);
-    const initialValue = useInitialValue(value);
+    const initialValue = useInitialValue(typeof window !== "undefined" ? window.location.search : null);
 
     const checkSmallScreen = useCallback(() => {
         setShowScrollHelper(window.screen.width < 600);
@@ -31,10 +31,11 @@ function TagFilters({ value, onChange, labels }: TagFiltersProps) {
                 aria-describedby={showScrollHelper ? "scroll-helper" : undefined}
                 role="menu"
                 onScroll={() => setShowScrollHelper(false)}
+                onClick={() => setShowScrollHelper(false)}
             >
                 {labels.map((label) => {
                     const isChecked = value.includes(label.slug);
-                    const isInitial = initialValue.includes(label.slug);
+                    const isInitial = initialValue?.includes(label.slug);
                     return (
                         <button
                             key={label.slug}
@@ -77,15 +78,20 @@ function TagFilters({ value, onChange, labels }: TagFiltersProps) {
                     );
                 })}
             </div>
-            <Transition show={showScrollHelper} leave="transition-opacity duration-300" leaveFrom="opacity-100" leaveTo="opacity-0">
-                <span
-                    id="scroll-helper"
-                    role="tooltip"
-                    aria-hidden="false"
-                    className="absolute w-full -bottom-8 opacity-0 animate-fly-in-down animation-delay-150 text-gray-400 italic"
-                >
+            <Transition
+                show={showScrollHelper}
+                appear={showScrollHelper}
+                className="absolute -bottom-8 w-full flex justify-center"
+                enter="transition transform duration-500 delay-500"
+                enterFrom="opacity-0 translate-y-4"
+                enterTo="opacity-100 translate-y-0"
+                leave="transition-opacity duration-300"
+                leaveFrom="opacity-100"
+                leaveTo="opacity-0"
+            >
+                <div id="scroll-helper" role="tooltip" aria-hidden="false" className="text-gray-400 italic">
                     Scroll for more filters <Emoji label="up" icon="👆" />
-                </span>
+                </div>
             </Transition>
         </div>
     );

@@ -13,7 +13,7 @@ function Navbar() {
 
     return (
         <Disclosure as="nav" className="relative z-10">
-            {({ open }) => (
+            {({ open, close }) => (
                 <>
                     <div className={classNames("max-w-7xl mx-auto py-6 px-8", open ? "bg-white" : "")}>
                         <div className="grid grid-cols-2 items-center justify-between h-16">
@@ -27,7 +27,7 @@ function Navbar() {
                                 leaveTo="opacity-0"
                                 className="col-start-1"
                             >
-                                <HomeButton />
+                                <HomeButton onClick={close} />
                             </Transition>
                             <div className="hidden sm:block col-start-2">
                                 <DesktopNavbar />

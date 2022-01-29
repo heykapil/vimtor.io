@@ -40,7 +40,8 @@ export default function Resume(props: ResumePage) {
             <SectionCTA className="text-center">
                 The file is generated from this website contents
                 <br />
-                Learn how it&apos;s done <Link href="https://github.com/vimtor/vimtor.io/blob/main/pages/resume.tsx">here</Link>
+                Learn how it&apos;s done{" "}
+                <Link href="https://github.com/vimtor/vimtor.io/blob/main/pages/resume.tsx">here</Link>
             </SectionCTA>
         </Page>
     );

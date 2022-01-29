@@ -19,7 +19,11 @@ export default function Blog() {
     }, [prefetch, replace, state.succeeded]);
 
     return (
-        <Page title="Blog Posts" description="List of my articles by date and category" className="min-h-[45vh] flex flex-col items-center justify-center">
+        <Page
+            title="Blog Posts"
+            description="List of my articles by date and category"
+            className="min-h-[45vh] flex flex-col items-center justify-center"
+        >
             <PageTitle>Blog post not ready</PageTitle>
             <PageSubtitle>Submit your email so I can notify you&nbsp;when it&apos;s written</PageSubtitle>
             <form onSubmit={handleSubmit} className="flex justify-center rounded-md shadow-sm px-4">

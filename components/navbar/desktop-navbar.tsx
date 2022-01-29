@@ -15,9 +15,18 @@ function NavbarItem({ href, children }: NavbarItemProps) {
     const active = pathname === href;
 
     return (
-        <Transition.Child enter="transition delay-500 duration-700 ease-in-out" enterFrom="opacity-0 translate-y-2" enterTo="opacity-100 translate-y-0">
+        <Transition.Child
+            enter="transition delay-500 duration-700 ease-in-out"
+            enterFrom="opacity-0 translate-y-2"
+            enterTo="opacity-100 translate-y-0"
+        >
             <Link href={href} passHref>
-                <a className={classNames("transition-color text-lg hover:text-gray-900 relative group", active ? "text-gray-900" : "text-gray-400")}>
+                <a
+                    className={classNames(
+                        "transition-color text-lg hover:text-gray-900 relative group",
+                        active ? "text-gray-900" : "text-gray-400"
+                    )}
+                >
                     {children}
                     <span
                         className={classNames(
@@ -39,7 +48,11 @@ function DesktopNavbar() {
                     <NavbarItem href="/projects">Projects</NavbarItem>
                     <NavbarItem href="/technologies">Technologies</NavbarItem>
                     <NavbarItem href="/resume">Resume</NavbarItem>
-                    <Transition.Child enter="transition delay-700 duration-700 ease-elastic" enterFrom="opacity-0 scale-75" enterTo="opacity-100 scale-100">
+                    <Transition.Child
+                        enter="transition delay-700 duration-700 ease-elastic"
+                        enterFrom="opacity-0 scale-75"
+                        enterTo="opacity-100 scale-100"
+                    >
                         <Link href="/contact" passHref>
                             <Button variant="primary" size="small">
                                 Contact

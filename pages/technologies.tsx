@@ -34,7 +34,12 @@ export default function Technologies({ levels }: TechnologiesPage) {
                                 <li className="shrink-0 hover:opacity-80 transition-opacity" key={technology.slug}>
                                     <Link href={`/projects?tags=${technology.slug}`}>
                                         <a title={`See projects using ${technology.name}`}>
-                                            <Image src={technology.icon} alt={`${technology.name} icon`} width={96} height={96} />
+                                            <Image
+                                                src={technology.icon}
+                                                alt={`${technology.name} icon`}
+                                                width={96}
+                                                height={96}
+                                            />
                                         </a>
                                     </Link>
                                 </li>

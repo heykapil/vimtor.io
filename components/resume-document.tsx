@@ -83,7 +83,17 @@ function formatDate(date: Date) {
     return `${month}/${year}`;
 }
 
-function ResumeItem({ title, description, accessory, url }: { title: string; url: string; description: string; accessory: string }) {
+function ResumeItem({
+    title,
+    description,
+    accessory,
+    url,
+}: {
+    title: string;
+    url: string;
+    description: string;
+    accessory: string;
+}) {
     return (
         <View style={styles.itemContainer}>
             <View style={styles.itemHeader}>
@@ -109,19 +119,30 @@ export default function ResumeDocument({ location, email, experience, education 
                 </View>
                 <View style={styles.section}>
                     <Text style={styles.sectionTitle}>Experience</Text>
-                    {experience.map(({ jobTitle, projectName, endedOn, currentlyWorking, startedOn, technologies, jobDescription, projectUrl }) => (
-                        <ResumeItem
-                            key={jobTitle + projectName}
-                            title={`${jobTitle} - ${projectName}`}
-                            url={projectUrl}
-                            description={`${jobDescription} (${technologies.join(", ")})`}
-                            accessory={
-                                currentlyWorking || !endedOn
-                                    ? `${formatDate(new Date(startedOn))} - ${formatDate(new Date())}`
-                                    : `${formatDate(new Date(startedOn))} - ${formatDate(new Date(endedOn))}`
-                            }
-                        />
-                    ))}
+                    {experience.map(
+                        ({
+                            jobTitle,
+                            projectName,
+                            endedOn,
+                            currentlyWorking,
+                            startedOn,
+                            technologies,
+                            jobDescription,
+                            projectUrl,
+                        }) => (
+                            <ResumeItem
+                                key={jobTitle + projectName}
+                                title={`${jobTitle} - ${projectName}`}
+                                url={projectUrl}
+                                description={`${jobDescription} (${technologies.join(", ")})`}
+                                accessory={
+                                    currentlyWorking || !endedOn
+                                        ? `${formatDate(new Date(startedOn))} - ${formatDate(new Date())}`
+                                        : `${formatDate(new Date(startedOn))} - ${formatDate(new Date(endedOn))}`
+                                }
+                            />
+                        )
+                    )}
                 </View>
                 <View style={styles.section}>
                     <Text style={styles.sectionTitle}>Education</Text>

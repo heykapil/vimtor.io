@@ -59,7 +59,13 @@ function ContactForm() {
                         errors.length > 0 ? "disabled:bg-red-500 disabled:text-white" : ""
                     )}
                 >
-                    <ContactMessage email={email} message={message} succeeded={succeeded} errors={errors.length > 0} submitting={submitting} />
+                    <ContactMessage
+                        email={email}
+                        message={message}
+                        succeeded={succeeded}
+                        errors={errors.length > 0}
+                        submitting={submitting}
+                    />
                 </button>
             </form>
         </div>

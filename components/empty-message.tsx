@@ -8,7 +8,7 @@ interface EmptyMessageProps {
 }
 
 function Message({ className, ...props }: ComponentPropsWithoutRef<"p">) {
-    return <p className={classNames("text-2xl pt-8 pb-32 text-center")} {...props} />;
+    return <p className={classNames("text-lg sm:text-2xl pt-8 pb-32 text-center")} {...props} />;
 }
 
 function EmptyMessage({ shownCount }: EmptyMessageProps) {
@@ -52,7 +52,8 @@ function EmptyMessage({ shownCount }: EmptyMessageProps) {
 
     return (
         <Message>
-            I leave you with <Link href="https://www.youtube.com/watch?v=4dC_nRYIDZU">something interesting</Link> to watch.
+            I leave you with <Link href="https://www.youtube.com/watch?v=4dC_nRYIDZU">something interesting</Link> to
+            watch.
             <br />
             Sayonara baby!
         </Message>

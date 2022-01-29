@@ -18,7 +18,8 @@ function AboutSection() {
                         Fullstack developer at <Link href="https://bloobirds.com/">Bloobirds</Link>
                     </li>
                     <li>
-                        Bootcamp teacher at <Link href="https://nuclio.school/master-full-stack-developer/">Nuclio Digital School</Link>
+                        Bootcamp teacher at{" "}
+                        <Link href="https://nuclio.school/master-full-stack-developer/">Nuclio Digital School</Link>
                     </li>
                     <li>Freelancing with interesting clients</li>
                     <li>Always, always, always learning</li>

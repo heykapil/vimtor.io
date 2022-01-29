@@ -15,7 +15,14 @@ function PdfButtons({ document, fileName }: PdfButtonsProps) {
                 <DownloadIcon className="-ml-1 mr-3 h-5 w-5" aria-hidden="true" />
                 Download
             </Button>
-            <Button variant="secondary" size="medium" href={url || ""} target="_blank" rel="noreferrer" className="w-full sm:w-auto">
+            <Button
+                variant="secondary"
+                size="medium"
+                href={url || ""}
+                target="_blank"
+                rel="noreferrer"
+                className="w-full sm:w-auto"
+            >
                 View PDF
             </Button>
         </SectionButtons>

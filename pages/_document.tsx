@@ -26,7 +26,10 @@ class MyDocument extends Document {
                     <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#cd9147" />
                     <meta name="msapplication-TileColor" content="#ffffff" />
                     <meta name="theme-color" content="#ffffff" />
-                    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet" />
+                    <link
+                        href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap"
+                        rel="stylesheet"
+                    />
                     <script dangerouslySetInnerHTML={{ __html: this.renderSnippet() }} />
                 </Head>
                 <body>
