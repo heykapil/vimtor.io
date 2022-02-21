@@ -38,10 +38,10 @@ export default function Resume(props: ResumePage) {
             <PageSubtitle>Here&apos;s my resume for the good old days</PageSubtitle>
             <PDFButtons document={<ResumeDocument {...props} />} fileName="Victor Navarro Resume" />
             <SectionCTA className="text-center">
-                The file is generated from this website contents
-                <br />
-                Learn how it&apos;s done{" "}
-                <Link href="https://github.com/vimtor/vimtor.io/blob/main/pages/resume.tsx">here</Link>
+                The PDF is created from this website&nbsp;content
+                <Link className="mt-4 block" href="https://github.com/vimtor/vimtor.io/blob/main/pages/resume.tsx">
+                    Learn how it&apos;s done
+                </Link>
             </SectionCTA>
         </Page>
     );

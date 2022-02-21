@@ -11,7 +11,7 @@ function AboutSection() {
             <SectionTitle>
                 About <Emoji label="potato" icon="🥔" />
             </SectionTitle>
-            <SectionSubtitle>Here is what I&apos;m doing these days</SectionSubtitle>
+            <SectionSubtitle>Here&apos;s what I&apos;m doing these days</SectionSubtitle>
             <div className="flex justify-center">
                 <ul className="list-disc list-inside text-left m-0 text-base sm:text-xl leading-7">
                     <li>
@@ -26,9 +26,7 @@ function AboutSection() {
                 </ul>
             </div>
             <SectionCTO>
-                Feel free to check out my <Link href="/technologies">tech stack</Link>
-                <br />
-                to know what technologies I use everyday
+                Check out my <Link href="/technologies">tech stack</Link> to know what technologies I use everyday
             </SectionCTO>
         </Section>
     );

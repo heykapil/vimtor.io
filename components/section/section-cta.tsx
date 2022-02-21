@@ -5,7 +5,7 @@ function SectionCTO({ className, ...props }: ComponentPropsWithoutRef<"p">) {
     return (
         <p
             className={classNames(
-                "text-xl sm:text-xl mt-0 sm:mt-8 mb-0 mx-auto max-w-[550px] px-0 py-8 text-center",
+                "text-xl sm:text-xl mt-0 sm:mt-8 mb-0 mx-auto max-w-md px-2 py-8 text-center",
                 className
             )}
             {...props}

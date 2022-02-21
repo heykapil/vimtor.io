@@ -15,7 +15,7 @@ export default function Contact() {
             <PageSubtitle>Get in touch! I don&apos;t bite...</PageSubtitle>
             <ContactForm />
             <SectionCTA>
-                You can to contact me at <Link href="mailto:contact@vimtor.io">contact@vimtor.io</Link>
+                Contact me at <Link href="mailto:contact@vimtor.io">contact@vimtor.io</Link>
                 <br />
                 or reach out on social media <Emoji label="wink face" icon="😉" />
             </SectionCTA>
