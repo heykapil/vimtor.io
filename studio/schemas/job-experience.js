@@ -11,6 +11,7 @@ export default {
             type: "string",
             options: {
                 list: [
+                    { title: "Team Lead", value: "Team Lead" },
                     { title: "Full Stack Developer", value: "Full Stack Developer" },
                     { title: "Backend Developer", value: "Backend Developer" },
                     { title: "Frontend Developer", value: "Frontend Developer" },
