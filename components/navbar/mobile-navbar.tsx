@@ -1,4 +1,4 @@
-import { Disclosure, Transition } from "@headlessui/react";
+import { Disclosure } from "@headlessui/react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { classNames } from "../../lib/style";
@@ -32,23 +32,14 @@ function NavbarItem({ children, href }: NavbarItemProps) {
 
 function MobileNavbar() {
     return (
-        <Transition
-            enter="transition duration-100 ease-out"
-            enterFrom="transform scale-95 opacity-0"
-            enterTo="transform scale-100 opacity-100"
-            leave="transition duration-75 ease-out"
-            leaveFrom="transform scale-100 opacity-100"
-            leaveTo="transform scale-95 opacity-0"
-        >
-            <Disclosure.Panel className="sm:hidden absolute bg-white shadow-md w-full">
-                <div className="px-2 pt-2 pb-5 space-y-2">
-                    <NavbarItem href="/projects">Projects</NavbarItem>
-                    <NavbarItem href="/technologies">Technologies</NavbarItem>
-                    <NavbarItem href="/resume">Resume</NavbarItem>
-                    <NavbarItem href="/contact">Contact</NavbarItem>
-                </div>
-            </Disclosure.Panel>
-        </Transition>
+        <Disclosure.Panel className="sm:hidden absolute bg-white shadow-md w-full">
+            <div className="px-3 pt-2 pb-5 space-y-2">
+                <NavbarItem href="/projects">Projects</NavbarItem>
+                <NavbarItem href="/technologies">Technologies</NavbarItem>
+                <NavbarItem href="/resume">Resume</NavbarItem>
+                <NavbarItem href="/contact">Contact</NavbarItem>
+            </div>
+        </Disclosure.Panel>
     );
 }
 
