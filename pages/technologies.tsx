@@ -61,7 +61,7 @@ export default function Technologies({ levels }: TechnologiesPage) {
                                         aria-hidden="false"
                                         className="absolute px-24 inset-0 h-full flex justify-center items-center pb-4 w-screen text-center text-gray-400 italic"
                                     >
-                                        Scroll for more and click for seeing related projects
+                                        Swipe for more and click for seeing related projects
                                     </span>
                                 </Transition>
                             ) : null}

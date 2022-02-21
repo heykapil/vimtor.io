@@ -24,7 +24,7 @@ function HomeButton({ onClick }: HomeButtonProps) {
                             aria-hidden="true"
                         />
                     </Transition.Child>
-                    <p className="transition-color hidden sm:block text-lg ml-4 text-gray-500 group-hover:text-gray-900">
+                    <p className="transition-color hidden md:block text-lg ml-4 text-gray-500 group-hover:text-gray-900">
                         Home
                     </p>
                 </span>

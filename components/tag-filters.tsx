@@ -79,8 +79,8 @@ function TagFilters({ value, onChange, labels }: TagFiltersProps) {
                 })}
             </div>
             <Transition
+                appear
                 show={showScrollHelper}
-                appear={showScrollHelper}
                 className="absolute -bottom-8 w-full flex justify-center"
                 enter="transition transform duration-500 delay-500"
                 enterFrom="opacity-0 translate-y-4"
@@ -90,7 +90,7 @@ function TagFilters({ value, onChange, labels }: TagFiltersProps) {
                 leaveTo="opacity-0"
             >
                 <div id="scroll-helper" role="tooltip" aria-hidden="false" className="text-gray-400 italic">
-                    Scroll for more filters <Emoji label="up" icon="👆" />
+                    Swipe for more filters <Emoji label="up" icon="👆" />
                 </div>
             </Transition>
         </div>
