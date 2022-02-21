@@ -1,20 +1,4 @@
 const defaultTheme = require("tailwindcss/defaultTheme");
-const plugin = require("tailwindcss/plugin");
-const range = require("lodash/range");
-
-const animationDelayPlugin = plugin(({ addUtilities }) => {
-    const initialDelays = [0, 75, 100, 150, 300, 500, 750];
-    const finalDelays = range(50).map((i) => 1000 + i * 500);
-    const delays = [...initialDelays, ...finalDelays];
-    const delayUtilities = delays.map((delay) => {
-        return {
-            [`.animation-delay-${delay}`]: {
-                "animation-delay": `${delay}ms`,
-            },
-        };
-    });
-    addUtilities(delayUtilities);
-});
 
 module.exports = {
     content: ["./pages/**/*.{js,ts,jsx,tsx}", "./components/**/*.{js,ts,jsx,tsx}"],
@@ -41,16 +25,6 @@ module.exports = {
                 elastic: "cubic-bezier(0.68, -0.55, 0.265, 1.55)",
             },
             keyframes: {
-                "fade-in-down": {
-                    from: {
-                        opacity: "0",
-                        transform: "translateY(1em)",
-                    },
-                    to: {
-                        opacity: "1",
-                        transform: "translateY(0)",
-                    },
-                },
                 wiggle: {
                     "0%": {
                         transform: "rotate(10deg)",
@@ -88,36 +62,13 @@ module.exports = {
                         opacity: 1,
                     },
                 },
-                "fly-in-down": {
-                    from: {
-                        opacity: 0,
-                        transform: "translateY(-1rem) translateX(-50%)",
-                    },
-                    to: {
-                        opacity: 1,
-                        transform: "translateY(0) translateX(-50%)",
-                    },
-                },
-                "fly-in-up": {
-                    from: {
-                        opacity: 0,
-                        transform: "translateY(1rem) translateX(-50%)",
-                    },
-                    to: {
-                        opacity: 1,
-                        transform: "translateY(0) translateX(-50%)",
-                    },
-                },
             },
             animation: {
-                "fade-in-down": "fade-in-down 1s forwards ease-in-out",
                 wiggle: "wiggle 1s",
                 rocket: "rocket 300ms ease-in forwards",
                 "bounce-in": "bounce-in 0.7s cubic-bezier(0.15, 1.5, 0.5, 1) forwards 0.5s",
-                "fly-in-down": "fly-in-down 0.5s ease-in-out forwards",
-                "fly-in-up": "fly-in-up 0.5s ease-in-out forwards",
             },
         },
     },
-    plugins: [animationDelayPlugin, require("@tailwindcss/forms")],
+    plugins: [require("@tailwindcss/forms")],
 };

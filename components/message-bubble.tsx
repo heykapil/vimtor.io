@@ -10,12 +10,12 @@ interface MessageBubbleProps {
 function MessageBubble({ id, visible }: MessageBubbleProps) {
     const [show, setShow] = useState(false);
 
-    useTimeoutFn(() => setShow(true), 2500);
+    useTimeoutFn(() => setShow(true), 4000);
 
     return (
         <Transition
             show={show && visible}
-            enter="transition-all duration-500"
+            enter="transition-all duration-700"
             enterFrom="translate-y-4 sm:-translate-y-4 opacity-0"
             enterTo="translate-y-0 opacity-100"
             leave="transition-opacity duration-150"

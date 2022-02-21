@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { classNames } from "../lib/style";
 
 const animations = {
@@ -11,26 +11,36 @@ interface EmojiProps {
     icon: string;
     animation?: keyof typeof animations;
     reset?: boolean;
+    appear?: boolean;
+    delay?: number;
 }
 
-function Emoji({ label, icon, animation = "wiggle", reset = true }: EmojiProps) {
+function Emoji({ label, icon, delay, animation = "wiggle", reset = true, appear = false }: EmojiProps) {
     const [hovered, setHovered] = useState(false);
+
+    const playAnimation = () => {
+        if (!hovered) {
+            setHovered(true);
+            if (reset) {
+                setTimeout(() => {
+                    setHovered(false);
+                }, 1100);
+            }
+        }
+    };
+
+    useEffect(() => {
+        if (appear) {
+            setTimeout(playAnimation, delay || 0);
+        }
+    }, [appear, delay]);
 
     return (
         <span
             className={classNames("inline-block font-emoji", hovered ? animations[animation] : "")}
             role="img"
             aria-label={label}
-            onMouseEnter={() => {
-                if (!hovered) {
-                    setHovered(true);
-                    if (reset) {
-                        setTimeout(() => {
-                            setHovered(false);
-                        }, 1100);
-                    }
-                }
-            }}
+            onMouseEnter={playAnimation}
         >
             {icon}
         </span>

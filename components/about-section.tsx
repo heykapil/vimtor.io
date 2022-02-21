@@ -7,7 +7,7 @@ import SectionCTO from "./section/section-cta";
 
 function AboutSection() {
     return (
-        <Section className="opacity-0 motion-safe:animate-fade-in-down animation-delay-2000">
+        <Section>
             <SectionTitle>
                 About <Emoji label="potato" icon="🥔" />
             </SectionTitle>
