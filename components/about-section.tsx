@@ -15,7 +15,7 @@ function AboutSection() {
             <div className="flex justify-center">
                 <ul className="list-disc list-inside text-left m-0 text-base sm:text-xl leading-7">
                     <li>
-                        Fullstack developer at <Link href="https://bloobirds.com/">Bloobirds</Link>
+                        Technical lead at <Link href="https://bloobirds.com/">Bloobirds</Link>
                     </li>
                     <li>
                         Bootcamp teacher at{" "}
