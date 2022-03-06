@@ -40,3 +40,6 @@ yarn-error.log*
 
 # graphql
 schema.graphql
+
+# sanity
+public/studio
