@@ -1,7 +1,7 @@
 import Image from "next/image";
 import MessageBubble from "./message-bubble";
 import ImageShadow from "./image-shadow";
-import profile1 from "../public/images/profile.jpg";
+import profile1 from "../public/images/profile-1.jpeg";
 import profile2 from "../public/images/profile-2.png";
 import profile3 from "../public/images/profile-3.png";
 import { Transition } from "@headlessui/react";
