@@ -29,7 +29,7 @@ function MessageBubble({ id, visible }: MessageBubbleProps) {
                 className="bg-gray-800 text-white py-2 px-3 whitespace-nowrap text-center rounded-lg"
                 aria-hidden={visible}
             >
-                Click for a new flavour
+                Click for a new face
                 <svg
                     id="svg"
                     xmlns="http://www.w3.org/2000/svg"
