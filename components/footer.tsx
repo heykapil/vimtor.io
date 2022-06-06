@@ -49,7 +49,7 @@ function Footer() {
                 </SocialItem>
             </ul>
             <p className="text-center text-gray-500 mt-16">
-                Built with <Link href="https://nextjs.org">Next JS</Link> and{" "}
+                Built with <Link href="https://nextjs.org">Next.js</Link> and{" "}
                 <Link href="https://tailwindcss.com">Tailwind CSS</Link>
             </p>
         </footer>
