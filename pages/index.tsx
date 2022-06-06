@@ -19,10 +19,7 @@ export default function Home({ projects }: HomePage) {
     return (
         <Page title="Home" description="Personal website of Victor Navarro for portfolio and contact" className="mt-8">
             <IntroSection />
-            <FadeIn delay={3500}>
-                <AboutSection />
-            </FadeIn>
-            <FadeIn delay={4000}>
+            <FadeIn delay={1000}>
                 <Section>
                     <SectionTitle>
                         Experience <Emoji label="rocket" icon="🚀" animation="rocket" reset={false} />

@@ -1,7 +1,7 @@
 import { classNames } from "../../lib/style";
-import Head from "next/head";
 import { Router } from "next/router";
 import { trackPage } from "../../lib/analytics";
+import { NextSeo } from "next-seo";
 
 interface PageProps {
     title: string;
@@ -15,10 +15,7 @@ Router.events.on("routeChangeComplete", trackPage);
 function Page({ children, title, description, className }: PageProps) {
     return (
         <main className={classNames("sm:mt-8", className)}>
-            <Head>
-                <title>{title} - Victor Navarro</title>
-                <meta name="description" content={description} />
-            </Head>
+            <NextSeo title={title} description={description} />
             {children}
         </main>
     );

@@ -10,7 +10,7 @@ interface MessageBubbleProps {
 function MessageBubble({ id, visible }: MessageBubbleProps) {
     const [show, setShow] = useState(false);
 
-    useTimeoutFn(() => setShow(true), 4000);
+    useTimeoutFn(() => setShow(true), 3000);
 
     return (
         <Transition
