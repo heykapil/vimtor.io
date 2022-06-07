@@ -15,7 +15,7 @@ function NavbarItem({ children, href }: NavbarItemProps) {
 
     return (
         <Link href={href} passHref>
-            <a className="block">
+            <a className="block outline-none ring-gray-800 rounded-md ring-offset-2 focus:ring-2">
                 <Disclosure.Button
                     as="span"
                     className={classNames(
@@ -33,7 +33,7 @@ function NavbarItem({ children, href }: NavbarItemProps) {
 function MobileNavbar() {
     return (
         <Disclosure.Panel className="sm:hidden absolute bg-white shadow-md w-full">
-            <div className="px-3 pt-2 pb-5 space-y-2">
+            <div className="px-3 pt-2 pb-5 space-y-3">
                 <NavbarItem href="/projects">Projects</NavbarItem>
                 <NavbarItem href="/technologies">Technologies</NavbarItem>
                 <NavbarItem href="/resume">Resume</NavbarItem>

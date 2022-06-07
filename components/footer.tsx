@@ -10,7 +10,7 @@ interface SocialItemProps {
 function SocialItem({ children, href, label }: SocialItemProps) {
     return (
         <li>
-            <a href={href} aria-label={label}>
+            <a className="outline-gray-800" href={href} aria-label={label}>
                 <svg
                     className="w-8 sm:w-10 text-current hover:text-gray-600 transition-all"
                     xmlns="http://www.w3.org/2000/svg"

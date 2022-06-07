@@ -17,7 +17,7 @@ function HamburgerButton({ open }: HamburgerButtonProps) {
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
         >
-            <Disclosure.Button className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-600 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-current">
+            <Disclosure.Button className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-600 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-gray-800">
                 <span className="sr-only">Open main menu</span>
                 {open ? (
                     <XIcon className="block h-6 w-6" aria-hidden="true" />
