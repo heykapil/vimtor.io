@@ -2,6 +2,7 @@ import { classNames } from "../../lib/style";
 import ContactMessage from "./contact-message";
 import { useEffect, useState } from "react";
 import { useForm } from "@formspree/react";
+import Link from "../link";
 
 function ContactForm() {
     const [email, setEmail] = useState("");
@@ -49,6 +50,22 @@ function ContactForm() {
                         required
                         className="resize-y w-full rounded-lg px-4 py-3 border border-gray-300 shadow-inner focus:ring-gray-700 focus:shadow-none focus:border-gray-700 placeholder-gray-400"
                     />
+                </div>
+                <div className="flex items-center mt-4">
+                    <input
+                        id="privacy"
+                        name="privacy"
+                        type="checkbox"
+                        required
+                        className="focus:ring-gray-600 h-5 w-5 text-gray-700 border-gray-300 rounded"
+                    />
+                    <label htmlFor="privacy" className="font-medium block ml-3 text-gray-700">
+                        I agree to the{" "}
+                        <Link href="/privacy" target="_blank">
+                            privacy policy
+                        </Link>{" "}
+                        of this website
+                    </label>
                 </div>
                 <button
                     type="submit"

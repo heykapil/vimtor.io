@@ -9,6 +9,10 @@ export default () => {
                 .showIcon(false)
                 .child(S.document().title("Home Page").schemaType("homePage").documentId("homePage")),
             S.listItem()
+                .title("Privacy Policy")
+                .showIcon(false)
+                .child(S.document().title("Privacy Policy").schemaType("privacyPolicy").documentId("privacyPolicy")),
+            S.listItem()
                 .title("Technologies Page")
                 .showIcon(false)
                 .child(

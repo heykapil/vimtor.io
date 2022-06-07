@@ -83,6 +83,10 @@ export const homePageQuery = groq`
     }
 `;
 
+export const privacyPolicyQuery = groq`
+    *[_type == "privacyPolicy" && _id == "privacyPolicy"][0]
+`;
+
 export const projectsPageQuery = groq`
     {
         'projects': ${projectsQuery},

@@ -12,11 +12,14 @@ import resumePage from "./resume-page";
 import education from "./education";
 import simpleRichText from "./simple-rich-text";
 import jobExperience from "./job-experience";
+import privacyPolicy from "./privacy-policy";
+import richText from "./rich-text";
 
 export default createSchema({
     name: "default",
     types: schemaTypes.concat([
         simpleRichText,
+        richText,
         resumePage,
         education,
         jobExperience,
@@ -25,6 +28,7 @@ export default createSchema({
         homePage,
         technology,
         project,
+        privacyPolicy,
         blockContent,
     ]),
 });
