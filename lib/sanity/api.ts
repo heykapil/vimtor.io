@@ -1,10 +1,21 @@
-import { HomePage, ProjectsPage, ResumePage, TechnologiesPage } from "../types";
+import { HomePage, PrivacyPolicy, ProjectsPage, ResumePage, TechnologiesPage } from "../types";
 import { getClient } from "./client";
-import { homePageQuery, projectsPageQuery, resumePageQuery, technologiesPageQuery } from "./queries";
+import {
+    homePageQuery,
+    privacyPolicyQuery,
+    projectsPageQuery,
+    resumePageQuery,
+    technologiesPageQuery,
+} from "./queries";
 
 export async function getHomePage() {
     const client = getClient(false);
     return client.fetch<HomePage>(homePageQuery);
+}
+
+export async function getPrivacyPolicy() {
+    const client = getClient(false);
+    return client.fetch<PrivacyPolicy>(privacyPolicyQuery);
 }
 
 export async function getTechnologiesPage() {

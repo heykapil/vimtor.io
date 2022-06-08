@@ -60,6 +60,10 @@ export interface HomePage {
     projects: Array<Project>;
 }
 
+export interface PrivacyPolicy {
+    content: RichText;
+}
+
 export interface TechnologiesPage {
     levels: Array<TechnologyLevel>;
 }

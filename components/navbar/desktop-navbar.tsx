@@ -23,7 +23,7 @@ function NavbarItem({ href, children }: NavbarItemProps) {
             <Link href={href} passHref>
                 <a
                     className={classNames(
-                        "transition-color text-lg hover:text-gray-900 relative group",
+                        "transition-color text-lg hover:text-gray-900 outline-gray-800 relative group",
                         active ? "text-gray-900" : "text-gray-400"
                     )}
                 >
