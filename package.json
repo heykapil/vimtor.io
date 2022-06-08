@@ -17,7 +17,6 @@
         "@headlessui/react": "^1.4.3",
         "@heroicons/react": "^1.0.5",
         "@react-pdf/renderer": "^2.1.0",
-        "@segment/snippet": "^4.15.3",
         "lodash": "^4.17.21",
         "next": "^12.1.6",
         "next-sanity": "^0.4.0",

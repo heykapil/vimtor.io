@@ -6,7 +6,6 @@ import profile2 from "../public/images/profile-2.png";
 import profile3 from "../public/images/profile-3.png";
 import { Transition } from "@headlessui/react";
 import { useState } from "react";
-import { trackEvent } from "../lib/analytics";
 
 const profileImages = [profile1, profile2, profile3];
 
@@ -16,7 +15,6 @@ function ProfilePicture() {
 
     function showNextPicture() {
         setProfileIndex(profileIndex + 1);
-        trackEvent("Picture Clicked", { time: Date.now() });
     }
 
     return (
