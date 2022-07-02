@@ -31,7 +31,7 @@ const PDFButtons = dynamic(() => import("../components/pdf-buttons"), {
 
 export default function Resume(props: ResumePage) {
     return (
-        <Page title="Resume" description="Send me an email so we can start a conversation">
+        <Page title="Resume" description="Send me an email so we can start a conversation" className="pb-48">
             <PageTitle>
                 Resume <Emoji label="paper document" icon="📄" />
             </PageTitle>
