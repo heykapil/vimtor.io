@@ -1,12 +1,11 @@
 import Emoji from "../../components/emoji";
-import ProjectList from "../../components/projects/project-list";
+import ProjectList from "../../components/project-list";
 import { useEffect, useMemo, useState } from "react";
 import { GetStaticProps } from "next";
 import TagFilters from "../../components/tag-filters";
 import EmptyMessage from "../../components/empty-message";
 import { useQueryArrayState } from "../../hooks/use-query-state";
 import Page from "../../components/page/page";
-import ProjectItem from "../../components/projects/project-item";
 import PageTitle from "../../components/page/page-title";
 import PageSubtitle from "../../components/page/page-subtitle";
 import { ProjectsPage } from "../../lib/types";
@@ -36,11 +35,7 @@ export default function Projects({ projects, tags }: ProjectsPage) {
             <PageSubtitle>A list of projects I worked on that are worth mentioning</PageSubtitle>
             <TagFilters value={selectedTags} labels={tags} onChange={setSelectedTags} />
             {visibleProjects.length !== 0 ? (
-                <ProjectList>
-                    {visibleProjects.map((project) => (
-                        <ProjectItem key={project.name} {...project} />
-                    ))}
-                </ProjectList>
+                <ProjectList projects={visibleProjects} />
             ) : (
                 <EmptyMessage shownCount={emptyListCount} />
             )}

@@ -1,5 +1,5 @@
-import { Transition } from "@headlessui/react";
 import Link from "next/link";
+import { motion } from "framer-motion";
 import Button from "../button";
 import { useRouter } from "next/router";
 import { classNames } from "../../lib/style";
@@ -9,17 +9,35 @@ interface NavbarItemProps {
     children: string;
 }
 
+const container = {
+    hidden: { opacity: 0 },
+    show: {
+        opacity: 1,
+        transition: {
+            delayChildren: 0.5,
+            staggerChildren: 0.1,
+        },
+    },
+};
+
+const item = {
+    hidden: { opacity: 0, y: 8 },
+    show: {
+        opacity: 1,
+        y: 0,
+        transition: {
+            duration: 0.5,
+        },
+    },
+};
+
 function NavbarItem({ href, children }: NavbarItemProps) {
     const { pathname } = useRouter();
 
     const active = pathname === href;
 
     return (
-        <Transition.Child
-            enter="transition delay-500 duration-700 ease-in-out"
-            enterFrom="opacity-0 translate-y-2"
-            enterTo="opacity-100 translate-y-0"
-        >
+        <motion.li variants={item}>
             <Link href={href} passHref>
                 <a
                     className={classNames(
@@ -36,7 +54,7 @@ function NavbarItem({ href, children }: NavbarItemProps) {
                     />
                 </a>
             </Link>
-        </Transition.Child>
+        </motion.li>
     );
 }
 
@@ -44,22 +62,27 @@ function DesktopNavbar() {
     return (
         <div className="flex items-center">
             <div className="hidden sm:block">
-                <Transition appear show className="flex items-baseline space-x-8">
+                <motion.ul
+                    variants={container}
+                    initial="hidden"
+                    animate="show"
+                    className="flex items-baseline space-x-8"
+                >
                     <NavbarItem href="/projects">Projects</NavbarItem>
                     <NavbarItem href="/technologies">Technologies</NavbarItem>
                     <NavbarItem href="/resume">Resume</NavbarItem>
-                    <Transition.Child
-                        enter="transition delay-700 duration-700 ease-elastic"
-                        enterFrom="opacity-0 scale-75"
-                        enterTo="opacity-100 scale-100"
+                    <motion.li
+                        initial={{ scale: 0.5, opacity: 0 }}
+                        animate={{ scale: 1, opacity: 1 }}
+                        transition={{ duration: 0.7, delay: 1, ease: [0.15, 1.5, 0.5, 1] }}
                     >
                         <Link href="/contact" passHref>
                             <Button variant="primary" size="small">
                                 Contact
                             </Button>
                         </Link>
-                    </Transition.Child>
-                </Transition>
+                    </motion.li>
+                </motion.ul>
             </div>
         </div>
     );

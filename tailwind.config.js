@@ -21,9 +21,6 @@ module.exports = {
                 sans: ["Nunito", ...defaultTheme.fontFamily.sans],
                 emoji: ["Segoe UI Emoji", "Nunito", ...defaultTheme.fontFamily.sans],
             },
-            transitionTimingFunction: {
-                elastic: "cubic-bezier(0.68, -0.55, 0.265, 1.55)",
-            },
             keyframes: {
                 wiggle: {
                     "0%": {
@@ -56,21 +53,10 @@ module.exports = {
                         opacity: 0,
                     },
                 },
-                "bounce-in": {
-                    "0%": {
-                        transform: "scale(0.5)",
-                        opacity: 0,
-                    },
-                    "100%": {
-                        transform: "scale(1)",
-                        opacity: 1,
-                    },
-                },
             },
             animation: {
                 wiggle: "wiggle 1s",
                 rocket: "rocket 175ms ease-in forwards",
-                "bounce-in": "bounce-in 0.7s cubic-bezier(0.15, 1.5, 0.5, 1) forwards 0.5s",
             },
         },
     },
