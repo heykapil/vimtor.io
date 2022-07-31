@@ -6,7 +6,7 @@ import { DefaultSeo } from "next-seo";
 
 export default function MyApp({ Component, pageProps }: AppProps) {
     return (
-        <div className="min-h-screen bg-white text-gray-900 overflow-x-hidden subpixel-antialiased">
+        <div className="min-h-screen bg-white text-gray-900 overflow-x-hidden">
             <DefaultSeo
                 titleTemplate="%s | Victor Navarro"
                 defaultTitle="Victor Navarro"
