@@ -1,5 +1,5 @@
 {
-    "name": "hello",
+    "name": "@vimtor-io/website",
     "version": "0.1.0",
     "private": true,
     "scripts": {
@@ -19,7 +19,7 @@
         "@react-pdf/renderer": "^2.1.0",
         "framer-motion": "^6.5.1",
         "lodash": "^4.17.21",
-        "next": "^12.1.6",
+        "next": "^12.2.3",
         "next-sanity": "^0.4.0",
         "next-seo": "^5.4.0",
         "react": "^17.0.2",
@@ -27,7 +27,6 @@
         "react-use": "^17.3.2"
     },
     "devDependencies": {
-        "@babel/core": "^7.16.7",
         "@sanity/cli": "^2.24.1",
         "@tailwindcss/forms": "^0.4.0",
         "@tailwindcss/typography": "^0.5.2",
