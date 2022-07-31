@@ -6,7 +6,7 @@ import PageSubtitle from "../components/page/page-subtitle";
 
 export default function Custom404() {
     return (
-        <Page title="404" className="min-h-[45vh] flex flex-col items-center justify-center">
+        <Page title="404" className="min-h-[50vh] mb-24 flex flex-col items-center justify-center">
             <PageTitle>
                 Page not found <Emoji label="magnifying glass" icon="🔍" />
             </PageTitle>

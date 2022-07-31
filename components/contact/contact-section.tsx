@@ -15,7 +15,7 @@ function ContactSection() {
             <SectionSubtitle>Get in touch! I don&apos;t bite...</SectionSubtitle>
             <ContactForm />
             <SectionCTA>
-                Contact me at <Link href="mailto:contact@vimtor.io">contact@vimtor.io</Link>
+                Contact me at <Link href="mailto:hello@vimtor.io">hello@vimtor.io</Link>
                 <br />
                 or reach out on social media <Emoji label="wink face" icon="😉" />
             </SectionCTA>

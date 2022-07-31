@@ -47,8 +47,12 @@ module.exports = {
                         transform: "translate(0, 0)",
                         opacity: 1,
                     },
+                    "99%": {
+                        transform: "translate(100px, -100px)",
+                        opacity: 0,
+                    },
                     "100%": {
-                        transform: "translate(400px, -400px)",
+                        transform: "translate(0px, 0px)",
                         opacity: 0,
                     },
                 },
@@ -65,7 +69,7 @@ module.exports = {
             },
             animation: {
                 wiggle: "wiggle 1s",
-                rocket: "rocket 300ms ease-in forwards",
+                rocket: "rocket 175ms ease-in forwards",
                 "bounce-in": "bounce-in 0.7s cubic-bezier(0.15, 1.5, 0.5, 1) forwards 0.5s",
             },
         },
