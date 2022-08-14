@@ -14,6 +14,8 @@ import simpleRichText from "./simple-rich-text";
 import jobExperience from "./job-experience";
 import privacyPolicy from "./privacy-policy";
 import richText from "./rich-text";
+import article from "./article";
+import articleTag from "./article-tag";
 
 export default createSchema({
     name: "default",
@@ -30,5 +32,7 @@ export default createSchema({
         project,
         privacyPolicy,
         blockContent,
+        articleTag,
+        article,
     ]),
 });

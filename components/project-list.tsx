@@ -1,6 +1,6 @@
 import { Project } from "../lib/types";
 import { motion } from "framer-motion";
-import RichTextRenderer from "./rich-text-renderer";
+import RichText from "./rich-text";
 import Link from "./link";
 import GitHubIcon from "./github-icon";
 import Image from "next/image";
@@ -48,7 +48,7 @@ function ProjectList({ projects }: ProjectListProps) {
                 >
                     <div className="max-w-[90%] m-0 mx-auto w-full text-center sm:w-1/2 sm:mr-8 sm:text-left md:mr-12">
                         <h3 className="mb-3 font-bold text-2xl">{project.name}</h3>
-                        <RichTextRenderer content={project.summary} />
+                        <RichText content={project.summary} />
                         <div className="flex justify-center items-center mt-4 space-x-3 sm:justify-start">
                             <Link href={project.demoUrl}>{project.ctaMessage}</Link>
                             {project.gitHubRepositoryUrl ? (

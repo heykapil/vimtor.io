@@ -30,8 +30,13 @@ export interface Education {
 }
 
 export interface ProjectTag {
-    slug: string;
-    name: string;
+    value: string;
+    label: string;
+}
+
+export interface ArticleTag {
+    value: string;
+    label: string;
 }
 
 export interface Project {
@@ -56,8 +61,21 @@ export interface TechnologyLevel {
     technologies: Array<Technology>;
 }
 
+export interface Article {
+    title: string;
+    slug: string;
+    publishedAt: string;
+    tags: Array<ArticleTag>;
+    content: RichText;
+}
+
 export interface HomePage {
     projects: Array<Project>;
+}
+
+export interface BlogPage {
+    articles: Array<Article>;
+    tags: Array<ArticleTag>;
 }
 
 export interface PrivacyPolicy {

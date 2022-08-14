@@ -27,6 +27,7 @@ export default () => {
                 .child(S.document().title("Resume Page").schemaType("resumePage").documentId("resumePage")),
             S.divider(),
             S.documentTypeListItem("project").title("Projects").showIcon(false),
+            S.documentTypeListItem("article").title("Articles").showIcon(false),
             S.documentTypeListItem("technology").title("Technologies").showIcon(false),
         ]);
 };

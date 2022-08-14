@@ -7,13 +7,9 @@ export default {
             title: "Block",
             type: "block",
             styles: [
+                { title: "Title", value: "h2" },
+                { title: "Subtitle", value: "h3" },
                 { title: "Normal", value: "normal" },
-                { title: "H1", value: "h1" },
-                { title: "H2", value: "h2" },
-                { title: "H3", value: "h3" },
-                { title: "H4", value: "h4" },
-                { title: "H5", value: "h5" },
-                { title: "H6", value: "h6" },
                 { title: "Quote", value: "blockquote" },
             ],
             lists: [
@@ -24,6 +20,9 @@ export default {
                 decorators: [
                     { title: "Strong", value: "strong" },
                     { title: "Emphasis", value: "em" },
+                    { title: "Code", value: "code" },
+                    { title: "Underline", value: "underline" },
+                    { title: "Strike", value: "strike-through" },
                 ],
                 annotations: [
                     {
@@ -44,6 +43,11 @@ export default {
                     },
                 ],
             },
+        },
+        { title: "Image", type: "image" },
+        {
+            title: "Code",
+            type: "code",
         },
     ],
 };

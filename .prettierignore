@@ -2,3 +2,4 @@ dist
 node_modules
 alpine.js
 .next
+public/studio

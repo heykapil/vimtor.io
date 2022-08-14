@@ -1,4 +1,4 @@
-import {useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 import { classNames } from "../lib/style";
 import useElementVisible from "../hooks/use-element-visible";
 
@@ -20,7 +20,7 @@ interface EmojiProps {
 
 function Emoji({ label, icon, delay, animation = "wiggle", reset = true, appear = false }: EmojiProps) {
     const [hovered, setHovered] = useState(false);
-    const [ref, visible] = useElementVisible()
+    const [ref, visible] = useElementVisible();
 
     const playAnimation = () => {
         if (!hovered) {
@@ -43,7 +43,7 @@ function Emoji({ label, icon, delay, animation = "wiggle", reset = true, appear 
         if (!reset && !visible) {
             setHovered(false);
         }
-    }, [reset, visible])
+    }, [reset, visible]);
 
     return (
         <span

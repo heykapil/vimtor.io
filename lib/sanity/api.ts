@@ -1,6 +1,9 @@
-import { HomePage, PrivacyPolicy, ProjectsPage, ResumePage, TechnologiesPage } from "../types";
+import { Article, BlogPage, HomePage, PrivacyPolicy, ProjectsPage, ResumePage, TechnologiesPage } from "../types";
 import { getClient } from "./client";
 import {
+    articleBySlugQuery,
+    articleSlugsQuery,
+    blogPageQuery,
     homePageQuery,
     privacyPolicyQuery,
     projectsPageQuery,
@@ -11,6 +14,21 @@ import {
 export async function getHomePage() {
     const client = getClient(false);
     return client.fetch<HomePage>(homePageQuery);
+}
+
+export async function getBlogPage() {
+    const client = getClient(false);
+    return client.fetch<BlogPage>(blogPageQuery);
+}
+
+export async function getArticleBySlug(slug: string) {
+    const client = getClient(false);
+    return client.fetch<Article>(articleBySlugQuery, { slug });
+}
+
+export async function getArticleSlugs() {
+    const client = getClient(false);
+    return client.fetch<string[]>(articleSlugsQuery);
 }
 
 export async function getPrivacyPolicy() {

@@ -12,7 +12,7 @@ const profileImages = [profile1, profile2, profile3];
 
 function ProfilePicture() {
     const [profileIndex, setProfileIndex] = useState(0);
-    const isDesktop = useMedia("(min-width: 640px)");
+    const isDesktop = useMedia("(min-width: 600px)");
 
     const profileHasChanged = profileIndex > 0;
 

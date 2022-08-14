@@ -10,6 +10,7 @@ import PageTitle from "../../components/page/page-title";
 import PageSubtitle from "../../components/page/page-subtitle";
 import { ProjectsPage } from "../../lib/types";
 import { getProjectsPage } from "../../lib/sanity/api";
+import Link from "../../components/link";
 
 export default function Projects({ projects, tags }: ProjectsPage) {
     const [emptyListCount, setEmptyListCount] = useState(0);
@@ -33,11 +34,33 @@ export default function Projects({ projects, tags }: ProjectsPage) {
                 All my projects <Emoji label="rocket" icon="🚀" reset={false} animation="rocket" />
             </PageTitle>
             <PageSubtitle>A list of projects I worked on that are worth mentioning</PageSubtitle>
-            <TagFilters value={selectedTags} labels={tags} onChange={setSelectedTags} />
+            <TagFilters value={selectedTags} options={tags} onChange={setSelectedTags} />
             {visibleProjects.length !== 0 ? (
                 <ProjectList projects={visibleProjects} />
             ) : (
-                <EmptyMessage shownCount={emptyListCount} />
+                <EmptyMessage count={emptyListCount}>
+                    <EmptyMessage.Option>
+                        Oops, seems like you want me to work a bit too much <Emoji label="flushed face" icon="😳" />
+                    </EmptyMessage.Option>
+                    <EmptyMessage.Option>
+                        I haven&apos;t build that yet <Emoji label="smiling face with sunglasses" icon="😎" />
+                    </EmptyMessage.Option>
+                    <EmptyMessage.Option>
+                        Are you that interested?
+                        <br />
+                        We can <Link href="/contact">build that together</Link>
+                    </EmptyMessage.Option>
+                    <EmptyMessage.Option>
+                        We can get married if you insist <Emoji label="wedding ring" icon="💍" />
+                    </EmptyMessage.Option>
+                    <EmptyMessage.Option>I&apos;m sure you have better things to do...</EmptyMessage.Option>
+                    <EmptyMessage.Option>
+                        I leave you with{" "}
+                        <Link href="https://www.youtube.com/watch?v=4dC_nRYIDZU">something interesting</Link> to watch.
+                        <br />
+                        Sayonara baby!
+                    </EmptyMessage.Option>
+                </EmptyMessage>
             )}
         </Page>
     );

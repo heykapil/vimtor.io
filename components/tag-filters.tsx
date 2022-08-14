@@ -9,10 +9,10 @@ import { ProjectTag } from "../lib/types";
 interface TagFiltersProps {
     value: Array<string>;
     onChange: (value: string[]) => void;
-    labels: Array<ProjectTag>;
+    options: Array<{ value: string; label: string }>;
 }
 
-function TagFilters({ value, onChange, labels }: TagFiltersProps) {
+function TagFilters({ value, onChange, options }: TagFiltersProps) {
     const [showScrollHelper, setShowScrollHelper] = useState(false);
     const initialValue = useInitialValue(typeof window !== "undefined" ? window.location.search : null);
 
@@ -33,12 +33,12 @@ function TagFilters({ value, onChange, labels }: TagFiltersProps) {
                 onScroll={() => setShowScrollHelper(false)}
                 onClick={() => setShowScrollHelper(false)}
             >
-                {labels.map((label) => {
-                    const isChecked = value.includes(label.slug);
-                    const isInitial = initialValue?.includes(label.slug);
+                {options.map((option) => {
+                    const isChecked = value.includes(option.value);
+                    const isInitial = initialValue?.includes(option.value);
                     return (
                         <button
-                            key={label.slug}
+                            key={option.value}
                             role="menuitemcheckbox"
                             aria-checked={isChecked}
                             tabIndex={0}
@@ -51,9 +51,9 @@ function TagFilters({ value, onChange, labels }: TagFiltersProps) {
                             )}
                             onClick={() => {
                                 if (isChecked) {
-                                    onChange(value.filter((x) => x !== label.slug));
+                                    onChange(value.filter((x) => x !== option.value));
                                 } else {
-                                    onChange([...value, label.slug]);
+                                    onChange([...value, option.value]);
                                 }
                             }}
                             onKeyDown={(event) => {
@@ -73,7 +73,7 @@ function TagFilters({ value, onChange, labels }: TagFiltersProps) {
                                 }
                             }}
                         >
-                            {label.name}
+                            {option.label}
                         </button>
                     );
                 })}

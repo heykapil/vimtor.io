@@ -4,6 +4,7 @@ module.exports = {
     content: ["./pages/**/*.{js,ts,jsx,tsx}", "./components/**/*.{js,ts,jsx,tsx}"],
     theme: {
         screens: {
+            xs: "400px",
             sm: "600px",
             md: "700px",
             lg: "1024px",
@@ -57,6 +58,14 @@ module.exports = {
             animation: {
                 wiggle: "wiggle 1s",
                 rocket: "rocket 175ms ease-in forwards",
+            },
+            typography: {
+                DEFAULT: {
+                    css: {
+                        "code::before": { content: "" },
+                        "code::after": { content: "" },
+                    },
+                },
             },
         },
     },

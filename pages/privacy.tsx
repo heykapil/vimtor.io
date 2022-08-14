@@ -5,7 +5,7 @@ import PageSubtitle from "../components/page/page-subtitle";
 import { GetStaticProps } from "next";
 import { PrivacyPolicy } from "../lib/types";
 import { getPrivacyPolicy } from "../lib/sanity/api";
-import RichTextRenderer from "../components/rich-text-renderer";
+import RichText from "../components/rich-text";
 
 export default function PrivacyPolicyPage({ content }: PrivacyPolicy) {
     return (
@@ -15,7 +15,7 @@ export default function PrivacyPolicyPage({ content }: PrivacyPolicy) {
             </PageTitle>
             <PageSubtitle>How I use and share your personal information</PageSubtitle>
             <section className="max-w-prose px-4 mx-auto prose mb-32">
-                <RichTextRenderer content={content} />
+                <RichText content={content} />
             </section>
         </Page>
     );

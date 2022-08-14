@@ -1,54 +1,61 @@
-import Emoji from "../../components/emoji";
 import Page from "../../components/page/page";
 import PageTitle from "../../components/page/page-title";
-import PageSubtitle from "../../components/page/page-subtitle";
-import { useEffect } from "react";
-import { useForm } from "@formspree/react";
-import { useRouter } from "next/router";
+import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from "next";
+import { getArticleBySlug, getArticleSlugs } from "../../lib/sanity/api";
+import { Article } from "../../lib/types";
+import RichText from "../../components/rich-text";
 
-export default function Blog() {
-    const { replace, prefetch, asPath } = useRouter();
-    const [state, handleSubmit] = useForm("mayvqjpj");
-
-    useEffect(() => {
-        if (state.succeeded) {
-            replace("/");
-        } else {
-            prefetch("/");
-        }
-    }, [prefetch, replace, state.succeeded]);
-
+export default function ArticlePage({ article }: InferGetStaticPropsType<typeof getStaticProps>) {
     return (
-        <Page
-            title="Blog Posts"
-            description="List of my articles by date and category"
-            className="min-h-[45vh] flex flex-col items-center justify-center"
-        >
-            <PageTitle>Blog post not ready</PageTitle>
-            <PageSubtitle>Submit your email so I can notify you&nbsp;when it&apos;s written</PageSubtitle>
-            <form onSubmit={handleSubmit} className="flex justify-center rounded-md shadow-sm px-4">
-                <input hidden name="path" value={asPath} />
-                <div className="relative flex items-stretch focus-within:z-10">
-                    <input
-                        type="email"
-                        name="email"
-                        id="email"
-                        disabled={state.submitting}
-                        className="sm:px-4 sm:py-3 focus:ring-gray-700 focus:border-gray-700 block w-full md:w-80 rounded-none rounded-l-md sm:text-xl border-gray-300"
-                        placeholder="your@email.com"
-                    />
+        <Page title={article.title} description="">
+            <article>
+                <div className="max-w-lg mx-auto text-center px-3">
+                    <PageTitle className="!mb-1 ">{article.title}</PageTitle>
+                    <p className="text-lg">by Victor Navarro</p>
                 </div>
-                <button
-                    type="submit"
-                    disabled={state.submitting}
-                    className="-ml-px relative inline-flex flex-shrink-0 items-center space-x-2 px-4 py-2 border border-gray-300 sm:text-xl font-medium rounded-r-md text-gray-700 bg-gray-50 hover:bg-gray-100 focus:outline-none focus:ring-1 focus:ring-gray-700 focus:border-gray-700"
-                >
-                    <span>Notify me</span>
-                </button>
-            </form>
-            <PageSubtitle className="!px-4 mt-12">
-                I promise you I won&apos;t send anything else <Emoji label="handshake" icon="🤝" />
-            </PageSubtitle>
+                <div className="flex items-center gap-x-4 my-8">
+                    <div className="h-px bg-gray-200 w-full" />
+                    <p className="shrink-0 text-gray-400 text-lg">
+                        {new Date(article.publishedAt).toLocaleString("default", {
+                            month: "long",
+                            year: "numeric",
+                            day: "numeric",
+                        })}
+                    </p>
+                    <div className="h-px bg-gray-200 w-full" />
+                </div>
+                <main className="prose mx-auto px-3 pb-12">
+                    <RichText content={article.content} />
+                </main>
+                <div></div>
+            </article>
         </Page>
     );
 }
+
+export const getStaticProps: GetStaticProps<{ article: Article }, { slug: string }> = async (context) => {
+    const slug = context.params?.slug;
+    if (!slug) {
+        return {
+            redirect: {
+                destination: "/",
+                permanent: false,
+            },
+        };
+    }
+    const article = await getArticleBySlug(slug);
+    return {
+        revalidate: 3600,
+        props: {
+            article,
+        },
+    };
+};
+
+export const getStaticPaths: GetStaticPaths = async () => {
+    const slugs = await getArticleSlugs();
+    return {
+        paths: slugs.map((slug) => ({ params: { slug } })),
+        fallback: false,
+    };
+};
