@@ -4,12 +4,13 @@ import { useEffectOnce, useEvent } from "react-use";
 import { Transition } from "@headlessui/react";
 import { classNames } from "../lib/style";
 import { useInitialValue } from "../hooks/use-initial-value";
-import { ProjectTag } from "../lib/types";
+import { motion } from "framer-motion";
 
 interface TagFiltersProps {
     value: Array<string>;
     onChange: (value: string[]) => void;
     options: Array<{ value: string; label: string }>;
+    animate?: boolean;
 }
 
 function TagFilters({ value, onChange, options }: TagFiltersProps) {
@@ -25,7 +26,18 @@ function TagFilters({ value, onChange, options }: TagFiltersProps) {
 
     return (
         <div className="relative">
-            <div
+            <motion.div
+                variants={{
+                    hidden: { opacity: 0 },
+                    show: {
+                        opacity: 1,
+                        transition: {
+                            staggerChildren: 0.1,
+                        },
+                    },
+                }}
+                initial={initialValue ? "show" : "hidden"}
+                animate="show"
                 className="scroll-shadow flex justify-start sm:justify-center max-w-[90%] mt-8 mb-20 sm:mb-16 mx-auto overflow-x-auto sm:overflow-x-hidden relative sm:flex-wrap xl:max-w-[950px]"
                 aria-label="projects filter"
                 aria-describedby={showScrollHelper ? "scroll-helper" : undefined}
@@ -37,8 +49,20 @@ function TagFilters({ value, onChange, options }: TagFiltersProps) {
                     const isChecked = value.includes(option.value);
                     const isInitial = initialValue?.includes(option.value);
                     return (
-                        <button
+                        <motion.button
                             key={option.value}
+                            variants={{
+                                hidden: {
+                                    opacity: 0,
+                                },
+                                show: {
+                                    opacity: 1,
+                                    transition: {
+                                        duration: 0.5,
+                                        delay: Math.max(0, Math.random() - 0.5),
+                                    },
+                                },
+                            }}
                             role="menuitemcheckbox"
                             aria-checked={isChecked}
                             tabIndex={0}
@@ -74,10 +98,10 @@ function TagFilters({ value, onChange, options }: TagFiltersProps) {
                             }}
                         >
                             {option.label}
-                        </button>
+                        </motion.button>
                     );
                 })}
-            </div>
+            </motion.div>
             <Transition
                 appear
                 show={showScrollHelper}
