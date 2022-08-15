@@ -38,7 +38,7 @@ function TagFilters({ value, onChange, options }: TagFiltersProps) {
                 }}
                 initial={initialValue ? "show" : "hidden"}
                 animate="show"
-                className="scroll-shadow flex justify-start sm:justify-center max-w-[90%] mt-8 mb-20 sm:mb-16 mx-auto overflow-x-auto sm:overflow-x-hidden relative sm:flex-wrap xl:max-w-[950px]"
+                className="flex justify-start sm:justify-center max-w-[90%] mt-8 mb-20 sm:mb-16 mx-auto overflow-x-auto sm:overflow-x-hidden relative sm:flex-wrap xl:max-w-[950px]"
                 aria-label="projects filter"
                 aria-describedby={showScrollHelper ? "scroll-helper" : undefined}
                 role="menu"

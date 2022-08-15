@@ -98,7 +98,7 @@ export const homePageQuery = groq`
 
 export const blogPageQuery = groq`
     {
-      'articles': *[_type == "article"]${articleQuery} | order(publishedAt),
+      'articles': *[_type == "article"]${articleQuery} | order(publishedAt desc),
       'tags': *[_type == "articleTag"]{
         'label': name,
         'value': slug.current

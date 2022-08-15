@@ -25,31 +25,10 @@ function useSelectedTags() {
 function ArticleItem({ article }: { article: Article }) {
     const [selectedTags, setSelectedTags] = useSelectedTags();
     return (
-        <li className="flex items-center justify-between sm:text-lg">
-            <div className="flex gap-x-4 flex-wrap">
+        <li className="flex items-start justify-between sm:text-lg">
+            <div className="sm:flex gap-x-4 flex-wrap">
                 <p className="w-28">{formatMonth(new Date(article.publishedAt))}</p>
                 <Link href={`/blog/${article.slug}`}>{article.title}</Link>
-            </div>
-            <div aria-label="categories" className="gap-x-1 hidden md:flex items-center">
-                {article.tags?.map((tag) => (
-                    <button
-                        key={tag.value}
-                        onClick={() => {
-                            const newSelectedTags = selectedTags.includes(tag.value)
-                                ? selectedTags.filter((t) => t !== tag.value)
-                                : [...selectedTags, tag.value];
-                            setSelectedTags(newSelectedTags);
-                        }}
-                        className={classNames(
-                            "border rounded-full py-1 px-3 text-sm cursor-pointer select-none transition-all duration-100 ease-in outline-none",
-                            selectedTags.includes(tag.value)
-                                ? "border-gray-800 bg-gray-800 text-gray-100 hover:bg-gray-700"
-                                : "border-gray-400 bg-white hover:bg-gray-100 focus:bg-gray-100"
-                        )}
-                    >
-                        {tag.label}
-                    </button>
-                ))}
             </div>
         </li>
     );
@@ -77,8 +56,11 @@ function ArticleList({ articles }: { articles: Article[] }) {
             <div className="space-y-4">
                 {Object.entries(articlesByYear).map(([year, articles]) => (
                     <section key={year}>
-                        <h2 className="text-2xl font-bold">{year}</h2>
-                        <ul className="space-y-2 mt-3">
+                        <header className="sticky top-0 flex items-center gap-x-4 bg-white py-1 -mr-3 sm:mr-0">
+                            <h2 className="text-2xl font-bold">{year}</h2>
+                            <div className="h-px bg-gray-200 w-full relative" />
+                        </header>
+                        <ul className="space-y-4 sm:space-y-2 mt-3">
                             {articles.map((article) => (
                                 <ArticleItem key={article.slug} article={article} />
                             ))}

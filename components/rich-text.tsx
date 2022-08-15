@@ -11,6 +11,11 @@ import theme from "react-syntax-highlighter/dist/cjs/styles/hljs/github-gist";
 SyntaxHighlighter.registerLanguage("javascript", js);
 SyntaxHighlighter.registerLanguage("typescript", ts);
 
+const languages = {
+    javascript: "JavaScript",
+    typescript: "TypeScript",
+};
+
 interface RichTextProps {
     content: any;
 }
@@ -32,17 +37,19 @@ const PortableText = createPortableTextComponent({
                     </div>
                 );
             },
-            code: (props: { node: { code: string; language: string } }) => {
+            code: (props: { node: { code: string; language: keyof typeof languages } }) => {
                 return (
-                    <div className="bg-gray-50 px-2 py-2 border border-gray-100 shadow-sm -mx-3 sm:rounded-md sm:-mx-4 overflow-hidden">
+                    <div className="bg-gray-50 px-2 py-2 relative border border-gray-100 shadow-sm -mx-3 sm:rounded-md sm:-mx-4 overflow-hidden">
                         <SyntaxHighlighter
-                            showLineNumbers
-                            language={props.node.language}
                             style={theme}
+                            language={props.node.language}
                             customStyle={{ background: "transparent", padding: 0, margin: 0, borderRadius: "0" }}
+                            showLineNumbers
+                            lineNumberStyle={{ opacity: 0.25 }}
                         >
                             {props.node.code}
                         </SyntaxHighlighter>
+                        <span className="absolute bottom-2 right-3 text-sm">{languages[props.node.language]}</span>
                     </div>
                 );
             },
@@ -52,7 +59,6 @@ const PortableText = createPortableTextComponent({
                 return <Link href={props.mark.href}>{props.children}</Link>;
             },
             code: (props: { children: any }) => {
-                console.log(props.children);
                 return (
                     <code className="rounded-md text-gray-800 mx-1 bg-gray-100 border border-gray-200 font-mono px-1.5 py-0.5">
                         {props.children}
