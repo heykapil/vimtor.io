@@ -28,7 +28,7 @@ export default function Technologies({ levels }: TechnologiesPage) {
                         </div>
                         <ul
                             onScroll={() => setShowTooltip(false)}
-                            className="relative flex flex-nowrap mt-6 md:mt-8 gap-8 overflow-x-scroll md:flex-wrap md:justify-center md:overflow-x-auto"
+                            className="relative flex flex-nowrap py-1 mt-6 md:mt-8 gap-8 overflow-x-scroll md:flex-wrap md:justify-center md:overflow-x-auto"
                         >
                             {level.technologies.map((technology) => (
                                 <li className="shrink-0 hover:opacity-80 transition-opacity" key={technology.slug}>

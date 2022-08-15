@@ -99,6 +99,11 @@ function ArticleList({ articles }: { articles: Article[] }) {
                     Shakespeare would be proud of that <Emoji label="writer" icon="🪶" />
                 </EmptyMessage.Option>
                 <EmptyMessage.Option>I&apos;m sure you have better things to do...</EmptyMessage.Option>
+                <EmptyMessage.Option>
+                    Are you that interested?
+                    <br />
+                    We can <Link href="/contact">write that together</Link>
+                </EmptyMessage.Option>
             </EmptyMessage>
         );
     }
