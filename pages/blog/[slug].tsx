@@ -5,6 +5,7 @@ import RichText from "../../components/rich-text";
 import { groq } from "next-sanity";
 import { filterDataToSingleItem, getClient, usePreviewSubscription } from "../../lib/sanity/client";
 import { Article } from "../../lib/types";
+import { truncate } from "lodash";
 
 export default function ArticlePage({ data, preview }: InferGetStaticPropsType<typeof getStaticProps>) {
     const { data: previewData } = usePreviewSubscription(data?.query, {
@@ -13,10 +14,10 @@ export default function ArticlePage({ data, preview }: InferGetStaticPropsType<t
         enabled: preview,
     });
 
-    const article = filterDataToSingleItem(previewData, preview);
+    const article: Article = filterDataToSingleItem(previewData, preview);
 
     return (
-        <Page title={article.title} description="">
+        <Page title={article.title} description={truncate(article.excerpt, { length: 150 })}>
             <article>
                 <div className="max-w-lg mx-auto text-center px-3">
                     <PageTitle className="!mb-1 ">{article.title}</PageTitle>
@@ -36,13 +37,12 @@ export default function ArticlePage({ data, preview }: InferGetStaticPropsType<t
                 <main className="prose prose-h2:mb-3 mx-auto px-3 pb-12">
                     <RichText content={article.content} />
                 </main>
-                <div></div>
             </article>
         </Page>
     );
 }
 
-export const getStaticPaths: GetStaticPaths = async (context) => {
+export const getStaticPaths: GetStaticPaths = async () => {
     const query = groq`*[_type == "article"].slug.current`;
     const slugs = await getClient().fetch<string[]>(query);
     return {
@@ -58,6 +58,7 @@ export const getStaticProps: GetStaticProps<{
     const query = groq`
       *[_type == "article" && slug.current == $slug]{
         ...,
+        'excerpt': pt::text(content),
         'content': content[]{
           ...select(
             _type == "image" => {

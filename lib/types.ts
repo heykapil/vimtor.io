@@ -63,6 +63,7 @@ export interface TechnologyLevel {
 
 export interface Article {
     title: string;
+    excerpt: string;
     slug: string;
     publishedAt: string;
     tags: Array<ArticleTag>;
