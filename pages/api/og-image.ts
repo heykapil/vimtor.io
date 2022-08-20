@@ -1,11 +1,6 @@
 import { withOGImage } from "next-api-og-image";
 
-enum QueryParams {
-  "title",
-  "images",
-}
-
-export default withOGImage<"query", keyof typeof QueryParams>({
+export default withOGImage<"query", "title" | "images">({
   strategy: "query",
   type: "jpeg",
   quality: 90,
@@ -19,7 +14,7 @@ export default withOGImage<"query", keyof typeof QueryParams>({
               <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;800&display=swap" rel="stylesheet" >
             </head>
             <body style="font-family: 'Nunito', sans-serif;">
-              <div class="flex flex-col items-center justify-center text-center bg-white pb-10" style="width: 1200px; height: 630px;">
+              <div class="flex flex-col items-center justify-center text-center bg-white pb-6" style="width: 1200px; height: 630px;">
                 <div class="flex items-center gap-x-12">
                   ${images
                     .split("$$$$")
