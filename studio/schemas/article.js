@@ -18,6 +18,22 @@ export default {
             },
         },
         {
+            name: "publishedAt",
+            title: "Published At",
+            type: "date",
+        },
+        {
+            name: "technologies",
+            title: "Technologies",
+            type: "array",
+            of: [
+                {
+                    type: "reference",
+                    to: [{ type: "technology" }],
+                },
+            ],
+        },
+        {
             name: "tags",
             title: "Tags",
             type: "array",
@@ -27,11 +43,6 @@ export default {
                     to: [{ type: "articleTag" }],
                 },
             ],
-        },
-        {
-            name: "publishedAt",
-            title: "Published At",
-            type: "date",
         },
         {
             name: "content",

@@ -13,12 +13,14 @@
     "@sanity/default-layout",
     "@sanity/default-login",
     "@sanity/desk-tool",
-    "@sanity/code-input"
+    "@sanity/code-input",
+    "@sanity/production-preview"
   ],
   "env": {
     "development": {
       "plugins": [
-        "@sanity/vision"
+        "@sanity/vision",
+        "@sanity/production-preview"
       ]
     }
   },
@@ -30,6 +32,10 @@
     {
       "name": "part:@sanity/desk-tool/structure",
       "path": "./desk-structure.js"
+    },
+    {
+      "implements": "part:@sanity/production-preview/resolve-production-url",
+      "path": "./resolve-production-url.js"
     }
   ]
 }

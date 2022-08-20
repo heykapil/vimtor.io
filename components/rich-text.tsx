@@ -6,15 +6,12 @@ import { SanityImageAssetDocument } from "@sanity/client";
 import { LightAsync as SyntaxHighlighter } from "react-syntax-highlighter";
 import js from "react-syntax-highlighter/dist/cjs/languages/hljs/javascript";
 import ts from "react-syntax-highlighter/dist/cjs/languages/hljs/typescript";
+import sql from "react-syntax-highlighter/dist/cjs/languages/hljs/sql";
 import theme from "react-syntax-highlighter/dist/cjs/styles/hljs/github-gist";
 
 SyntaxHighlighter.registerLanguage("javascript", js);
 SyntaxHighlighter.registerLanguage("typescript", ts);
-
-const languages = {
-    javascript: "JavaScript",
-    typescript: "TypeScript",
-};
+SyntaxHighlighter.registerLanguage("sql", sql);
 
 interface RichTextProps {
     content: any;
@@ -37,7 +34,7 @@ const PortableText = createPortableTextComponent({
                     </div>
                 );
             },
-            code: (props: { node: { code: string; language: keyof typeof languages } }) => {
+            code: (props: { node: { code: string; language: string } }) => {
                 return (
                     <div className="bg-gray-50 px-2 py-2 relative border border-gray-100 shadow-sm -mx-3 sm:rounded-md sm:-mx-4 overflow-hidden">
                         <SyntaxHighlighter
@@ -49,7 +46,6 @@ const PortableText = createPortableTextComponent({
                         >
                             {props.node.code}
                         </SyntaxHighlighter>
-                        <span className="absolute bottom-2 right-3 text-sm">{languages[props.node.language]}</span>
                     </div>
                 );
             },

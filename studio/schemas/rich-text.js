@@ -1,3 +1,5 @@
+import "ace-builds/src-noconflict/mode-sql";
+
 export default {
     title: "Rich Text",
     name: "richText",
@@ -8,7 +10,6 @@ export default {
             type: "block",
             styles: [
                 { title: "Title", value: "h2" },
-                { title: "Subtitle", value: "h3" },
                 { title: "Normal", value: "normal" },
                 { title: "Quote", value: "blockquote" },
             ],
@@ -48,6 +49,18 @@ export default {
         {
             title: "Code",
             type: "code",
+            options: {
+                languageAlternatives: [
+                    { title: "JavaScript", value: "js" },
+                    { title: "TypeScript", value: "ts" },
+                    { title: "CSS", value: "css" },
+                    {
+                        title: "SQL",
+                        value: "sql",
+                        mode: "sql",
+                    },
+                ],
+            },
         },
     ],
 };

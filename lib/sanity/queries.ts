@@ -106,27 +106,6 @@ export const blogPageQuery = groq`
     }
 `;
 
-export const articleBySlugQuery = groq`
-    *[_type == "article" && slug.current == $slug][0]{
-      ...,
-      'content': content[]{
-        ...select(
-          _type == "image" => {
-            ...,
-            "asset": asset->
-          },
-          _type != "image" => {
-            ...
-          }
-        )
-      }
-    }
-`;
-
-export const articleSlugsQuery = groq`
-    *[_type == "article"].slug.current
-`;
-
 export const privacyPolicyQuery = groq`
     *[_type == "privacyPolicy" && _id == "privacyPolicy"][0]
 `;

@@ -1,4 +1,4 @@
-import { ClientConfig, createClient, createImageUrlBuilder } from "next-sanity";
+import { ClientConfig, createClient, createImageUrlBuilder, createPreviewSubscriptionHook } from "next-sanity";
 import { SanityImageSource } from "@sanity/image-url/lib/types/types";
 import { Image } from "../types";
 
@@ -31,4 +31,26 @@ export const previewClient = createClient({
     token: process.env.SANITY_API_TOKEN,
 });
 
-export const getClient = (usePreview: boolean) => (usePreview ? previewClient : sanityClient);
+export const getClient = (usePreview?: boolean) => (usePreview ? previewClient : sanityClient);
+
+export const usePreviewSubscription = createPreviewSubscriptionHook(config);
+
+/**
+ * Helper function to return the correct version of the document
+ * If we're in "preview mode" and have multiple documents, return the draft
+ */
+export function filterDataToSingleItem(data: any, preview?: boolean) {
+    if (!Array.isArray(data)) {
+        return data;
+    }
+
+    if (data.length === 1) {
+        return data[0];
+    }
+
+    if (preview) {
+        return data.find((item) => item._id.startsWith(`drafts.`)) || data[0];
+    }
+
+    return data[0];
+}
