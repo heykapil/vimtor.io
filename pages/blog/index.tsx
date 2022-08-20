@@ -2,16 +2,15 @@ import Page from "../../components/page/page";
 import PageTitle from "../../components/page/page-title";
 import PageSubtitle from "../../components/page/page-subtitle";
 import { GetStaticProps, InferGetStaticPropsType } from "next";
-import { getBlogPage } from "../../lib/sanity/api";
-import { Article, BlogPage } from "../../lib/types";
 import { groupBy } from "lodash";
 import Link from "../../components/link";
 import Emoji from "../../components/emoji";
 import TagFilters from "../../components/tag-filters";
-import { classNames } from "../../lib/style";
 import { useQueryArrayState } from "../../hooks/use-query-state";
 import EmptyMessage from "../../components/empty-message";
 import { useEffect, useMemo, useState } from "react";
+import { groq } from "next-sanity";
+import { getClient } from "../../lib/sanity/client";
 
 function formatMonth(date: Date) {
     const month = date.toLocaleString("default", { month: "long" });
@@ -20,6 +19,19 @@ function formatMonth(date: Date) {
 
 function useSelectedTags() {
     return useQueryArrayState("tags");
+}
+
+interface Article {
+    title: string;
+    slug: string;
+    publishedAt: string;
+    tags: Array<{ value: string; label: string }>;
+    content: any;
+}
+
+export interface BlogPage {
+    articles: Array<Article>;
+    tags: Array<{ value: string; label: string }>;
 }
 
 function ArticleItem({ article }: { article: Article }) {
@@ -119,8 +131,26 @@ export default function Blog({ articles, tags }: InferGetStaticPropsType<typeof 
 }
 
 export const getStaticProps: GetStaticProps<BlogPage> = async () => {
+    const query = groq`
+      {
+        'articles': *[_type == "article"]{
+          title,
+          content,
+          publishedAt,
+          'slug': slug.current,
+          'tags': tags[]->{
+            'label': name,
+            'value': slug.current
+          }
+        } | order(publishedAt desc),
+        'tags': *[_type == "articleTag"]{
+          'label': name,
+          'value': slug.current
+        }
+      }
+    `;
     return {
         revalidate: 3600,
-        props: await getBlogPage(),
+        props: await getClient(false).fetch<BlogPage>(query),
     };
 };

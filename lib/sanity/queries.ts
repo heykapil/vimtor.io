@@ -47,19 +47,6 @@ const educationQuery = groq`
     }
 `;
 
-const articleQuery = groq`
-  {
-    title,
-    content,
-    publishedAt,
-    'slug': slug.current,
-    'tags': tags[]->{
-      'label': name,
-      'value': slug.current
-    }
-  }
-`;
-
 const projectTagsQuery = groq`
     *[_type == "projectType" || _type == "technology"]{
       'label': name,
@@ -93,16 +80,6 @@ export const technologiesPageQuery = groq`
 export const homePageQuery = groq`
     *[_type == "homePage" && _id == "homePage"][0]{
       'projects': projects[]->${projectQuery}
-    }
-`;
-
-export const blogPageQuery = groq`
-    {
-      'articles': *[_type == "article"]${articleQuery} | order(publishedAt desc),
-      'tags': *[_type == "articleTag"]{
-        'label': name,
-        'value': slug.current
-      }
     }
 `;
 

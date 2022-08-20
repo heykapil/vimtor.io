@@ -4,8 +4,17 @@ import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from "next";
 import RichText from "../../components/rich-text";
 import { groq } from "next-sanity";
 import { filterDataToSingleItem, getClient, usePreviewSubscription } from "../../lib/sanity/client";
-import { Article } from "../../lib/types";
 import { truncate } from "lodash";
+import { NextSeo } from "next-seo";
+
+interface Article {
+    title: string;
+    excerpt: string;
+    slug: string;
+    tags: string[];
+    publishedAt: string;
+    content: any;
+}
 
 export default function ArticlePage({ data, preview }: InferGetStaticPropsType<typeof getStaticProps>) {
     const { data: previewData } = usePreviewSubscription(data?.query, {
@@ -18,9 +27,24 @@ export default function ArticlePage({ data, preview }: InferGetStaticPropsType<t
 
     return (
         <Page title={article.title} description={truncate(article.excerpt, { length: 150 })}>
+            <NextSeo
+                openGraph={{
+                    title: article.title,
+                    description: truncate(article.excerpt, { length: 120 }),
+                    type: "article",
+                    locale: "en",
+                    images: [{ url: "" }],
+                    url: `https://vimtor.io/blog/${article.slug}`,
+                    article: {
+                        authors: ["Victor Navarro"],
+                        tags: article.tags,
+                        publishedTime: article.publishedAt,
+                    },
+                }}
+            />
             <article>
                 <div className="max-w-lg mx-auto text-center px-3">
-                    <PageTitle className="!mb-1 ">{article.title}</PageTitle>
+                    <PageTitle className="!mb-1">{article.title}</PageTitle>
                     <p className="text-lg">by Victor Navarro</p>
                 </div>
                 <div className="flex items-center gap-x-4 my-8">
@@ -58,6 +82,8 @@ export const getStaticProps: GetStaticProps<{
     const query = groq`
       *[_type == "article" && slug.current == $slug]{
         ...,
+        'slug': slug.current,
+        'tags': tags[]->slug.current,
         'excerpt': pt::text(content),
         'content': content[]{
           ...select(

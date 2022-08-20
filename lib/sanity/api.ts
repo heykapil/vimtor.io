@@ -1,7 +1,6 @@
-import { BlogPage, HomePage, PrivacyPolicy, ProjectsPage, ResumePage, TechnologiesPage } from "../types";
+import { HomePage, PrivacyPolicy, ProjectsPage, ResumePage, TechnologiesPage } from "../types";
 import { getClient } from "./client";
 import {
-    blogPageQuery,
     homePageQuery,
     privacyPolicyQuery,
     projectsPageQuery,
@@ -12,11 +11,6 @@ import {
 export async function getHomePage() {
     const client = getClient(false);
     return client.fetch<HomePage>(homePageQuery);
-}
-
-export async function getBlogPage() {
-    const client = getClient(false);
-    return client.fetch<BlogPage>(blogPageQuery);
 }
 
 export async function getPrivacyPolicy() {

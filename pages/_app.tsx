@@ -19,13 +19,12 @@ export default function MyApp({ Component, pageProps }: AppProps) {
                 defaultTitle="Victor Navarro"
                 openGraph={{
                     type: "website",
-                    locale: "en_US",
+                    locale: "en",
                     url: "https://vimtor.io/",
-                    site_name: "Victor Navarro's Personal Website",
+                    site_name: "Victor Navarro",
                 }}
                 twitter={{
                     handle: "@vimtor_",
-                    site: "@vimtor_",
                 }}
             />
             <AnimatePresence exitBeforeEnter onExitComplete={handleExitComplete}>

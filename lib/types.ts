@@ -61,22 +61,8 @@ export interface TechnologyLevel {
     technologies: Array<Technology>;
 }
 
-export interface Article {
-    title: string;
-    excerpt: string;
-    slug: string;
-    publishedAt: string;
-    tags: Array<ArticleTag>;
-    content: RichText;
-}
-
 export interface HomePage {
     projects: Array<Project>;
-}
-
-export interface BlogPage {
-    articles: Array<Article>;
-    tags: Array<ArticleTag>;
 }
 
 export interface PrivacyPolicy {
