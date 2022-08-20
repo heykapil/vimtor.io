@@ -8,7 +8,7 @@ import { Article } from "../../lib/types";
 
 export default function ArticlePage({ data, preview }: InferGetStaticPropsType<typeof getStaticProps>) {
     const { data: previewData } = usePreviewSubscription(data?.query, {
-        params: data?.params ?? {},
+        params: data?.variables ?? {},
         initialData: data?.page,
         enabled: preview,
     });
@@ -52,9 +52,9 @@ export const getStaticPaths: GetStaticPaths = async (context) => {
 };
 
 export const getStaticProps: GetStaticProps<{
-    preview?: boolean;
-    data: { page: Article[]; query: string; params: any };
-}> = async (context) => {
+    preview: boolean;
+    data: { page: Article[]; query: string; variables: any };
+}> = async ({ preview = false, params = {} }) => {
     const query = groq`
       *[_type == "article" && slug.current == $slug]{
         ...,
@@ -71,8 +71,8 @@ export const getStaticProps: GetStaticProps<{
         }
       }
     `;
-    const params = { slug: context.params?.slug };
-    const data = await getClient(context.preview).fetch<Article[]>(query, params);
+    const variables = { slug: params?.slug };
+    const data = await getClient(preview).fetch<Article[]>(query, variables);
 
     if (!data) {
         return {
@@ -86,11 +86,11 @@ export const getStaticProps: GetStaticProps<{
 
     return {
         props: {
-            preview: context.preview,
+            preview,
             data: {
-                page: filterDataToSingleItem(data, context.preview),
+                page: filterDataToSingleItem(data, preview),
                 query,
-                params,
+                variables,
             },
         },
     };
