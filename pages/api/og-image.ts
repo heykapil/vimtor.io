@@ -9,8 +9,8 @@ export default withOGImage<"query", keyof typeof QueryParams>({
   strategy: "query",
   type: "jpeg",
   quality: 90,
-  width: 1280,
-  height: 720,
+  width: 1200,
+  height: 630,
   template: {
     html: ({ title, images }) => `
           <html>
@@ -19,7 +19,7 @@ export default withOGImage<"query", keyof typeof QueryParams>({
               <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;800&display=swap" rel="stylesheet" >
             </head>
             <body style="font-family: 'Nunito', sans-serif;">
-              <div class="flex flex-col items-center justify-center text-center border-gray-800 pb-12" style="width: 1280px; height: 720px; border-width: 12px;">
+              <div class="flex flex-col items-center justify-center text-center bg-white border-gray-800 pb-12" style="width: 1200px; height: 630px; border-width: 12px;">
                 <div class="flex items-center gap-x-12">
                   ${images
                     .split("$$$$")

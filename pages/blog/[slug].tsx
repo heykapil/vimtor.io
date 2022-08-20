@@ -60,7 +60,6 @@ export default function ArticlePage({ data, preview }: InferGetStaticPropsType<t
           },
         }}
       />
-      <img src={getOpenGraphImage({ title: article.title, images: article.images })} width={1280} height={720} />
       <article>
         <div className="max-w-lg mx-auto text-center px-3">
           <PageTitle className="!mb-1">{article.title}</PageTitle>
