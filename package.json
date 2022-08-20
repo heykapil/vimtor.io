@@ -5,6 +5,7 @@
     "scripts": {
         "dev": "concurrently \"next --port 3000\" \"cd studio && sanity start\"",
         "build": "echo 'Building Sanity to public/studio' && cd studio && sanity build ../public/studio -y && cd .. && next build",
+        "postbuild": "next-sitemap",
         "start": "vercel start",
         "lint": "next lint",
         "prepare": "husky install",
@@ -24,6 +25,7 @@
         "next-api-og-image": "^4.2.1",
         "next-sanity": "^0.4.0",
         "next-seo": "^5.4.0",
+        "next-sitemap": "^3.1.20",
         "react": "^17.0.2",
         "react-dom": "^17.0.2",
         "react-syntax-highlighter": "^15.5.0",

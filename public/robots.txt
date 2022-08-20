@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://vimtor.io
+
+# Sitemaps
+Sitemap: https://vimtor.io/sitemap.xml
