@@ -117,16 +117,14 @@ export const getStaticProps: GetStaticProps<{
         }
       }
     `;
-  const variables = { slug: params?.slug };
-  const data = await getClient(preview).fetch<Article[]>(query, variables);
 
-  if (!data) {
+  const variables = { slug: params?.slug };
+  const data = await getClient(true).fetch<Article[]>(query, variables);
+  const page = filterDataToSingleItem(data, preview);
+
+  if (!page) {
     return {
       notFound: true,
-      redirect: {
-        destination: "/",
-        permanent: false,
-      },
     };
   }
 
@@ -134,7 +132,7 @@ export const getStaticProps: GetStaticProps<{
     props: {
       preview,
       data: {
-        page: filterDataToSingleItem(data, preview),
+        page,
         query,
         variables,
       },
