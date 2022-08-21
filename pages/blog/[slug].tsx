@@ -61,7 +61,7 @@ export default function ArticlePage({ data, preview }: InferGetStaticPropsType<t
         }}
       />
       <article>
-        <div className="max-w-lg mx-auto text-center px-3">
+        <div className="max-w-2xl mx-auto text-center px-3">
           <PageTitle className="!mb-1">{article.title}</PageTitle>
           <p className="text-lg">by Victor Navarro</p>
         </div>

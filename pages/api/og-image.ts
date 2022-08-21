@@ -23,7 +23,7 @@ export default withOGImage<"query", "title" | "images">({
                     .map((url) => `<img width="196" height="196" src="${url}" alt="" />`)
                     .join(`<div class="text-6xl text-gray-400">+</div>`)}
                 </div>  
-                <h1 style="max-width: 70%" class="flex mt-14 flex-row text-6xl font-extrabold text-gray-800">${title}</h1>
+                <h1 style="max-width: 80%" class="flex mt-14 flex-row text-6xl font-extrabold text-gray-800">${title}</h1>
                 <p class="text-4xl text-gray-600 mt-6">by Victor Navarro</p>
               </div>
             </body>
